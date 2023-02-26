@@ -26,7 +26,7 @@ public class Player
         entity.RenderEntity();
     }
     public void Move() {
-        if (shape.Direction.X > 0.0f){
+        if (shape.Position.X > 0.0f || shape.Position.X < 1.0f){
             shape.Move();
         }  
     // TODO: move the shape and guard against the window borders
