@@ -29,21 +29,20 @@ public class Player
         if (shape.Position.X > 0.0f || shape.Position.X < 1.0f){
             shape.Move();
         }  
-    // TODO: move the shape and guard against the window borders
+        // TODO: move the shape and guard against the window borders
     }
 
     private void UpdateDirection() {
-        shape.Direction.X = moveLeft + moveRight;//new DIKUArcade.Math.Vec2F(moveLeft + moveRight, 0.0f);
+        shape.Direction.X = moveLeft + moveRight;
         //TODO: ?
     }
 
     public void SetMoveLeft(bool val) {
         if (val) {
-            moveLeft += MOVEMENT_SPEED;
-            moveRight -= MOVEMENT_SPEED;
+            moveLeft = - MOVEMENT_SPEED;
+
         } else {
             moveLeft = 0.0f;
-            moveRight = 0.0f;
         }
         UpdateDirection();
         // TODO:set moveLeft appropriately and call UpdateDirection()
@@ -51,14 +50,12 @@ public class Player
 
     public void SetMoveRight(bool val) {
         if (val) {
-            moveLeft -= MOVEMENT_SPEED;
-            moveRight += MOVEMENT_SPEED;
+            moveRight = MOVEMENT_SPEED;
         } else {
-            moveLeft = 0.0f;
             moveRight = 0.0f;
         }
         UpdateDirection();
-    // TODO:set moveRight appropriately and call UpdateDirection()
+        // TODO:set moveRight appropriately and call UpdateDirection()
     }
     
 }
