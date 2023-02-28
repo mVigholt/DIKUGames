@@ -26,9 +26,15 @@ public class Player
         entity.RenderEntity();
     }
     public void Move() {
-        
-        if (shape.Position.X > 0.0f || shape.Position.X < 1.0f){
+        Console.WriteLine(shape.Position.X);
+        if (shape.Position.X > 0.0f && shape.Position.X < (1.0f - shape.Extent.X)){
             shape.Move();
+        } else {
+            if (shape.Position.X < 0.0f && shape.Direction.X > 0) {
+                shape.Move();
+            } else if (shape.Position.X > (1.0f - shape.Extent.X) && shape.Direction.X < 0) {
+                shape.Move();
+            }
         }
         // TODO: move the shape and guard against the window borders
     }
