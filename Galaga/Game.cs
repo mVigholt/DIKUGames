@@ -18,21 +18,9 @@ public class Game : DIKUGame, IGameEventProcessor {
     private GameEventBus eventBus;
 
     public Game(WindowArgs windowArgs) : base(windowArgs) {
-        player = new Player(
-            new DynamicShape(new Vec2F(0.45f, 0.1f), new Vec2F(0.1f, 0.1f)),
-            new Image(Path.Combine("Assets", "Images", "Player.png")));
-        List<Image> images = ImageStride.CreateStrides(4, Path.Combine("Assets", "Images", "BlueMonster.png"));
-        const int numEnemies = 8;
-        enemies = new EntityContainer<Enemy>(numEnemies);
-        for (int i = 0; i < numEnemies; i++) {
-            enemies.AddEntity(new Enemy(
-                    new DynamicShape(new Vec2F(0.1f + (float)i * 0.1f, 0.9f), new Vec2F(0.1f, 0.1f)),
-                    new ImageStride(80, images)));
-            eventBus = new GameEventBus();
-            eventBus.InitializeEventBus(new List<GameEventType> {GameEventType.InputEvent});
-            window.SetKeyEventHandler(KeyHandler);
-            eventBus.Subscribe(GameEventType.InputEvent, this);
-        }
+        InitPlayer();
+        InitEnemies();
+        InitEventBus();
     }
 
     public override void Render() {
@@ -47,35 +35,31 @@ public class Game : DIKUGame, IGameEventProcessor {
 
     private void KeyPress(KeyboardKey key) {
          switch (key) {
-                case KeyboardKey.Escape:
-                    window.CloseWindow();
-                    break;
-                case KeyboardKey.Left:
-                    player.SetMoveLeft(true);
-                    break;
-                case KeyboardKey.Right:
-                    player.SetMoveRight(true);
-                    break;
-                default:
-                    break;
-            }
-
-        // TODO: Close window if escape is pressed
-        // TODO: switch on key string and set the player's move direction
+            case KeyboardKey.Escape:
+                window.CloseWindow();
+                break;
+            case KeyboardKey.Left:
+                player.SetMoveLeft(true);
+                break;
+            case KeyboardKey.Right:
+                player.SetMoveRight(true);
+                break;
+            default:
+                break;
+        }
     }
 
     private void KeyRelease(KeyboardKey key) {
-         switch (key) {
-                case KeyboardKey.Left:
-                    player.SetMoveLeft(false);
-                    break;
-                case KeyboardKey.Right:
-                    player.SetMoveRight(false);
-                    break;
-                default:
-                    break;
-            }
-        // TODO: switch on key string and disable the player's move direction
+        switch (key) {
+            case KeyboardKey.Left:
+                player.SetMoveLeft(false);
+                break;
+            case KeyboardKey.Right:
+                player.SetMoveRight(false);
+                break;
+            default:
+                break;
+        }
     }
 
     private void KeyHandler(KeyboardAction action, KeyboardKey key) {
@@ -92,5 +76,36 @@ public class Game : DIKUGame, IGameEventProcessor {
 
     public void ProcessEvent(GameEvent gameEvent) {
         // Leave this empty for now
+    }
+
+    public void InitPlayer() {
+        player = new Player(
+            new DynamicShape(new Vec2F(0.45f, 0.1f), new Vec2F(0.1f, 0.1f)),
+            new Image(Path.Combine("Assets", "Images", "Player.png")));
+    }
+
+    /// <summary>Create a few enemies and add them to the game</summary>
+    public void InitEnemies() {
+        string imagePath = Path.Combine("Assets", "Images", "BlueMonster.png");
+        int numStrides = 4;
+        List<Image> images = ImageStride.CreateStrides(numStrides, imagePath);
+        const int numEnemies = 8;
+        enemies = new EntityContainer<Enemy>(numEnemies);
+        for (int i = 0; i < numEnemies; i++) {
+            int milliseconds = 80;
+            Vec2F pos = new Vec2F(0.1f + (float)i * 0.1f, 0.9f);
+            Vec2F extent = new Vec2F(0.1f, 0.1f);
+            Enemy enemy = new Enemy(
+                new DynamicShape(pos, extent),
+                new ImageStride(milliseconds, images));
+            enemies.AddEntity(enemy);
+        }
+    }
+
+    public void InitEventBus() {
+        eventBus = new GameEventBus();
+        eventBus.InitializeEventBus(new List<GameEventType> {GameEventType.InputEvent});
+        window.SetKeyEventHandler(KeyHandler);
+        eventBus.Subscribe(GameEventType.InputEvent, this);
     }
 }
