@@ -20,10 +20,17 @@ public class Game : DIKUGame, IGameEventProcessor {
 
     private GameEventBus eventBus;
 
-    public Game(WindowArgs windowArgs) : base(windowArgs) {
+    public Game(WindowArgs windowArgs) : base(windowArgs)
+    {
         player = new Player(
             new DynamicShape(new Vec2F(0.45f, 0.1f), new Vec2F(0.1f, 0.1f)),
             new Image(Path.Combine("Assets", "Images", "Player.png")));
+
+        eventBus = new GameEventBus();
+        eventBus.InitializeEventBus(new List<GameEventType> {GameEventType.InputEvent});
+        window.SetKeyEventHandler(KeyHandler);
+        eventBus.Subscribe(GameEventType.InputEvent, this);
+
         List<Image> images = ImageStride.CreateStrides(4, Path.Combine("Assets", "Images", "BlueMonster.png"));
         const int numEnemies = 8;
 
@@ -35,12 +42,8 @@ public class Game : DIKUGame, IGameEventProcessor {
 
         for (int i = 0; i < numEnemies; i++) {
             enemies.AddEntity(new Enemy(
-                    new DynamicShape(new Vec2F(0.1f + (float)i * 0.1f, 0.9f), new Vec2F(0.1f, 0.1f)),
-                    new ImageStride(80, images)));
-            eventBus = new GameEventBus();
-            eventBus.InitializeEventBus(new List<GameEventType> {GameEventType.InputEvent});
-            window.SetKeyEventHandler(KeyHandler);
-            eventBus.Subscribe(GameEventType.InputEvent, this);
+                new DynamicShape(new Vec2F(0.1f + (float)i * 0.1f, 0.9f), new Vec2F(0.1f, 0.1f)),
+                new ImageStride(80, images)));
         }
     }
 
@@ -48,19 +51,20 @@ public class Game : DIKUGame, IGameEventProcessor {
         playerShots.Iterate(shot => {
             // move the shot's shape
             shot.Shape.Move();
-            bool check = CollisionDetection.Aabb(shot.Shape.AsDynamicShape(), shot.Shape).Collision;
-            if (shot.Shape.Position.X < 0.0f || shot.Shape.Position.X >1.0f
+            // CollisionDetection.Aabb(shot.Shape.AsDynamicShape(), shot.Shape);
+            if (shot.Shape.Position.X < 0.0f || shot.Shape.Position.X > (1.0f - shot.Shape.Extent.X)
                 || shot.Shape.Position.Y< 0.0f ||shot.Shape.Position.Y> 1.0f ){
                 //delete the shot
                 shot.DeleteEntity();
             }
             else {
-            enemies.Iterate(enemy => {
+                enemies.Iterate(enemy => {
             // if collision btw shot and enemy -> delete both entities
-            if (check){
-                shot.DeleteEntity();
-                enemy.DeleteEntity();
-            }
+                bool check = CollisionDetection.Aabb(shot.Shape.AsDynamicShape(), enemy.Shape).Collision;
+                if (check){
+                    shot.DeleteEntity();
+                    enemy.DeleteEntity();
+                }
                 });
             }
         });
@@ -68,11 +72,13 @@ public class Game : DIKUGame, IGameEventProcessor {
     public override void Render() {
         player.Render();
         enemies.RenderEntities();
+        playerShots.RenderEntities();
     }
 
     public override void Update() {
         eventBus.ProcessEventsSequentially();
         player.Move();
+        IterateShots();
     }
 
     private void KeyPress(KeyboardKey key) {
@@ -101,6 +107,9 @@ public class Game : DIKUGame, IGameEventProcessor {
                     break;
                 case KeyboardKey.Right:
                     player.SetMoveRight(false);
+                    break;
+                case KeyboardKey.Space:
+                    playerShots.AddEntity(new PlayerShot(player.GetPosition(), playerShotImage));
                     break;
                 default:
                     break;
