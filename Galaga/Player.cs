@@ -1,12 +1,10 @@
+namespace Galaga;
 using System;
 using DIKUArcade.Entities;
 using DIKUArcade.Graphics;
 
-namespace Galaga;
 
-
-public class Player
-{
+public class Player {
     private Entity entity;
 
     private DynamicShape shape;
@@ -53,7 +51,7 @@ public class Player
     }
 
     private bool CanMoveRight() {
-        return shape.Position.X < (1.0f - shape.Extent.X);
+        return shape.Position.X < 1.0f - shape.Extent.X;
     }
 
     private MoveDir CurrentDirection() {
@@ -65,7 +63,7 @@ public class Player
         }
         return MoveDir.NONE;
     }
-    
+
     private bool CanMove() {
         switch (CurrentDirection()) {
             case MoveDir.LEFT:

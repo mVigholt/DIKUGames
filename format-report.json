@@ -2,9 +2,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "a9ce11d6-d837-401d-aa4a-d6ce1436cd96"
+      "Id": "857a3ec8-c5a7-44ca-9507-f6817d48a0f6"
     },
     "FileName": "DIKUGame.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/DIKUGame.cs",
@@ -20,9 +20,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "6d593103-e4d6-446b-938d-904598a00483"
+      "Id": "8abf41c4-6c85-4cc6-9558-9ad9441515dc"
     },
     "FileName": "Entity.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Entities/Entity.cs",
@@ -38,9 +38,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "5e4fa3e3-985d-439a-8922-1f24d4af7579"
+      "Id": "97117a8f-0ee6-42ab-96bc-3ad5fa163f2c"
     },
     "FileName": "EntityContainer.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Entities/EntityContainer.cs",
@@ -56,9 +56,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "8e9d979c-9387-476c-9ee3-4faad9185edf"
+      "Id": "b1413156-9135-4d56-8f92-f0eaf654ce8b"
     },
     "FileName": "EntityContainerT.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Entities/EntityContainerT.cs",
@@ -74,9 +74,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "53a3b6ec-fa54-447b-b3ac-561b63cf6d1b"
+      "Id": "fd360e49-9447-40c2-99dc-b4821617ba75"
     },
     "FileName": "Shape.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Entities/Shape.cs",
@@ -92,9 +92,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "46937445-a727-4beb-b73c-5ce67a7f13e4"
+      "Id": "19e453cf-8f64-46e1-b655-12036ad05445"
     },
     "FileName": "GameEvent.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Events/GameEvent.cs",
@@ -110,9 +110,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "ac748c81-e964-40a0-b2e8-11f05ccdc7fc"
+      "Id": "ca722fb4-a7cf-49ba-b8e2-ade99012c1b3"
     },
     "FileName": "GameEventBus.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Events/GameEventBus.cs",
@@ -128,9 +128,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "80b21867-9ed4-493e-92a7-d28bd5a041f5"
+      "Id": "cd5f2618-29cb-4009-ae11-38ee3e3d99b5"
     },
     "FileName": "GameEventQueue.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Events/GameEventQueue.cs",
@@ -146,9 +146,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "e6979ae0-5927-47a1-b591-bd190c2a914d"
+      "Id": "e54f10ec-39f6-4299-9608-7da874d28477"
     },
     "FileName": "GameEventType.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Events/GameEventType.cs",
@@ -164,9 +164,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "c6d986da-9270-447f-b6cd-f20da0547b06"
+      "Id": "ccf06145-7977-439c-82cf-4c236565cdb6"
     },
     "FileName": "GameEventBusT.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Events/Generic/GameEventBusT.cs",
@@ -182,9 +182,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "6afff055-9dd9-488f-a5cd-d38493f931ec"
+      "Id": "6e74e737-9f87-4eb1-b484-2e1508c2a126"
     },
     "FileName": "GameEventT.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Events/Generic/GameEventT.cs",
@@ -200,9 +200,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "742aaa0e-e59c-4723-b204-5bbbe2a35b1d"
+      "Id": "cf200314-a464-4b7d-b3b4-22d9d4ec5349"
     },
     "FileName": "IGameEventBusControllerT.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Events/Generic/IGameEventBusControllerT.cs",
@@ -218,9 +218,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "8479f224-f2c3-49db-85aa-7fa543b346ab"
+      "Id": "07df147e-2f36-4cd2-8b1e-571842712fe5"
     },
     "FileName": "IGameEventBusT.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Events/Generic/IGameEventBusT.cs",
@@ -236,9 +236,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "32895bf4-5c1c-495f-bbf1-6322a42c9b4c"
+      "Id": "06c1b8ce-b67c-4f2b-85f1-0ea67a1efb09"
     },
     "FileName": "IGameEventProcessorT.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Events/Generic/IGameEventProcessorT.cs",
@@ -254,9 +254,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "babce1ce-e80f-4c37-8855-6bd2d764033c"
+      "Id": "cf01431d-0de5-4443-a131-6371e4129d14"
     },
     "FileName": "ITimedEventGameBusT.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Events/Generic/ITimedEventGameBusT.cs",
@@ -272,9 +272,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "f84d0f8f-40be-4ae3-8edf-db03fdaaf425"
+      "Id": "9024b2e4-1fef-43f8-8c26-28800eeef5ff"
     },
     "FileName": "TimedGameEventT.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Events/Generic/TimedGameEventT.cs",
@@ -290,9 +290,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "704d38de-30aa-4016-8d63-9b6cb5893f6b"
+      "Id": "29d783a1-c440-4a4d-9e7a-412945ad2fae"
     },
     "FileName": "IGameEventBus.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Events/IGameEventBus.cs",
@@ -308,9 +308,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "11d33898-10ff-4646-bde9-33b6e4d9d295"
+      "Id": "82232e0e-7f8f-448b-bcb2-23f1310b474c"
     },
     "FileName": "IGameEventBusController.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Events/IGameEventBusController.cs",
@@ -326,9 +326,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "7772d288-4987-4c1a-b516-8d299d15560c"
+      "Id": "da15ad6c-f621-477e-a79c-66cf7429381d"
     },
     "FileName": "IGameEventProcessor.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Events/IGameEventProcessor.cs",
@@ -344,9 +344,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "4b553b73-98bb-4e22-8a50-3d53533120a5"
+      "Id": "9033d94c-4634-4316-90e3-30ff3443c387"
     },
     "FileName": "ITimedGameEventBus.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Events/ITimedGameEventBus.cs",
@@ -362,9 +362,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "a754a504-b061-48c7-8ff2-4ad1d68ab859"
+      "Id": "5500e715-cce8-427a-a3b5-f1508a3e5381"
     },
     "FileName": "TimedGameEvent.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Events/TimedGameEvent.cs",
@@ -380,9 +380,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "8af3120c-acd9-4abc-afc4-60e98099bf86"
+      "Id": "5d12a226-9bb4-497e-9773-664f458a6429"
     },
     "FileName": "Animation.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Graphics/Animation.cs",
@@ -398,9 +398,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "0566d1e2-0fbc-4ca5-93c9-fc3d2891ab63"
+      "Id": "e256c11b-7203-4dd0-a2e6-25aecbd33552"
     },
     "FileName": "AnimationContainer.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Graphics/AnimationContainer.cs",
@@ -416,9 +416,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "ae2d43ee-2aef-42ba-b83a-0bc23eac7eae"
+      "Id": "da401009-eed4-4e2d-99ac-07a73172cc54"
     },
     "FileName": "Camera.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Graphics/Camera.cs",
@@ -434,9 +434,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "1c53d8b0-1b20-4c56-951e-d27b485d9005"
+      "Id": "fad3309c-3b55-44bd-965f-fc3d3fb523e6"
     },
     "FileName": "ChaseCamera.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Graphics/ChaseCamera.cs",
@@ -452,9 +452,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "f58312a1-bf47-45c3-8f72-8e362a04c656"
+      "Id": "9005a4e5-bd31-4d22-a338-385eda6e8dd1"
     },
     "FileName": "DynamicCamera.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Graphics/DynamicCamera.cs",
@@ -470,9 +470,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "bbe2c80a-859c-4f57-8aac-109cf5c520a5"
+      "Id": "1372590e-d7f3-424d-b600-365b2591f8bb"
     },
     "FileName": "FollowCamera.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Graphics/FollowCamera.cs",
@@ -488,9 +488,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "45da00a1-7798-4370-930f-7a1361bb7dcb"
+      "Id": "58957a0a-2103-4fbf-97bb-8ba64598f966"
     },
     "FileName": "ImageStride.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Graphics/ImageStride.cs",
@@ -506,9 +506,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "2513f870-1a4a-458c-9f10-c603e2bfb9b0"
+      "Id": "619b0934-f74e-479d-8915-329f6b94db63"
     },
     "FileName": "NoImage.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Graphics/NoImage.cs",
@@ -524,9 +524,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "eb0caeb9-fb1d-489c-ba25-122d22b9fab0"
+      "Id": "1ccb56c7-a106-4ed9-8109-a6256bc6a8b5"
     },
     "FileName": "StaticCamera.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Graphics/StaticCamera.cs",
@@ -542,9 +542,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "9192c505-5346-471c-9289-5b3c89b20ffa"
+      "Id": "473ccdc1-06ed-4b96-9163-c7b022689023"
     },
     "FileName": "Text.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Graphics/Text.cs",
@@ -560,9 +560,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "3e0ca83c-d63b-4e70-b5cb-5d497340c837"
+      "Id": "e3c1c2e0-c224-49c8-b62e-f9b4d5bc1406"
     },
     "FileName": "Texture.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Graphics/Texture.cs",
@@ -578,9 +578,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "636e4067-fcb0-478a-a124-f7fd51cf590a"
+      "Id": "f5bf8c1e-f69d-4467-a4a6-cad8fb957667"
     },
     "FileName": "Window.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/GUI/Window.cs",
@@ -596,9 +596,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "65fd7ebb-29e8-491e-b331-dfd1ffdfadb3"
+      "Id": "a3fe4bfa-49b7-4e56-9a1e-93de1b617499"
     },
     "FileName": "KeyboardAction.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Input/KeyboardAction.cs",
@@ -614,9 +614,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "2c0f5db3-f1cd-4c8a-9823-5425cb6a208e"
+      "Id": "1fdbf17d-859d-461a-8d93-1aac588becfa"
     },
     "FileName": "KeyboardKey.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Input/KeyboardKey.cs",
@@ -632,9 +632,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "2a03b396-1a02-4904-a933-1d562e42e86a"
+      "Id": "f8951c23-7401-4c20-9de4-c6f30e3e96d2"
     },
     "FileName": "DanishKeyTransformer.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Input/Languages/DanishKeyTransformer.cs",
@@ -650,9 +650,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "168cfea5-17ac-48d4-9993-b96797d9e7d2"
+      "Id": "2a95e652-a890-44a8-9e54-c37e13362c47"
     },
     "FileName": "Vec2F.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Math/Vec2F.cs",
@@ -668,9 +668,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "58fa87d5-a27f-4486-8e8c-1e56b10db979"
+      "Id": "9f190e87-ada0-4283-81f4-71171c6d1fb7"
     },
     "FileName": "CollisionData.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Physics/CollisionData.cs",
@@ -686,9 +686,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "56edb3e5-8ebb-46b1-9714-815bba12c70b"
+      "Id": "09808686-c6e3-40b4-8958-16c60f3c9e68"
     },
     "FileName": "CollisionDetection.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Physics/CollisionDetection.cs",
@@ -704,9 +704,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "b71577dd-9362-44e8-a3fd-6e00ea998dc5"
+      "Id": "419cdc84-5697-4c88-a2f4-6463c5dd7405"
     },
     "FileName": "IGameState.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/State/IGameState.cs",
@@ -722,9 +722,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "279eeb9b-4f64-4019-91db-022c77723bfd"
+      "Id": "258fa6e4-1762-4aba-9daf-d6423a4ff0af"
     },
     "FileName": "GameTimer.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Timers/GameTimer.cs",
@@ -740,9 +740,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "d20965ca-a149-4f8c-a9ae-5a4ad6765e20"
+      "Id": "f3164122-8423-40fa-a8f6-82ab4940e96a"
     },
     "FileName": "TimePeriod.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Timers/TimePeriod.cs",
@@ -758,9 +758,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "a74e5c7b-f80a-442b-9faf-f14c299476b5"
+      "Id": "99055606-f1b1-445c-92a7-203ea57b1fa0"
     },
     "FileName": "RandomGenerator.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Utilities/RandomGenerator.cs",
@@ -776,81 +776,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "d2553afa-8b1d-4c6e-a8e5-d7371970e7ba"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "61be65eb-88c4-4ed2-953a-9d48d3f627e1"
-    },
-    "FileName": "Enemy.cs",
-    "FilePath": "/home/student/DIKUGames/Galaga/Enemy.cs",
-    "FileChanges": [
-      {
-        "LineNumber": 1,
-        "CharNumber": 1,
-        "DiagnosticId": "WHITESPACE",
-        "FormatDescription": "Fix whitespace formatting."
-      }
-    ]
-  },
-  {
-    "DocumentId": {
-      "ProjectId": {
-        "Id": "d2553afa-8b1d-4c6e-a8e5-d7371970e7ba"
-      },
-      "Id": "a97fa366-3597-4fc8-a0b8-fb8e21fbd0ae"
-    },
-    "FileName": "Game.cs",
-    "FilePath": "/home/student/DIKUGames/Galaga/Game.cs",
-    "FileChanges": [
-      {
-        "LineNumber": 1,
-        "CharNumber": 1,
-        "DiagnosticId": "WHITESPACE",
-        "FormatDescription": "Fix whitespace formatting."
-      }
-    ]
-  },
-  {
-    "DocumentId": {
-      "ProjectId": {
-        "Id": "d2553afa-8b1d-4c6e-a8e5-d7371970e7ba"
-      },
-      "Id": "e1ac925b-7093-4093-98bf-91bcfb5c5902"
-    },
-    "FileName": "Player.cs",
-    "FilePath": "/home/student/DIKUGames/Galaga/Player.cs",
-    "FileChanges": [
-      {
-        "LineNumber": 1,
-        "CharNumber": 1,
-        "DiagnosticId": "WHITESPACE",
-        "FormatDescription": "Fix whitespace formatting."
-      }
-    ]
-  },
-  {
-    "DocumentId": {
-      "ProjectId": {
-        "Id": "d2553afa-8b1d-4c6e-a8e5-d7371970e7ba"
-      },
-      "Id": "0d769807-0df1-4181-a77e-205793511f78"
-    },
-    "FileName": "Program.cs",
-    "FilePath": "/home/student/DIKUGames/Galaga/Program.cs",
-    "FileChanges": [
-      {
-        "LineNumber": 1,
-        "CharNumber": 1,
-        "DiagnosticId": "WHITESPACE",
-        "FormatDescription": "Fix whitespace formatting."
-      }
-    ]
-  },
-  {
-    "DocumentId": {
-      "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
-      },
-      "Id": "1c53d8b0-1b20-4c56-951e-d27b485d9005"
+      "Id": "fad3309c-3b55-44bd-965f-fc3d3fb523e6"
     },
     "FileName": "ChaseCamera.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Graphics/ChaseCamera.cs",
@@ -866,9 +794,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "45da00a1-7798-4370-930f-7a1361bb7dcb"
+      "Id": "58957a0a-2103-4fbf-97bb-8ba64598f966"
     },
     "FileName": "ImageStride.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Graphics/ImageStride.cs",
@@ -884,9 +812,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "9192c505-5346-471c-9289-5b3c89b20ffa"
+      "Id": "473ccdc1-06ed-4b96-9163-c7b022689023"
     },
     "FileName": "Text.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Graphics/Text.cs",
@@ -902,9 +830,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "3e0ca83c-d63b-4e70-b5cb-5d497340c837"
+      "Id": "e3c1c2e0-c224-49c8-b62e-f9b4d5bc1406"
     },
     "FileName": "Texture.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Graphics/Texture.cs",
@@ -920,9 +848,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "636e4067-fcb0-478a-a124-f7fd51cf590a"
+      "Id": "f5bf8c1e-f69d-4467-a4a6-cad8fb957667"
     },
     "FileName": "Window.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/GUI/Window.cs",
@@ -938,9 +866,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "2a03b396-1a02-4904-a933-1d562e42e86a"
+      "Id": "f8951c23-7401-4c20-9de4-c6f30e3e96d2"
     },
     "FileName": "DanishKeyTransformer.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Input/Languages/DanishKeyTransformer.cs",
@@ -956,27 +884,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "d2553afa-8b1d-4c6e-a8e5-d7371970e7ba"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "a97fa366-3597-4fc8-a0b8-fb8e21fbd0ae"
-    },
-    "FileName": "Game.cs",
-    "FilePath": "/home/student/DIKUGames/Galaga/Game.cs",
-    "FileChanges": [
-      {
-        "LineNumber": 1,
-        "CharNumber": 1,
-        "DiagnosticId": "IMPORTS",
-        "FormatDescription": "Fix imports ordering."
-      }
-    ]
-  },
-  {
-    "DocumentId": {
-      "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
-      },
-      "Id": "a9ce11d6-d837-401d-aa4a-d6ce1436cd96"
+      "Id": "857a3ec8-c5a7-44ca-9507-f6817d48a0f6"
     },
     "FileName": "DIKUGame.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/DIKUGame.cs",
@@ -992,9 +902,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "a9ce11d6-d837-401d-aa4a-d6ce1436cd96"
+      "Id": "857a3ec8-c5a7-44ca-9507-f6817d48a0f6"
     },
     "FileName": "DIKUGame.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/DIKUGame.cs",
@@ -1010,9 +920,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "a9ce11d6-d837-401d-aa4a-d6ce1436cd96"
+      "Id": "857a3ec8-c5a7-44ca-9507-f6817d48a0f6"
     },
     "FileName": "DIKUGame.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/DIKUGame.cs",
@@ -1028,27 +938,27 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "a9ce11d6-d837-401d-aa4a-d6ce1436cd96"
+      "Id": "857a3ec8-c5a7-44ca-9507-f6817d48a0f6"
     },
     "FileName": "DIKUGame.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/DIKUGame.cs",
     "FileChanges": [
       {
-        "LineNumber": 4,
-        "CharNumber": 1,
-        "DiagnosticId": "IDE0065",
-        "FormatDescription": "warning IDE0065: Using directives must be placed inside of a namespace declaration"
+        "LineNumber": 5,
+        "CharNumber": 11,
+        "DiagnosticId": "IDE0161",
+        "FormatDescription": "warning IDE0161: Convert to file-scoped namespace"
       }
     ]
   },
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "303ba311-c6ba-4efd-8e4c-d27345c3b515"
+      "Id": "0467b6f8-6b96-4675-bee2-85759a5c79c7"
     },
     "FileName": "DynamicShape.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Entities/DynamicShape.cs",
@@ -1064,9 +974,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "303ba311-c6ba-4efd-8e4c-d27345c3b515"
+      "Id": "0467b6f8-6b96-4675-bee2-85759a5c79c7"
     },
     "FileName": "DynamicShape.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Entities/DynamicShape.cs",
@@ -1082,9 +992,27 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "6d593103-e4d6-446b-938d-904598a00483"
+      "Id": "0467b6f8-6b96-4675-bee2-85759a5c79c7"
+    },
+    "FileName": "DynamicShape.cs",
+    "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Entities/DynamicShape.cs",
+    "FileChanges": [
+      {
+        "LineNumber": 3,
+        "CharNumber": 11,
+        "DiagnosticId": "IDE0161",
+        "FormatDescription": "warning IDE0161: Convert to file-scoped namespace"
+      }
+    ]
+  },
+  {
+    "DocumentId": {
+      "ProjectId": {
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
+      },
+      "Id": "8abf41c4-6c85-4cc6-9558-9ad9441515dc"
     },
     "FileName": "Entity.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Entities/Entity.cs",
@@ -1100,9 +1028,27 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "5e4fa3e3-985d-439a-8922-1f24d4af7579"
+      "Id": "8abf41c4-6c85-4cc6-9558-9ad9441515dc"
+    },
+    "FileName": "Entity.cs",
+    "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Entities/Entity.cs",
+    "FileChanges": [
+      {
+        "LineNumber": 3,
+        "CharNumber": 11,
+        "DiagnosticId": "IDE0161",
+        "FormatDescription": "warning IDE0161: Convert to file-scoped namespace"
+      }
+    ]
+  },
+  {
+    "DocumentId": {
+      "ProjectId": {
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
+      },
+      "Id": "97117a8f-0ee6-42ab-96bc-3ad5fa163f2c"
     },
     "FileName": "EntityContainer.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Entities/EntityContainer.cs",
@@ -1118,9 +1064,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "5e4fa3e3-985d-439a-8922-1f24d4af7579"
+      "Id": "97117a8f-0ee6-42ab-96bc-3ad5fa163f2c"
     },
     "FileName": "EntityContainer.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Entities/EntityContainer.cs",
@@ -1136,9 +1082,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "5e4fa3e3-985d-439a-8922-1f24d4af7579"
+      "Id": "97117a8f-0ee6-42ab-96bc-3ad5fa163f2c"
     },
     "FileName": "EntityContainer.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Entities/EntityContainer.cs",
@@ -1154,9 +1100,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "5e4fa3e3-985d-439a-8922-1f24d4af7579"
+      "Id": "97117a8f-0ee6-42ab-96bc-3ad5fa163f2c"
     },
     "FileName": "EntityContainer.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Entities/EntityContainer.cs",
@@ -1172,9 +1118,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "5e4fa3e3-985d-439a-8922-1f24d4af7579"
+      "Id": "97117a8f-0ee6-42ab-96bc-3ad5fa163f2c"
     },
     "FileName": "EntityContainer.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Entities/EntityContainer.cs",
@@ -1190,9 +1136,27 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "8e9d979c-9387-476c-9ee3-4faad9185edf"
+      "Id": "97117a8f-0ee6-42ab-96bc-3ad5fa163f2c"
+    },
+    "FileName": "EntityContainer.cs",
+    "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Entities/EntityContainer.cs",
+    "FileChanges": [
+      {
+        "LineNumber": 7,
+        "CharNumber": 11,
+        "DiagnosticId": "IDE0161",
+        "FormatDescription": "warning IDE0161: Convert to file-scoped namespace"
+      }
+    ]
+  },
+  {
+    "DocumentId": {
+      "ProjectId": {
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
+      },
+      "Id": "b1413156-9135-4d56-8f92-f0eaf654ce8b"
     },
     "FileName": "EntityContainerT.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Entities/EntityContainerT.cs",
@@ -1208,9 +1172,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "8e9d979c-9387-476c-9ee3-4faad9185edf"
+      "Id": "b1413156-9135-4d56-8f92-f0eaf654ce8b"
     },
     "FileName": "EntityContainerT.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Entities/EntityContainerT.cs",
@@ -1226,9 +1190,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "8e9d979c-9387-476c-9ee3-4faad9185edf"
+      "Id": "b1413156-9135-4d56-8f92-f0eaf654ce8b"
     },
     "FileName": "EntityContainerT.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Entities/EntityContainerT.cs",
@@ -1244,9 +1208,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "8e9d979c-9387-476c-9ee3-4faad9185edf"
+      "Id": "b1413156-9135-4d56-8f92-f0eaf654ce8b"
     },
     "FileName": "EntityContainerT.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Entities/EntityContainerT.cs",
@@ -1262,9 +1226,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "8e9d979c-9387-476c-9ee3-4faad9185edf"
+      "Id": "b1413156-9135-4d56-8f92-f0eaf654ce8b"
     },
     "FileName": "EntityContainerT.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Entities/EntityContainerT.cs",
@@ -1280,9 +1244,27 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "53a3b6ec-fa54-447b-b3ac-561b63cf6d1b"
+      "Id": "b1413156-9135-4d56-8f92-f0eaf654ce8b"
+    },
+    "FileName": "EntityContainerT.cs",
+    "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Entities/EntityContainerT.cs",
+    "FileChanges": [
+      {
+        "LineNumber": 7,
+        "CharNumber": 11,
+        "DiagnosticId": "IDE0161",
+        "FormatDescription": "warning IDE0161: Convert to file-scoped namespace"
+      }
+    ]
+  },
+  {
+    "DocumentId": {
+      "ProjectId": {
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
+      },
+      "Id": "fd360e49-9447-40c2-99dc-b4821617ba75"
     },
     "FileName": "Shape.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Entities/Shape.cs",
@@ -1298,9 +1280,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "53a3b6ec-fa54-447b-b3ac-561b63cf6d1b"
+      "Id": "fd360e49-9447-40c2-99dc-b4821617ba75"
     },
     "FileName": "Shape.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Entities/Shape.cs",
@@ -1316,9 +1298,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "53a3b6ec-fa54-447b-b3ac-561b63cf6d1b"
+      "Id": "fd360e49-9447-40c2-99dc-b4821617ba75"
     },
     "FileName": "Shape.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Entities/Shape.cs",
@@ -1334,9 +1316,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "53a3b6ec-fa54-447b-b3ac-561b63cf6d1b"
+      "Id": "fd360e49-9447-40c2-99dc-b4821617ba75"
     },
     "FileName": "Shape.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Entities/Shape.cs",
@@ -1352,9 +1334,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "53a3b6ec-fa54-447b-b3ac-561b63cf6d1b"
+      "Id": "fd360e49-9447-40c2-99dc-b4821617ba75"
     },
     "FileName": "Shape.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Entities/Shape.cs",
@@ -1370,9 +1352,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "53a3b6ec-fa54-447b-b3ac-561b63cf6d1b"
+      "Id": "fd360e49-9447-40c2-99dc-b4821617ba75"
     },
     "FileName": "Shape.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Entities/Shape.cs",
@@ -1388,9 +1370,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "53a3b6ec-fa54-447b-b3ac-561b63cf6d1b"
+      "Id": "fd360e49-9447-40c2-99dc-b4821617ba75"
     },
     "FileName": "Shape.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Entities/Shape.cs",
@@ -1406,9 +1388,27 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "b391d330-1ad8-4b0e-9c14-c5861acd0fbb"
+      "Id": "fd360e49-9447-40c2-99dc-b4821617ba75"
+    },
+    "FileName": "Shape.cs",
+    "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Entities/Shape.cs",
+    "FileChanges": [
+      {
+        "LineNumber": 3,
+        "CharNumber": 11,
+        "DiagnosticId": "IDE0161",
+        "FormatDescription": "warning IDE0161: Convert to file-scoped namespace"
+      }
+    ]
+  },
+  {
+    "DocumentId": {
+      "ProjectId": {
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
+      },
+      "Id": "19c2c3c2-7351-4f90-b0d3-d757daf8ddd7"
     },
     "FileName": "StationaryShape.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Entities/StationaryShape.cs",
@@ -1424,9 +1424,27 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "ac748c81-e964-40a0-b2e8-11f05ccdc7fc"
+      "Id": "19c2c3c2-7351-4f90-b0d3-d757daf8ddd7"
+    },
+    "FileName": "StationaryShape.cs",
+    "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Entities/StationaryShape.cs",
+    "FileChanges": [
+      {
+        "LineNumber": 3,
+        "CharNumber": 11,
+        "DiagnosticId": "IDE0161",
+        "FormatDescription": "warning IDE0161: Convert to file-scoped namespace"
+      }
+    ]
+  },
+  {
+    "DocumentId": {
+      "ProjectId": {
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
+      },
+      "Id": "ca722fb4-a7cf-49ba-b8e2-ade99012c1b3"
     },
     "FileName": "GameEventBus.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Events/GameEventBus.cs",
@@ -1442,9 +1460,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "ac748c81-e964-40a0-b2e8-11f05ccdc7fc"
+      "Id": "ca722fb4-a7cf-49ba-b8e2-ade99012c1b3"
     },
     "FileName": "GameEventBus.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Events/GameEventBus.cs",
@@ -1460,9 +1478,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "ac748c81-e964-40a0-b2e8-11f05ccdc7fc"
+      "Id": "ca722fb4-a7cf-49ba-b8e2-ade99012c1b3"
     },
     "FileName": "GameEventBus.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Events/GameEventBus.cs",
@@ -1478,9 +1496,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "ac748c81-e964-40a0-b2e8-11f05ccdc7fc"
+      "Id": "ca722fb4-a7cf-49ba-b8e2-ade99012c1b3"
     },
     "FileName": "GameEventBus.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Events/GameEventBus.cs",
@@ -1496,9 +1514,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "ac748c81-e964-40a0-b2e8-11f05ccdc7fc"
+      "Id": "ca722fb4-a7cf-49ba-b8e2-ade99012c1b3"
     },
     "FileName": "GameEventBus.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Events/GameEventBus.cs",
@@ -1514,9 +1532,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "ac748c81-e964-40a0-b2e8-11f05ccdc7fc"
+      "Id": "ca722fb4-a7cf-49ba-b8e2-ade99012c1b3"
     },
     "FileName": "GameEventBus.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Events/GameEventBus.cs",
@@ -1532,9 +1550,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "ac748c81-e964-40a0-b2e8-11f05ccdc7fc"
+      "Id": "ca722fb4-a7cf-49ba-b8e2-ade99012c1b3"
     },
     "FileName": "GameEventBus.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Events/GameEventBus.cs",
@@ -1550,9 +1568,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "ac748c81-e964-40a0-b2e8-11f05ccdc7fc"
+      "Id": "ca722fb4-a7cf-49ba-b8e2-ade99012c1b3"
     },
     "FileName": "GameEventBus.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Events/GameEventBus.cs",
@@ -1568,9 +1586,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "ac748c81-e964-40a0-b2e8-11f05ccdc7fc"
+      "Id": "ca722fb4-a7cf-49ba-b8e2-ade99012c1b3"
     },
     "FileName": "GameEventBus.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Events/GameEventBus.cs",
@@ -1586,9 +1604,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "ac748c81-e964-40a0-b2e8-11f05ccdc7fc"
+      "Id": "ca722fb4-a7cf-49ba-b8e2-ade99012c1b3"
     },
     "FileName": "GameEventBus.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Events/GameEventBus.cs",
@@ -1604,9 +1622,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "ac748c81-e964-40a0-b2e8-11f05ccdc7fc"
+      "Id": "ca722fb4-a7cf-49ba-b8e2-ade99012c1b3"
     },
     "FileName": "GameEventBus.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Events/GameEventBus.cs",
@@ -1622,9 +1640,27 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "80b21867-9ed4-493e-92a7-d28bd5a041f5"
+      "Id": "ca722fb4-a7cf-49ba-b8e2-ade99012c1b3"
+    },
+    "FileName": "GameEventBus.cs",
+    "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Events/GameEventBus.cs",
+    "FileChanges": [
+      {
+        "LineNumber": 6,
+        "CharNumber": 11,
+        "DiagnosticId": "IDE0161",
+        "FormatDescription": "warning IDE0161: Convert to file-scoped namespace"
+      }
+    ]
+  },
+  {
+    "DocumentId": {
+      "ProjectId": {
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
+      },
+      "Id": "cd5f2618-29cb-4009-ae11-38ee3e3d99b5"
     },
     "FileName": "GameEventQueue.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Events/GameEventQueue.cs",
@@ -1640,9 +1676,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "80b21867-9ed4-493e-92a7-d28bd5a041f5"
+      "Id": "cd5f2618-29cb-4009-ae11-38ee3e3d99b5"
     },
     "FileName": "GameEventQueue.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Events/GameEventQueue.cs",
@@ -1658,9 +1694,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "80b21867-9ed4-493e-92a7-d28bd5a041f5"
+      "Id": "cd5f2618-29cb-4009-ae11-38ee3e3d99b5"
     },
     "FileName": "GameEventQueue.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Events/GameEventQueue.cs",
@@ -1676,9 +1712,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "80b21867-9ed4-493e-92a7-d28bd5a041f5"
+      "Id": "cd5f2618-29cb-4009-ae11-38ee3e3d99b5"
     },
     "FileName": "GameEventQueue.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Events/GameEventQueue.cs",
@@ -1694,9 +1730,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "80b21867-9ed4-493e-92a7-d28bd5a041f5"
+      "Id": "cd5f2618-29cb-4009-ae11-38ee3e3d99b5"
     },
     "FileName": "GameEventQueue.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Events/GameEventQueue.cs",
@@ -1712,9 +1748,27 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "c6d986da-9270-447f-b6cd-f20da0547b06"
+      "Id": "cd5f2618-29cb-4009-ae11-38ee3e3d99b5"
+    },
+    "FileName": "GameEventQueue.cs",
+    "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Events/GameEventQueue.cs",
+    "FileChanges": [
+      {
+        "LineNumber": 6,
+        "CharNumber": 11,
+        "DiagnosticId": "IDE0161",
+        "FormatDescription": "warning IDE0161: Convert to file-scoped namespace"
+      }
+    ]
+  },
+  {
+    "DocumentId": {
+      "ProjectId": {
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
+      },
+      "Id": "ccf06145-7977-439c-82cf-4c236565cdb6"
     },
     "FileName": "GameEventBusT.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Events/Generic/GameEventBusT.cs",
@@ -1730,9 +1784,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "c6d986da-9270-447f-b6cd-f20da0547b06"
+      "Id": "ccf06145-7977-439c-82cf-4c236565cdb6"
     },
     "FileName": "GameEventBusT.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Events/Generic/GameEventBusT.cs",
@@ -1748,9 +1802,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "c6d986da-9270-447f-b6cd-f20da0547b06"
+      "Id": "ccf06145-7977-439c-82cf-4c236565cdb6"
     },
     "FileName": "GameEventBusT.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Events/Generic/GameEventBusT.cs",
@@ -1766,9 +1820,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "c6d986da-9270-447f-b6cd-f20da0547b06"
+      "Id": "ccf06145-7977-439c-82cf-4c236565cdb6"
     },
     "FileName": "GameEventBusT.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Events/Generic/GameEventBusT.cs",
@@ -1784,9 +1838,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "c6d986da-9270-447f-b6cd-f20da0547b06"
+      "Id": "ccf06145-7977-439c-82cf-4c236565cdb6"
     },
     "FileName": "GameEventBusT.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Events/Generic/GameEventBusT.cs",
@@ -1802,9 +1856,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "c6d986da-9270-447f-b6cd-f20da0547b06"
+      "Id": "ccf06145-7977-439c-82cf-4c236565cdb6"
     },
     "FileName": "GameEventBusT.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Events/Generic/GameEventBusT.cs",
@@ -1820,9 +1874,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "c6d986da-9270-447f-b6cd-f20da0547b06"
+      "Id": "ccf06145-7977-439c-82cf-4c236565cdb6"
     },
     "FileName": "GameEventBusT.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Events/Generic/GameEventBusT.cs",
@@ -1838,9 +1892,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "c6d986da-9270-447f-b6cd-f20da0547b06"
+      "Id": "ccf06145-7977-439c-82cf-4c236565cdb6"
     },
     "FileName": "GameEventBusT.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Events/Generic/GameEventBusT.cs",
@@ -1856,9 +1910,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "c6d986da-9270-447f-b6cd-f20da0547b06"
+      "Id": "ccf06145-7977-439c-82cf-4c236565cdb6"
     },
     "FileName": "GameEventBusT.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Events/Generic/GameEventBusT.cs",
@@ -1874,9 +1928,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "c6d986da-9270-447f-b6cd-f20da0547b06"
+      "Id": "ccf06145-7977-439c-82cf-4c236565cdb6"
     },
     "FileName": "GameEventBusT.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Events/Generic/GameEventBusT.cs",
@@ -1892,9 +1946,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "c6d986da-9270-447f-b6cd-f20da0547b06"
+      "Id": "ccf06145-7977-439c-82cf-4c236565cdb6"
     },
     "FileName": "GameEventBusT.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Events/Generic/GameEventBusT.cs",
@@ -1910,9 +1964,27 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "742aaa0e-e59c-4723-b204-5bbbe2a35b1d"
+      "Id": "ccf06145-7977-439c-82cf-4c236565cdb6"
+    },
+    "FileName": "GameEventBusT.cs",
+    "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Events/Generic/GameEventBusT.cs",
+    "FileChanges": [
+      {
+        "LineNumber": 6,
+        "CharNumber": 11,
+        "DiagnosticId": "IDE0161",
+        "FormatDescription": "warning IDE0161: Convert to file-scoped namespace"
+      }
+    ]
+  },
+  {
+    "DocumentId": {
+      "ProjectId": {
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
+      },
+      "Id": "cf200314-a464-4b7d-b3b4-22d9d4ec5349"
     },
     "FileName": "IGameEventBusControllerT.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Events/Generic/IGameEventBusControllerT.cs",
@@ -1928,9 +2000,27 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "babce1ce-e80f-4c37-8855-6bd2d764033c"
+      "Id": "cf200314-a464-4b7d-b3b4-22d9d4ec5349"
+    },
+    "FileName": "IGameEventBusControllerT.cs",
+    "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Events/Generic/IGameEventBusControllerT.cs",
+    "FileChanges": [
+      {
+        "LineNumber": 3,
+        "CharNumber": 11,
+        "DiagnosticId": "IDE0161",
+        "FormatDescription": "warning IDE0161: Convert to file-scoped namespace"
+      }
+    ]
+  },
+  {
+    "DocumentId": {
+      "ProjectId": {
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
+      },
+      "Id": "cf01431d-0de5-4443-a131-6371e4129d14"
     },
     "FileName": "ITimedEventGameBusT.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Events/Generic/ITimedEventGameBusT.cs",
@@ -1946,9 +2036,27 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "f84d0f8f-40be-4ae3-8edf-db03fdaaf425"
+      "Id": "cf01431d-0de5-4443-a131-6371e4129d14"
+    },
+    "FileName": "ITimedEventGameBusT.cs",
+    "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Events/Generic/ITimedEventGameBusT.cs",
+    "FileChanges": [
+      {
+        "LineNumber": 3,
+        "CharNumber": 11,
+        "DiagnosticId": "IDE0161",
+        "FormatDescription": "warning IDE0161: Convert to file-scoped namespace"
+      }
+    ]
+  },
+  {
+    "DocumentId": {
+      "ProjectId": {
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
+      },
+      "Id": "9024b2e4-1fef-43f8-8c26-28800eeef5ff"
     },
     "FileName": "TimedGameEventT.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Events/Generic/TimedGameEventT.cs",
@@ -1964,9 +2072,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "f84d0f8f-40be-4ae3-8edf-db03fdaaf425"
+      "Id": "9024b2e4-1fef-43f8-8c26-28800eeef5ff"
     },
     "FileName": "TimedGameEventT.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Events/Generic/TimedGameEventT.cs",
@@ -1982,9 +2090,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "f84d0f8f-40be-4ae3-8edf-db03fdaaf425"
+      "Id": "9024b2e4-1fef-43f8-8c26-28800eeef5ff"
     },
     "FileName": "TimedGameEventT.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Events/Generic/TimedGameEventT.cs",
@@ -2000,9 +2108,27 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "11d33898-10ff-4646-bde9-33b6e4d9d295"
+      "Id": "9024b2e4-1fef-43f8-8c26-28800eeef5ff"
+    },
+    "FileName": "TimedGameEventT.cs",
+    "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Events/Generic/TimedGameEventT.cs",
+    "FileChanges": [
+      {
+        "LineNumber": 3,
+        "CharNumber": 11,
+        "DiagnosticId": "IDE0161",
+        "FormatDescription": "warning IDE0161: Convert to file-scoped namespace"
+      }
+    ]
+  },
+  {
+    "DocumentId": {
+      "ProjectId": {
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
+      },
+      "Id": "82232e0e-7f8f-448b-bcb2-23f1310b474c"
     },
     "FileName": "IGameEventBusController.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Events/IGameEventBusController.cs",
@@ -2018,9 +2144,27 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "4b553b73-98bb-4e22-8a50-3d53533120a5"
+      "Id": "82232e0e-7f8f-448b-bcb2-23f1310b474c"
+    },
+    "FileName": "IGameEventBusController.cs",
+    "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Events/IGameEventBusController.cs",
+    "FileChanges": [
+      {
+        "LineNumber": 3,
+        "CharNumber": 11,
+        "DiagnosticId": "IDE0161",
+        "FormatDescription": "warning IDE0161: Convert to file-scoped namespace"
+      }
+    ]
+  },
+  {
+    "DocumentId": {
+      "ProjectId": {
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
+      },
+      "Id": "9033d94c-4634-4316-90e3-30ff3443c387"
     },
     "FileName": "ITimedGameEventBus.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Events/ITimedGameEventBus.cs",
@@ -2036,9 +2180,27 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "a754a504-b061-48c7-8ff2-4ad1d68ab859"
+      "Id": "9033d94c-4634-4316-90e3-30ff3443c387"
+    },
+    "FileName": "ITimedGameEventBus.cs",
+    "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Events/ITimedGameEventBus.cs",
+    "FileChanges": [
+      {
+        "LineNumber": 3,
+        "CharNumber": 11,
+        "DiagnosticId": "IDE0161",
+        "FormatDescription": "warning IDE0161: Convert to file-scoped namespace"
+      }
+    ]
+  },
+  {
+    "DocumentId": {
+      "ProjectId": {
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
+      },
+      "Id": "5500e715-cce8-427a-a3b5-f1508a3e5381"
     },
     "FileName": "TimedGameEvent.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Events/TimedGameEvent.cs",
@@ -2054,9 +2216,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "a754a504-b061-48c7-8ff2-4ad1d68ab859"
+      "Id": "5500e715-cce8-427a-a3b5-f1508a3e5381"
     },
     "FileName": "TimedGameEvent.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Events/TimedGameEvent.cs",
@@ -2072,9 +2234,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "a754a504-b061-48c7-8ff2-4ad1d68ab859"
+      "Id": "5500e715-cce8-427a-a3b5-f1508a3e5381"
     },
     "FileName": "TimedGameEvent.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Events/TimedGameEvent.cs",
@@ -2090,9 +2252,27 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "8af3120c-acd9-4abc-afc4-60e98099bf86"
+      "Id": "5500e715-cce8-427a-a3b5-f1508a3e5381"
+    },
+    "FileName": "TimedGameEvent.cs",
+    "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Events/TimedGameEvent.cs",
+    "FileChanges": [
+      {
+        "LineNumber": 3,
+        "CharNumber": 11,
+        "DiagnosticId": "IDE0161",
+        "FormatDescription": "warning IDE0161: Convert to file-scoped namespace"
+      }
+    ]
+  },
+  {
+    "DocumentId": {
+      "ProjectId": {
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
+      },
+      "Id": "5d12a226-9bb4-497e-9773-664f458a6429"
     },
     "FileName": "Animation.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Graphics/Animation.cs",
@@ -2108,9 +2288,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "8af3120c-acd9-4abc-afc4-60e98099bf86"
+      "Id": "5d12a226-9bb4-497e-9773-664f458a6429"
     },
     "FileName": "Animation.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Graphics/Animation.cs",
@@ -2126,9 +2306,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "8af3120c-acd9-4abc-afc4-60e98099bf86"
+      "Id": "5d12a226-9bb4-497e-9773-664f458a6429"
     },
     "FileName": "Animation.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Graphics/Animation.cs",
@@ -2144,9 +2324,27 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "0566d1e2-0fbc-4ca5-93c9-fc3d2891ab63"
+      "Id": "5d12a226-9bb4-497e-9773-664f458a6429"
+    },
+    "FileName": "Animation.cs",
+    "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Graphics/Animation.cs",
+    "FileChanges": [
+      {
+        "LineNumber": 5,
+        "CharNumber": 11,
+        "DiagnosticId": "IDE0161",
+        "FormatDescription": "warning IDE0161: Convert to file-scoped namespace"
+      }
+    ]
+  },
+  {
+    "DocumentId": {
+      "ProjectId": {
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
+      },
+      "Id": "e256c11b-7203-4dd0-a2e6-25aecbd33552"
     },
     "FileName": "AnimationContainer.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Graphics/AnimationContainer.cs",
@@ -2162,9 +2360,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "0566d1e2-0fbc-4ca5-93c9-fc3d2891ab63"
+      "Id": "e256c11b-7203-4dd0-a2e6-25aecbd33552"
     },
     "FileName": "AnimationContainer.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Graphics/AnimationContainer.cs",
@@ -2180,9 +2378,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "0566d1e2-0fbc-4ca5-93c9-fc3d2891ab63"
+      "Id": "e256c11b-7203-4dd0-a2e6-25aecbd33552"
     },
     "FileName": "AnimationContainer.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Graphics/AnimationContainer.cs",
@@ -2198,9 +2396,27 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "ae2d43ee-2aef-42ba-b83a-0bc23eac7eae"
+      "Id": "e256c11b-7203-4dd0-a2e6-25aecbd33552"
+    },
+    "FileName": "AnimationContainer.cs",
+    "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Graphics/AnimationContainer.cs",
+    "FileChanges": [
+      {
+        "LineNumber": 4,
+        "CharNumber": 11,
+        "DiagnosticId": "IDE0161",
+        "FormatDescription": "warning IDE0161: Convert to file-scoped namespace"
+      }
+    ]
+  },
+  {
+    "DocumentId": {
+      "ProjectId": {
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
+      },
+      "Id": "da401009-eed4-4e2d-99ac-07a73172cc54"
     },
     "FileName": "Camera.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Graphics/Camera.cs",
@@ -2216,9 +2432,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "ae2d43ee-2aef-42ba-b83a-0bc23eac7eae"
+      "Id": "da401009-eed4-4e2d-99ac-07a73172cc54"
     },
     "FileName": "Camera.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Graphics/Camera.cs",
@@ -2234,9 +2450,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "ae2d43ee-2aef-42ba-b83a-0bc23eac7eae"
+      "Id": "da401009-eed4-4e2d-99ac-07a73172cc54"
     },
     "FileName": "Camera.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Graphics/Camera.cs",
@@ -2252,9 +2468,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "ae2d43ee-2aef-42ba-b83a-0bc23eac7eae"
+      "Id": "da401009-eed4-4e2d-99ac-07a73172cc54"
     },
     "FileName": "Camera.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Graphics/Camera.cs",
@@ -2270,9 +2486,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "ae2d43ee-2aef-42ba-b83a-0bc23eac7eae"
+      "Id": "da401009-eed4-4e2d-99ac-07a73172cc54"
     },
     "FileName": "Camera.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Graphics/Camera.cs",
@@ -2288,9 +2504,27 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "1c53d8b0-1b20-4c56-951e-d27b485d9005"
+      "Id": "da401009-eed4-4e2d-99ac-07a73172cc54"
+    },
+    "FileName": "Camera.cs",
+    "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Graphics/Camera.cs",
+    "FileChanges": [
+      {
+        "LineNumber": 4,
+        "CharNumber": 11,
+        "DiagnosticId": "IDE0161",
+        "FormatDescription": "warning IDE0161: Convert to file-scoped namespace"
+      }
+    ]
+  },
+  {
+    "DocumentId": {
+      "ProjectId": {
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
+      },
+      "Id": "fad3309c-3b55-44bd-965f-fc3d3fb523e6"
     },
     "FileName": "ChaseCamera.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Graphics/ChaseCamera.cs",
@@ -2306,9 +2540,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "1c53d8b0-1b20-4c56-951e-d27b485d9005"
+      "Id": "fad3309c-3b55-44bd-965f-fc3d3fb523e6"
     },
     "FileName": "ChaseCamera.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Graphics/ChaseCamera.cs",
@@ -2324,9 +2558,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "1c53d8b0-1b20-4c56-951e-d27b485d9005"
+      "Id": "fad3309c-3b55-44bd-965f-fc3d3fb523e6"
     },
     "FileName": "ChaseCamera.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Graphics/ChaseCamera.cs",
@@ -2342,9 +2576,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "1c53d8b0-1b20-4c56-951e-d27b485d9005"
+      "Id": "fad3309c-3b55-44bd-965f-fc3d3fb523e6"
     },
     "FileName": "ChaseCamera.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Graphics/ChaseCamera.cs",
@@ -2360,9 +2594,27 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "f58312a1-bf47-45c3-8f72-8e362a04c656"
+      "Id": "fad3309c-3b55-44bd-965f-fc3d3fb523e6"
+    },
+    "FileName": "ChaseCamera.cs",
+    "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Graphics/ChaseCamera.cs",
+    "FileChanges": [
+      {
+        "LineNumber": 4,
+        "CharNumber": 11,
+        "DiagnosticId": "IDE0161",
+        "FormatDescription": "warning IDE0161: Convert to file-scoped namespace"
+      }
+    ]
+  },
+  {
+    "DocumentId": {
+      "ProjectId": {
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
+      },
+      "Id": "9005a4e5-bd31-4d22-a338-385eda6e8dd1"
     },
     "FileName": "DynamicCamera.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Graphics/DynamicCamera.cs",
@@ -2378,9 +2630,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "f58312a1-bf47-45c3-8f72-8e362a04c656"
+      "Id": "9005a4e5-bd31-4d22-a338-385eda6e8dd1"
     },
     "FileName": "DynamicCamera.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Graphics/DynamicCamera.cs",
@@ -2396,9 +2648,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "f58312a1-bf47-45c3-8f72-8e362a04c656"
+      "Id": "9005a4e5-bd31-4d22-a338-385eda6e8dd1"
     },
     "FileName": "DynamicCamera.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Graphics/DynamicCamera.cs",
@@ -2414,9 +2666,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "f58312a1-bf47-45c3-8f72-8e362a04c656"
+      "Id": "9005a4e5-bd31-4d22-a338-385eda6e8dd1"
     },
     "FileName": "DynamicCamera.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Graphics/DynamicCamera.cs",
@@ -2432,9 +2684,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "f58312a1-bf47-45c3-8f72-8e362a04c656"
+      "Id": "9005a4e5-bd31-4d22-a338-385eda6e8dd1"
     },
     "FileName": "DynamicCamera.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Graphics/DynamicCamera.cs",
@@ -2450,9 +2702,27 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "bbe2c80a-859c-4f57-8aac-109cf5c520a5"
+      "Id": "9005a4e5-bd31-4d22-a338-385eda6e8dd1"
+    },
+    "FileName": "DynamicCamera.cs",
+    "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Graphics/DynamicCamera.cs",
+    "FileChanges": [
+      {
+        "LineNumber": 4,
+        "CharNumber": 11,
+        "DiagnosticId": "IDE0161",
+        "FormatDescription": "warning IDE0161: Convert to file-scoped namespace"
+      }
+    ]
+  },
+  {
+    "DocumentId": {
+      "ProjectId": {
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
+      },
+      "Id": "1372590e-d7f3-424d-b600-365b2591f8bb"
     },
     "FileName": "FollowCamera.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Graphics/FollowCamera.cs",
@@ -2468,9 +2738,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "bbe2c80a-859c-4f57-8aac-109cf5c520a5"
+      "Id": "1372590e-d7f3-424d-b600-365b2591f8bb"
     },
     "FileName": "FollowCamera.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Graphics/FollowCamera.cs",
@@ -2486,9 +2756,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "bbe2c80a-859c-4f57-8aac-109cf5c520a5"
+      "Id": "1372590e-d7f3-424d-b600-365b2591f8bb"
     },
     "FileName": "FollowCamera.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Graphics/FollowCamera.cs",
@@ -2504,9 +2774,27 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "8d8b6d89-0e76-43d0-902f-85352290e5e5"
+      "Id": "1372590e-d7f3-424d-b600-365b2591f8bb"
+    },
+    "FileName": "FollowCamera.cs",
+    "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Graphics/FollowCamera.cs",
+    "FileChanges": [
+      {
+        "LineNumber": 3,
+        "CharNumber": 11,
+        "DiagnosticId": "IDE0161",
+        "FormatDescription": "warning IDE0161: Convert to file-scoped namespace"
+      }
+    ]
+  },
+  {
+    "DocumentId": {
+      "ProjectId": {
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
+      },
+      "Id": "5e73121e-53a3-45f3-ae9e-d7a5d64debe4"
     },
     "FileName": "IBaseImage.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Graphics/IBaseImage.cs",
@@ -2522,9 +2810,27 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "a4b03159-a471-4bfd-ad25-33aa421dc8af"
+      "Id": "5e73121e-53a3-45f3-ae9e-d7a5d64debe4"
+    },
+    "FileName": "IBaseImage.cs",
+    "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Graphics/IBaseImage.cs",
+    "FileChanges": [
+      {
+        "LineNumber": 3,
+        "CharNumber": 11,
+        "DiagnosticId": "IDE0161",
+        "FormatDescription": "warning IDE0161: Convert to file-scoped namespace"
+      }
+    ]
+  },
+  {
+    "DocumentId": {
+      "ProjectId": {
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
+      },
+      "Id": "100bb397-4293-4f9b-b922-4b1451e88fbb"
     },
     "FileName": "Image.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Graphics/Image.cs",
@@ -2540,9 +2846,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "a4b03159-a471-4bfd-ad25-33aa421dc8af"
+      "Id": "100bb397-4293-4f9b-b922-4b1451e88fbb"
     },
     "FileName": "Image.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Graphics/Image.cs",
@@ -2558,9 +2864,27 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "45da00a1-7798-4370-930f-7a1361bb7dcb"
+      "Id": "100bb397-4293-4f9b-b922-4b1451e88fbb"
+    },
+    "FileName": "Image.cs",
+    "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Graphics/Image.cs",
+    "FileChanges": [
+      {
+        "LineNumber": 4,
+        "CharNumber": 11,
+        "DiagnosticId": "IDE0161",
+        "FormatDescription": "warning IDE0161: Convert to file-scoped namespace"
+      }
+    ]
+  },
+  {
+    "DocumentId": {
+      "ProjectId": {
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
+      },
+      "Id": "58957a0a-2103-4fbf-97bb-8ba64598f966"
     },
     "FileName": "ImageStride.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Graphics/ImageStride.cs",
@@ -2576,9 +2900,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "45da00a1-7798-4370-930f-7a1361bb7dcb"
+      "Id": "58957a0a-2103-4fbf-97bb-8ba64598f966"
     },
     "FileName": "ImageStride.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Graphics/ImageStride.cs",
@@ -2594,9 +2918,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "45da00a1-7798-4370-930f-7a1361bb7dcb"
+      "Id": "58957a0a-2103-4fbf-97bb-8ba64598f966"
     },
     "FileName": "ImageStride.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Graphics/ImageStride.cs",
@@ -2612,9 +2936,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "45da00a1-7798-4370-930f-7a1361bb7dcb"
+      "Id": "58957a0a-2103-4fbf-97bb-8ba64598f966"
     },
     "FileName": "ImageStride.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Graphics/ImageStride.cs",
@@ -2630,9 +2954,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "45da00a1-7798-4370-930f-7a1361bb7dcb"
+      "Id": "58957a0a-2103-4fbf-97bb-8ba64598f966"
     },
     "FileName": "ImageStride.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Graphics/ImageStride.cs",
@@ -2648,9 +2972,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "45da00a1-7798-4370-930f-7a1361bb7dcb"
+      "Id": "58957a0a-2103-4fbf-97bb-8ba64598f966"
     },
     "FileName": "ImageStride.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Graphics/ImageStride.cs",
@@ -2666,9 +2990,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "45da00a1-7798-4370-930f-7a1361bb7dcb"
+      "Id": "58957a0a-2103-4fbf-97bb-8ba64598f966"
     },
     "FileName": "ImageStride.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Graphics/ImageStride.cs",
@@ -2684,9 +3008,27 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "2513f870-1a4a-458c-9f10-c603e2bfb9b0"
+      "Id": "58957a0a-2103-4fbf-97bb-8ba64598f966"
+    },
+    "FileName": "ImageStride.cs",
+    "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Graphics/ImageStride.cs",
+    "FileChanges": [
+      {
+        "LineNumber": 9,
+        "CharNumber": 11,
+        "DiagnosticId": "IDE0161",
+        "FormatDescription": "warning IDE0161: Convert to file-scoped namespace"
+      }
+    ]
+  },
+  {
+    "DocumentId": {
+      "ProjectId": {
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
+      },
+      "Id": "619b0934-f74e-479d-8915-329f6b94db63"
     },
     "FileName": "NoImage.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Graphics/NoImage.cs",
@@ -2702,9 +3044,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "2513f870-1a4a-458c-9f10-c603e2bfb9b0"
+      "Id": "619b0934-f74e-479d-8915-329f6b94db63"
     },
     "FileName": "NoImage.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Graphics/NoImage.cs",
@@ -2720,9 +3062,27 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "eb0caeb9-fb1d-489c-ba25-122d22b9fab0"
+      "Id": "619b0934-f74e-479d-8915-329f6b94db63"
+    },
+    "FileName": "NoImage.cs",
+    "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Graphics/NoImage.cs",
+    "FileChanges": [
+      {
+        "LineNumber": 4,
+        "CharNumber": 11,
+        "DiagnosticId": "IDE0161",
+        "FormatDescription": "warning IDE0161: Convert to file-scoped namespace"
+      }
+    ]
+  },
+  {
+    "DocumentId": {
+      "ProjectId": {
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
+      },
+      "Id": "1ccb56c7-a106-4ed9-8109-a6256bc6a8b5"
     },
     "FileName": "StaticCamera.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Graphics/StaticCamera.cs",
@@ -2738,9 +3098,27 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "9192c505-5346-471c-9289-5b3c89b20ffa"
+      "Id": "1ccb56c7-a106-4ed9-8109-a6256bc6a8b5"
+    },
+    "FileName": "StaticCamera.cs",
+    "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Graphics/StaticCamera.cs",
+    "FileChanges": [
+      {
+        "LineNumber": 2,
+        "CharNumber": 11,
+        "DiagnosticId": "IDE0161",
+        "FormatDescription": "warning IDE0161: Convert to file-scoped namespace"
+      }
+    ]
+  },
+  {
+    "DocumentId": {
+      "ProjectId": {
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
+      },
+      "Id": "473ccdc1-06ed-4b96-9163-c7b022689023"
     },
     "FileName": "Text.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Graphics/Text.cs",
@@ -2756,9 +3134,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "9192c505-5346-471c-9289-5b3c89b20ffa"
+      "Id": "473ccdc1-06ed-4b96-9163-c7b022689023"
     },
     "FileName": "Text.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Graphics/Text.cs",
@@ -2774,9 +3152,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "9192c505-5346-471c-9289-5b3c89b20ffa"
+      "Id": "473ccdc1-06ed-4b96-9163-c7b022689023"
     },
     "FileName": "Text.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Graphics/Text.cs",
@@ -2792,9 +3170,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "9192c505-5346-471c-9289-5b3c89b20ffa"
+      "Id": "473ccdc1-06ed-4b96-9163-c7b022689023"
     },
     "FileName": "Text.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Graphics/Text.cs",
@@ -2810,9 +3188,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "9192c505-5346-471c-9289-5b3c89b20ffa"
+      "Id": "473ccdc1-06ed-4b96-9163-c7b022689023"
     },
     "FileName": "Text.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Graphics/Text.cs",
@@ -2828,9 +3206,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "9192c505-5346-471c-9289-5b3c89b20ffa"
+      "Id": "473ccdc1-06ed-4b96-9163-c7b022689023"
     },
     "FileName": "Text.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Graphics/Text.cs",
@@ -2846,9 +3224,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "9192c505-5346-471c-9289-5b3c89b20ffa"
+      "Id": "473ccdc1-06ed-4b96-9163-c7b022689023"
     },
     "FileName": "Text.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Graphics/Text.cs",
@@ -2864,9 +3242,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "9192c505-5346-471c-9289-5b3c89b20ffa"
+      "Id": "473ccdc1-06ed-4b96-9163-c7b022689023"
     },
     "FileName": "Text.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Graphics/Text.cs",
@@ -2882,9 +3260,27 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "3e0ca83c-d63b-4e70-b5cb-5d497340c837"
+      "Id": "473ccdc1-06ed-4b96-9163-c7b022689023"
+    },
+    "FileName": "Text.cs",
+    "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Graphics/Text.cs",
+    "FileChanges": [
+      {
+        "LineNumber": 10,
+        "CharNumber": 11,
+        "DiagnosticId": "IDE0161",
+        "FormatDescription": "warning IDE0161: Convert to file-scoped namespace"
+      }
+    ]
+  },
+  {
+    "DocumentId": {
+      "ProjectId": {
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
+      },
+      "Id": "e3c1c2e0-c224-49c8-b62e-f9b4d5bc1406"
     },
     "FileName": "Texture.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Graphics/Texture.cs",
@@ -2900,9 +3296,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "3e0ca83c-d63b-4e70-b5cb-5d497340c837"
+      "Id": "e3c1c2e0-c224-49c8-b62e-f9b4d5bc1406"
     },
     "FileName": "Texture.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Graphics/Texture.cs",
@@ -2918,9 +3314,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "3e0ca83c-d63b-4e70-b5cb-5d497340c837"
+      "Id": "e3c1c2e0-c224-49c8-b62e-f9b4d5bc1406"
     },
     "FileName": "Texture.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Graphics/Texture.cs",
@@ -2936,9 +3332,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "3e0ca83c-d63b-4e70-b5cb-5d497340c837"
+      "Id": "e3c1c2e0-c224-49c8-b62e-f9b4d5bc1406"
     },
     "FileName": "Texture.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Graphics/Texture.cs",
@@ -2954,9 +3350,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "3e0ca83c-d63b-4e70-b5cb-5d497340c837"
+      "Id": "e3c1c2e0-c224-49c8-b62e-f9b4d5bc1406"
     },
     "FileName": "Texture.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Graphics/Texture.cs",
@@ -2972,9 +3368,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "3e0ca83c-d63b-4e70-b5cb-5d497340c837"
+      "Id": "e3c1c2e0-c224-49c8-b62e-f9b4d5bc1406"
     },
     "FileName": "Texture.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Graphics/Texture.cs",
@@ -2990,9 +3386,27 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "636e4067-fcb0-478a-a124-f7fd51cf590a"
+      "Id": "e3c1c2e0-c224-49c8-b62e-f9b4d5bc1406"
+    },
+    "FileName": "Texture.cs",
+    "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Graphics/Texture.cs",
+    "FileChanges": [
+      {
+        "LineNumber": 8,
+        "CharNumber": 11,
+        "DiagnosticId": "IDE0161",
+        "FormatDescription": "warning IDE0161: Convert to file-scoped namespace"
+      }
+    ]
+  },
+  {
+    "DocumentId": {
+      "ProjectId": {
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
+      },
+      "Id": "f5bf8c1e-f69d-4467-a4a6-cad8fb957667"
     },
     "FileName": "Window.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/GUI/Window.cs",
@@ -3008,9 +3422,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "636e4067-fcb0-478a-a124-f7fd51cf590a"
+      "Id": "f5bf8c1e-f69d-4467-a4a6-cad8fb957667"
     },
     "FileName": "Window.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/GUI/Window.cs",
@@ -3026,9 +3440,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "636e4067-fcb0-478a-a124-f7fd51cf590a"
+      "Id": "f5bf8c1e-f69d-4467-a4a6-cad8fb957667"
     },
     "FileName": "Window.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/GUI/Window.cs",
@@ -3044,9 +3458,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "636e4067-fcb0-478a-a124-f7fd51cf590a"
+      "Id": "f5bf8c1e-f69d-4467-a4a6-cad8fb957667"
     },
     "FileName": "Window.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/GUI/Window.cs",
@@ -3062,9 +3476,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "636e4067-fcb0-478a-a124-f7fd51cf590a"
+      "Id": "f5bf8c1e-f69d-4467-a4a6-cad8fb957667"
     },
     "FileName": "Window.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/GUI/Window.cs",
@@ -3080,9 +3494,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "636e4067-fcb0-478a-a124-f7fd51cf590a"
+      "Id": "f5bf8c1e-f69d-4467-a4a6-cad8fb957667"
     },
     "FileName": "Window.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/GUI/Window.cs",
@@ -3098,9 +3512,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "636e4067-fcb0-478a-a124-f7fd51cf590a"
+      "Id": "f5bf8c1e-f69d-4467-a4a6-cad8fb957667"
     },
     "FileName": "Window.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/GUI/Window.cs",
@@ -3116,9 +3530,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "636e4067-fcb0-478a-a124-f7fd51cf590a"
+      "Id": "f5bf8c1e-f69d-4467-a4a6-cad8fb957667"
     },
     "FileName": "Window.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/GUI/Window.cs",
@@ -3134,9 +3548,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "636e4067-fcb0-478a-a124-f7fd51cf590a"
+      "Id": "f5bf8c1e-f69d-4467-a4a6-cad8fb957667"
     },
     "FileName": "Window.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/GUI/Window.cs",
@@ -3152,9 +3566,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "636e4067-fcb0-478a-a124-f7fd51cf590a"
+      "Id": "f5bf8c1e-f69d-4467-a4a6-cad8fb957667"
     },
     "FileName": "Window.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/GUI/Window.cs",
@@ -3170,9 +3584,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "636e4067-fcb0-478a-a124-f7fd51cf590a"
+      "Id": "f5bf8c1e-f69d-4467-a4a6-cad8fb957667"
     },
     "FileName": "Window.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/GUI/Window.cs",
@@ -3188,9 +3602,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "636e4067-fcb0-478a-a124-f7fd51cf590a"
+      "Id": "f5bf8c1e-f69d-4467-a4a6-cad8fb957667"
     },
     "FileName": "Window.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/GUI/Window.cs",
@@ -3206,9 +3620,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "636e4067-fcb0-478a-a124-f7fd51cf590a"
+      "Id": "f5bf8c1e-f69d-4467-a4a6-cad8fb957667"
     },
     "FileName": "Window.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/GUI/Window.cs",
@@ -3224,9 +3638,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "636e4067-fcb0-478a-a124-f7fd51cf590a"
+      "Id": "f5bf8c1e-f69d-4467-a4a6-cad8fb957667"
     },
     "FileName": "Window.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/GUI/Window.cs",
@@ -3242,9 +3656,27 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "f4897305-c573-4792-8d19-d660017cb8e1"
+      "Id": "f5bf8c1e-f69d-4467-a4a6-cad8fb957667"
+    },
+    "FileName": "Window.cs",
+    "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/GUI/Window.cs",
+    "FileChanges": [
+      {
+        "LineNumber": 12,
+        "CharNumber": 11,
+        "DiagnosticId": "IDE0161",
+        "FormatDescription": "warning IDE0161: Convert to file-scoped namespace"
+      }
+    ]
+  },
+  {
+    "DocumentId": {
+      "ProjectId": {
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
+      },
+      "Id": "e39934bb-1132-4aa7-b7af-f715b04b3549"
     },
     "FileName": "WindowArgs.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/GUI/WindowArgs.cs",
@@ -3260,9 +3692,27 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "7bb8e078-7897-46ab-9968-1c33a20043da"
+      "Id": "e39934bb-1132-4aa7-b7af-f715b04b3549"
+    },
+    "FileName": "WindowArgs.cs",
+    "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/GUI/WindowArgs.cs",
+    "FileChanges": [
+      {
+        "LineNumber": 3,
+        "CharNumber": 11,
+        "DiagnosticId": "IDE0161",
+        "FormatDescription": "warning IDE0161: Convert to file-scoped namespace"
+      }
+    ]
+  },
+  {
+    "DocumentId": {
+      "ProjectId": {
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
+      },
+      "Id": "9be423b0-65e1-4bbc-b088-5b49b015422d"
     },
     "FileName": "IKeyTransformer.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Input/IKeyTransformer.cs",
@@ -3278,9 +3728,27 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "2a03b396-1a02-4904-a933-1d562e42e86a"
+      "Id": "9be423b0-65e1-4bbc-b088-5b49b015422d"
+    },
+    "FileName": "IKeyTransformer.cs",
+    "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Input/IKeyTransformer.cs",
+    "FileChanges": [
+      {
+        "LineNumber": 3,
+        "CharNumber": 11,
+        "DiagnosticId": "IDE0161",
+        "FormatDescription": "warning IDE0161: Convert to file-scoped namespace"
+      }
+    ]
+  },
+  {
+    "DocumentId": {
+      "ProjectId": {
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
+      },
+      "Id": "f8951c23-7401-4c20-9de4-c6f30e3e96d2"
     },
     "FileName": "DanishKeyTransformer.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Input/Languages/DanishKeyTransformer.cs",
@@ -3296,9 +3764,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "2a03b396-1a02-4904-a933-1d562e42e86a"
+      "Id": "f8951c23-7401-4c20-9de4-c6f30e3e96d2"
     },
     "FileName": "DanishKeyTransformer.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Input/Languages/DanishKeyTransformer.cs",
@@ -3314,9 +3782,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "2a03b396-1a02-4904-a933-1d562e42e86a"
+      "Id": "f8951c23-7401-4c20-9de4-c6f30e3e96d2"
     },
     "FileName": "DanishKeyTransformer.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Input/Languages/DanishKeyTransformer.cs",
@@ -3332,9 +3800,27 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "58fa87d5-a27f-4486-8e8c-1e56b10db979"
+      "Id": "f8951c23-7401-4c20-9de4-c6f30e3e96d2"
+    },
+    "FileName": "DanishKeyTransformer.cs",
+    "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Input/Languages/DanishKeyTransformer.cs",
+    "FileChanges": [
+      {
+        "LineNumber": 5,
+        "CharNumber": 11,
+        "DiagnosticId": "IDE0161",
+        "FormatDescription": "warning IDE0161: Convert to file-scoped namespace"
+      }
+    ]
+  },
+  {
+    "DocumentId": {
+      "ProjectId": {
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
+      },
+      "Id": "9f190e87-ada0-4283-81f4-71171c6d1fb7"
     },
     "FileName": "CollisionData.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Physics/CollisionData.cs",
@@ -3350,9 +3836,27 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "56edb3e5-8ebb-46b1-9714-815bba12c70b"
+      "Id": "9f190e87-ada0-4283-81f4-71171c6d1fb7"
+    },
+    "FileName": "CollisionData.cs",
+    "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Physics/CollisionData.cs",
+    "FileChanges": [
+      {
+        "LineNumber": 3,
+        "CharNumber": 11,
+        "DiagnosticId": "IDE0161",
+        "FormatDescription": "warning IDE0161: Convert to file-scoped namespace"
+      }
+    ]
+  },
+  {
+    "DocumentId": {
+      "ProjectId": {
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
+      },
+      "Id": "09808686-c6e3-40b4-8958-16c60f3c9e68"
     },
     "FileName": "CollisionDetection.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Physics/CollisionDetection.cs",
@@ -3368,9 +3872,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "56edb3e5-8ebb-46b1-9714-815bba12c70b"
+      "Id": "09808686-c6e3-40b4-8958-16c60f3c9e68"
     },
     "FileName": "CollisionDetection.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Physics/CollisionDetection.cs",
@@ -3386,9 +3890,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "56edb3e5-8ebb-46b1-9714-815bba12c70b"
+      "Id": "09808686-c6e3-40b4-8958-16c60f3c9e68"
     },
     "FileName": "CollisionDetection.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Physics/CollisionDetection.cs",
@@ -3404,9 +3908,27 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "e925ca13-a64a-41b3-9437-70a62bf898d4"
+      "Id": "09808686-c6e3-40b4-8958-16c60f3c9e68"
+    },
+    "FileName": "CollisionDetection.cs",
+    "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Physics/CollisionDetection.cs",
+    "FileChanges": [
+      {
+        "LineNumber": 5,
+        "CharNumber": 11,
+        "DiagnosticId": "IDE0161",
+        "FormatDescription": "warning IDE0161: Convert to file-scoped namespace"
+      }
+    ]
+  },
+  {
+    "DocumentId": {
+      "ProjectId": {
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
+      },
+      "Id": "7956a907-1d18-4150-90f3-d710b242e3d6"
     },
     "FileName": "NewtonianForce.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Physics/NewtonianForce.cs",
@@ -3422,9 +3944,27 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "b71577dd-9362-44e8-a3fd-6e00ea998dc5"
+      "Id": "7956a907-1d18-4150-90f3-d710b242e3d6"
+    },
+    "FileName": "NewtonianForce.cs",
+    "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Physics/NewtonianForce.cs",
+    "FileChanges": [
+      {
+        "LineNumber": 3,
+        "CharNumber": 11,
+        "DiagnosticId": "IDE0161",
+        "FormatDescription": "warning IDE0161: Convert to file-scoped namespace"
+      }
+    ]
+  },
+  {
+    "DocumentId": {
+      "ProjectId": {
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
+      },
+      "Id": "419cdc84-5697-4c88-a2f4-6463c5dd7405"
     },
     "FileName": "IGameState.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/State/IGameState.cs",
@@ -3440,9 +3980,27 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "279eeb9b-4f64-4019-91db-022c77723bfd"
+      "Id": "419cdc84-5697-4c88-a2f4-6463c5dd7405"
+    },
+    "FileName": "IGameState.cs",
+    "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/State/IGameState.cs",
+    "FileChanges": [
+      {
+        "LineNumber": 3,
+        "CharNumber": 11,
+        "DiagnosticId": "IDE0161",
+        "FormatDescription": "warning IDE0161: Convert to file-scoped namespace"
+      }
+    ]
+  },
+  {
+    "DocumentId": {
+      "ProjectId": {
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
+      },
+      "Id": "258fa6e4-1762-4aba-9daf-d6423a4ff0af"
     },
     "FileName": "GameTimer.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Timers/GameTimer.cs",
@@ -3458,9 +4016,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "279eeb9b-4f64-4019-91db-022c77723bfd"
+      "Id": "258fa6e4-1762-4aba-9daf-d6423a4ff0af"
     },
     "FileName": "GameTimer.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Timers/GameTimer.cs",
@@ -3476,9 +4034,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "279eeb9b-4f64-4019-91db-022c77723bfd"
+      "Id": "258fa6e4-1762-4aba-9daf-d6423a4ff0af"
     },
     "FileName": "GameTimer.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Timers/GameTimer.cs",
@@ -3494,9 +4052,27 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "f85e8d9c-5a73-4da7-81ee-42f84944c04f"
+      "Id": "258fa6e4-1762-4aba-9daf-d6423a4ff0af"
+    },
+    "FileName": "GameTimer.cs",
+    "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Timers/GameTimer.cs",
+    "FileChanges": [
+      {
+        "LineNumber": 4,
+        "CharNumber": 11,
+        "DiagnosticId": "IDE0161",
+        "FormatDescription": "warning IDE0161: Convert to file-scoped namespace"
+      }
+    ]
+  },
+  {
+    "DocumentId": {
+      "ProjectId": {
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
+      },
+      "Id": "e632e393-67f7-41e4-a3e1-63ec3230e232"
     },
     "FileName": "StaticTimer.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Timers/StaticTimer.cs",
@@ -3512,9 +4088,27 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "d20965ca-a149-4f8c-a9ae-5a4ad6765e20"
+      "Id": "e632e393-67f7-41e4-a3e1-63ec3230e232"
+    },
+    "FileName": "StaticTimer.cs",
+    "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Timers/StaticTimer.cs",
+    "FileChanges": [
+      {
+        "LineNumber": 3,
+        "CharNumber": 11,
+        "DiagnosticId": "IDE0161",
+        "FormatDescription": "warning IDE0161: Convert to file-scoped namespace"
+      }
+    ]
+  },
+  {
+    "DocumentId": {
+      "ProjectId": {
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
+      },
+      "Id": "f3164122-8423-40fa-a8f6-82ab4940e96a"
     },
     "FileName": "TimePeriod.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Timers/TimePeriod.cs",
@@ -3530,9 +4124,27 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "eabbc6c9-c567-47bc-a35a-e024ccede581"
+      "Id": "f3164122-8423-40fa-a8f6-82ab4940e96a"
+    },
+    "FileName": "TimePeriod.cs",
+    "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Timers/TimePeriod.cs",
+    "FileChanges": [
+      {
+        "LineNumber": 3,
+        "CharNumber": 11,
+        "DiagnosticId": "IDE0161",
+        "FormatDescription": "warning IDE0161: Convert to file-scoped namespace"
+      }
+    ]
+  },
+  {
+    "DocumentId": {
+      "ProjectId": {
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
+      },
+      "Id": "1ab0a427-6061-4db8-912f-f7c5c0861447"
     },
     "FileName": "FileIO.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Utilities/FileIO.cs",
@@ -3548,9 +4160,27 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "a74e5c7b-f80a-442b-9faf-f14c299476b5"
+      "Id": "1ab0a427-6061-4db8-912f-f7c5c0861447"
+    },
+    "FileName": "FileIO.cs",
+    "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Utilities/FileIO.cs",
+    "FileChanges": [
+      {
+        "LineNumber": 3,
+        "CharNumber": 11,
+        "DiagnosticId": "IDE0161",
+        "FormatDescription": "warning IDE0161: Convert to file-scoped namespace"
+      }
+    ]
+  },
+  {
+    "DocumentId": {
+      "ProjectId": {
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
+      },
+      "Id": "99055606-f1b1-445c-92a7-203ea57b1fa0"
     },
     "FileName": "RandomGenerator.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Utilities/RandomGenerator.cs",
@@ -3566,495 +4196,27 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "d155eaa9-7914-468e-b0de-43ac73422649"
+      "Id": "99055606-f1b1-445c-92a7-203ea57b1fa0"
     },
-    "FileName": "Vec2D.cs",
-    "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Math/Vec2D.cs",
+    "FileName": "RandomGenerator.cs",
+    "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Utilities/RandomGenerator.cs",
     "FileChanges": [
       {
         "LineNumber": 3,
-        "CharNumber": 23,
-        "DiagnosticId": "IDE1006",
-        "FormatDescription": "warning IDE1006: Naming rule violation: The first word, \u0027X\u0027, must begin with a lower case character"
+        "CharNumber": 11,
+        "DiagnosticId": "IDE0161",
+        "FormatDescription": "warning IDE0161: Convert to file-scoped namespace"
       }
     ]
   },
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "d155eaa9-7914-468e-b0de-43ac73422649"
-    },
-    "FileName": "Vec2D.cs",
-    "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Math/Vec2D.cs",
-    "FileChanges": [
-      {
-        "LineNumber": 4,
-        "CharNumber": 23,
-        "DiagnosticId": "IDE1006",
-        "FormatDescription": "warning IDE1006: Naming rule violation: The first word, \u0027Y\u0027, must begin with a lower case character"
-      }
-    ]
-  },
-  {
-    "DocumentId": {
-      "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
-      },
-      "Id": "168cfea5-17ac-48d4-9993-b96797d9e7d2"
-    },
-    "FileName": "Vec2F.cs",
-    "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Math/Vec2F.cs",
-    "FileChanges": [
-      {
-        "LineNumber": 3,
-        "CharNumber": 22,
-        "DiagnosticId": "IDE1006",
-        "FormatDescription": "warning IDE1006: Naming rule violation: The first word, \u0027X\u0027, must begin with a lower case character"
-      }
-    ]
-  },
-  {
-    "DocumentId": {
-      "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
-      },
-      "Id": "168cfea5-17ac-48d4-9993-b96797d9e7d2"
-    },
-    "FileName": "Vec2F.cs",
-    "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Math/Vec2F.cs",
-    "FileChanges": [
-      {
-        "LineNumber": 4,
-        "CharNumber": 22,
-        "DiagnosticId": "IDE1006",
-        "FormatDescription": "warning IDE1006: Naming rule violation: The first word, \u0027Y\u0027, must begin with a lower case character"
-      }
-    ]
-  },
-  {
-    "DocumentId": {
-      "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
-      },
-      "Id": "a189dda1-e709-4565-8fda-c4105856d46f"
-    },
-    "FileName": "Vec2I.cs",
-    "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Math/Vec2I.cs",
-    "FileChanges": [
-      {
-        "LineNumber": 3,
-        "CharNumber": 20,
-        "DiagnosticId": "IDE1006",
-        "FormatDescription": "warning IDE1006: Naming rule violation: The first word, \u0027X\u0027, must begin with a lower case character"
-      }
-    ]
-  },
-  {
-    "DocumentId": {
-      "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
-      },
-      "Id": "a189dda1-e709-4565-8fda-c4105856d46f"
-    },
-    "FileName": "Vec2I.cs",
-    "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Math/Vec2I.cs",
-    "FileChanges": [
-      {
-        "LineNumber": 4,
-        "CharNumber": 20,
-        "DiagnosticId": "IDE1006",
-        "FormatDescription": "warning IDE1006: Naming rule violation: The first word, \u0027Y\u0027, must begin with a lower case character"
-      }
-    ]
-  },
-  {
-    "DocumentId": {
-      "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
-      },
-      "Id": "ce6864e1-5994-4617-a75b-72988c909a64"
-    },
-    "FileName": "Vec3D.cs",
-    "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Math/Vec3D.cs",
-    "FileChanges": [
-      {
-        "LineNumber": 3,
-        "CharNumber": 23,
-        "DiagnosticId": "IDE1006",
-        "FormatDescription": "warning IDE1006: Naming rule violation: The first word, \u0027X\u0027, must begin with a lower case character"
-      }
-    ]
-  },
-  {
-    "DocumentId": {
-      "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
-      },
-      "Id": "ce6864e1-5994-4617-a75b-72988c909a64"
-    },
-    "FileName": "Vec3D.cs",
-    "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Math/Vec3D.cs",
-    "FileChanges": [
-      {
-        "LineNumber": 4,
-        "CharNumber": 23,
-        "DiagnosticId": "IDE1006",
-        "FormatDescription": "warning IDE1006: Naming rule violation: The first word, \u0027Y\u0027, must begin with a lower case character"
-      }
-    ]
-  },
-  {
-    "DocumentId": {
-      "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
-      },
-      "Id": "ce6864e1-5994-4617-a75b-72988c909a64"
-    },
-    "FileName": "Vec3D.cs",
-    "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Math/Vec3D.cs",
-    "FileChanges": [
-      {
-        "LineNumber": 5,
-        "CharNumber": 23,
-        "DiagnosticId": "IDE1006",
-        "FormatDescription": "warning IDE1006: Naming rule violation: The first word, \u0027Z\u0027, must begin with a lower case character"
-      }
-    ]
-  },
-  {
-    "DocumentId": {
-      "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
-      },
-      "Id": "12d1c428-3136-4f49-9d07-b6ee02e0a0c1"
-    },
-    "FileName": "Vec3F.cs",
-    "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Math/Vec3F.cs",
-    "FileChanges": [
-      {
-        "LineNumber": 3,
-        "CharNumber": 22,
-        "DiagnosticId": "IDE1006",
-        "FormatDescription": "warning IDE1006: Naming rule violation: The first word, \u0027X\u0027, must begin with a lower case character"
-      }
-    ]
-  },
-  {
-    "DocumentId": {
-      "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
-      },
-      "Id": "12d1c428-3136-4f49-9d07-b6ee02e0a0c1"
-    },
-    "FileName": "Vec3F.cs",
-    "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Math/Vec3F.cs",
-    "FileChanges": [
-      {
-        "LineNumber": 4,
-        "CharNumber": 22,
-        "DiagnosticId": "IDE1006",
-        "FormatDescription": "warning IDE1006: Naming rule violation: The first word, \u0027Y\u0027, must begin with a lower case character"
-      }
-    ]
-  },
-  {
-    "DocumentId": {
-      "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
-      },
-      "Id": "12d1c428-3136-4f49-9d07-b6ee02e0a0c1"
-    },
-    "FileName": "Vec3F.cs",
-    "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Math/Vec3F.cs",
-    "FileChanges": [
-      {
-        "LineNumber": 5,
-        "CharNumber": 22,
-        "DiagnosticId": "IDE1006",
-        "FormatDescription": "warning IDE1006: Naming rule violation: The first word, \u0027Z\u0027, must begin with a lower case character"
-      }
-    ]
-  },
-  {
-    "DocumentId": {
-      "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
-      },
-      "Id": "92248b22-892a-4988-9930-a18c1ba4d97a"
-    },
-    "FileName": "Vec3I.cs",
-    "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Math/Vec3I.cs",
-    "FileChanges": [
-      {
-        "LineNumber": 3,
-        "CharNumber": 20,
-        "DiagnosticId": "IDE1006",
-        "FormatDescription": "warning IDE1006: Naming rule violation: The first word, \u0027X\u0027, must begin with a lower case character"
-      }
-    ]
-  },
-  {
-    "DocumentId": {
-      "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
-      },
-      "Id": "92248b22-892a-4988-9930-a18c1ba4d97a"
-    },
-    "FileName": "Vec3I.cs",
-    "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Math/Vec3I.cs",
-    "FileChanges": [
-      {
-        "LineNumber": 4,
-        "CharNumber": 20,
-        "DiagnosticId": "IDE1006",
-        "FormatDescription": "warning IDE1006: Naming rule violation: The first word, \u0027Y\u0027, must begin with a lower case character"
-      }
-    ]
-  },
-  {
-    "DocumentId": {
-      "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
-      },
-      "Id": "92248b22-892a-4988-9930-a18c1ba4d97a"
-    },
-    "FileName": "Vec3I.cs",
-    "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Math/Vec3I.cs",
-    "FileChanges": [
-      {
-        "LineNumber": 5,
-        "CharNumber": 20,
-        "DiagnosticId": "IDE1006",
-        "FormatDescription": "warning IDE1006: Naming rule violation: The first word, \u0027Z\u0027, must begin with a lower case character"
-      }
-    ]
-  },
-  {
-    "DocumentId": {
-      "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
-      },
-      "Id": "b619f492-28b0-4ae7-ae56-d15c9099efa5"
-    },
-    "FileName": "Vec4D.cs",
-    "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Math/Vec4D.cs",
-    "FileChanges": [
-      {
-        "LineNumber": 3,
-        "CharNumber": 23,
-        "DiagnosticId": "IDE1006",
-        "FormatDescription": "warning IDE1006: Naming rule violation: The first word, \u0027W\u0027, must begin with a lower case character"
-      }
-    ]
-  },
-  {
-    "DocumentId": {
-      "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
-      },
-      "Id": "b619f492-28b0-4ae7-ae56-d15c9099efa5"
-    },
-    "FileName": "Vec4D.cs",
-    "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Math/Vec4D.cs",
-    "FileChanges": [
-      {
-        "LineNumber": 4,
-        "CharNumber": 23,
-        "DiagnosticId": "IDE1006",
-        "FormatDescription": "warning IDE1006: Naming rule violation: The first word, \u0027X\u0027, must begin with a lower case character"
-      }
-    ]
-  },
-  {
-    "DocumentId": {
-      "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
-      },
-      "Id": "b619f492-28b0-4ae7-ae56-d15c9099efa5"
-    },
-    "FileName": "Vec4D.cs",
-    "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Math/Vec4D.cs",
-    "FileChanges": [
-      {
-        "LineNumber": 5,
-        "CharNumber": 23,
-        "DiagnosticId": "IDE1006",
-        "FormatDescription": "warning IDE1006: Naming rule violation: The first word, \u0027Y\u0027, must begin with a lower case character"
-      }
-    ]
-  },
-  {
-    "DocumentId": {
-      "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
-      },
-      "Id": "b619f492-28b0-4ae7-ae56-d15c9099efa5"
-    },
-    "FileName": "Vec4D.cs",
-    "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Math/Vec4D.cs",
-    "FileChanges": [
-      {
-        "LineNumber": 6,
-        "CharNumber": 23,
-        "DiagnosticId": "IDE1006",
-        "FormatDescription": "warning IDE1006: Naming rule violation: The first word, \u0027Z\u0027, must begin with a lower case character"
-      }
-    ]
-  },
-  {
-    "DocumentId": {
-      "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
-      },
-      "Id": "84617917-8079-4b9d-80c4-70e5e6b371e0"
-    },
-    "FileName": "Vec4F.cs",
-    "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Math/Vec4F.cs",
-    "FileChanges": [
-      {
-        "LineNumber": 3,
-        "CharNumber": 22,
-        "DiagnosticId": "IDE1006",
-        "FormatDescription": "warning IDE1006: Naming rule violation: The first word, \u0027W\u0027, must begin with a lower case character"
-      }
-    ]
-  },
-  {
-    "DocumentId": {
-      "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
-      },
-      "Id": "84617917-8079-4b9d-80c4-70e5e6b371e0"
-    },
-    "FileName": "Vec4F.cs",
-    "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Math/Vec4F.cs",
-    "FileChanges": [
-      {
-        "LineNumber": 4,
-        "CharNumber": 22,
-        "DiagnosticId": "IDE1006",
-        "FormatDescription": "warning IDE1006: Naming rule violation: The first word, \u0027X\u0027, must begin with a lower case character"
-      }
-    ]
-  },
-  {
-    "DocumentId": {
-      "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
-      },
-      "Id": "84617917-8079-4b9d-80c4-70e5e6b371e0"
-    },
-    "FileName": "Vec4F.cs",
-    "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Math/Vec4F.cs",
-    "FileChanges": [
-      {
-        "LineNumber": 5,
-        "CharNumber": 22,
-        "DiagnosticId": "IDE1006",
-        "FormatDescription": "warning IDE1006: Naming rule violation: The first word, \u0027Y\u0027, must begin with a lower case character"
-      }
-    ]
-  },
-  {
-    "DocumentId": {
-      "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
-      },
-      "Id": "84617917-8079-4b9d-80c4-70e5e6b371e0"
-    },
-    "FileName": "Vec4F.cs",
-    "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Math/Vec4F.cs",
-    "FileChanges": [
-      {
-        "LineNumber": 6,
-        "CharNumber": 22,
-        "DiagnosticId": "IDE1006",
-        "FormatDescription": "warning IDE1006: Naming rule violation: The first word, \u0027Z\u0027, must begin with a lower case character"
-      }
-    ]
-  },
-  {
-    "DocumentId": {
-      "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
-      },
-      "Id": "3ca2718e-a979-4d44-b4db-02c4bf81018a"
-    },
-    "FileName": "Vec4I.cs",
-    "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Math/Vec4I.cs",
-    "FileChanges": [
-      {
-        "LineNumber": 3,
-        "CharNumber": 20,
-        "DiagnosticId": "IDE1006",
-        "FormatDescription": "warning IDE1006: Naming rule violation: The first word, \u0027W\u0027, must begin with a lower case character"
-      }
-    ]
-  },
-  {
-    "DocumentId": {
-      "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
-      },
-      "Id": "3ca2718e-a979-4d44-b4db-02c4bf81018a"
-    },
-    "FileName": "Vec4I.cs",
-    "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Math/Vec4I.cs",
-    "FileChanges": [
-      {
-        "LineNumber": 4,
-        "CharNumber": 20,
-        "DiagnosticId": "IDE1006",
-        "FormatDescription": "warning IDE1006: Naming rule violation: The first word, \u0027X\u0027, must begin with a lower case character"
-      }
-    ]
-  },
-  {
-    "DocumentId": {
-      "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
-      },
-      "Id": "3ca2718e-a979-4d44-b4db-02c4bf81018a"
-    },
-    "FileName": "Vec4I.cs",
-    "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Math/Vec4I.cs",
-    "FileChanges": [
-      {
-        "LineNumber": 5,
-        "CharNumber": 20,
-        "DiagnosticId": "IDE1006",
-        "FormatDescription": "warning IDE1006: Naming rule violation: The first word, \u0027Y\u0027, must begin with a lower case character"
-      }
-    ]
-  },
-  {
-    "DocumentId": {
-      "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
-      },
-      "Id": "3ca2718e-a979-4d44-b4db-02c4bf81018a"
-    },
-    "FileName": "Vec4I.cs",
-    "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Math/Vec4I.cs",
-    "FileChanges": [
-      {
-        "LineNumber": 6,
-        "CharNumber": 20,
-        "DiagnosticId": "IDE1006",
-        "FormatDescription": "warning IDE1006: Naming rule violation: The first word, \u0027Z\u0027, must begin with a lower case character"
-      }
-    ]
-  },
-  {
-    "DocumentId": {
-      "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
-      },
-      "Id": "46937445-a727-4beb-b73c-5ce67a7f13e4"
+      "Id": "19e453cf-8f64-46e1-b655-12036ad05445"
     },
     "FileName": "GameEvent.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Events/GameEvent.cs",
@@ -4070,9 +4232,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "46937445-a727-4beb-b73c-5ce67a7f13e4"
+      "Id": "19e453cf-8f64-46e1-b655-12036ad05445"
     },
     "FileName": "GameEvent.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Events/GameEvent.cs",
@@ -4088,9 +4250,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "46937445-a727-4beb-b73c-5ce67a7f13e4"
+      "Id": "19e453cf-8f64-46e1-b655-12036ad05445"
     },
     "FileName": "GameEvent.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Events/GameEvent.cs",
@@ -4106,9 +4268,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "46937445-a727-4beb-b73c-5ce67a7f13e4"
+      "Id": "19e453cf-8f64-46e1-b655-12036ad05445"
     },
     "FileName": "GameEvent.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Events/GameEvent.cs",
@@ -4124,9 +4286,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "46937445-a727-4beb-b73c-5ce67a7f13e4"
+      "Id": "19e453cf-8f64-46e1-b655-12036ad05445"
     },
     "FileName": "GameEvent.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Events/GameEvent.cs",
@@ -4142,9 +4304,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "46937445-a727-4beb-b73c-5ce67a7f13e4"
+      "Id": "19e453cf-8f64-46e1-b655-12036ad05445"
     },
     "FileName": "GameEvent.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Events/GameEvent.cs",
@@ -4160,9 +4322,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "46937445-a727-4beb-b73c-5ce67a7f13e4"
+      "Id": "19e453cf-8f64-46e1-b655-12036ad05445"
     },
     "FileName": "GameEvent.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Events/GameEvent.cs",
@@ -4178,9 +4340,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "46937445-a727-4beb-b73c-5ce67a7f13e4"
+      "Id": "19e453cf-8f64-46e1-b655-12036ad05445"
     },
     "FileName": "GameEvent.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Events/GameEvent.cs",
@@ -4196,9 +4358,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "46937445-a727-4beb-b73c-5ce67a7f13e4"
+      "Id": "19e453cf-8f64-46e1-b655-12036ad05445"
     },
     "FileName": "GameEvent.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Events/GameEvent.cs",
@@ -4214,9 +4376,27 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "6afff055-9dd9-488f-a5cd-d38493f931ec"
+      "Id": "19e453cf-8f64-46e1-b655-12036ad05445"
+    },
+    "FileName": "GameEvent.cs",
+    "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Events/GameEvent.cs",
+    "FileChanges": [
+      {
+        "LineNumber": 1,
+        "CharNumber": 11,
+        "DiagnosticId": "IDE0161",
+        "FormatDescription": "warning IDE0161: Convert to file-scoped namespace"
+      }
+    ]
+  },
+  {
+    "DocumentId": {
+      "ProjectId": {
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
+      },
+      "Id": "6e74e737-9f87-4eb1-b484-2e1508c2a126"
     },
     "FileName": "GameEventT.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Events/Generic/GameEventT.cs",
@@ -4232,9 +4412,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "6afff055-9dd9-488f-a5cd-d38493f931ec"
+      "Id": "6e74e737-9f87-4eb1-b484-2e1508c2a126"
     },
     "FileName": "GameEventT.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Events/Generic/GameEventT.cs",
@@ -4250,9 +4430,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "6afff055-9dd9-488f-a5cd-d38493f931ec"
+      "Id": "6e74e737-9f87-4eb1-b484-2e1508c2a126"
     },
     "FileName": "GameEventT.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Events/Generic/GameEventT.cs",
@@ -4268,9 +4448,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "6afff055-9dd9-488f-a5cd-d38493f931ec"
+      "Id": "6e74e737-9f87-4eb1-b484-2e1508c2a126"
     },
     "FileName": "GameEventT.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Events/Generic/GameEventT.cs",
@@ -4286,9 +4466,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "6afff055-9dd9-488f-a5cd-d38493f931ec"
+      "Id": "6e74e737-9f87-4eb1-b484-2e1508c2a126"
     },
     "FileName": "GameEventT.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Events/Generic/GameEventT.cs",
@@ -4304,9 +4484,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "6afff055-9dd9-488f-a5cd-d38493f931ec"
+      "Id": "6e74e737-9f87-4eb1-b484-2e1508c2a126"
     },
     "FileName": "GameEventT.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Events/Generic/GameEventT.cs",
@@ -4322,9 +4502,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "6afff055-9dd9-488f-a5cd-d38493f931ec"
+      "Id": "6e74e737-9f87-4eb1-b484-2e1508c2a126"
     },
     "FileName": "GameEventT.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Events/Generic/GameEventT.cs",
@@ -4340,9 +4520,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "6afff055-9dd9-488f-a5cd-d38493f931ec"
+      "Id": "6e74e737-9f87-4eb1-b484-2e1508c2a126"
     },
     "FileName": "GameEventT.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Events/Generic/GameEventT.cs",
@@ -4358,9 +4538,9 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "05c0d32d-6444-4005-acbe-9ac19358d593"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "6afff055-9dd9-488f-a5cd-d38493f931ec"
+      "Id": "6e74e737-9f87-4eb1-b484-2e1508c2a126"
     },
     "FileName": "GameEventT.cs",
     "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Events/Generic/GameEventT.cs",
@@ -4376,360 +4556,864 @@
   {
     "DocumentId": {
       "ProjectId": {
-        "Id": "d2553afa-8b1d-4c6e-a8e5-d7371970e7ba"
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
       },
-      "Id": "61be65eb-88c4-4ed2-953a-9d48d3f627e1"
+      "Id": "6e74e737-9f87-4eb1-b484-2e1508c2a126"
     },
-    "FileName": "Enemy.cs",
-    "FilePath": "/home/student/DIKUGames/Galaga/Enemy.cs",
+    "FileName": "GameEventT.cs",
+    "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Events/Generic/GameEventT.cs",
     "FileChanges": [
       {
         "LineNumber": 1,
-        "CharNumber": 1,
-        "DiagnosticId": "IDE0065",
-        "FormatDescription": "warning IDE0065: Using directives must be placed inside of a namespace declaration"
-      }
-    ]
-  },
-  {
-    "DocumentId": {
-      "ProjectId": {
-        "Id": "d2553afa-8b1d-4c6e-a8e5-d7371970e7ba"
-      },
-      "Id": "61be65eb-88c4-4ed2-953a-9d48d3f627e1"
-    },
-    "FileName": "Enemy.cs",
-    "FilePath": "/home/student/DIKUGames/Galaga/Enemy.cs",
-    "FileChanges": [
-      {
-        "LineNumber": 2,
-        "CharNumber": 1,
-        "DiagnosticId": "IDE0065",
-        "FormatDescription": "warning IDE0065: Using directives must be placed inside of a namespace declaration"
-      }
-    ]
-  },
-  {
-    "DocumentId": {
-      "ProjectId": {
-        "Id": "d2553afa-8b1d-4c6e-a8e5-d7371970e7ba"
-      },
-      "Id": "a97fa366-3597-4fc8-a0b8-fb8e21fbd0ae"
-    },
-    "FileName": "Game.cs",
-    "FilePath": "/home/student/DIKUGames/Galaga/Game.cs",
-    "FileChanges": [
-      {
-        "LineNumber": 1,
-        "CharNumber": 1,
-        "DiagnosticId": "IDE0065",
-        "FormatDescription": "warning IDE0065: Using directives must be placed inside of a namespace declaration"
-      }
-    ]
-  },
-  {
-    "DocumentId": {
-      "ProjectId": {
-        "Id": "d2553afa-8b1d-4c6e-a8e5-d7371970e7ba"
-      },
-      "Id": "a97fa366-3597-4fc8-a0b8-fb8e21fbd0ae"
-    },
-    "FileName": "Game.cs",
-    "FilePath": "/home/student/DIKUGames/Galaga/Game.cs",
-    "FileChanges": [
-      {
-        "LineNumber": 2,
-        "CharNumber": 1,
-        "DiagnosticId": "IDE0065",
-        "FormatDescription": "warning IDE0065: Using directives must be placed inside of a namespace declaration"
-      }
-    ]
-  },
-  {
-    "DocumentId": {
-      "ProjectId": {
-        "Id": "d2553afa-8b1d-4c6e-a8e5-d7371970e7ba"
-      },
-      "Id": "a97fa366-3597-4fc8-a0b8-fb8e21fbd0ae"
-    },
-    "FileName": "Game.cs",
-    "FilePath": "/home/student/DIKUGames/Galaga/Game.cs",
-    "FileChanges": [
-      {
-        "LineNumber": 3,
-        "CharNumber": 1,
-        "DiagnosticId": "IDE0065",
-        "FormatDescription": "warning IDE0065: Using directives must be placed inside of a namespace declaration"
-      }
-    ]
-  },
-  {
-    "DocumentId": {
-      "ProjectId": {
-        "Id": "d2553afa-8b1d-4c6e-a8e5-d7371970e7ba"
-      },
-      "Id": "a97fa366-3597-4fc8-a0b8-fb8e21fbd0ae"
-    },
-    "FileName": "Game.cs",
-    "FilePath": "/home/student/DIKUGames/Galaga/Game.cs",
-    "FileChanges": [
-      {
-        "LineNumber": 4,
-        "CharNumber": 1,
-        "DiagnosticId": "IDE0065",
-        "FormatDescription": "warning IDE0065: Using directives must be placed inside of a namespace declaration"
-      }
-    ]
-  },
-  {
-    "DocumentId": {
-      "ProjectId": {
-        "Id": "d2553afa-8b1d-4c6e-a8e5-d7371970e7ba"
-      },
-      "Id": "a97fa366-3597-4fc8-a0b8-fb8e21fbd0ae"
-    },
-    "FileName": "Game.cs",
-    "FilePath": "/home/student/DIKUGames/Galaga/Game.cs",
-    "FileChanges": [
-      {
-        "LineNumber": 5,
-        "CharNumber": 1,
-        "DiagnosticId": "IDE0065",
-        "FormatDescription": "warning IDE0065: Using directives must be placed inside of a namespace declaration"
-      }
-    ]
-  },
-  {
-    "DocumentId": {
-      "ProjectId": {
-        "Id": "d2553afa-8b1d-4c6e-a8e5-d7371970e7ba"
-      },
-      "Id": "a97fa366-3597-4fc8-a0b8-fb8e21fbd0ae"
-    },
-    "FileName": "Game.cs",
-    "FilePath": "/home/student/DIKUGames/Galaga/Game.cs",
-    "FileChanges": [
-      {
-        "LineNumber": 6,
-        "CharNumber": 1,
-        "DiagnosticId": "IDE0065",
-        "FormatDescription": "warning IDE0065: Using directives must be placed inside of a namespace declaration"
-      }
-    ]
-  },
-  {
-    "DocumentId": {
-      "ProjectId": {
-        "Id": "d2553afa-8b1d-4c6e-a8e5-d7371970e7ba"
-      },
-      "Id": "a97fa366-3597-4fc8-a0b8-fb8e21fbd0ae"
-    },
-    "FileName": "Game.cs",
-    "FilePath": "/home/student/DIKUGames/Galaga/Game.cs",
-    "FileChanges": [
-      {
-        "LineNumber": 7,
-        "CharNumber": 1,
-        "DiagnosticId": "IDE0065",
-        "FormatDescription": "warning IDE0065: Using directives must be placed inside of a namespace declaration"
-      }
-    ]
-  },
-  {
-    "DocumentId": {
-      "ProjectId": {
-        "Id": "d2553afa-8b1d-4c6e-a8e5-d7371970e7ba"
-      },
-      "Id": "a97fa366-3597-4fc8-a0b8-fb8e21fbd0ae"
-    },
-    "FileName": "Game.cs",
-    "FilePath": "/home/student/DIKUGames/Galaga/Game.cs",
-    "FileChanges": [
-      {
-        "LineNumber": 8,
-        "CharNumber": 1,
-        "DiagnosticId": "IDE0065",
-        "FormatDescription": "warning IDE0065: Using directives must be placed inside of a namespace declaration"
-      }
-    ]
-  },
-  {
-    "DocumentId": {
-      "ProjectId": {
-        "Id": "d2553afa-8b1d-4c6e-a8e5-d7371970e7ba"
-      },
-      "Id": "a97fa366-3597-4fc8-a0b8-fb8e21fbd0ae"
-    },
-    "FileName": "Game.cs",
-    "FilePath": "/home/student/DIKUGames/Galaga/Game.cs",
-    "FileChanges": [
-      {
-        "LineNumber": 9,
-        "CharNumber": 1,
-        "DiagnosticId": "IDE0065",
-        "FormatDescription": "warning IDE0065: Using directives must be placed inside of a namespace declaration"
-      }
-    ]
-  },
-  {
-    "DocumentId": {
-      "ProjectId": {
-        "Id": "d2553afa-8b1d-4c6e-a8e5-d7371970e7ba"
-      },
-      "Id": "a97fa366-3597-4fc8-a0b8-fb8e21fbd0ae"
-    },
-    "FileName": "Game.cs",
-    "FilePath": "/home/student/DIKUGames/Galaga/Game.cs",
-    "FileChanges": [
-      {
-        "LineNumber": 10,
-        "CharNumber": 1,
-        "DiagnosticId": "IDE0065",
-        "FormatDescription": "warning IDE0065: Using directives must be placed inside of a namespace declaration"
-      }
-    ]
-  },
-  {
-    "DocumentId": {
-      "ProjectId": {
-        "Id": "d2553afa-8b1d-4c6e-a8e5-d7371970e7ba"
-      },
-      "Id": "a97fa366-3597-4fc8-a0b8-fb8e21fbd0ae"
-    },
-    "FileName": "Game.cs",
-    "FilePath": "/home/student/DIKUGames/Galaga/Game.cs",
-    "FileChanges": [
-      {
-        "LineNumber": 92,
-        "CharNumber": 19,
-        "DiagnosticId": "IDE1006",
-        "FormatDescription": "warning IDE1006: Naming rule violation: These words cannot contain lower case characters: numEnemies"
-      }
-    ]
-  },
-  {
-    "DocumentId": {
-      "ProjectId": {
-        "Id": "d2553afa-8b1d-4c6e-a8e5-d7371970e7ba"
-      },
-      "Id": "e1ac925b-7093-4093-98bf-91bcfb5c5902"
-    },
-    "FileName": "Player.cs",
-    "FilePath": "/home/student/DIKUGames/Galaga/Player.cs",
-    "FileChanges": [
-      {
-        "LineNumber": 1,
-        "CharNumber": 1,
-        "DiagnosticId": "IDE0065",
-        "FormatDescription": "warning IDE0065: Using directives must be placed inside of a namespace declaration"
-      }
-    ]
-  },
-  {
-    "DocumentId": {
-      "ProjectId": {
-        "Id": "d2553afa-8b1d-4c6e-a8e5-d7371970e7ba"
-      },
-      "Id": "e1ac925b-7093-4093-98bf-91bcfb5c5902"
-    },
-    "FileName": "Player.cs",
-    "FilePath": "/home/student/DIKUGames/Galaga/Player.cs",
-    "FileChanges": [
-      {
-        "LineNumber": 2,
-        "CharNumber": 1,
-        "DiagnosticId": "IDE0065",
-        "FormatDescription": "warning IDE0065: Using directives must be placed inside of a namespace declaration"
-      }
-    ]
-  },
-  {
-    "DocumentId": {
-      "ProjectId": {
-        "Id": "d2553afa-8b1d-4c6e-a8e5-d7371970e7ba"
-      },
-      "Id": "e1ac925b-7093-4093-98bf-91bcfb5c5902"
-    },
-    "FileName": "Player.cs",
-    "FilePath": "/home/student/DIKUGames/Galaga/Player.cs",
-    "FileChanges": [
-      {
-        "LineNumber": 3,
-        "CharNumber": 1,
-        "DiagnosticId": "IDE0065",
-        "FormatDescription": "warning IDE0065: Using directives must be placed inside of a namespace declaration"
-      }
-    ]
-  },
-  {
-    "DocumentId": {
-      "ProjectId": {
-        "Id": "d2553afa-8b1d-4c6e-a8e5-d7371970e7ba"
-      },
-      "Id": "e1ac925b-7093-4093-98bf-91bcfb5c5902"
-    },
-    "FileName": "Player.cs",
-    "FilePath": "/home/student/DIKUGames/Galaga/Player.cs",
-    "FileChanges": [
-      {
-        "LineNumber": 55,
-        "CharNumber": 35,
-        "DiagnosticId": "IDE0047",
-        "FormatDescription": "warning IDE0047: Parentheses can be removed"
-      }
-    ]
-  },
-  {
-    "DocumentId": {
-      "ProjectId": {
-        "Id": "d2553afa-8b1d-4c6e-a8e5-d7371970e7ba"
-      },
-      "Id": "0d769807-0df1-4181-a77e-205793511f78"
-    },
-    "FileName": "Program.cs",
-    "FilePath": "/home/student/DIKUGames/Galaga/Program.cs",
-    "FileChanges": [
-      {
-        "LineNumber": 1,
-        "CharNumber": 1,
-        "DiagnosticId": "IDE0065",
-        "FormatDescription": "warning IDE0065: Using directives must be placed inside of a namespace declaration"
-      }
-    ]
-  },
-  {
-    "DocumentId": {
-      "ProjectId": {
-        "Id": "d2553afa-8b1d-4c6e-a8e5-d7371970e7ba"
-      },
-      "Id": "0d769807-0df1-4181-a77e-205793511f78"
-    },
-    "FileName": "Program.cs",
-    "FilePath": "/home/student/DIKUGames/Galaga/Program.cs",
-    "FileChanges": [
-      {
-        "LineNumber": 2,
-        "CharNumber": 1,
-        "DiagnosticId": "IDE0065",
-        "FormatDescription": "warning IDE0065: Using directives must be placed inside of a namespace declaration"
-      }
-    ]
-  },
-  {
-    "DocumentId": {
-      "ProjectId": {
-        "Id": "d2553afa-8b1d-4c6e-a8e5-d7371970e7ba"
-      },
-      "Id": "0d769807-0df1-4181-a77e-205793511f78"
-    },
-    "FileName": "Program.cs",
-    "FilePath": "/home/student/DIKUGames/Galaga/Program.cs",
-    "FileChanges": [
-      {
-        "LineNumber": 4,
         "CharNumber": 11,
         "DiagnosticId": "IDE0161",
         "FormatDescription": "warning IDE0161: Convert to file-scoped namespace"
+      }
+    ]
+  },
+  {
+    "DocumentId": {
+      "ProjectId": {
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
+      },
+      "Id": "8dc9e48d-7d67-41d4-9f3a-2cf60ecbf08b"
+    },
+    "FileName": "Vec2D.cs",
+    "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Math/Vec2D.cs",
+    "FileChanges": [
+      {
+        "LineNumber": 3,
+        "CharNumber": 23,
+        "DiagnosticId": "IDE1006",
+        "FormatDescription": "warning IDE1006: Naming rule violation: The first word, \u0027X\u0027, must begin with a lower case character"
+      }
+    ]
+  },
+  {
+    "DocumentId": {
+      "ProjectId": {
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
+      },
+      "Id": "8dc9e48d-7d67-41d4-9f3a-2cf60ecbf08b"
+    },
+    "FileName": "Vec2D.cs",
+    "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Math/Vec2D.cs",
+    "FileChanges": [
+      {
+        "LineNumber": 4,
+        "CharNumber": 23,
+        "DiagnosticId": "IDE1006",
+        "FormatDescription": "warning IDE1006: Naming rule violation: The first word, \u0027Y\u0027, must begin with a lower case character"
+      }
+    ]
+  },
+  {
+    "DocumentId": {
+      "ProjectId": {
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
+      },
+      "Id": "8dc9e48d-7d67-41d4-9f3a-2cf60ecbf08b"
+    },
+    "FileName": "Vec2D.cs",
+    "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Math/Vec2D.cs",
+    "FileChanges": [
+      {
+        "LineNumber": 1,
+        "CharNumber": 11,
+        "DiagnosticId": "IDE0161",
+        "FormatDescription": "warning IDE0161: Convert to file-scoped namespace"
+      }
+    ]
+  },
+  {
+    "DocumentId": {
+      "ProjectId": {
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
+      },
+      "Id": "2a95e652-a890-44a8-9e54-c37e13362c47"
+    },
+    "FileName": "Vec2F.cs",
+    "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Math/Vec2F.cs",
+    "FileChanges": [
+      {
+        "LineNumber": 3,
+        "CharNumber": 22,
+        "DiagnosticId": "IDE1006",
+        "FormatDescription": "warning IDE1006: Naming rule violation: The first word, \u0027X\u0027, must begin with a lower case character"
+      }
+    ]
+  },
+  {
+    "DocumentId": {
+      "ProjectId": {
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
+      },
+      "Id": "2a95e652-a890-44a8-9e54-c37e13362c47"
+    },
+    "FileName": "Vec2F.cs",
+    "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Math/Vec2F.cs",
+    "FileChanges": [
+      {
+        "LineNumber": 4,
+        "CharNumber": 22,
+        "DiagnosticId": "IDE1006",
+        "FormatDescription": "warning IDE1006: Naming rule violation: The first word, \u0027Y\u0027, must begin with a lower case character"
+      }
+    ]
+  },
+  {
+    "DocumentId": {
+      "ProjectId": {
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
+      },
+      "Id": "2a95e652-a890-44a8-9e54-c37e13362c47"
+    },
+    "FileName": "Vec2F.cs",
+    "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Math/Vec2F.cs",
+    "FileChanges": [
+      {
+        "LineNumber": 1,
+        "CharNumber": 11,
+        "DiagnosticId": "IDE0161",
+        "FormatDescription": "warning IDE0161: Convert to file-scoped namespace"
+      }
+    ]
+  },
+  {
+    "DocumentId": {
+      "ProjectId": {
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
+      },
+      "Id": "59089569-b872-43a1-b8ec-2618ff40ec20"
+    },
+    "FileName": "Vec2I.cs",
+    "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Math/Vec2I.cs",
+    "FileChanges": [
+      {
+        "LineNumber": 3,
+        "CharNumber": 20,
+        "DiagnosticId": "IDE1006",
+        "FormatDescription": "warning IDE1006: Naming rule violation: The first word, \u0027X\u0027, must begin with a lower case character"
+      }
+    ]
+  },
+  {
+    "DocumentId": {
+      "ProjectId": {
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
+      },
+      "Id": "59089569-b872-43a1-b8ec-2618ff40ec20"
+    },
+    "FileName": "Vec2I.cs",
+    "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Math/Vec2I.cs",
+    "FileChanges": [
+      {
+        "LineNumber": 4,
+        "CharNumber": 20,
+        "DiagnosticId": "IDE1006",
+        "FormatDescription": "warning IDE1006: Naming rule violation: The first word, \u0027Y\u0027, must begin with a lower case character"
+      }
+    ]
+  },
+  {
+    "DocumentId": {
+      "ProjectId": {
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
+      },
+      "Id": "59089569-b872-43a1-b8ec-2618ff40ec20"
+    },
+    "FileName": "Vec2I.cs",
+    "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Math/Vec2I.cs",
+    "FileChanges": [
+      {
+        "LineNumber": 1,
+        "CharNumber": 11,
+        "DiagnosticId": "IDE0161",
+        "FormatDescription": "warning IDE0161: Convert to file-scoped namespace"
+      }
+    ]
+  },
+  {
+    "DocumentId": {
+      "ProjectId": {
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
+      },
+      "Id": "e6271db0-fd0c-48f9-a7ff-a83496233d81"
+    },
+    "FileName": "Vec3D.cs",
+    "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Math/Vec3D.cs",
+    "FileChanges": [
+      {
+        "LineNumber": 3,
+        "CharNumber": 23,
+        "DiagnosticId": "IDE1006",
+        "FormatDescription": "warning IDE1006: Naming rule violation: The first word, \u0027X\u0027, must begin with a lower case character"
+      }
+    ]
+  },
+  {
+    "DocumentId": {
+      "ProjectId": {
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
+      },
+      "Id": "e6271db0-fd0c-48f9-a7ff-a83496233d81"
+    },
+    "FileName": "Vec3D.cs",
+    "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Math/Vec3D.cs",
+    "FileChanges": [
+      {
+        "LineNumber": 4,
+        "CharNumber": 23,
+        "DiagnosticId": "IDE1006",
+        "FormatDescription": "warning IDE1006: Naming rule violation: The first word, \u0027Y\u0027, must begin with a lower case character"
+      }
+    ]
+  },
+  {
+    "DocumentId": {
+      "ProjectId": {
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
+      },
+      "Id": "e6271db0-fd0c-48f9-a7ff-a83496233d81"
+    },
+    "FileName": "Vec3D.cs",
+    "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Math/Vec3D.cs",
+    "FileChanges": [
+      {
+        "LineNumber": 5,
+        "CharNumber": 23,
+        "DiagnosticId": "IDE1006",
+        "FormatDescription": "warning IDE1006: Naming rule violation: The first word, \u0027Z\u0027, must begin with a lower case character"
+      }
+    ]
+  },
+  {
+    "DocumentId": {
+      "ProjectId": {
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
+      },
+      "Id": "e6271db0-fd0c-48f9-a7ff-a83496233d81"
+    },
+    "FileName": "Vec3D.cs",
+    "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Math/Vec3D.cs",
+    "FileChanges": [
+      {
+        "LineNumber": 1,
+        "CharNumber": 11,
+        "DiagnosticId": "IDE0161",
+        "FormatDescription": "warning IDE0161: Convert to file-scoped namespace"
+      }
+    ]
+  },
+  {
+    "DocumentId": {
+      "ProjectId": {
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
+      },
+      "Id": "07ba660f-e37d-4c84-b9a9-21c4d86af100"
+    },
+    "FileName": "Vec3F.cs",
+    "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Math/Vec3F.cs",
+    "FileChanges": [
+      {
+        "LineNumber": 3,
+        "CharNumber": 22,
+        "DiagnosticId": "IDE1006",
+        "FormatDescription": "warning IDE1006: Naming rule violation: The first word, \u0027X\u0027, must begin with a lower case character"
+      }
+    ]
+  },
+  {
+    "DocumentId": {
+      "ProjectId": {
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
+      },
+      "Id": "07ba660f-e37d-4c84-b9a9-21c4d86af100"
+    },
+    "FileName": "Vec3F.cs",
+    "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Math/Vec3F.cs",
+    "FileChanges": [
+      {
+        "LineNumber": 4,
+        "CharNumber": 22,
+        "DiagnosticId": "IDE1006",
+        "FormatDescription": "warning IDE1006: Naming rule violation: The first word, \u0027Y\u0027, must begin with a lower case character"
+      }
+    ]
+  },
+  {
+    "DocumentId": {
+      "ProjectId": {
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
+      },
+      "Id": "07ba660f-e37d-4c84-b9a9-21c4d86af100"
+    },
+    "FileName": "Vec3F.cs",
+    "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Math/Vec3F.cs",
+    "FileChanges": [
+      {
+        "LineNumber": 5,
+        "CharNumber": 22,
+        "DiagnosticId": "IDE1006",
+        "FormatDescription": "warning IDE1006: Naming rule violation: The first word, \u0027Z\u0027, must begin with a lower case character"
+      }
+    ]
+  },
+  {
+    "DocumentId": {
+      "ProjectId": {
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
+      },
+      "Id": "07ba660f-e37d-4c84-b9a9-21c4d86af100"
+    },
+    "FileName": "Vec3F.cs",
+    "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Math/Vec3F.cs",
+    "FileChanges": [
+      {
+        "LineNumber": 1,
+        "CharNumber": 11,
+        "DiagnosticId": "IDE0161",
+        "FormatDescription": "warning IDE0161: Convert to file-scoped namespace"
+      }
+    ]
+  },
+  {
+    "DocumentId": {
+      "ProjectId": {
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
+      },
+      "Id": "f1976107-316c-45a3-9f88-4b02de939253"
+    },
+    "FileName": "Vec3I.cs",
+    "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Math/Vec3I.cs",
+    "FileChanges": [
+      {
+        "LineNumber": 3,
+        "CharNumber": 20,
+        "DiagnosticId": "IDE1006",
+        "FormatDescription": "warning IDE1006: Naming rule violation: The first word, \u0027X\u0027, must begin with a lower case character"
+      }
+    ]
+  },
+  {
+    "DocumentId": {
+      "ProjectId": {
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
+      },
+      "Id": "f1976107-316c-45a3-9f88-4b02de939253"
+    },
+    "FileName": "Vec3I.cs",
+    "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Math/Vec3I.cs",
+    "FileChanges": [
+      {
+        "LineNumber": 4,
+        "CharNumber": 20,
+        "DiagnosticId": "IDE1006",
+        "FormatDescription": "warning IDE1006: Naming rule violation: The first word, \u0027Y\u0027, must begin with a lower case character"
+      }
+    ]
+  },
+  {
+    "DocumentId": {
+      "ProjectId": {
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
+      },
+      "Id": "f1976107-316c-45a3-9f88-4b02de939253"
+    },
+    "FileName": "Vec3I.cs",
+    "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Math/Vec3I.cs",
+    "FileChanges": [
+      {
+        "LineNumber": 5,
+        "CharNumber": 20,
+        "DiagnosticId": "IDE1006",
+        "FormatDescription": "warning IDE1006: Naming rule violation: The first word, \u0027Z\u0027, must begin with a lower case character"
+      }
+    ]
+  },
+  {
+    "DocumentId": {
+      "ProjectId": {
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
+      },
+      "Id": "f1976107-316c-45a3-9f88-4b02de939253"
+    },
+    "FileName": "Vec3I.cs",
+    "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Math/Vec3I.cs",
+    "FileChanges": [
+      {
+        "LineNumber": 1,
+        "CharNumber": 11,
+        "DiagnosticId": "IDE0161",
+        "FormatDescription": "warning IDE0161: Convert to file-scoped namespace"
+      }
+    ]
+  },
+  {
+    "DocumentId": {
+      "ProjectId": {
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
+      },
+      "Id": "a062d235-2282-4427-b556-2a2e5facf66a"
+    },
+    "FileName": "Vec4D.cs",
+    "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Math/Vec4D.cs",
+    "FileChanges": [
+      {
+        "LineNumber": 3,
+        "CharNumber": 23,
+        "DiagnosticId": "IDE1006",
+        "FormatDescription": "warning IDE1006: Naming rule violation: The first word, \u0027W\u0027, must begin with a lower case character"
+      }
+    ]
+  },
+  {
+    "DocumentId": {
+      "ProjectId": {
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
+      },
+      "Id": "a062d235-2282-4427-b556-2a2e5facf66a"
+    },
+    "FileName": "Vec4D.cs",
+    "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Math/Vec4D.cs",
+    "FileChanges": [
+      {
+        "LineNumber": 4,
+        "CharNumber": 23,
+        "DiagnosticId": "IDE1006",
+        "FormatDescription": "warning IDE1006: Naming rule violation: The first word, \u0027X\u0027, must begin with a lower case character"
+      }
+    ]
+  },
+  {
+    "DocumentId": {
+      "ProjectId": {
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
+      },
+      "Id": "a062d235-2282-4427-b556-2a2e5facf66a"
+    },
+    "FileName": "Vec4D.cs",
+    "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Math/Vec4D.cs",
+    "FileChanges": [
+      {
+        "LineNumber": 5,
+        "CharNumber": 23,
+        "DiagnosticId": "IDE1006",
+        "FormatDescription": "warning IDE1006: Naming rule violation: The first word, \u0027Y\u0027, must begin with a lower case character"
+      }
+    ]
+  },
+  {
+    "DocumentId": {
+      "ProjectId": {
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
+      },
+      "Id": "a062d235-2282-4427-b556-2a2e5facf66a"
+    },
+    "FileName": "Vec4D.cs",
+    "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Math/Vec4D.cs",
+    "FileChanges": [
+      {
+        "LineNumber": 6,
+        "CharNumber": 23,
+        "DiagnosticId": "IDE1006",
+        "FormatDescription": "warning IDE1006: Naming rule violation: The first word, \u0027Z\u0027, must begin with a lower case character"
+      }
+    ]
+  },
+  {
+    "DocumentId": {
+      "ProjectId": {
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
+      },
+      "Id": "a062d235-2282-4427-b556-2a2e5facf66a"
+    },
+    "FileName": "Vec4D.cs",
+    "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Math/Vec4D.cs",
+    "FileChanges": [
+      {
+        "LineNumber": 1,
+        "CharNumber": 11,
+        "DiagnosticId": "IDE0161",
+        "FormatDescription": "warning IDE0161: Convert to file-scoped namespace"
+      }
+    ]
+  },
+  {
+    "DocumentId": {
+      "ProjectId": {
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
+      },
+      "Id": "cc401406-7e0a-4a34-b0bf-269b4b133ce6"
+    },
+    "FileName": "Vec4F.cs",
+    "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Math/Vec4F.cs",
+    "FileChanges": [
+      {
+        "LineNumber": 3,
+        "CharNumber": 22,
+        "DiagnosticId": "IDE1006",
+        "FormatDescription": "warning IDE1006: Naming rule violation: The first word, \u0027W\u0027, must begin with a lower case character"
+      }
+    ]
+  },
+  {
+    "DocumentId": {
+      "ProjectId": {
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
+      },
+      "Id": "cc401406-7e0a-4a34-b0bf-269b4b133ce6"
+    },
+    "FileName": "Vec4F.cs",
+    "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Math/Vec4F.cs",
+    "FileChanges": [
+      {
+        "LineNumber": 4,
+        "CharNumber": 22,
+        "DiagnosticId": "IDE1006",
+        "FormatDescription": "warning IDE1006: Naming rule violation: The first word, \u0027X\u0027, must begin with a lower case character"
+      }
+    ]
+  },
+  {
+    "DocumentId": {
+      "ProjectId": {
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
+      },
+      "Id": "cc401406-7e0a-4a34-b0bf-269b4b133ce6"
+    },
+    "FileName": "Vec4F.cs",
+    "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Math/Vec4F.cs",
+    "FileChanges": [
+      {
+        "LineNumber": 5,
+        "CharNumber": 22,
+        "DiagnosticId": "IDE1006",
+        "FormatDescription": "warning IDE1006: Naming rule violation: The first word, \u0027Y\u0027, must begin with a lower case character"
+      }
+    ]
+  },
+  {
+    "DocumentId": {
+      "ProjectId": {
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
+      },
+      "Id": "cc401406-7e0a-4a34-b0bf-269b4b133ce6"
+    },
+    "FileName": "Vec4F.cs",
+    "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Math/Vec4F.cs",
+    "FileChanges": [
+      {
+        "LineNumber": 6,
+        "CharNumber": 22,
+        "DiagnosticId": "IDE1006",
+        "FormatDescription": "warning IDE1006: Naming rule violation: The first word, \u0027Z\u0027, must begin with a lower case character"
+      }
+    ]
+  },
+  {
+    "DocumentId": {
+      "ProjectId": {
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
+      },
+      "Id": "cc401406-7e0a-4a34-b0bf-269b4b133ce6"
+    },
+    "FileName": "Vec4F.cs",
+    "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Math/Vec4F.cs",
+    "FileChanges": [
+      {
+        "LineNumber": 1,
+        "CharNumber": 11,
+        "DiagnosticId": "IDE0161",
+        "FormatDescription": "warning IDE0161: Convert to file-scoped namespace"
+      }
+    ]
+  },
+  {
+    "DocumentId": {
+      "ProjectId": {
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
+      },
+      "Id": "9b19f8ab-a555-4ea0-8b1c-700240b395c6"
+    },
+    "FileName": "Vec4I.cs",
+    "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Math/Vec4I.cs",
+    "FileChanges": [
+      {
+        "LineNumber": 3,
+        "CharNumber": 20,
+        "DiagnosticId": "IDE1006",
+        "FormatDescription": "warning IDE1006: Naming rule violation: The first word, \u0027W\u0027, must begin with a lower case character"
+      }
+    ]
+  },
+  {
+    "DocumentId": {
+      "ProjectId": {
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
+      },
+      "Id": "9b19f8ab-a555-4ea0-8b1c-700240b395c6"
+    },
+    "FileName": "Vec4I.cs",
+    "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Math/Vec4I.cs",
+    "FileChanges": [
+      {
+        "LineNumber": 4,
+        "CharNumber": 20,
+        "DiagnosticId": "IDE1006",
+        "FormatDescription": "warning IDE1006: Naming rule violation: The first word, \u0027X\u0027, must begin with a lower case character"
+      }
+    ]
+  },
+  {
+    "DocumentId": {
+      "ProjectId": {
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
+      },
+      "Id": "9b19f8ab-a555-4ea0-8b1c-700240b395c6"
+    },
+    "FileName": "Vec4I.cs",
+    "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Math/Vec4I.cs",
+    "FileChanges": [
+      {
+        "LineNumber": 5,
+        "CharNumber": 20,
+        "DiagnosticId": "IDE1006",
+        "FormatDescription": "warning IDE1006: Naming rule violation: The first word, \u0027Y\u0027, must begin with a lower case character"
+      }
+    ]
+  },
+  {
+    "DocumentId": {
+      "ProjectId": {
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
+      },
+      "Id": "9b19f8ab-a555-4ea0-8b1c-700240b395c6"
+    },
+    "FileName": "Vec4I.cs",
+    "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Math/Vec4I.cs",
+    "FileChanges": [
+      {
+        "LineNumber": 6,
+        "CharNumber": 20,
+        "DiagnosticId": "IDE1006",
+        "FormatDescription": "warning IDE1006: Naming rule violation: The first word, \u0027Z\u0027, must begin with a lower case character"
+      }
+    ]
+  },
+  {
+    "DocumentId": {
+      "ProjectId": {
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
+      },
+      "Id": "9b19f8ab-a555-4ea0-8b1c-700240b395c6"
+    },
+    "FileName": "Vec4I.cs",
+    "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Math/Vec4I.cs",
+    "FileChanges": [
+      {
+        "LineNumber": 1,
+        "CharNumber": 11,
+        "DiagnosticId": "IDE0161",
+        "FormatDescription": "warning IDE0161: Convert to file-scoped namespace"
+      }
+    ]
+  },
+  {
+    "DocumentId": {
+      "ProjectId": {
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
+      },
+      "Id": "9fd1e552-5bdb-459c-9ce6-38fe7c04a83e"
+    },
+    "FileName": "WindowAspectRatio.cs",
+    "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/GUI/WindowAspectRatio.cs",
+    "FileChanges": [
+      {
+        "LineNumber": 1,
+        "CharNumber": 11,
+        "DiagnosticId": "IDE0161",
+        "FormatDescription": "warning IDE0161: Convert to file-scoped namespace"
+      }
+    ]
+  },
+  {
+    "DocumentId": {
+      "ProjectId": {
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
+      },
+      "Id": "e54f10ec-39f6-4299-9608-7da874d28477"
+    },
+    "FileName": "GameEventType.cs",
+    "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Events/GameEventType.cs",
+    "FileChanges": [
+      {
+        "LineNumber": 1,
+        "CharNumber": 11,
+        "DiagnosticId": "IDE0161",
+        "FormatDescription": "warning IDE0161: Convert to file-scoped namespace"
+      }
+    ]
+  },
+  {
+    "DocumentId": {
+      "ProjectId": {
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
+      },
+      "Id": "29d783a1-c440-4a4d-9e7a-412945ad2fae"
+    },
+    "FileName": "IGameEventBus.cs",
+    "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Events/IGameEventBus.cs",
+    "FileChanges": [
+      {
+        "LineNumber": 1,
+        "CharNumber": 11,
+        "DiagnosticId": "IDE0161",
+        "FormatDescription": "warning IDE0161: Convert to file-scoped namespace"
+      }
+    ]
+  },
+  {
+    "DocumentId": {
+      "ProjectId": {
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
+      },
+      "Id": "da15ad6c-f621-477e-a79c-66cf7429381d"
+    },
+    "FileName": "IGameEventProcessor.cs",
+    "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Events/IGameEventProcessor.cs",
+    "FileChanges": [
+      {
+        "LineNumber": 1,
+        "CharNumber": 11,
+        "DiagnosticId": "IDE0161",
+        "FormatDescription": "warning IDE0161: Convert to file-scoped namespace"
+      }
+    ]
+  },
+  {
+    "DocumentId": {
+      "ProjectId": {
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
+      },
+      "Id": "07df147e-2f36-4cd2-8b1e-571842712fe5"
+    },
+    "FileName": "IGameEventBusT.cs",
+    "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Events/Generic/IGameEventBusT.cs",
+    "FileChanges": [
+      {
+        "LineNumber": 1,
+        "CharNumber": 11,
+        "DiagnosticId": "IDE0161",
+        "FormatDescription": "warning IDE0161: Convert to file-scoped namespace"
+      }
+    ]
+  },
+  {
+    "DocumentId": {
+      "ProjectId": {
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
+      },
+      "Id": "06c1b8ce-b67c-4f2b-85f1-0ea67a1efb09"
+    },
+    "FileName": "IGameEventProcessorT.cs",
+    "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Events/Generic/IGameEventProcessorT.cs",
+    "FileChanges": [
+      {
+        "LineNumber": 1,
+        "CharNumber": 11,
+        "DiagnosticId": "IDE0161",
+        "FormatDescription": "warning IDE0161: Convert to file-scoped namespace"
+      }
+    ]
+  },
+  {
+    "DocumentId": {
+      "ProjectId": {
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
+      },
+      "Id": "a3fe4bfa-49b7-4e56-9a1e-93de1b617499"
+    },
+    "FileName": "KeyboardAction.cs",
+    "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Input/KeyboardAction.cs",
+    "FileChanges": [
+      {
+        "LineNumber": 1,
+        "CharNumber": 11,
+        "DiagnosticId": "IDE0161",
+        "FormatDescription": "warning IDE0161: Convert to file-scoped namespace"
+      }
+    ]
+  },
+  {
+    "DocumentId": {
+      "ProjectId": {
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
+      },
+      "Id": "1fdbf17d-859d-461a-8d93-1aac588becfa"
+    },
+    "FileName": "KeyboardKey.cs",
+    "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Input/KeyboardKey.cs",
+    "FileChanges": [
+      {
+        "LineNumber": 1,
+        "CharNumber": 11,
+        "DiagnosticId": "IDE0161",
+        "FormatDescription": "warning IDE0161: Convert to file-scoped namespace"
+      }
+    ]
+  },
+  {
+    "DocumentId": {
+      "ProjectId": {
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
+      },
+      "Id": "1c77fe47-2f36-4301-a57a-0c789e5b264c"
+    },
+    "FileName": "KeyboardLayout.cs",
+    "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Input/KeyboardLayout.cs",
+    "FileChanges": [
+      {
+        "LineNumber": 1,
+        "CharNumber": 11,
+        "DiagnosticId": "IDE0161",
+        "FormatDescription": "warning IDE0161: Convert to file-scoped namespace"
+      }
+    ]
+  },
+  {
+    "DocumentId": {
+      "ProjectId": {
+        "Id": "547b602a-0fd0-4ab0-85d3-3d064bd65e03"
+      },
+      "Id": "4fdcd0e3-c476-4e36-8525-18e269b90499"
+    },
+    "FileName": "CollisionDirection.cs",
+    "FilePath": "/home/student/DIKUGames/DIKUArcade/DIKUArcade/Physics/CollisionDirection.cs",
+    "FileChanges": [
+      {
+        "LineNumber": 1,
+        "CharNumber": 11,
+        "DiagnosticId": "IDE0161",
+        "FormatDescription": "warning IDE0161: Convert to file-scoped namespace"
+      }
+    ]
+  },
+  {
+    "DocumentId": {
+      "ProjectId": {
+        "Id": "79c7b7bc-f948-4166-913e-5b8121e75747"
+      },
+      "Id": "84c5dcbb-9e21-4f9a-8dc1-703b031b9ca0"
+    },
+    "FileName": "Game.cs",
+    "FilePath": "/home/student/DIKUGames/Galaga/Game.cs",
+    "FileChanges": [
+      {
+        "LineNumber": 91,
+        "CharNumber": 19,
+        "DiagnosticId": "IDE1006",
+        "FormatDescription": "warning IDE1006: Naming rule violation: These words cannot contain lower case characters: numEnemies"
       }
     ]
   }
