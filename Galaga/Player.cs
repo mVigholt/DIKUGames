@@ -2,6 +2,7 @@ namespace Galaga;
 using System;
 using DIKUArcade.Entities;
 using DIKUArcade.Graphics;
+using DIKUArcade.Math;
 
 
 public class Player {
@@ -19,7 +20,9 @@ public class Player {
         entity = new Entity(shape, image);
         this.shape = shape;
     }
-
+    public Vec2F GetPosition(){
+        return shape.Position;
+    }
     public void Render() {
         entity.RenderEntity();
     }
