@@ -1,15 +1,14 @@
-using System.IO;
-using DIKUArcade.Entities;
-using DIKUArcade.Graphics;
-using DIKUArcade.Math;
-using DIKUArcade;
-using DIKUArcade.GUI;
-using DIKUArcade.Events;
-using DIKUArcade.Input;
-using System.Collections.Generic;
-using System;
-
 namespace Galaga;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using DIKUArcade;
+using DIKUArcade.Entities;
+using DIKUArcade.Events;
+using DIKUArcade.Graphics;
+using DIKUArcade.GUI;
+using DIKUArcade.Input;
+using DIKUArcade.Math;
 
 public class Game : DIKUGame, IGameEventProcessor {
     private Player player;
@@ -34,7 +33,7 @@ public class Game : DIKUGame, IGameEventProcessor {
     }
 
     private void KeyPress(KeyboardKey key) {
-         switch (key) {
+        switch (key) {
             case KeyboardKey.Escape:
                 window.CloseWindow();
                 break;
@@ -64,7 +63,7 @@ public class Game : DIKUGame, IGameEventProcessor {
 
     private void KeyHandler(KeyboardAction action, KeyboardKey key) {
         // TODO: Switch on KeyBoardAction and call proper method
-        switch(action){
+        switch (action) {
             case KeyboardAction.KeyPress:
                 this.KeyPress(key);
                 break;
@@ -93,7 +92,7 @@ public class Game : DIKUGame, IGameEventProcessor {
         enemies = new EntityContainer<Enemy>(numEnemies);
         for (int i = 0; i < numEnemies; i++) {
             int milliseconds = 80;
-            Vec2F pos = new Vec2F(0.1f + (float)i * 0.1f, 0.9f);
+            Vec2F pos = new Vec2F(0.1f + (float) i * 0.1f, 0.9f);
             Vec2F extent = new Vec2F(0.1f, 0.1f);
             Enemy enemy = new Enemy(
                 new DynamicShape(pos, extent),
@@ -104,7 +103,7 @@ public class Game : DIKUGame, IGameEventProcessor {
 
     public void InitEventBus() {
         eventBus = new GameEventBus();
-        eventBus.InitializeEventBus(new List<GameEventType> {GameEventType.InputEvent});
+        eventBus.InitializeEventBus(new List<GameEventType> { GameEventType.InputEvent });
         window.SetKeyEventHandler(KeyHandler);
         eventBus.Subscribe(GameEventType.InputEvent, this);
     }
