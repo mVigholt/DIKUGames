@@ -26,9 +26,10 @@ public class Player
         entity.RenderEntity();
     }
     public void Move() {
+        
         if (shape.Position.X > 0.0f || shape.Position.X < 1.0f){
             shape.Move();
-        }  
+        }
         // TODO: move the shape and guard against the window borders
     }
 
@@ -57,5 +58,5 @@ public class Player
         UpdateDirection();
         // TODO:set moveRight appropriately and call UpdateDirection()
     }
-    
+
 }

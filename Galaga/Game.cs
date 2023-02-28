@@ -7,6 +7,7 @@ using DIKUArcade.GUI;
 using DIKUArcade.Events;
 using DIKUArcade.Input;
 using System.Collections.Generic;
+using System;
 
 namespace Galaga;
 
@@ -30,21 +31,54 @@ public class Game : DIKUGame, IGameEventProcessor {
     }
 
     public override void Update() {
-        return;
+        eventBus.ProcessEventsSequentially();
+        player.Move();
+        // return;
     }
 
     private void KeyPress(KeyboardKey key) {
-        
+         switch (key) {
+                case KeyboardKey.Escape:
+                    window.CloseWindow();
+                    break;
+                case KeyboardKey.Left:
+                    player.SetMoveLeft(true);
+                    break;
+                case KeyboardKey.Right:
+                    player.SetMoveRight(true);
+                    break;
+                default:
+                    break;
+            }
+
         // TODO: Close window if escape is pressed
         // TODO: switch on key string and set the player's move direction
     }
 
     private void KeyRelease(KeyboardKey key) {
+         switch (key) {
+                case KeyboardKey.Left:
+                    player.SetMoveLeft(false);
+                    break;
+                case KeyboardKey.Right:
+                    player.SetMoveRight(false);
+                    break;
+                default:
+                    break;
+            }
         // TODO: switch on key string and disable the player's move direction
     }
 
     private void KeyHandler(KeyboardAction action, KeyboardKey key) {
         // TODO: Switch on KeyBoardAction and call proper method
+        switch(action){
+            case KeyboardAction.KeyPress:
+                this.KeyPress(key);
+                break;
+            case KeyboardAction.KeyRelease:
+                this.KeyRelease(key);
+                break;
+        }
     }
 
     public void ProcessEvent(GameEvent gameEvent) {
