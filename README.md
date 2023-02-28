@@ -26,7 +26,11 @@ dotnet format . -v diag --report Galaga
 If you accidentally format the entire project, and you don't know
 the git commands to fix it, you can use these commands:
 ```bash
-rm -r DIKUArcade
+sudo rm -r DIKUArcade
 mkdir DIKUArcade
-git submodule update --init --recursive
+git clone git@github.com:diku-dk/DIKUArcade.git
+dotnet clean
 ```
+
+If you're using the handout VM, the sudo password is empty. 
+Just press enter when prompted.
