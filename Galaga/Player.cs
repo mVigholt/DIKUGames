@@ -25,43 +25,64 @@ public class Player
     public void Render() {
         entity.RenderEntity();
     }
+
     public void Move() {
-        if (shape.Position.X > 0.0f && shape.Position.X < (1.0f - shape.Extent.X)){
+        if (CanMove()) {
             shape.Move();
-        } else {
-            if (shape.Position.X < 0.0f && shape.Direction.X > 0) {
-                shape.Move();
-            } else if (shape.Position.X > (1.0f - shape.Extent.X) && shape.Direction.X < 0) {
-                shape.Move();
-            }
         }
-        // TODO: move the shape and guard against the window borders
     }
 
     private void UpdateDirection() {
         shape.Direction.X = moveLeft + moveRight;
-        //TODO: ?
     }
 
     public void SetMoveLeft(bool val) {
-        if (val) {
-            moveLeft = - MOVEMENT_SPEED;
-
-        } else {
-            moveLeft = 0.0f;
-        }
+        moveLeft = -MOVEMENT_SPEED * (val ? 1 : 0);
         UpdateDirection();
-        // TODO:set moveLeft appropriately and call UpdateDirection()
     }
 
     public void SetMoveRight(bool val) {
-        if (val) {
-            moveRight = MOVEMENT_SPEED;
-        } else {
-            moveRight = 0.0f;
-        }
+        moveRight = MOVEMENT_SPEED * (val ? 1 : 0);
         UpdateDirection();
-        // TODO:set moveRight appropriately and call UpdateDirection()
     }
 
+    private bool CanMoveLeft() {
+        // Todo: When we implement AABB collision,
+        //       use it in this method.
+        return shape.Position.X > 0.0f;
+    }
+
+    private bool CanMoveRight() {
+        return shape.Position.X < (1.0f - shape.Extent.X);
+    }
+
+    private MoveDir CurrentDirection() {
+        if (moveLeft < 0) {
+            return MoveDir.LEFT;
+        }
+        if (moveRight > 0) {
+            return MoveDir.RIGHT;
+        }
+        return MoveDir.NONE;
+    }
+    
+    private bool CanMove() {
+        switch (CurrentDirection()) {
+            case MoveDir.LEFT:
+                return CanMoveLeft();
+            case MoveDir.RIGHT:
+                return CanMoveRight();
+            default:
+                return false;
+        }
+    }
+
+
+}
+
+
+enum MoveDir {
+    LEFT,
+    RIGHT,
+    NONE,
 }
