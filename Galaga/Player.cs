@@ -26,7 +26,6 @@ public class Player
         entity.RenderEntity();
     }
     public void Move() {
-        Console.WriteLine(shape.Position.X);
         if (shape.Position.X > 0.0f && shape.Position.X < (1.0f - shape.Extent.X)){
             shape.Move();
         } else {

@@ -33,7 +33,6 @@ public class Game : DIKUGame, IGameEventProcessor {
     public override void Update() {
         eventBus.ProcessEventsSequentially();
         player.Move();
-        // return;
     }
 
     private void KeyPress(KeyboardKey key) {
