@@ -7,6 +7,7 @@ using DIKUArcade.GUI;
 using DIKUArcade.Events;
 using DIKUArcade.Input;
 using System.Collections.Generic;
+using DIKUArcade.Physics;
 using System;
 
 namespace Galaga;
@@ -14,6 +15,8 @@ namespace Galaga;
 public class Game : DIKUGame, IGameEventProcessor {
     private Player player;
     private EntityContainer<Enemy> enemies;
+    private EntityContainer<PlayerShot> playerShots;
+    private IBaseImage playerShotImage;
 
     private GameEventBus eventBus;
 
@@ -23,7 +26,13 @@ public class Game : DIKUGame, IGameEventProcessor {
             new Image(Path.Combine("Assets", "Images", "Player.png")));
         List<Image> images = ImageStride.CreateStrides(4, Path.Combine("Assets", "Images", "BlueMonster.png"));
         const int numEnemies = 8;
+
         enemies = new EntityContainer<Enemy>(numEnemies);
+
+        playerShots = new EntityContainer<PlayerShot>();
+
+        playerShotImage = new Image(Path.Combine("Assets", "Images", "BulletRed2.png"));
+
         for (int i = 0; i < numEnemies; i++) {
             enemies.AddEntity(new Enemy(
                     new DynamicShape(new Vec2F(0.1f + (float)i * 0.1f, 0.9f), new Vec2F(0.1f, 0.1f)),
@@ -35,6 +44,27 @@ public class Game : DIKUGame, IGameEventProcessor {
         }
     }
 
+    private void IterateShots() {
+        playerShots.Iterate(shot => {
+            // move the shot's shape
+            shot.Shape.Move();
+            bool check = CollisionDetection.Aabb(shot.Shape.AsDynamicShape(), shot.Shape).Collision;
+            if (shot.Shape.Position.X < 0.0f || shot.Shape.Position.X >1.0f
+                || shot.Shape.Position.Y< 0.0f ||shot.Shape.Position.Y> 1.0f ){
+                //delete the shot
+                shot.DeleteEntity();
+            }
+            else {
+            enemies.Iterate(enemy => {
+            // if collision btw shot and enemy -> delete both entities
+            if (check){
+                shot.DeleteEntity();
+                enemy.DeleteEntity();
+            }
+                });
+            }
+        });
+    }
     public override void Render() {
         player.Render();
         enemies.RenderEntities();
