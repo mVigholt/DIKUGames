@@ -31,9 +31,11 @@ the git commands to fix it, you can use these commands:
 ```bash
 sudo rm -r DIKUArcade
 mkdir DIKUArcade
-git clone git@github.com:diku-dk/DIKUArcade.git
+git submodule update --init --recursive
 dotnet clean
 ```
+
+This removes DIKUArcade from the project and clones it again.
 
 If you're using the handout VM, the sudo password is empty. 
 Just press enter when prompted.
