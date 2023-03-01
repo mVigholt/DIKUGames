@@ -17,8 +17,10 @@ public class Game : DIKUGame, IGameEventProcessor {
     private EntityContainer<Enemy> enemies;
     private EntityContainer<PlayerShot> playerShots;
     private IBaseImage playerShotImage;
-
     private GameEventBus eventBus;
+    private AnimationContainer enemyExplosions;
+    private List<Image> explosionStrides;
+    private const int EXPLOSION_LENGTH_MS = 500;
 
 
 
@@ -45,6 +47,7 @@ public class Game : DIKUGame, IGameEventProcessor {
             // if collision btw shot and enemy -> delete both entities
                 bool check = CollisionDetection.Aabb(shot.Shape.AsDynamicShape(), enemy.Shape).Collision;
                 if (check){
+                    this.AddExplosion(enemy.Shape.Position, enemy.Shape.Extent);
                     shot.DeleteEntity();
                     enemy.DeleteEntity();
                 }
@@ -56,6 +59,7 @@ public class Game : DIKUGame, IGameEventProcessor {
         player.Render();
         enemies.RenderEntities();
         playerShots.RenderEntities();
+        enemyExplosions.RenderAnimations();
     }
 
     public override void Update() {
@@ -135,6 +139,9 @@ public class Game : DIKUGame, IGameEventProcessor {
                 new ImageStride(milliseconds, images));
             enemies.AddEntity(enemy);
         }
+        enemyExplosions = new AnimationContainer(numEnemies);
+        explosionStrides = ImageStride.CreateStrides(8,
+        Path.Combine("Assets", "Images", "Explosion.png"));
     }
 
     public void InitEventBus() {
@@ -148,5 +155,11 @@ public class Game : DIKUGame, IGameEventProcessor {
         playerShotImage = new Image(Path.Combine("Assets", "Images", "BulletRed2.png"));
     }
 
+    public void AddExplosion(Vec2F position, Vec2F extent) {
+        // TODO: add explosion to the AnimationContainer
+        StationaryShape explosion = new StationaryShape(position, extent);
+        ImageStride explosionImage = new ImageStride(EXPLOSION_LENGTH_MS/8, explosionStrides);
+        enemyExplosions.AddAnimation(explosion, EXPLOSION_LENGTH_MS, explosionImage);
+    }
 
 }
