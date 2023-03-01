@@ -104,16 +104,16 @@ public class Game : DIKUGame, IGameEventProcessor {
                 player.SetMoveDown(false);
                 break;
             case KeyboardKey.Space:
-                playerShots.AddEntity(new PlayerShot(player.GetPosition(), playerShotImage));
+                Vec2F shotFromMiddle = new (player.GetPosition().X + player.GetShape().Extent.X/2,
+                player.GetPosition().Y);
+                playerShots.AddEntity(new PlayerShot(shotFromMiddle, playerShotImage));
                 break;
             default:
                 break;
         }
-        // TODO: switch on key string and disable the player's move direction
     }
 
     private void KeyHandler(KeyboardAction action, KeyboardKey key) {
-        // TODO: Switch on KeyBoardAction and call proper method
         switch (action) {
             case KeyboardAction.KeyPress:
                 this.KeyPress(key);

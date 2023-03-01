@@ -27,26 +27,33 @@ public class Player {
     public Vec2F GetPosition() {
         return shape.Position;
     }
+
+    public Shape GetShape(){
+        return shape;
+    }
     public void Render() {
         entity.RenderEntity();
     }
 
+    private Vec2F minCorner() {return new Vec2F(0.0f, 0.0f);}
+
+    private Vec2F maxCorner() {return new Vec2F(1.0f - shape.Extent.X, 1.0f - shape.Extent.Y);}
+
     public void Move() {
-        Vec2F pos = GetPosition();
-        float maxX = 1.0f - shape.Extent.X;
-        float maxY = 1.0f - shape.Extent.Y;
-        if (pos.X < 0) {
-            pos.X = 0;
-        } else if (pos.X >= maxX) {
-            pos.X = maxX;
-        }
-        if (pos.Y < 0) {
-            pos.Y = 0;
-        }
-        else if (pos.Y >= maxY) {
-            pos.Y = maxY;
-        }
         shape.Move();
+
+        if (shape.Position.X < minCorner().X) {
+            shape.Position.X = minCorner().X;
+        }
+        if (shape.Position.X > maxCorner().X) {
+            shape.Position.X = maxCorner().X;
+        }
+        if (shape.Position.Y < minCorner().Y) {
+            shape.Position.Y = minCorner().Y;
+        }
+        if (shape.Position.Y > maxCorner().Y) {
+            shape.Position.Y = maxCorner().Y;
+        }
     }
 
     private void UpdateDirection() {
