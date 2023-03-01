@@ -20,11 +20,7 @@ DIKUArcade.
 Some bugs will occur in DIKUArcade if you run 
 `dotnet format .` \
 The reason these errors happen is that we are formatting .NET 6,
-but DIKUArcade uses .NET 5. \
-Instead of formatting the entire project, just format Galaga:
-```bash
-dotnet format Galaga
-```
+but DIKUArcade uses .NET 5. 
 
 If you accidentally format the entire project, and you don't know
 the git commands to fix it, you can use these commands:
