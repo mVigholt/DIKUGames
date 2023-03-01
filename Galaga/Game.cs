@@ -105,7 +105,9 @@ public class Game : DIKUGame, IGameEventProcessor {
                     player.SetMoveDown(false);
                     break;
                 case KeyboardKey.Space:
-                    playerShots.AddEntity(new PlayerShot(player.GetPosition(), playerShotImage));
+                    Vec2F shotFromMiddle = new (player.GetPosition().X + player.GetShape().Extent.X/2,
+                    player.GetPosition().Y);
+                    playerShots.AddEntity(new PlayerShot(shotFromMiddle, playerShotImage));
                     break;
                 default:
                     break;
