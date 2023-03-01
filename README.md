@@ -10,17 +10,20 @@ and follow the instructions in the assignment description.
 
 
 ### Format
-```dotnet format . -v diag --report Galaga```
+We should only format the files we are working on currently.
+```dotnet format path/to/file```
+This way, we avoid merge conflicts and we avoid formatting
+DIKUArcade.
 
 
 ### If you accidentally format DIKUArcade
 Some bugs will occur in DIKUArcade if you run 
-`dotnet format . -v diag --report .`. \
+`dotnet format .`. \
 The reason these errors happen is that we are formatting .NET 6,
 but DIKUArcade uses .NET 5. \
 Instead of formatting the entire project, just format Galaga:
 ```bash
-dotnet format . -v diag --report Galaga
+dotnet format Galaga
 ```
 
 If you accidentally format the entire project, and you don't know
@@ -28,9 +31,11 @@ the git commands to fix it, you can use these commands:
 ```bash
 sudo rm -r DIKUArcade
 mkdir DIKUArcade
-git clone git@github.com:diku-dk/DIKUArcade.git
+git submodule update --init --recursive
 dotnet clean
 ```
+
+This removes DIKUArcade from the project and clones it again.
 
 If you're using the handout VM, the sudo password is empty. 
 Just press enter when prompted.

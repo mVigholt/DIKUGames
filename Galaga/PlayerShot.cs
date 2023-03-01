@@ -4,7 +4,7 @@ using DIKUArcade.Graphics;
 
 namespace Galaga;
 
-public class PlayerShot : Entity{
+public class PlayerShot : Entity {
     private static Vec2F extend = new (0.008f, 0.021f);
     private static Vec2F direction = new (0.0f, 0.1f);
     public PlayerShot(Vec2F position, IBaseImage image):
