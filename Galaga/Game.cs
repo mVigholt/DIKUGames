@@ -79,6 +79,12 @@ public class Game : DIKUGame, IGameEventProcessor {
             case KeyboardKey.Right:
                 player.SetMoveRight(true);
                 break;
+            case KeyboardKey.Up:
+                player.SetMoveUp(true);
+                break;
+            case KeyboardKey.Down:
+                player.SetMoveDown(true);
+                break;
             default:
                 break;
         }
@@ -91,6 +97,12 @@ public class Game : DIKUGame, IGameEventProcessor {
                     break;
                 case KeyboardKey.Right:
                     player.SetMoveRight(false);
+                    break;
+                case KeyboardKey.Up:
+                    player.SetMoveUp(false);
+                    break;
+                case KeyboardKey.Down:
+                    player.SetMoveDown(false);
                     break;
                 case KeyboardKey.Space:
                     playerShots.AddEntity(new PlayerShot(player.GetPosition(), playerShotImage));

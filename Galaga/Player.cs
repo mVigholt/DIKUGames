@@ -14,6 +14,10 @@ public class Player {
 
     private float moveRight = 0.0f;
 
+    private float moveUp = 0.0f;
+
+    private float moveDown = 0.0f;
+
     private const float MOVEMENT_SPEED = 0.01f;
 
     public Player(DynamicShape shape, IBaseImage image) {
@@ -34,16 +38,26 @@ public class Player {
     }
 
     private void UpdateDirection() {
-        shape.Direction.X = moveLeft + moveRight;
+        shape.ChangeDirection(new Vec2F(moveLeft + moveRight, moveUp + moveDown));
     }
 
     public void SetMoveLeft(bool val) {
-        moveLeft = -MOVEMENT_SPEED * (val ? 1 : 0);
+        moveLeft = - MOVEMENT_SPEED * (val ? 1 : 0);
         UpdateDirection();
     }
 
     public void SetMoveRight(bool val) {
         moveRight = MOVEMENT_SPEED * (val ? 1 : 0);
+        UpdateDirection();
+    }
+
+    public void SetMoveUp(bool val) {
+        moveUp = MOVEMENT_SPEED * (val ? 1 : 0);
+        UpdateDirection();
+    }
+
+    public void SetMoveDown(bool val) {
+        moveDown = - MOVEMENT_SPEED * (val ? 1 : 0);
         UpdateDirection();
     }
 
@@ -57,12 +71,26 @@ public class Player {
         return shape.Position.X < 1.0f - shape.Extent.X;
     }
 
+    private bool CanMoveUp() {
+        return shape.Position.Y < 1.0f - shape.Extent.Y;
+    }
+
+    private bool CanMoveDown() {
+        return shape.Position.Y > 0.0f;
+    }
+
     private MoveDir CurrentDirection() {
         if (moveLeft < 0) {
             return MoveDir.LEFT;
         }
         if (moveRight > 0) {
             return MoveDir.RIGHT;
+        }
+        if (moveUp > 0) {
+            return MoveDir.UP;
+        }
+        if (moveDown < 0) {
+            return MoveDir.DOWN;
         }
         return MoveDir.NONE;
     }
@@ -73,17 +101,21 @@ public class Player {
                 return CanMoveLeft();
             case MoveDir.RIGHT:
                 return CanMoveRight();
+            case MoveDir.UP:
+                return CanMoveUp();
+            case MoveDir.DOWN:
+                return CanMoveDown();
             default:
                 return false;
         }
     }
-
-
 }
 
 
 enum MoveDir {
     LEFT,
     RIGHT,
+    UP,
+    DOWN,
     NONE,
 }
