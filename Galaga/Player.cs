@@ -24,7 +24,7 @@ public class Player {
         entity = new Entity(shape, image);
         this.shape = shape;
     }
-    public Vec2F GetPosition(){
+    public Vec2F GetPosition() {
         return shape.Position;
     }
     public void Render() {
@@ -42,7 +42,7 @@ public class Player {
     }
 
     public void SetMoveLeft(bool val) {
-        moveLeft = - MOVEMENT_SPEED * (val ? 1 : 0);
+        moveLeft = -MOVEMENT_SPEED * (val ? 1 : 0);
         UpdateDirection();
     }
 
@@ -57,26 +57,26 @@ public class Player {
     }
 
     public void SetMoveDown(bool val) {
-        moveDown = - MOVEMENT_SPEED * (val ? 1 : 0);
+        moveDown = -MOVEMENT_SPEED * (val ? 1 : 0);
         UpdateDirection();
     }
 
     private bool CanMoveLeft() {
         // Todo: When we implement AABB collision,
         //       use it in this method.
-        return shape.Position.X > 0.0f;
+        return GetPosition().X > 0.0f;
     }
 
     private bool CanMoveRight() {
-        return shape.Position.X < 1.0f - shape.Extent.X;
+        return GetPosition().X < 1.0f - shape.Extent.X;
     }
 
     private bool CanMoveUp() {
-        return shape.Position.Y < 1.0f - shape.Extent.Y;
+        return GetPosition().Y < 1.0f - shape.Extent.Y;
     }
 
     private bool CanMoveDown() {
-        return shape.Position.Y > 0.0f;
+        return GetPosition().Y > 0.0f;
     }
 
     private MoveDir CurrentDirection() {
