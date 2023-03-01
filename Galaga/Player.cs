@@ -27,6 +27,10 @@ public class Player {
     public Vec2F GetPosition(){
         return shape.Position;
     }
+
+    public Shape GetShape(){
+        return shape;
+    }
     public void Render() {
         entity.RenderEntity();
     }
