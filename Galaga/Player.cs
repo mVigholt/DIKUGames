@@ -32,9 +32,16 @@ public class Player {
     }
 
     public void Move() {
-        if (CanMove()) {
-            shape.Move();
-        }
+        Vec2F pos = GetPosition();
+        if (pos.X < 0)
+            pos.X = 0;
+        else if (pos.X >= 1.0f - shape.Extent.X)
+            pos.X = 1.0f - shape.Extent.X;
+        if (pos.Y < 0)
+            pos.Y = 0;
+        else if (pos.Y >= 1.0f - shape.Extent.Y)
+            pos.Y = 1.0f - shape.Extent.Y;
+        shape.Move();
     }
 
     private void UpdateDirection() {
