@@ -24,13 +24,15 @@ public class Player {
         entity = new Entity(shape, image);
         this.shape = shape;
     }
+
     public Vec2F GetPosition() {
-        return shape.Position;
+        return shape.Position.Copy();
     }
 
-    public Shape GetShape(){
-        return shape;
+    public Vec2F GetExtent(){
+        return shape.Extent.Copy();
     }
+    
     public void Render() {
         entity.RenderEntity();
     }
