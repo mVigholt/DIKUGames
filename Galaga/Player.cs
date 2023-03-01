@@ -33,14 +33,19 @@ public class Player {
 
     public void Move() {
         Vec2F pos = GetPosition();
-        if (pos.X < 0)
+        float maxX = 1.0f - shape.Extent.X;
+        float maxY = 1.0f - shape.Extent.Y;
+        if (pos.X < 0) {
             pos.X = 0;
-        else if (pos.X >= 1.0f - shape.Extent.X)
-            pos.X = 1.0f - shape.Extent.X;
-        if (pos.Y < 0)
+        } else if (pos.X >= maxX) {
+            pos.X = maxX;
+        }
+        if (pos.Y < 0) {
             pos.Y = 0;
-        else if (pos.Y >= 1.0f - shape.Extent.Y)
-            pos.Y = 1.0f - shape.Extent.Y;
+        }
+        else if (pos.Y >= maxY) {
+            pos.Y = maxY;
+        }
         shape.Move();
     }
 
@@ -67,62 +72,4 @@ public class Player {
         moveDown = -MOVEMENT_SPEED * (val ? 1 : 0);
         UpdateDirection();
     }
-
-    private bool CanMoveLeft() {
-        // Todo: When we implement AABB collision,
-        //       use it in this method.
-        return GetPosition().X > 0.0f;
-    }
-
-    private bool CanMoveRight() {
-        return GetPosition().X < 1.0f - shape.Extent.X;
-    }
-
-    private bool CanMoveUp() {
-        return GetPosition().Y < 1.0f - shape.Extent.Y;
-    }
-
-    private bool CanMoveDown() {
-        return GetPosition().Y > 0.0f;
-    }
-
-    private MoveDir CurrentDirection() {
-        if (moveLeft < 0) {
-            return MoveDir.LEFT;
-        }
-        if (moveRight > 0) {
-            return MoveDir.RIGHT;
-        }
-        if (moveUp > 0) {
-            return MoveDir.UP;
-        }
-        if (moveDown < 0) {
-            return MoveDir.DOWN;
-        }
-        return MoveDir.NONE;
-    }
-
-    private bool CanMove() {
-        switch (CurrentDirection()) {
-            case MoveDir.LEFT:
-                return CanMoveLeft();
-            case MoveDir.RIGHT:
-                return CanMoveRight();
-            case MoveDir.UP:
-                return CanMoveUp();
-            case MoveDir.DOWN:
-                return CanMoveDown();
-            default:
-                return false;
-        }
-    }
-}
-
-
-enum MoveDir {
-    LEFT,
-    RIGHT,
-    UP,
-    DOWN,
-    NONE,
 }
