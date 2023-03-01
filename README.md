@@ -18,7 +18,7 @@ DIKUArcade.
 
 ### If you accidentally format DIKUArcade
 Some bugs will occur in DIKUArcade if you run 
-`dotnet format .`. \
+`dotnet format .` \
 The reason these errors happen is that we are formatting .NET 6,
 but DIKUArcade uses .NET 5. \
 Instead of formatting the entire project, just format Galaga:
