@@ -23,8 +23,6 @@ public class Game : DIKUGame, IGameEventProcessor {
     private const int EXPLOSION_LENGTH_MS = 500;
 
 
-
-
     public Game(WindowArgs windowArgs) : base(windowArgs) {
         InitPlayer();
         InitEnemies();
@@ -54,6 +52,7 @@ public class Game : DIKUGame, IGameEventProcessor {
             }
         });
     }
+
     public override void Render() {
         player.Render();
         enemies.RenderEntities();
@@ -104,7 +103,7 @@ public class Game : DIKUGame, IGameEventProcessor {
                 player.SetMoveDown(false);
                 break;
             case KeyboardKey.Space:
-                Vec2F shotFromMiddle = new (player.GetPosition().X + player.GetShape().Extent.X/2,
+                Vec2F shotFromMiddle = new (player.GetPosition().X + player.GetExtent().X/2,
                 player.GetPosition().Y);
                 playerShots.AddEntity(new PlayerShot(shotFromMiddle, playerShotImage));
                 break;
@@ -161,6 +160,7 @@ public class Game : DIKUGame, IGameEventProcessor {
         window.SetKeyEventHandler(KeyHandler);
         eventBus.Subscribe(GameEventType.InputEvent, this);
     }
+
     public void InitPlayerShot() {
         playerShots = new EntityContainer<PlayerShot>();
         playerShotImage = new Image(Path.Combine("Assets", "Images", "BulletRed2.png"));
@@ -172,5 +172,4 @@ public class Game : DIKUGame, IGameEventProcessor {
         ImageStride explosionImage = new ImageStride(EXPLOSION_LENGTH_MS / 8, explosionStrides);
         enemyExplosions.AddAnimation(explosion, EXPLOSION_LENGTH_MS, explosionImage);
     }
-
 }
