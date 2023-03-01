@@ -24,7 +24,7 @@ public class Player {
         entity = new Entity(shape, image);
         this.shape = shape;
     }
-    public Vec2F GetPosition(){
+    public Vec2F GetPosition() {
         return shape.Position;
     }
 
@@ -35,9 +35,24 @@ public class Player {
         entity.RenderEntity();
     }
 
+    private Vec2F minCorner() {return new Vec2F(0.0f, 0.0f);}
+
+    private Vec2F maxCorner() {return new Vec2F(1.0f - shape.Extent.X, 1.0f - shape.Extent.Y);}
+
     public void Move() {
-        if (CanMove()) {
-            shape.Move();
+        shape.Move();
+
+        if (shape.Position.X < minCorner().X) {
+            shape.Position.X = minCorner().X;
+        }
+        if (shape.Position.X > maxCorner().X) {
+            shape.Position.X = maxCorner().X;
+        }
+        if (shape.Position.Y < minCorner().Y) {
+            shape.Position.Y = minCorner().Y;
+        }
+        if (shape.Position.Y > maxCorner().Y) {
+            shape.Position.Y = maxCorner().Y;
         }
     }
 
@@ -46,7 +61,7 @@ public class Player {
     }
 
     public void SetMoveLeft(bool val) {
-        moveLeft = - MOVEMENT_SPEED * (val ? 1 : 0);
+        moveLeft = -MOVEMENT_SPEED * (val ? 1 : 0);
         UpdateDirection();
     }
 
@@ -61,65 +76,7 @@ public class Player {
     }
 
     public void SetMoveDown(bool val) {
-        moveDown = - MOVEMENT_SPEED * (val ? 1 : 0);
+        moveDown = -MOVEMENT_SPEED * (val ? 1 : 0);
         UpdateDirection();
     }
-
-    private bool CanMoveLeft() {
-        // Todo: When we implement AABB collision,
-        //       use it in this method.
-        return shape.Position.X > 0.0f;
-    }
-
-    private bool CanMoveRight() {
-        return shape.Position.X < 1.0f - shape.Extent.X;
-    }
-
-    private bool CanMoveUp() {
-        return shape.Position.Y < 1.0f - shape.Extent.Y;
-    }
-
-    private bool CanMoveDown() {
-        return shape.Position.Y > 0.0f;
-    }
-
-    private MoveDir CurrentDirection() {
-        if (moveLeft < 0) {
-            return MoveDir.LEFT;
-        }
-        if (moveRight > 0) {
-            return MoveDir.RIGHT;
-        }
-        if (moveUp > 0) {
-            return MoveDir.UP;
-        }
-        if (moveDown < 0) {
-            return MoveDir.DOWN;
-        }
-        return MoveDir.NONE;
-    }
-
-    private bool CanMove() {
-        switch (CurrentDirection()) {
-            case MoveDir.LEFT:
-                return CanMoveLeft();
-            case MoveDir.RIGHT:
-                return CanMoveRight();
-            case MoveDir.UP:
-                return CanMoveUp();
-            case MoveDir.DOWN:
-                return CanMoveDown();
-            default:
-                return false;
-        }
-    }
-}
-
-
-enum MoveDir {
-    LEFT,
-    RIGHT,
-    UP,
-    DOWN,
-    NONE,
 }

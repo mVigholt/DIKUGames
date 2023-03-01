@@ -1,15 +1,15 @@
 namespace Galaga;
-using System.IO;
-using DIKUArcade.Entities;
-using DIKUArcade.Graphics;
-using DIKUArcade.Math;
-using DIKUArcade;
-using DIKUArcade.GUI;
-using DIKUArcade.Events;
-using DIKUArcade.Input;
-using System.Collections.Generic;
-using DIKUArcade.Physics;
 using System;
+using System.Collections.Generic;
+using System.IO;
+using DIKUArcade;
+using DIKUArcade.Entities;
+using DIKUArcade.Events;
+using DIKUArcade.Graphics;
+using DIKUArcade.GUI;
+using DIKUArcade.Input;
+using DIKUArcade.Math;
+using DIKUArcade.Physics;
 
 
 public class Game : DIKUGame, IGameEventProcessor {
@@ -37,20 +37,19 @@ public class Game : DIKUGame, IGameEventProcessor {
             // move the shot's shape
             shot.Shape.Move();
             // CollisionDetection.Aabb(shot.Shape.AsDynamicShape(), shot.Shape);
-            if (shot.Shape.Position.X < 0.0f || shot.Shape.Position.X > (1.0f - shot.Shape.Extent.X)
-                || shot.Shape.Position.Y< 0.0f ||shot.Shape.Position.Y> 1.0f ){
+            if (shot.Shape.Position.X < 0.0f || shot.Shape.Position.X > 1.0f - shot.Shape.Extent.X
+                || shot.Shape.Position.Y < 0.0f || shot.Shape.Position.Y > 1.0f) {
                 //delete the shot
                 shot.DeleteEntity();
-            }
-            else {
+            } else {
                 enemies.Iterate(enemy => {
-            // if collision btw shot and enemy -> delete both entities
-                bool check = CollisionDetection.Aabb(shot.Shape.AsDynamicShape(), enemy.Shape).Collision;
-                if (check){
-                    this.AddExplosion(enemy.Shape.Position, enemy.Shape.Extent);
-                    shot.DeleteEntity();
-                    enemy.DeleteEntity();
-                }
+                    // if collision btw shot and enemy -> delete both entities
+                    bool check = CollisionDetection.Aabb(shot.Shape.AsDynamicShape(), enemy.Shape).Collision;
+                    if (check) {
+                        this.AddExplosion(enemy.Shape.Position, enemy.Shape.Extent);
+                        shot.DeleteEntity();
+                        enemy.DeleteEntity();
+                    }
                 });
             }
         });
@@ -91,32 +90,30 @@ public class Game : DIKUGame, IGameEventProcessor {
     }
 
     private void KeyRelease(KeyboardKey key) {
-         switch (key) {
-                case KeyboardKey.Left:
-                    player.SetMoveLeft(false);
-                    break;
-                case KeyboardKey.Right:
-                    player.SetMoveRight(false);
-                    break;
-                case KeyboardKey.Up:
-                    player.SetMoveUp(false);
-                    break;
-                case KeyboardKey.Down:
-                    player.SetMoveDown(false);
-                    break;
-                case KeyboardKey.Space:
-                    Vec2F shotFromMiddle = new (player.GetPosition().X + player.GetShape().Extent.X/2,
-                    player.GetPosition().Y);
-                    playerShots.AddEntity(new PlayerShot(shotFromMiddle, playerShotImage));
-                    break;
-                default:
-                    break;
-            }
-        // TODO: switch on key string and disable the player's move direction
+        switch (key) {
+            case KeyboardKey.Left:
+                player.SetMoveLeft(false);
+                break;
+            case KeyboardKey.Right:
+                player.SetMoveRight(false);
+                break;
+            case KeyboardKey.Up:
+                player.SetMoveUp(false);
+                break;
+            case KeyboardKey.Down:
+                player.SetMoveDown(false);
+                break;
+            case KeyboardKey.Space:
+                Vec2F shotFromMiddle = new (player.GetPosition().X + player.GetShape().Extent.X/2,
+                player.GetPosition().Y);
+                playerShots.AddEntity(new PlayerShot(shotFromMiddle, playerShotImage));
+                break;
+            default:
+                break;
+        }
     }
 
     private void KeyHandler(KeyboardAction action, KeyboardKey key) {
-        // TODO: Switch on KeyBoardAction and call proper method
         switch (action) {
             case KeyboardAction.KeyPress:
                 this.KeyPress(key);
@@ -164,7 +161,7 @@ public class Game : DIKUGame, IGameEventProcessor {
         window.SetKeyEventHandler(KeyHandler);
         eventBus.Subscribe(GameEventType.InputEvent, this);
     }
-    public void InitPlayerShot(){
+    public void InitPlayerShot() {
         playerShots = new EntityContainer<PlayerShot>();
         playerShotImage = new Image(Path.Combine("Assets", "Images", "BulletRed2.png"));
     }
@@ -172,7 +169,7 @@ public class Game : DIKUGame, IGameEventProcessor {
     public void AddExplosion(Vec2F position, Vec2F extent) {
         // TODO: add explosion to the AnimationContainer
         StationaryShape explosion = new StationaryShape(position, extent);
-        ImageStride explosionImage = new ImageStride(EXPLOSION_LENGTH_MS/8, explosionStrides);
+        ImageStride explosionImage = new ImageStride(EXPLOSION_LENGTH_MS / 8, explosionStrides);
         enemyExplosions.AddAnimation(explosion, EXPLOSION_LENGTH_MS, explosionImage);
     }
 
