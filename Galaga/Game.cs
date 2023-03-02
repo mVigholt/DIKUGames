@@ -69,22 +69,18 @@ public class Game : DIKUGame, IGameEventProcessor {
     private void KeyPress(KeyboardKey key) {
         switch (key) {
             case KeyboardKey.Escape:
-                GameEvent gameEvent= new GameEvent();
-                gameEvent.EventType = GameEventType.WindowEvent;
-                gameEvent.Message = "Close Window";
-                eventBus.RegisterEvent(gameEvent);
+                GameEvent closeEvent= new GameEvent();
+                closeEvent.EventType = GameEventType.WindowEvent;
+                closeEvent.Message = "Close Window";
+                eventBus.RegisterEvent(closeEvent);
                 break;
             case KeyboardKey.Left:
-                player.SetMoveLeft(true);
-                break;
             case KeyboardKey.Right:
-                player.SetMoveRight(true);
-                break;
             case KeyboardKey.Up:
-                player.SetMoveUp(true);
-                break;
             case KeyboardKey.Down:
-                player.SetMoveDown(true);
+                GameEvent keyEvent = new GameEvent();
+                keyEvent.EventType = GameEventType.InputEvent;
+                keyEvent.Message = $"KeyPress: {key}";
                 break;
             default:
                 break;
@@ -129,9 +125,46 @@ public class Game : DIKUGame, IGameEventProcessor {
     public void ProcessEvent(GameEvent gameEvent) {
         System.Console.WriteLine(gameEvent.EventType);
         System.Console.WriteLine(gameEvent.Message);
-        if (gameEvent.EventType == GameEventType.WindowEvent){
-            if (gameEvent.Message == "Close Window"){
+        if (gameEvent.EventType == GameEventType.WindowEvent) {
+            if (gameEvent.Message == "Close Window") {
                 window.CloseWindow();
+            }
+        }
+        else if (gameEvent.EventType == GameEventType.InputEvent) {
+            string[] parts = gameEvent.Message.Split(": ");
+            string inputType = parts[0];
+            string input = parts[1];
+            if (inputType == "KeyPress") {
+                switch (input) {
+                    case "Left":
+                        player.SetMoveLeft(true);
+                        break;
+                    case "Right":
+                        player.SetMoveRight(true);
+                        break;
+                    case "Up":
+                        player.SetMoveUp(true);
+                        break;
+                    case "Down":
+                        player.SetMoveDown(true);
+                        break;
+                }
+            }
+            if (inputType == "KeyRelease") {
+                switch (input) {
+                    case "Left":
+                        player.SetMoveLeft(false);
+                        break;
+                    case "Right":
+                        player.SetMoveRight(false);
+                        break;
+                    case "Up":
+                        player.SetMoveUp(false);
+                        break;
+                    case "Down":
+                        player.SetMoveDown(false);
+                        break;
+                }
             }
         }
     }
