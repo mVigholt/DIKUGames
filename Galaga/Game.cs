@@ -69,22 +69,19 @@ public class Game : DIKUGame, IGameEventProcessor {
     private void KeyPress(KeyboardKey key) {
         switch (key) {
             case KeyboardKey.Escape:
-                GameEvent gameEvent= new GameEvent();
-                gameEvent.EventType = GameEventType.WindowEvent;
-                gameEvent.Message = "Close Window";
-                eventBus.RegisterEvent(gameEvent);
+                GameEvent closeEvent= new GameEvent();
+                closeEvent.EventType = GameEventType.WindowEvent;
+                closeEvent.Message = "Close Window";
+                eventBus.RegisterEvent(closeEvent);
                 break;
             case KeyboardKey.Left:
-                player.SetMoveLeft(true);
-                break;
             case KeyboardKey.Right:
-                player.SetMoveRight(true);
-                break;
             case KeyboardKey.Up:
-                player.SetMoveUp(true);
-                break;
             case KeyboardKey.Down:
-                player.SetMoveDown(true);
+                GameEvent keyPress = new GameEvent();
+                keyPress.EventType = GameEventType.InputEvent;
+                keyPress.Message = $"KeyPress: {key}";
+                eventBus.RegisterEvent(keyPress);
                 break;
             default:
                 break;
@@ -92,27 +89,10 @@ public class Game : DIKUGame, IGameEventProcessor {
     }
 
     private void KeyRelease(KeyboardKey key) {
-        switch (key) {
-            case KeyboardKey.Left:
-                player.SetMoveLeft(false);
-                break;
-            case KeyboardKey.Right:
-                player.SetMoveRight(false);
-                break;
-            case KeyboardKey.Up:
-                player.SetMoveUp(false);
-                break;
-            case KeyboardKey.Down:
-                player.SetMoveDown(false);
-                break;
-            case KeyboardKey.Space:
-                Vec2F shotFromMiddle = new (player.GetPosition().X + player.GetExtent().X/2,
-                player.GetPosition().Y);
-                playerShots.AddEntity(new PlayerShot(shotFromMiddle, playerShotImage));
-                break;
-            default:
-                break;
-        }
+        GameEvent keyRelease = new GameEvent();
+        keyRelease.EventType = GameEventType.InputEvent;
+        keyRelease.Message = $"KeyRelease: {key}";
+        eventBus.RegisterEvent(keyRelease);
     }
 
     private void KeyHandler(KeyboardAction action, KeyboardKey key) {
@@ -127,11 +107,34 @@ public class Game : DIKUGame, IGameEventProcessor {
     }
 
     public void ProcessEvent(GameEvent gameEvent) {
-        System.Console.WriteLine(gameEvent.EventType);
-        System.Console.WriteLine(gameEvent.Message);
-        if (gameEvent.EventType == GameEventType.WindowEvent){
-            if (gameEvent.Message == "Close Window"){
+        if (gameEvent.EventType == GameEventType.WindowEvent) {
+            if (gameEvent.Message == "Close Window") {
                 window.CloseWindow();
+            }
+        }
+        else if (gameEvent.EventType == GameEventType.InputEvent) {
+            string[] parts = gameEvent.Message.Split(": ");
+            string inputType = parts[0];
+            string input = parts[1];
+            bool keyPressed = (inputType == "KeyPress");
+            switch (input) {
+                case "Left":
+                    player.SetMoveLeft(keyPressed);
+                    break;
+                case "Right":
+                    player.SetMoveRight(keyPressed);
+                    break;
+                case "Up":
+                    player.SetMoveUp(keyPressed);
+                    break;
+                case "Down":
+                    player.SetMoveDown(keyPressed);
+                    break;
+            }
+            if (inputType == "KeyRelease" && input == "Space") {
+                Vec2F shotFromMiddle = new (player.GetPosition().X + player.GetExtent().X/2,
+                player.GetPosition().Y);
+                playerShots.AddEntity(new PlayerShot(shotFromMiddle, playerShotImage));
             }
         }
     }
@@ -177,7 +180,6 @@ public class Game : DIKUGame, IGameEventProcessor {
     }
 
     public void AddExplosion(Vec2F position, Vec2F extent) {
-        // TODO: add explosion to the AnimationContainer
         StationaryShape explosion = new StationaryShape(position, extent);
         ImageStride explosionImage = new ImageStride(EXPLOSION_LENGTH_MS / 8, explosionStrides);
         enemyExplosions.AddAnimation(explosion, EXPLOSION_LENGTH_MS, explosionImage);
