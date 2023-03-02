@@ -72,7 +72,7 @@ public class Game : DIKUGame, IGameEventProcessor {
                 GameEvent gameEvent= new GameEvent();
                 gameEvent.EventType = GameEventType.WindowEvent;
                 gameEvent.Message = "Close Window";
-                ProcessEvent(gameEvent);
+                eventBus.RegisterEvent(gameEvent);
                 break;
             case KeyboardKey.Left:
                 player.SetMoveLeft(true);
@@ -127,6 +127,8 @@ public class Game : DIKUGame, IGameEventProcessor {
     }
 
     public void ProcessEvent(GameEvent gameEvent) {
+        System.Console.WriteLine(gameEvent.EventType);
+        System.Console.WriteLine(gameEvent.Message);
         if (gameEvent.EventType == GameEventType.WindowEvent){
             if (gameEvent.Message == "Close Window"){
                 window.CloseWindow();
@@ -163,9 +165,10 @@ public class Game : DIKUGame, IGameEventProcessor {
 
     public void InitEventBus() {
         eventBus = new GameEventBus();
-        eventBus.InitializeEventBus(new List<GameEventType> { GameEventType.InputEvent });
+        eventBus.InitializeEventBus(new List<GameEventType> { GameEventType.InputEvent, GameEventType.WindowEvent });
         window.SetKeyEventHandler(KeyHandler);
         eventBus.Subscribe(GameEventType.InputEvent, this);
+        eventBus.Subscribe(GameEventType.WindowEvent, this);
     }
 
     public void InitPlayerShot() {
