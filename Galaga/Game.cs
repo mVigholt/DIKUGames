@@ -69,7 +69,10 @@ public class Game : DIKUGame, IGameEventProcessor {
     private void KeyPress(KeyboardKey key) {
         switch (key) {
             case KeyboardKey.Escape:
-                window.CloseWindow();
+                GameEvent gameEvent= new GameEvent();
+                gameEvent.EventType = GameEventType.WindowEvent;
+                gameEvent.Message = "Close Window";
+                ProcessEvent(gameEvent);
                 break;
             case KeyboardKey.Left:
                 player.SetMoveLeft(true);
@@ -124,7 +127,11 @@ public class Game : DIKUGame, IGameEventProcessor {
     }
 
     public void ProcessEvent(GameEvent gameEvent) {
-        // Leave this empty for now
+        if (gameEvent.EventType == GameEventType.WindowEvent){
+            if (gameEvent.Message == "Close Window"){
+                window.CloseWindow();
+            }
+        }
     }
 
     public void InitPlayer() {
