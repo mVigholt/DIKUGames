@@ -67,27 +67,28 @@ public class Game : DIKUGame, IGameEventProcessor {
     }
 
     private void KeyPress(KeyboardKey key) {
-        GameEvent gameEvent= new GameEvent();
         switch (key) {
             case KeyboardKey.Escape:
+                GameEvent gameEvent= new GameEvent();
+                gameEvent.EventType = GameEventType.WindowEvent;
                 gameEvent.Message = "Close Window";
+                ProcessEvent(gameEvent);
                 break;
             case KeyboardKey.Left:
-                gameEvent.Message = "Left";
+                player.SetMoveLeft(true);
                 break;
             case KeyboardKey.Right:
-                gameEvent.Message = "Right";
+                player.SetMoveRight(true);
                 break;
             case KeyboardKey.Up:
-                gameEvent.Message = "Up";
+                player.SetMoveUp(true);
                 break;
             case KeyboardKey.Down:
-                gameEvent.Message = "Down";
+                player.SetMoveDown(true);
                 break;
             default:
                 break;
         }
-        ProcessEvent(gameEvent);
     }
 
     private void KeyRelease(KeyboardKey key) {
@@ -126,24 +127,10 @@ public class Game : DIKUGame, IGameEventProcessor {
     }
 
     public void ProcessEvent(GameEvent gameEvent) {
-        switch (gameEvent.Message){
-            case "Close Window":
+        if (gameEvent.EventType == GameEventType.WindowEvent){
+            if (gameEvent.Message == "Close Window"){
                 window.CloseWindow();
-                break;
-            case "Left":
-                player.SetMoveLeft(true);
-                break;
-            case "Right":
-                player.SetMoveRight(true);
-                break;
-            case "Up":
-                player.SetMoveUp(true);
-                break;
-            case "Down":
-                player.SetMoveDown(true);
-                break;
-            default:
-                break;
+            }
         }
     }
 
