@@ -22,7 +22,7 @@ public class Game : DIKUGame, IGameEventProcessor {
     private List<Image> explosionStrides;
     private const int EXPLOSION_LENGTH_MS = 500;
 
-
+    // Call different methods which initialize different classes
     public Game(WindowArgs windowArgs) : base(windowArgs) {
         InitPlayer();
         InitEnemies();
@@ -30,6 +30,8 @@ public class Game : DIKUGame, IGameEventProcessor {
         InitEventBus();
     }
 
+    /// <summary>Go through each shot and enemy to check if
+    /// the shot has collided with enemies</summary>
     private void IterateShots() {
         playerShots.Iterate(shot => {
             // move the shot's shape
@@ -53,6 +55,8 @@ public class Game : DIKUGame, IGameEventProcessor {
         });
     }
 
+    ///<summary>Render different Entities, so that they can
+    /// be drawn in the window </summary>
     public override void Render() {
         player.Render();
         enemies.RenderEntities();
@@ -60,12 +64,14 @@ public class Game : DIKUGame, IGameEventProcessor {
         enemyExplosions.RenderAnimations();
     }
 
+    ///<summary>call different methods in each game loop</summary>
     public override void Update() {
         eventBus.ProcessEventsSequentially();
         player.Move();
         IterateShots();
     }
 
+    ///<summary>Register each keypress to a corresponding game event</summary>
     private void KeyPress(KeyboardKey key) {
         switch (key) {
             case KeyboardKey.Escape:
@@ -88,6 +94,7 @@ public class Game : DIKUGame, IGameEventProcessor {
         }
     }
 
+    ///<summary>Register each key release to a corresponding game event</summary>
     private void KeyRelease(KeyboardKey key) {
         GameEvent keyRelease = new GameEvent();
         keyRelease.EventType = GameEventType.InputEvent;
@@ -95,6 +102,7 @@ public class Game : DIKUGame, IGameEventProcessor {
         eventBus.RegisterEvent(keyRelease);
     }
 
+    ///<summary>Register keyboardAction to key press or key release</summary>
     private void KeyHandler(KeyboardAction action, KeyboardKey key) {
         switch (action) {
             case KeyboardAction.KeyPress:
@@ -106,6 +114,8 @@ public class Game : DIKUGame, IGameEventProcessor {
         }
     }
 
+    ///<summary>The method which is called in the ProcessEvents()
+    ///in GameEventBus, to handle each gameEvent</summary>
     public void ProcessEvent(GameEvent gameEvent) {
         if (gameEvent.EventType == GameEventType.WindowEvent) {
             if (gameEvent.Message == "Close Window") {
@@ -139,6 +149,7 @@ public class Game : DIKUGame, IGameEventProcessor {
         }
     }
 
+    ///<summary> create new Player instance </summary>
     public void InitPlayer() {
         player = new Player(
             new DynamicShape(new Vec2F(0.45f, 0.1f), new Vec2F(0.1f, 0.1f)),
@@ -166,6 +177,8 @@ public class Game : DIKUGame, IGameEventProcessor {
         Path.Combine("Assets", "Images", "Explosion.png"));
     }
 
+    ///<summary> create new GameEventBus instance and
+    ///subscribe it to a proper GameEventType</summary>
     public void InitEventBus() {
         eventBus = new GameEventBus();
         eventBus.InitializeEventBus(new List<GameEventType> { GameEventType.InputEvent, GameEventType.WindowEvent });
@@ -174,11 +187,13 @@ public class Game : DIKUGame, IGameEventProcessor {
         eventBus.Subscribe(GameEventType.WindowEvent, this);
     }
 
+    ///<summary> create new PlayerShot instance </summary>
     public void InitPlayerShot() {
         playerShots = new EntityContainer<PlayerShot>();
         playerShotImage = new Image(Path.Combine("Assets", "Images", "BulletRed2.png"));
     }
 
+    ///<summary> create new explosion animation instance </summary>
     public void AddExplosion(Vec2F position, Vec2F extent) {
         StationaryShape explosion = new StationaryShape(position, extent);
         ImageStride explosionImage = new ImageStride(EXPLOSION_LENGTH_MS / 8, explosionStrides);
