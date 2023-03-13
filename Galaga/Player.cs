@@ -1,11 +1,12 @@
 namespace Galaga;
 using System;
 using DIKUArcade.Entities;
+using DIKUArcade.Events;
 using DIKUArcade.Graphics;
 using DIKUArcade.Math;
 
 
-public class Player {
+public class Player: IGameEventProcessor {
     private Entity entity;
 
     private DynamicShape shape;
@@ -32,7 +33,7 @@ public class Player {
     public Vec2F GetExtent(){
         return shape.Extent.Copy();
     }
-    
+
     public void Render() {
         entity.RenderEntity();
     }
@@ -62,23 +63,47 @@ public class Player {
         shape.ChangeDirection(new Vec2F(moveLeft + moveRight, moveUp + moveDown));
     }
 
-    public void SetMoveLeft(bool val) {
+    private void SetMoveLeft(bool val) {
         moveLeft = -MOVEMENT_SPEED * (val ? 1 : 0);
         UpdateDirection();
     }
 
-    public void SetMoveRight(bool val) {
+    private void SetMoveRight(bool val) {
         moveRight = MOVEMENT_SPEED * (val ? 1 : 0);
         UpdateDirection();
     }
 
-    public void SetMoveUp(bool val) {
+    private void SetMoveUp(bool val) {
         moveUp = MOVEMENT_SPEED * (val ? 1 : 0);
         UpdateDirection();
     }
 
-    public void SetMoveDown(bool val) {
+    private void SetMoveDown(bool val) {
         moveDown = -MOVEMENT_SPEED * (val ? 1 : 0);
         UpdateDirection();
+    }
+
+    public void ProcessEvent(GameEvent gameEvent) {
+        if (gameEvent.EventType == GameEventType.PlayerEvent) {
+            string[] parts = gameEvent.Message.Split(": ");
+            string inputType = parts[0];
+            string input = parts[1];
+            Console.WriteLine(input);
+            bool keyPressed = (inputType == "KeyPress");
+            switch (input) {
+                case "Left":
+                    SetMoveLeft(keyPressed);
+                    break;
+                case "Right":
+                    SetMoveRight(keyPressed);
+                    break;
+                case "Up":
+                    SetMoveUp(keyPressed);
+                    break;
+                case "Down":
+                    SetMoveDown(keyPressed);
+                    break;
+            }
+        }
     }
 }
