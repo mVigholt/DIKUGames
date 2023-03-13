@@ -21,6 +21,8 @@ public class Game : DIKUGame, IGameEventProcessor {
     private AnimationContainer enemyExplosions;
     private List<Image> explosionStrides;
     private const int EXPLOSION_LENGTH_MS = 500;
+    private List<Image> enemyStridesGreen;
+
 
     // Call different methods which initialize different classes
     public Game(WindowArgs windowArgs) : base(windowArgs) {
@@ -150,7 +152,7 @@ public class Game : DIKUGame, IGameEventProcessor {
         List<Image> images = ImageStride.CreateStrides(numStrides, imagePath);
         const int numEnemies = 8;
         enemies = new EntityContainer<Enemy>(numEnemies);
-        for (int i = 0; i < numEnemies; i++) {
+        for (int i = 0; i < 8; i++) {
             int milliseconds = 80;
             Vec2F pos = new Vec2F(0.1f + (float) i * 0.1f, 0.9f);
             Vec2F extent = new Vec2F(0.1f, 0.1f);
@@ -158,6 +160,20 @@ public class Game : DIKUGame, IGameEventProcessor {
                 new DynamicShape(pos, extent),
                 new ImageStride(milliseconds, images));
             enemies.AddEntity(enemy);
+        }
+        
+        enemyStridesGreen = ImageStride.CreateStrides
+                (2, Path.Combine("Assets",
+                "Images", "GreenMonster.png"));
+
+        for (int i = 0; i < 2; i++) {
+            int milliseconds = 80;
+            Vec2F pos = new Vec2F(0.1f + (float) i * 0.1f, 0.8f);
+            Vec2F extent = new Vec2F(0.1f, 0.1f);
+            Enemy enemyGreen = new Enemy(
+                new DynamicShape(pos, extent),
+                new ImageStride(milliseconds, enemyStridesGreen));
+            enemies.AddEntity(enemyGreen);
         }
         enemyExplosions = new AnimationContainer(numEnemies);
         explosionStrides = ImageStride.CreateStrides(8,
