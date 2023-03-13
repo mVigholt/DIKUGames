@@ -21,7 +21,8 @@ public class Game : DIKUGame, IGameEventProcessor {
     private AnimationContainer enemyExplosions;
     private List<Image> explosionStrides;
     private const int EXPLOSION_LENGTH_MS = 500;
-    private List<Image> enemyStridesGreen;
+    private List<Image> enemyStridesGreen ;
+    private List<Image> enemyStridesRed;
 
 
     // Call different methods which initialize different classes
@@ -48,11 +49,23 @@ public class Game : DIKUGame, IGameEventProcessor {
                     // if collision btw shot and enemy -> delete both entities
                     bool check = CollisionDetection.Aabb(shot.Shape.AsDynamicShape(), enemy.Shape).Collision;
                     if (check) {
-                        this.AddExplosion(enemy.Shape.Position, enemy.Shape.Extent);
+                        // this.AddExplosion(enemy.Shape.Position, enemy.Shape.Extent);
                         shot.DeleteEntity();
+                        enemy.Hitpoints--;
+                        // enemy.DeleteEntity();
+                    }
+                    if (enemy.Hitpoints <= 2){
+                        enemyStridesRed = ImageStride.CreateStrides
+                                        (2, Path.Combine("Assets",
+                                        "Images", "RedMonster.png"));
+                        enemy.Image = new ImageStride(80, enemyStridesRed);
+                    }
+                    if (enemy.Hitpoints <= 0){
+                        this.AddExplosion(enemy.Shape.Position, enemy.Shape.Extent);
                         enemy.DeleteEntity();
                     }
-                });
+                }
+                );
             }
         });
     }
@@ -161,12 +174,11 @@ public class Game : DIKUGame, IGameEventProcessor {
                 new ImageStride(milliseconds, images));
             enemies.AddEntity(enemy);
         }
-        
         enemyStridesGreen = ImageStride.CreateStrides
-                (2, Path.Combine("Assets",
-                "Images", "GreenMonster.png"));
+                            (2, Path.Combine("Assets",
+                            "Images", "GreenMonster.png"));
 
-        for (int i = 0; i < 2; i++) {
+        for (int i = 0; i < 8; i++) {
             int milliseconds = 80;
             Vec2F pos = new Vec2F(0.1f + (float) i * 0.1f, 0.8f);
             Vec2F extent = new Vec2F(0.1f, 0.1f);
@@ -177,7 +189,7 @@ public class Game : DIKUGame, IGameEventProcessor {
         }
         enemyExplosions = new AnimationContainer(numEnemies);
         explosionStrides = ImageStride.CreateStrides(8,
-        Path.Combine("Assets", "Images", "Explosion.png"));
+                Path.Combine("Assets", "Images", "Explosion.png"));
     }
 
     ///<summary> create new GameEventBus instance and
