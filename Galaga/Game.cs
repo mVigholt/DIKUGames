@@ -85,7 +85,7 @@ public class Game : DIKUGame, IGameEventProcessor {
             case KeyboardKey.Up:
             case KeyboardKey.Down:
                 GameEvent keyPress = new GameEvent();
-                keyPress.EventType = GameEventType.InputEvent;
+                keyPress.EventType = GameEventType.PlayerEvent;
                 keyPress.Message = $"KeyPress: {key}";
                 eventBus.RegisterEvent(keyPress);
                 break;
@@ -97,7 +97,7 @@ public class Game : DIKUGame, IGameEventProcessor {
     ///<summary>Register each key release to a corresponding game event</summary>
     private void KeyRelease(KeyboardKey key) {
         GameEvent keyRelease = new GameEvent();
-        keyRelease.EventType = GameEventType.InputEvent;
+        keyRelease.EventType = GameEventType.PlayerEvent;
         keyRelease.Message = $"KeyRelease: {key}";
         eventBus.RegisterEvent(keyRelease);
     }
@@ -117,35 +117,22 @@ public class Game : DIKUGame, IGameEventProcessor {
     ///<summary>The method which is called in the ProcessEvents()
     ///in GameEventBus, to handle each gameEvent</summary>
     public void ProcessEvent(GameEvent gameEvent) {
+        string[] parts = gameEvent.Message.Split(": ");
+        string inputType = parts[0];
+        string input = parts[1];
+        bool keyPressed = (inputType == "KeyPress");
         if (gameEvent.EventType == GameEventType.WindowEvent) {
             if (gameEvent.Message == "Close Window") {
                 window.CloseWindow();
             }
         }
-        else if (gameEvent.EventType == GameEventType.InputEvent) {
-            string[] parts = gameEvent.Message.Split(": ");
-            string inputType = parts[0];
-            string input = parts[1];
-            bool keyPressed = (inputType == "KeyPress");
-            switch (input) {
-                case "Left":
-                    player.SetMoveLeft(keyPressed);
-                    break;
-                case "Right":
-                    player.SetMoveRight(keyPressed);
-                    break;
-                case "Up":
-                    player.SetMoveUp(keyPressed);
-                    break;
-                case "Down":
-                    player.SetMoveDown(keyPressed);
-                    break;
-            }
-            if (inputType == "KeyRelease" && input == "Space") {
-                Vec2F shotFromMiddle = new (player.GetPosition().X + player.GetExtent().X/2,
-                player.GetPosition().Y);
-                playerShots.AddEntity(new PlayerShot(shotFromMiddle, playerShotImage));
-            }
+        else if (gameEvent.EventType == GameEventType.PlayerEvent) {
+            player.ProcessEvent(gameEvent);
+        }
+        if (inputType == "KeyRelease" && input == "Space") {
+            Vec2F shotFromMiddle = new (player.GetPosition().X + player.GetExtent().X/2,
+            player.GetPosition().Y);
+            playerShots.AddEntity(new PlayerShot(shotFromMiddle, playerShotImage));
         }
     }
 
@@ -181,10 +168,14 @@ public class Game : DIKUGame, IGameEventProcessor {
     ///subscribe it to a proper GameEventType</summary>
     public void InitEventBus() {
         eventBus = new GameEventBus();
-        eventBus.InitializeEventBus(new List<GameEventType> { GameEventType.InputEvent, GameEventType.WindowEvent });
+        eventBus.InitializeEventBus(new List<GameEventType> {
+             GameEventType.InputEvent,
+             GameEventType.WindowEvent,
+             GameEventType.PlayerEvent });
         window.SetKeyEventHandler(KeyHandler);
         eventBus.Subscribe(GameEventType.InputEvent, this);
         eventBus.Subscribe(GameEventType.WindowEvent, this);
+        eventBus.Subscribe(GameEventType.PlayerEvent, this);
     }
 
     ///<summary> create new PlayerShot instance </summary>
