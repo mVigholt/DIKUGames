@@ -88,7 +88,6 @@ public class Player: IGameEventProcessor {
             string[] parts = gameEvent.Message.Split(": ");
             string inputType = parts[0];
             string input = parts[1];
-            Console.WriteLine(input);
             bool keyPressed = (inputType == "KeyPress");
             switch (input) {
                 case "Left":
