@@ -23,6 +23,7 @@ public class Game : DIKUGame, IGameEventProcessor {
     private const int EXPLOSION_LENGTH_MS = 500;
     private List<Image> enemyStridesGreen ;
     private List<Image> enemyStridesRed;
+    private List<Image> enemyStridesBlue;
 
 
     // Call different methods which initialize different classes
@@ -49,17 +50,10 @@ public class Game : DIKUGame, IGameEventProcessor {
                     // if collision btw shot and enemy -> delete both entities
                     bool check = CollisionDetection.Aabb(shot.Shape.AsDynamicShape(), enemy.Shape).Collision;
                     if (check) {
-                        // this.AddExplosion(enemy.Shape.Position, enemy.Shape.Extent);
                         shot.DeleteEntity();
                         enemy.Hitpoints--;
-                        // enemy.DeleteEntity();
                     }
-                    if (enemy.Hitpoints <= 2){
-                        enemyStridesRed = ImageStride.CreateStrides
-                                        (2, Path.Combine("Assets",
-                                        "Images", "RedMonster.png"));
-                        enemy.Image = new ImageStride(80, enemyStridesRed);
-                    }
+                    enemy.isEnraged();
                     if (enemy.Hitpoints <= 0){
                         this.AddExplosion(enemy.Shape.Position, enemy.Shape.Extent);
                         enemy.DeleteEntity();
@@ -160,31 +154,37 @@ public class Game : DIKUGame, IGameEventProcessor {
 
     /// <summary>Create a few enemies and add them to the game</summary>
     public void InitEnemies() {
-        string imagePath = Path.Combine("Assets", "Images", "BlueMonster.png");
-        int numStrides = 4;
-        List<Image> images = ImageStride.CreateStrides(numStrides, imagePath);
+        enemyStridesBlue = ImageStride.CreateStrides
+                            (4,Path.Combine("Assets",
+                            "Images", "BlueMonster.png"));
         const int numEnemies = 8;
         enemies = new EntityContainer<Enemy>(numEnemies);
-        for (int i = 0; i < 8; i++) {
-            int milliseconds = 80;
-            Vec2F pos = new Vec2F(0.1f + (float) i * 0.1f, 0.9f);
-            Vec2F extent = new Vec2F(0.1f, 0.1f);
-            Enemy enemy = new Enemy(
-                new DynamicShape(pos, extent),
-                new ImageStride(milliseconds, images));
-            enemies.AddEntity(enemy);
-        }
         enemyStridesGreen = ImageStride.CreateStrides
                             (2, Path.Combine("Assets",
                             "Images", "GreenMonster.png"));
+        enemyStridesRed = ImageStride.CreateStrides
+                            (2, Path.Combine("Assets",
+                            "Images", "RedMonster.png"));
+        for (int i = 0; i < numEnemies; i++) {
+            int milliseconds = 80;
+            Vec2F pos = new Vec2F(0.1f + (float) i * 0.1f, 0.9f);
+            Vec2F extent = new Vec2F(0.1f, 0.1f);
+            Enemy enemyBlue = new Enemy(
+                new DynamicShape(pos, extent),
+                new ImageStride(milliseconds, enemyStridesBlue),
+                new ImageStride(milliseconds, enemyStridesRed)
+                );
+            enemies.AddEntity(enemyBlue);
+        }
 
-        for (int i = 0; i < 8; i++) {
+        for (int i = 0; i < numEnemies; i++) {
             int milliseconds = 80;
             Vec2F pos = new Vec2F(0.1f + (float) i * 0.1f, 0.8f);
             Vec2F extent = new Vec2F(0.1f, 0.1f);
             Enemy enemyGreen = new Enemy(
                 new DynamicShape(pos, extent),
-                new ImageStride(milliseconds, enemyStridesGreen));
+                new ImageStride(milliseconds, enemyStridesGreen),
+                new ImageStride(milliseconds, enemyStridesRed));
             enemies.AddEntity(enemyGreen);
         }
         enemyExplosions = new AnimationContainer(numEnemies);
