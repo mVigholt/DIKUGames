@@ -140,10 +140,6 @@ public class Game : DIKUGame, IGameEventProcessor {
     ///<summary>The method which is called in the ProcessEvents()
     ///in GameEventBus, to handle each gameEvent</summary>
     public void ProcessEvent(GameEvent gameEvent) {
-        string[] parts = gameEvent.Message.Split(": ");
-        string inputType = parts[0];
-        string input = parts[1];
-        bool keyPressed = (inputType == "KeyPress");
         if (gameEvent.EventType == GameEventType.WindowEvent) {
             if (gameEvent.Message == "Close Window") {
                 window.CloseWindow();
