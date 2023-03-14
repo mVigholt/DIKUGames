@@ -11,7 +11,6 @@ using DIKUArcade.Input;
 using DIKUArcade.Math;
 using DIKUArcade.Physics;
 
-//hej
 public class Game : DIKUGame, IGameEventProcessor {
     private Player player;
     private EntityContainer<Enemy> enemies;
