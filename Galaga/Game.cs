@@ -105,10 +105,25 @@ public class Game : DIKUGame, IGameEventProcessor {
 
     ///<summary>Register each key release to a corresponding game event</summary>
     private void KeyRelease(KeyboardKey key) {
-        GameEvent keyRelease = new GameEvent();
-        keyRelease.EventType = GameEventType.PlayerEvent;
-        keyRelease.Message = $"KeyRelease: {key}";
-        eventBus.RegisterEvent(keyRelease);
+        switch (key) {
+            case KeyboardKey.Left:
+            case KeyboardKey.Right:
+            case KeyboardKey.Up:
+            case KeyboardKey.Down:
+                GameEvent keyRelease = new GameEvent();
+                keyRelease.EventType = GameEventType.PlayerEvent;
+                keyRelease.Message = $"KeyRelease: {key}";
+                eventBus.RegisterEvent(keyRelease);
+                break;
+            case KeyboardKey.Space:
+                eventBus.RegisterEvent(new GameEvent{
+                    EventType = GameEventType.InputEvent,
+                    Message = "KeyRelease: Space"
+                });
+                break;
+            default:
+                break;
+        }
     }
 
     ///<summary>Register keyboardAction to key press or key release</summary>
@@ -135,12 +150,10 @@ public class Game : DIKUGame, IGameEventProcessor {
                 window.CloseWindow();
             }
         }
-        else if (gameEvent.EventType == GameEventType.PlayerEvent) {
-            player.ProcessEvent(gameEvent);
-        }
-        if (inputType == "KeyRelease" && input == "Space") {
-            Vec2F shotFromMiddle = new (player.GetPosition().X + player.GetExtent().X/2,
-            player.GetPosition().Y);
+        else if (gameEvent.EventType == GameEventType.InputEvent){
+            Vec2F shotFromMiddle = new (player.GetPosition().X +
+                                        player.GetExtent().X/2,
+                                        player.GetPosition().Y);
             playerShots.AddEntity(new PlayerShot(shotFromMiddle, playerShotImage));
         }
     }
@@ -172,8 +185,7 @@ public class Game : DIKUGame, IGameEventProcessor {
             Enemy enemyBlue = new Enemy(
                 new DynamicShape(pos, extent),
                 new ImageStride(milliseconds, enemyStridesBlue),
-                new ImageStride(milliseconds, enemyStridesRed)
-                );
+                new ImageStride(milliseconds, enemyStridesRed));
             enemies.AddEntity(enemyBlue);
         }
 
@@ -203,7 +215,8 @@ public class Game : DIKUGame, IGameEventProcessor {
         window.SetKeyEventHandler(KeyHandler);
         eventBus.Subscribe(GameEventType.InputEvent, this);
         eventBus.Subscribe(GameEventType.WindowEvent, this);
-        eventBus.Subscribe(GameEventType.PlayerEvent, this);
+        eventBus.Subscribe(GameEventType.PlayerEvent, player);
+        // eventBus.Subscribe(GameEventType.PlayerEvent, this);
     }
 
     ///<summary> create new PlayerShot instance </summary>
