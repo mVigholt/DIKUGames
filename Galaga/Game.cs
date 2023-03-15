@@ -95,7 +95,8 @@ public class Game : DIKUGame, IGameEventProcessor {
             case KeyboardKey.Down:
                 GameEvent keyPress = new GameEvent();
                 keyPress.EventType = GameEventType.PlayerEvent;
-                keyPress.Message = $"KeyPress: {key}";
+                keyPress.ObjectArg1 = key;
+                keyPress.IntArg1 = (int)KeyboardAction.KeyPress;
                 eventBus.RegisterEvent(keyPress);
                 break;
             default:
@@ -112,7 +113,8 @@ public class Game : DIKUGame, IGameEventProcessor {
             case KeyboardKey.Down:
                 GameEvent keyRelease = new GameEvent();
                 keyRelease.EventType = GameEventType.PlayerEvent;
-                keyRelease.Message = $"KeyRelease: {key}";
+                keyRelease.ObjectArg1 = key;
+                keyRelease.IntArg1 = (int)KeyboardAction.KeyRelease;
                 eventBus.RegisterEvent(keyRelease);
                 break;
             case KeyboardKey.Space:
