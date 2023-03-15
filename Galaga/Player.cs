@@ -4,7 +4,7 @@ using DIKUArcade.Entities;
 using DIKUArcade.Events;
 using DIKUArcade.Graphics;
 using DIKUArcade.Math;
-
+using DIKUArcade.Input;
 
 public class Player: IGameEventProcessor {
     private Entity entity;
@@ -84,25 +84,24 @@ public class Player: IGameEventProcessor {
     }
 
     public void ProcessEvent(GameEvent gameEvent) {
-        if (gameEvent.EventType == GameEventType.PlayerEvent) {
-            string[] parts = gameEvent.Message.Split(": ");
-            string inputType = parts[0];
-            string input = parts[1];
-            bool keyPressed = (inputType == "KeyPress");
-            switch (input) {
-                case "Left":
-                    SetMoveLeft(keyPressed);
-                    break;
-                case "Right":
-                    SetMoveRight(keyPressed);
-                    break;
-                case "Up":
-                    SetMoveUp(keyPressed);
-                    break;
-                case "Down":
-                    SetMoveDown(keyPressed);
-                    break;
-            }
+        KeyboardKey key = (KeyboardKey)gameEvent.ObjectArg1;
+        KeyboardAction action = (KeyboardAction)gameEvent.IntArg1;
+        
+        switch (key) {
+            case KeyboardKey.Left:
+                SetMoveLeft(action == KeyboardAction.KeyPress);
+                break; 
+            case KeyboardKey.Right:
+                SetMoveRight(action == KeyboardAction.KeyPress);
+                break;
+            case KeyboardKey.Up:
+                SetMoveUp(action == KeyboardAction.KeyPress);
+                break;
+            case KeyboardKey.Down:
+                SetMoveDown(action == KeyboardAction.KeyPress);
+                break;
+            default:
+                break;
         }
     }
 }
