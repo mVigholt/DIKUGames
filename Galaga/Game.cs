@@ -193,20 +193,13 @@ public class Game : DIKUGame, IGameEventProcessor {
         const int numEnemies = 16;
         enemies = new EntityContainer<Enemy>(numEnemies);
 
-        Squadrons enemiesFirst = new Squadrons(8,
-                new Vec2F(0.1f, 0.9f));
-        enemiesFirst.CreateEnemies(enemyStridesGreen,enemyStridesRed);
+        RowSquadrons enemiesRow =
+            new RowSquadrons(enemyStridesGreen, enemyStridesRed);
 
-        Squadrons enemiesSecond = new Squadrons(8,
-                new Vec2F(0.5f, 0.9f));
-        enemiesSecond.CreateEnemies(enemyStridesBlue,enemyStridesRed);
-        // // add all the enmies to the container
+        // add all the enmies to the container
 
-        foreach (Enemy enemyFirst in enemiesFirst.Enemies){
+        foreach (Enemy enemyFirst in enemiesRow.Enemies){
             enemies.AddEntity(enemyFirst);
-        }
-        foreach (Enemy enemySecond in enemiesSecond.Enemies){
-            enemies.AddEntity(enemySecond);
         }
         enemyExplosions = new AnimationContainer(numEnemies);
         explosionStrides = ImageStride.CreateStrides(8,
