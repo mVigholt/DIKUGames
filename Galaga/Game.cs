@@ -70,6 +70,7 @@ public class Game : DIKUGame, IGameEventProcessor {
         enemies.RenderEntities();
         playerShots.RenderEntities();
         enemyExplosions.RenderAnimations();
+        // enemiesFirst.Enemies.RenderEntities();
     }
 
     ///<summary>call different methods in each game loop</summary>
@@ -165,34 +166,30 @@ public class Game : DIKUGame, IGameEventProcessor {
         enemyStridesBlue = ImageStride.CreateStrides
                             (4,Path.Combine("Assets",
                             "Images", "BlueMonster.png"));
-        const int numEnemies = 8;
-        enemies = new EntityContainer<Enemy>(numEnemies);
         enemyStridesGreen = ImageStride.CreateStrides
                             (2, Path.Combine("Assets",
                             "Images", "GreenMonster.png"));
         enemyStridesRed = ImageStride.CreateStrides
                             (2, Path.Combine("Assets",
                             "Images", "RedMonster.png"));
-        for (int i = 0; i < numEnemies; i++) {
-            int milliseconds = 80;
-            Vec2F pos = new Vec2F(0.1f + (float) i * 0.1f, 0.9f);
-            Vec2F extent = new Vec2F(0.1f, 0.1f);
-            Enemy enemyBlue = new Enemy(
-                new DynamicShape(pos, extent),
-                new ImageStride(milliseconds, enemyStridesBlue),
-                new ImageStride(milliseconds, enemyStridesRed));
-            enemies.AddEntity(enemyBlue);
-        }
+        const int numEnemies = 16;
+        enemies = new EntityContainer<Enemy>(numEnemies);
 
-        for (int i = 0; i < numEnemies; i++) {
-            int milliseconds = 80;
-            Vec2F pos = new Vec2F(0.1f + (float) i * 0.1f, 0.8f);
-            Vec2F extent = new Vec2F(0.1f, 0.1f);
-            Enemy enemyGreen = new Enemy(
-                new DynamicShape(pos, extent),
-                new ImageStride(milliseconds, enemyStridesGreen),
-                new ImageStride(milliseconds, enemyStridesRed));
-            enemies.AddEntity(enemyGreen);
+        Squadrons enemiesFirst = new Squadrons(8,
+                new Vec2F(0.1f, 0.9f));
+        enemiesFirst.CreateEnemies(enemyStridesGreen,enemyStridesRed);
+
+        Squadrons enemiesSecond = new Squadrons(8,
+                new Vec2F(0.5f, 0.9f));
+        enemiesSecond.CreateEnemies(enemyStridesBlue,enemyStridesRed);
+        // // add all the enmies to the container
+
+
+        foreach (Enemy enemyFirst in enemiesFirst.Enemies){
+            enemies.AddEntity(enemyFirst);
+        }
+        foreach (Enemy enemySecond in enemiesSecond.Enemies){
+            enemies.AddEntity(enemySecond);
         }
         enemyExplosions = new AnimationContainer(numEnemies);
         explosionStrides = ImageStride.CreateStrides(8,
@@ -211,7 +208,6 @@ public class Game : DIKUGame, IGameEventProcessor {
         eventBus.Subscribe(GameEventType.InputEvent, this);
         eventBus.Subscribe(GameEventType.WindowEvent, this);
         eventBus.Subscribe(GameEventType.PlayerEvent, player);
-        // eventBus.Subscribe(GameEventType.PlayerEvent, this);
     }
 
     ///<summary> create new PlayerShot instance </summary>
