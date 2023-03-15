@@ -17,6 +17,8 @@ public class ZigZagDown : IMovementStrategy {
         }
     }
 
+    //#TODO, logic is not fully correct. It shows only half of the enemies.
+    //Maybe the start position has some problems.
     public void MoveEnemy(Enemy enemy) {
         float p = 0.045f;
         float s = 0.0003f;
