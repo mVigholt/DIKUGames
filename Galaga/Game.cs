@@ -156,7 +156,7 @@ public class Game : DIKUGame, IGameEventProcessor {
         GameEventType? eventType = gameEvent.EventType;
         KeyboardKey? key = (KeyboardKey?)gameEvent.ObjectArg1;
         KeyboardAction? action = (KeyboardAction?)gameEvent.IntArg1;
-        
+
         switch (eventType, key, action) {
             case (GameEventType.WindowEvent, KeyboardKey.Escape, KeyboardAction.KeyPress):
                 window.CloseWindow();
@@ -201,7 +201,6 @@ public class Game : DIKUGame, IGameEventProcessor {
                 new Vec2F(0.5f, 0.9f));
         enemiesSecond.CreateEnemies(enemyStridesBlue,enemyStridesRed);
         // // add all the enmies to the container
-
 
         foreach (Enemy enemyFirst in enemiesFirst.Enemies){
             enemies.AddEntity(enemyFirst);

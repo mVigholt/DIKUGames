@@ -1,10 +1,12 @@
+namespace Galaga;
 using System.Collections.Generic;
 using DIKUArcade.Entities;
 using DIKUArcade.Graphics;
 using DIKUArcade.Math;
 using Galaga.Squadron;
-namespace Galaga;
-public class Squadrons: ISquadron {
+using Galaga.MovementStrategy;
+
+public class Squadrons: ISquadron{
     private Vec2F position;
     public EntityContainer<Enemy> Enemies {get;}
 
