@@ -5,18 +5,25 @@ using MovementStrategy;
 using System;
 
 public class ZigZagDown : IMovementStrategy {
+    float x0 ;
+    float y0 ;
+    public ZigZagDown(Enemy enemy){
+        x0 = enemy.Shape.Position.X;
+        y0 = enemy.Shape.Position.Y;
+    }
     public void MoveEnemies(EntityContainer<Enemy> enemies) {
-        throw new System.NotImplementedException();
+        foreach (Enemy enemy in enemies){
+            MoveEnemy(enemy);
+        }
     }
 
     public void MoveEnemy(Enemy enemy) {
         float p = 0.045f;
         float s = 0.0003f;
         float a = 0.05f;
-        float x0 = enemy.Shape.Position.X;
-        float y0 = enemy.Shape.Position.Y;
-        enemy.Shape.MoveY(s);
-        float y = enemy.Shape.Position.Y;
-        enemy.Shape.Position.X = (float) (x0 + a* Math.Sin (( 2* Math.PI * (y0 - y ))/p));
+        enemy.Shape.MoveY(-s);
+        float yi = enemy.Shape.Position.Y;
+        float xs = (float) (a* Math.Sin (( 2* Math.PI * (y0- yi))/p));
+        enemy.Shape.Position.X =  x0 + xs;
     }
 }
