@@ -84,20 +84,21 @@ public class Player: IGameEventProcessor {
     }
 
     public void ProcessEvent(GameEvent gameEvent) {
-        KeyboardKey key = (KeyboardKey)gameEvent.ObjectArg1;
-        KeyboardAction action = (KeyboardAction)gameEvent.IntArg1;
+        GameEventType? eventType = gameEvent.EventType;
+        KeyboardKey? key = (KeyboardKey?)gameEvent.ObjectArg1;
+        KeyboardAction? action = (KeyboardAction?)gameEvent.IntArg1;
         
-        switch (key) {
-            case KeyboardKey.Left:
+        switch (eventType, key, action) {
+            case (_, KeyboardKey.Left, _):
                 SetMoveLeft(action == KeyboardAction.KeyPress);
                 break; 
-            case KeyboardKey.Right:
+            case (_, KeyboardKey.Right, _):
                 SetMoveRight(action == KeyboardAction.KeyPress);
                 break;
-            case KeyboardKey.Up:
+            case (_, KeyboardKey.Up, _):
                 SetMoveUp(action == KeyboardAction.KeyPress);
                 break;
-            case KeyboardKey.Down:
+            case (_, KeyboardKey.Down, _):
                 SetMoveDown(action == KeyboardAction.KeyPress);
                 break;
             default:
