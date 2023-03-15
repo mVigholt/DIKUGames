@@ -49,7 +49,7 @@ public class Game : DIKUGame, IGameEventProcessor {
                 shot.DeleteEntity();
             } else {
                 squadron.Enemies.Iterate(enemy => {
-                    // if collision btw shot and enemy -> delete both entities
+                    // if collision btw shot and enemy -> enemy's hitpoint drop 1 point.
                     bool check = CollisionDetection.Aabb(shot.Shape.AsDynamicShape(), enemy.Shape).Collision;
                     if (check) {
                         shot.DeleteEntity();
@@ -60,6 +60,7 @@ public class Game : DIKUGame, IGameEventProcessor {
         });
     }
 
+    // Check if the enemy is enraged or killed
     private void iterateEnemy(){
         squadron.Enemies.Iterate( enemy => {
             enemy.isEnraged();
@@ -67,7 +68,6 @@ public class Game : DIKUGame, IGameEventProcessor {
                 this.AddExplosion(enemy.Shape.Position, enemy.Shape.Extent);
                 enemy.DeleteEntity();
             }
-            movementStrategy = new Down(enemy);
         });
     }
 
@@ -200,9 +200,14 @@ public class Game : DIKUGame, IGameEventProcessor {
         enemyStridesRed = ImageStride.CreateStrides
                             (2, Path.Combine("Assets",
                             "Images", "RedMonster.png"));
-
-        squadron = new TriangleSquadrons(enemyStridesGreen, enemyStridesRed);
+        // you can choose different squadron formations her
+        squadron = new RowSquadrons(enemyStridesGreen, enemyStridesRed);
         // squadron = new RowSquadrons(enemyStridesBlue, enemyStridesRed);
+
+        // you can also choose different movement strategy her:
+        squadron.Enemies.Iterate(enemy=>{
+            movementStrategy = new Down(enemy);
+        });
     }
 
     public void InitExplosion(){

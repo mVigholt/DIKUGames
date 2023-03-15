@@ -21,7 +21,7 @@ public class RowSquadrons: ISquadron{
     public void CreateEnemies(List<Image> enemyStride,
         List<Image> alternativeEnemyStride) {
         for (int i = 0; i < 8; i++){
-            for (int j = 0; j < 4; j++){
+            for (int j = 1; j < 5; j++){
                 int milliseconds = 80;
                 Vec2F pos = new Vec2F(0.1f + i * 0.1f, 1.0f - j * 0.1f);
                 Enemy enemy = new Enemy(pos,
