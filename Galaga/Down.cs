@@ -1,9 +1,9 @@
 namespace Galaga;
-
 using DIKUArcade.Entities;
 using MovementStrategy;
 
 public class Down : IMovementStrategy {
+    public Down(Enemy enemy){}
 
     public void MoveEnemies(EntityContainer<Enemy> enemies) {
         foreach (Enemy enemy in enemies){
@@ -11,6 +11,6 @@ public class Down : IMovementStrategy {
         }
     }
     public void MoveEnemy(Enemy enemy) {
-        enemy.Shape.MoveX(enemy.Speed);
+        enemy.Shape.MoveY(-enemy.Speed);
     }
 }

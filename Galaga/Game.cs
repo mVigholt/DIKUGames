@@ -10,10 +10,11 @@ using DIKUArcade.GUI;
 using DIKUArcade.Input;
 using DIKUArcade.Math;
 using DIKUArcade.Physics;
+using Galaga.MovementStrategy;
+using Galaga.Squadron;
 
 public class Game : DIKUGame, IGameEventProcessor {
     private Player player;
-    private EntityContainer<Enemy> enemies;
     private EntityContainer<PlayerShot> playerShots;
     private IBaseImage playerShotImage;
     private GameEventBus eventBus;
@@ -23,7 +24,8 @@ public class Game : DIKUGame, IGameEventProcessor {
     private List<Image> enemyStridesGreen ;
     private List<Image> enemyStridesRed;
     private List<Image> enemyStridesBlue;
-
+    private IMovementStrategy movementStrategy;
+    private ISquadron squadron;
 
     // Call different methods which initialize different classes
     public Game(WindowArgs windowArgs) : base(windowArgs) {
@@ -31,6 +33,7 @@ public class Game : DIKUGame, IGameEventProcessor {
         InitEnemies();
         InitPlayerShot();
         InitEventBus();
+        InitExplosion();
     }
 
     /// <summary>Go through each shot and enemy to check if
@@ -45,21 +48,26 @@ public class Game : DIKUGame, IGameEventProcessor {
                 //delete the shot
                 shot.DeleteEntity();
             } else {
-                enemies.Iterate(enemy => {
+                squadron.Enemies.Iterate(enemy => {
                     // if collision btw shot and enemy -> delete both entities
                     bool check = CollisionDetection.Aabb(shot.Shape.AsDynamicShape(), enemy.Shape).Collision;
                     if (check) {
                         shot.DeleteEntity();
                         enemy.Hitpoints--;
                     }
-                    enemy.isEnraged();
-                    if (enemy.Hitpoints <= 0){
-                        this.AddExplosion(enemy.Shape.Position, enemy.Shape.Extent);
-                        enemy.DeleteEntity();
-                    }
-                }
-                );
+                });
             }
+        });
+    }
+
+    private void iterateEnemy(){
+        squadron.Enemies.Iterate( enemy => {
+            enemy.isEnraged();
+            if (enemy.Hitpoints <= 0){
+                this.AddExplosion(enemy.Shape.Position, enemy.Shape.Extent);
+                enemy.DeleteEntity();
+            }
+            movementStrategy = new Down(enemy);
         });
     }
 
@@ -67,10 +75,10 @@ public class Game : DIKUGame, IGameEventProcessor {
     /// be drawn in the window </summary>
     public override void Render() {
         player.Render();
-        enemies.RenderEntities();
+        // enemies.RenderEntities();
+        squadron.Enemies.RenderEntities();
         playerShots.RenderEntities();
         enemyExplosions.RenderAnimations();
-        // enemiesFirst.Enemies.RenderEntities();
     }
 
     ///<summary>call different methods in each game loop</summary>
@@ -78,6 +86,8 @@ public class Game : DIKUGame, IGameEventProcessor {
         eventBus.ProcessEventsSequentially();
         player.Move();
         IterateShots();
+        iterateEnemy();
+        movementStrategy.MoveEnemies(squadron.Enemies);
     }
 
     ///<summary>Register each keypress to a corresponding game event</summary>
@@ -190,20 +200,13 @@ public class Game : DIKUGame, IGameEventProcessor {
         enemyStridesRed = ImageStride.CreateStrides
                             (2, Path.Combine("Assets",
                             "Images", "RedMonster.png"));
-        const int numEnemies = 16;
-        enemies = new EntityContainer<Enemy>(numEnemies);
 
-        // RowSquadrons enemiesRow =
-        //     new RowSquadrons(enemyStridesGreen, enemyStridesRed);
-        TriangleSquadrons enemiesTri =
-            new TriangleSquadrons(enemyStridesGreen, enemyStridesRed);
+        squadron = new TriangleSquadrons(enemyStridesGreen, enemyStridesRed);
+        // squadron = new RowSquadrons(enemyStridesBlue, enemyStridesRed);
+    }
 
-        // add all the enmies to the container
-
-        foreach (Enemy enemy in enemiesTri.Enemies){
-            enemies.AddEntity(enemy);
-        }
-        enemyExplosions = new AnimationContainer(numEnemies);
+    public void InitExplosion(){
+        enemyExplosions = new AnimationContainer(squadron.MaxEnemies);
         explosionStrides = ImageStride.CreateStrides(8,
                 Path.Combine("Assets", "Images", "Explosion.png"));
     }
