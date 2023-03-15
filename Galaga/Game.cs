@@ -201,7 +201,7 @@ public class Game : DIKUGame, IGameEventProcessor {
                             (2, Path.Combine("Assets",
                             "Images", "RedMonster.png"));
         // you can choose different squadron formations her
-        squadron = new RowSquadrons(enemyStridesGreen, enemyStridesRed);
+        squadron = new TriangleSquadrons(enemyStridesGreen, enemyStridesRed);
         // squadron = new RowSquadrons(enemyStridesBlue, enemyStridesRed);
 
         // you can also choose different movement strategy her:
