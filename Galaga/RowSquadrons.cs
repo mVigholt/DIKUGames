@@ -24,9 +24,7 @@ public class RowSquadrons: ISquadron{
             for (int j = 0; j < 4; j++){
                 int milliseconds = 80;
                 Vec2F pos = new Vec2F(0.1f + i * 0.1f, 1.0f - j * 0.1f);
-                Vec2F extent = new Vec2F(0.1f, 0.1f);
-                Enemy enemy = new Enemy(
-                new DynamicShape(pos, extent),
+                Enemy enemy = new Enemy(pos,
                 new ImageStride(milliseconds, enemyStride),
                 new ImageStride(milliseconds, alternativeEnemyStride));
                 this.Enemies.AddEntity(enemy);

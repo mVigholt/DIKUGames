@@ -29,14 +29,12 @@ public class TriangleSquadrons: ISquadron{
                 j--;
             }
             else {
-                pos = new Vec2F(0.1f + (i-1) * 0.1f, 1.0f - j * 0.1f);
+                pos = new Vec2F(0.1f +(float) (i-1) * 0.1f, 1.0f - j * 0.1f);
                 j++;
             }
-            Vec2F extent = new Vec2F(0.1f, 0.1f);
-            Enemy enemy = new Enemy(
-            new DynamicShape(pos, extent),
-            new ImageStride(milliseconds, enemyStride),
-            new ImageStride(milliseconds, alternativeEnemyStride));
+            Enemy enemy = new Enemy(pos,
+                new ImageStride(milliseconds, enemyStride),
+                new ImageStride(milliseconds, alternativeEnemyStride));
             this.Enemies.AddEntity(enemy);
 
         }
