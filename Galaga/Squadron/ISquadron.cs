@@ -24,10 +24,10 @@ public interface ISquadron {
     /// <summary>Return true if all enemies are dead </summary>
     bool HasLost() {
         foreach (Enemy enemy in Enemies) {
-            if (enemy.IsDead()) {
+            if (!enemy.IsDead()) {
                 return false;
             }
         }
-        return false;
+        return true;
     }
 }
