@@ -24,7 +24,6 @@ public class Game : DIKUGame, IGameEventProcessor {
     private IMovementStrategy movementStrategy;
     private ISquadron squadron;
     private Score score;
-    private int level;
 
     private List<Image> blueEnemyStride;
     private List<Image> greenEnemyStride;
@@ -43,7 +42,8 @@ public class Game : DIKUGame, IGameEventProcessor {
         InitEventBus();
         InitExplosion();
         InitScore();
-        level = 0;
+        Enemy.baseSpeed = 0.0003f;
+        Console.WriteLine(Enemy.baseSpeed);
     }
 
     private void InitAssets() {
@@ -106,11 +106,13 @@ public class Game : DIKUGame, IGameEventProcessor {
     }
 
     private void GameOver() {
+        Console.WriteLine("game over");
         ResetState();
     }
 
     private void NextLevel() {
-
+        Enemy.baseSpeed += 0.003f;
+        InitEnemies();
     }
 
     ///<summary>Render different Entities, so that they can
@@ -130,6 +132,10 @@ public class Game : DIKUGame, IGameEventProcessor {
         IterateShots();
         iterateEnemy();
         movementStrategy.MoveEnemies(squadron.Enemies);
+        if (squadron.HasLost()) {
+            Console.WriteLine("Squadron has lost");
+            NextLevel();
+        }
     }
 
     ///<summary>Register each keypress to a corresponding game event</summary>
