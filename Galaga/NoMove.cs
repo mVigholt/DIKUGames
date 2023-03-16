@@ -4,14 +4,14 @@ using DIKUArcade.Entities;
 using MovementStrategy;
 
 public class NoMove : IMovementStrategy {
+    public NoMove(Enemy enemy){}
     public void MoveEnemies(EntityContainer<Enemy> enemies) {
-        // throw new System.NotImplementedException();
         foreach (Enemy enemy in enemies){
             MoveEnemy(enemy);
         }
     }
 
     public void MoveEnemy(Enemy enemy) {
-        // throw new System.NotImplementedException();
+
     }
 }

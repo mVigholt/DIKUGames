@@ -26,6 +26,7 @@ public class Game : DIKUGame, IGameEventProcessor {
     private List<Image> enemyStridesBlue;
     private IMovementStrategy movementStrategy;
     private ISquadron squadron;
+    private Score score;
 
     // Call different methods which initialize different classes
     public Game(WindowArgs windowArgs) : base(windowArgs) {
@@ -34,6 +35,7 @@ public class Game : DIKUGame, IGameEventProcessor {
         InitPlayerShot();
         InitEventBus();
         InitExplosion();
+        InitScore();
     }
 
     /// <summary>Go through each shot and enemy to check if
@@ -54,6 +56,7 @@ public class Game : DIKUGame, IGameEventProcessor {
                     if (check) {
                         shot.DeleteEntity();
                         enemy.Hitpoints--;
+                        this.score.Credit++;
                     }
                 });
             }
@@ -75,10 +78,10 @@ public class Game : DIKUGame, IGameEventProcessor {
     /// be drawn in the window </summary>
     public override void Render() {
         player.Render();
-        // enemies.RenderEntities();
         squadron.Enemies.RenderEntities();
         playerShots.RenderEntities();
         enemyExplosions.RenderAnimations();
+        score.display.RenderText();
     }
 
     ///<summary>call different methods in each game loop</summary>
@@ -241,5 +244,9 @@ public class Game : DIKUGame, IGameEventProcessor {
         StationaryShape explosion = new StationaryShape(position, extent);
         ImageStride explosionImage = new ImageStride(EXPLOSION_LENGTH_MS / 8, explosionStrides);
         enemyExplosions.AddAnimation(explosion, EXPLOSION_LENGTH_MS, explosionImage);
+    }
+
+    public void InitScore(){
+        score = new Score(new Vec2F (0.8f, 0.8f), new Vec2F(0.2f, 0.2f));
     }
 }
