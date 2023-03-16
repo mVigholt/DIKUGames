@@ -5,7 +5,7 @@ using DIKUArcade.Graphics;
 using DIKUArcade.Math;
 using Galaga.Squadron;
 
-public class TriangleSquadrons: ISquadron{
+public class TriangleSquadrons: ISquadron {
 
     public EntityContainer<Enemy> Enemies {get;}
 
@@ -36,7 +36,6 @@ public class TriangleSquadrons: ISquadron{
                 new ImageStride(milliseconds, enemyStride),
                 new ImageStride(milliseconds, alternativeEnemyStride));
             this.Enemies.AddEntity(enemy);
-
         }
     }
 }

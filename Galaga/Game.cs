@@ -43,13 +43,14 @@ public class Game : DIKUGame, IGameEventProcessor {
         level = 0;
     }
 
-    /// <summary>Go through each shot and enemy to check if
-    /// the shot has collided with enemies</summary>
+    /// <summary>
+    /// Go through each shot and enemy to check if
+    /// the shot has collided with enemies.
+    /// </summary>
     private void IterateShots() {
         playerShots.Iterate(shot => {
             if (shot.Shape.Position.X < 0.0f || shot.Shape.Position.X > 1.0f - shot.Shape.Extent.X
                 || shot.Shape.Position.Y < 0.0f || shot.Shape.Position.Y > 1.0f) {
-                //delete the shot
                 shot.DeleteEntity();
                 return;
             }
@@ -59,7 +60,7 @@ public class Game : DIKUGame, IGameEventProcessor {
                     CollisionDetection.Aabb(shot.Shape.AsDynamicShape(), enemy.Shape).Collision;
                 if (collisionWithShot) {
                     shot.DeleteEntity();
-                    enemy.Hitpoints--;
+                    enemy.LoseHealth();
                 }
             });
         
@@ -70,7 +71,7 @@ public class Game : DIKUGame, IGameEventProcessor {
     private void iterateEnemy(){
         squadron.Enemies.Iterate( enemy => {
             enemy.isEnraged();
-            if (enemy.Hitpoints <= 0) {
+            if (enemy.IsDead()) {
                 Explode(enemy);
                 enemy.DeleteEntity();
                 score.IncrementPoints();
@@ -79,10 +80,9 @@ public class Game : DIKUGame, IGameEventProcessor {
                 CollisionDetection.Aabb(player.Shape.AsDynamicShape(), enemy.Shape).Collision;
             if (collisionWithPlayer) {
                 player.LoseHealth();
-                Console.WriteLine($"Health left: {player.health.Points}");
-                if (player.IsDead()) {
-                    GameOver();
-                }
+            }
+            if (player.IsDead() || squadron.HasWon()) {
+                GameOver();
             }
         });
     }
@@ -96,6 +96,7 @@ public class Game : DIKUGame, IGameEventProcessor {
     public override void Render() {
         player.Render();
         squadron.Enemies.RenderEntities();
+        squadron.RenderHealth();
         playerShots.RenderEntities();
         enemyExplosions.RenderAnimations();
         score.Render();

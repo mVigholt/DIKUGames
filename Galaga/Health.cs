@@ -5,6 +5,12 @@ using DIKUArcade.Graphics;
 using DIKUArcade.Math;
 using DIKUArcade.Entities;
 
+/// <summary>
+/// An object that can hold health information and display it.
+/// In a larger application, consider using a design pattern
+/// that attaches this to an entity using an intermediary object.
+/// Could be the mediator pattern.
+/// </summary>
 public class Health {
 
     private int points;
@@ -30,8 +36,7 @@ public class Health {
         get { return max; }
     }
 
-    // Remember to explaination your choice as to what happens
-    // when losing health.
+    /// <summary> Decrement the health points and update the display. </summary>
     public void LoseHealth() {
         points--;
         display.SetText($"{points}");
