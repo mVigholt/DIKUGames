@@ -38,8 +38,8 @@ public class Health {
     }
 
     /// <summary> Decrement the health points and update the display. </summary>
-    public void LoseHealth() {
-        points--;
+    public void LoseHealth(int hp) {
+        points -= hp;
         display.SetText($"{points}");
     }
 
