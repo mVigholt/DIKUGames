@@ -1,6 +1,4 @@
 namespace Galaga;
-
-using DIKUArcade.Entities;
 using MovementStrategy;
 
 public class NoMove : IMovementStrategy {
