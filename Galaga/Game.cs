@@ -78,7 +78,7 @@ public class Game : DIKUGame, IGameEventProcessor {
                     CollisionDetection.Aabb(shot.Shape.AsDynamicShape(), enemy.Shape).Collision;
                 if (collisionWithShot) {
                     shot.DeleteEntity();
-                    enemy.LoseHealth();
+                    enemy.LoseHealth(1);
                 }
             });
         
@@ -97,7 +97,8 @@ public class Game : DIKUGame, IGameEventProcessor {
             bool collisionWithPlayer =
                 CollisionDetection.Aabb(player.Shape.AsDynamicShape(), enemy.Shape).Collision;
             if (collisionWithPlayer) {
-                player.LoseHealth();
+                player.LoseHealth(enemy.hitpoints);
+                enemy.LoseHealth(enemy.hitpoints);
             }
             if (player.IsDead() || squadron.HasWon()) {
                 GameOver();

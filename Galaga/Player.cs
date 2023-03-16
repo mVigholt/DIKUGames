@@ -27,12 +27,12 @@ public class Player : Entity, IGameEventProcessor {
         health = new Health(this, startingHealth);
     }
 
-    public void LoseHealth() {
-        health.LoseHealth();
+    public void LoseHealth(int hp) {
+        health.LoseHealth(hp);
     }
 
     public bool IsDead() {
-        return health.Points == 0;
+        return health.Points <= 0;
     }
 
     public Vec2F GetPosition() {
