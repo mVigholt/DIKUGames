@@ -27,39 +27,42 @@ public class Game : DIKUGame, IGameEventProcessor {
     private IMovementStrategy movementStrategy;
     private ISquadron squadron;
     private Score score;
+    private int level;
 
-    // Call different methods which initialize different classes
     public Game(WindowArgs windowArgs) : base(windowArgs) {
+        ResetState();
+    }
+
+    private void ResetState() {
         InitPlayer();
         InitEnemies();
         InitPlayerShot();
         InitEventBus();
         InitExplosion();
         InitScore();
+        level = 0;
     }
 
     /// <summary>Go through each shot and enemy to check if
     /// the shot has collided with enemies</summary>
     private void IterateShots() {
         playerShots.Iterate(shot => {
-            // move the shot's shape
-            shot.Shape.Move();
-            // CollisionDetection.Aabb(shot.Shape.AsDynamicShape(), shot.Shape);
             if (shot.Shape.Position.X < 0.0f || shot.Shape.Position.X > 1.0f - shot.Shape.Extent.X
                 || shot.Shape.Position.Y < 0.0f || shot.Shape.Position.Y > 1.0f) {
                 //delete the shot
                 shot.DeleteEntity();
-            } else {
-                squadron.Enemies.Iterate(enemy => {
-                    // if collision btw shot and enemy -> enemy's hitpoint drop 1 point.
-                    bool check = CollisionDetection.Aabb(shot.Shape.AsDynamicShape(), enemy.Shape).Collision;
-                    if (check) {
-                        shot.DeleteEntity();
-                        enemy.Hitpoints--;
-                        this.score.Credit++;
-                    }
-                });
+                return;
             }
+            shot.Shape.Move();
+            squadron.Enemies.Iterate(enemy => {
+                bool collisionWithShot =
+                    CollisionDetection.Aabb(shot.Shape.AsDynamicShape(), enemy.Shape).Collision;
+                if (collisionWithShot) {
+                    shot.DeleteEntity();
+                    enemy.Hitpoints--;
+                }
+            });
+        
         });
     }
 
@@ -67,11 +70,25 @@ public class Game : DIKUGame, IGameEventProcessor {
     private void iterateEnemy(){
         squadron.Enemies.Iterate( enemy => {
             enemy.isEnraged();
-            if (enemy.Hitpoints <= 0){
-                this.AddExplosion(enemy.Shape.Position, enemy.Shape.Extent);
+            if (enemy.Hitpoints <= 0) {
+                Explode(enemy);
                 enemy.DeleteEntity();
+                score.IncrementPoints();
+            }
+            bool collisionWithPlayer =
+                CollisionDetection.Aabb(player.Shape.AsDynamicShape(), enemy.Shape).Collision;
+            if (collisionWithPlayer) {
+                player.LoseHealth();
+                Console.WriteLine($"Health left: {player.health.Points}");
+                if (player.IsDead()) {
+                    GameOver();
+                }
             }
         });
+    }
+
+    private void GameOver() {
+        ResetState();
     }
 
     ///<summary>Render different Entities, so that they can
@@ -240,10 +257,14 @@ public class Game : DIKUGame, IGameEventProcessor {
     }
 
     ///<summary> create new explosion animation instance </summary>
-    public void AddExplosion(Vec2F position, Vec2F extent) {
-        StationaryShape explosion = new StationaryShape(position, extent);
-        ImageStride explosionImage = new ImageStride(EXPLOSION_LENGTH_MS / 8, explosionStrides);
-        enemyExplosions.AddAnimation(explosion, EXPLOSION_LENGTH_MS, explosionImage);
+    public void Explode(Entity entity) {
+        Vec2F pos = entity.Shape.Position;
+        Vec2F extent = entity.Shape.Extent;
+        StationaryShape explosion = new StationaryShape(pos, extent);
+        int nImages = 8;
+        ImageStride stride =
+            new ImageStride(EXPLOSION_LENGTH_MS / nImages, explosionStrides);
+        enemyExplosions.AddAnimation(explosion, EXPLOSION_LENGTH_MS, stride);
     }
 
     public void InitScore(){

@@ -14,7 +14,7 @@ public class Enemy : Entity {
         }
     }
 
-    private static Vec2F extend = new(0.1f, 0.1f);
+    private static readonly Vec2F EXTENT = new Vec2F(0.1f, 0.1f);
 
     public readonly Vec2F startPosition;
 
@@ -31,7 +31,7 @@ public class Enemy : Entity {
     }
 
     public Enemy(Vec2F position, IBaseImage image, IBaseImage alterImage)
-        :base(new DynamicShape(position, extend), image) {
+        :base(new DynamicShape(position, EXTENT), image) {
         this.Image = image;
         this.alterImage = alterImage;
         this.startPosition = position;

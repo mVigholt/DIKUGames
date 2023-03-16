@@ -6,9 +6,7 @@ using DIKUArcade.Graphics;
 using DIKUArcade.Math;
 using DIKUArcade.Input;
 
-public class Player: IGameEventProcessor {
-    private Entity entity;
-
+public class Player : Entity, IGameEventProcessor {
     private DynamicShape shape;
 
     private float moveLeft = 0.0f;
@@ -20,10 +18,21 @@ public class Player: IGameEventProcessor {
     private float moveDown = 0.0f;
 
     private const float MOVEMENT_SPEED = 0.01f;
+    public Health health;
 
-    public Player(DynamicShape shape, IBaseImage image) {
-        entity = new Entity(shape, image);
+    public Player(DynamicShape shape, IBaseImage image) 
+        : base(shape, image) {
         this.shape = shape;
+        int startingHealth = 3;
+        health = new Health(shape.Position, shape.Extent, startingHealth);
+    }
+
+    public void LoseHealth() {
+        health.LoseHealth();
+    }
+
+    public bool IsDead() {
+        return health.Points == 0;
     }
 
     public Vec2F GetPosition() {
@@ -35,27 +44,27 @@ public class Player: IGameEventProcessor {
     }
 
     public void Render() {
-        entity.RenderEntity();
+        RenderEntity();
     }
 
-    private Vec2F minCorner() {return new Vec2F(0.0f, 0.0f);}
+    private Vec2F MinCorner() {return new Vec2F(0.0f, 0.0f);}
 
-    private Vec2F maxCorner() {return new Vec2F(1.0f - shape.Extent.X, 1.0f - shape.Extent.Y);}
+    private Vec2F MaxCorner() {return new Vec2F(1.0f - shape.Extent.X, 1.0f - shape.Extent.Y);}
 
     public void Move() {
         shape.Move();
 
-        if (shape.Position.X < minCorner().X) {
-            shape.Position.X = minCorner().X;
+        if (shape.Position.X < MinCorner().X) {
+            shape.Position.X = MinCorner().X;
         }
-        if (shape.Position.X > maxCorner().X) {
-            shape.Position.X = maxCorner().X;
+        if (shape.Position.X > MaxCorner().X) {
+            shape.Position.X = MaxCorner().X;
         }
-        if (shape.Position.Y < minCorner().Y) {
-            shape.Position.Y = minCorner().Y;
+        if (shape.Position.Y < MinCorner().Y) {
+            shape.Position.Y = MinCorner().Y;
         }
-        if (shape.Position.Y > maxCorner().Y) {
-            shape.Position.Y = maxCorner().Y;
+        if (shape.Position.Y > MaxCorner().Y) {
+            shape.Position.Y = MaxCorner().Y;
         }
     }
 
