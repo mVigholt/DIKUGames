@@ -206,7 +206,7 @@ public class Game : DIKUGame, IGameEventProcessor {
 
         // you can also choose different movement strategy her:
         squadron.Enemies.Iterate(enemy=>{
-            movementStrategy = new Down(enemy);
+            movementStrategy = new ZigZagDown(enemy);
         });
     }
 

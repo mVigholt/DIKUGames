@@ -5,8 +5,8 @@ using MovementStrategy;
 using System;
 
 public class ZigZagDown : IMovementStrategy {
-    float x0 ;
-    float y0 ;
+    private float x0 ;
+    private float y0 ;
     public ZigZagDown(Enemy enemy){
         x0 = enemy.Shape.Position.X;
         y0 = enemy.Shape.Position.Y;
@@ -17,15 +17,16 @@ public class ZigZagDown : IMovementStrategy {
         }
     }
 
-    //#TODO, logic is not fully correct. It shows only half of the enemies.
-    //Maybe the start position has some problems.
     public void MoveEnemy(Enemy enemy) {
         float p = 0.045f;
         float s = 0.0003f;
         float a = 0.05f;
         enemy.Shape.MoveY(-s);
+        float yi_1 = enemy.Shape.Position.Y + s;
         float yi = enemy.Shape.Position.Y;
-        float xs = (float) (a* Math.Sin (( 2* Math.PI * (y0- yi))/p));
-        enemy.Shape.Position.X =  x0 + xs;
+        float xi_1 = x0 + (float) (a* Math.Sin (( 2* Math.PI * (y0 - yi_1))/p));
+        float xi = x0 + (float) (a* Math.Sin (( 2* Math.PI * (y0 - yi))/p));
+        float deltaX = xi - xi_1;
+        enemy.Shape.MoveX(-deltaX);
     }
 }
