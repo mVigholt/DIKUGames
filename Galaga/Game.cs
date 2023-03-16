@@ -13,6 +13,8 @@ using DIKUArcade.Physics;
 using Galaga.MovementStrategy;
 using Galaga.Squadron;
 
+using System.Timers;///////// TIL TIMER I BUNDEN!
+
 public class Game : DIKUGame, IGameEventProcessor {
     private Player player;
     private EntityContainer<PlayerShot> playerShots;
@@ -89,18 +91,20 @@ public class Game : DIKUGame, IGameEventProcessor {
     private void iterateEnemy(){
         squadron.Enemies.Iterate( enemy => {
             enemy.isEnraged();
+            bool collisionWithPlayer =
+                CollisionDetection.Aabb(player.Shape.AsDynamicShape(), enemy.Shape).Collision;
+            if (collisionWithPlayer || enemy.Shape.Position.Y < 0f) {
+                player.LoseHealth(enemy.hitpoints);
+                enemy.LoseHealth(enemy.hitpoints);
+            }
+
             if (enemy.IsDead()) {
                 Explode(enemy);
                 enemy.DeleteEntity();
                 score.IncrementPoints();
             }
-            bool collisionWithPlayer =
-                CollisionDetection.Aabb(player.Shape.AsDynamicShape(), enemy.Shape).Collision;
-            if (collisionWithPlayer) {
-                player.LoseHealth(enemy.hitpoints);
-                enemy.LoseHealth(enemy.hitpoints);
-            }
-            if (player.IsDead() || squadron.HasWon()) {
+
+            if (player.IsDead()){//} || squadron.HasWon()) {
                 GameOver();
             }
         });
@@ -112,7 +116,7 @@ public class Game : DIKUGame, IGameEventProcessor {
     }
 
     private void NextLevel() {
-        Enemy.baseSpeed += 0.003f;
+        Enemy.baseSpeed += 0.0001f;
         InitEnemies();
     }
 
@@ -162,6 +166,9 @@ public class Game : DIKUGame, IGameEventProcessor {
                         IntArg1 = (int)KeyboardAction.KeyPress
                     }
                 );
+                break;
+            case KeyboardKey.A: //////// TIL TIMER I BUNDEN!!
+                startStop();
                 break;
             default:
                 break;
@@ -294,4 +301,38 @@ public class Game : DIKUGame, IGameEventProcessor {
     public void InitScore(){
         score = new Score(new Vec2F (0.8f, 0.8f), new Vec2F(0.2f, 0.2f));
     }
+
+
+///////////////////////////SLET ELLER RYK MIG/////////////////////////////////////
+    private static System.Timers.Timer aTimer;
+    private bool timerOn = false;
+    private void start() { 
+        aTimer = new System.Timers.Timer(100); 
+        aTimer.Elapsed += OnTimedEvent;
+        aTimer.AutoReset = true;
+        aTimer.Enabled = true;
+        timerOn = true;
+    } 
+    private void stop() {
+        aTimer.Stop();
+        aTimer.Dispose();
+        timerOn = false;
+    }
+    public void startStop() {
+        if (timerOn) {
+            stop();
+        } else {
+            start();
+        }
+    }
+    private void OnTimedEvent(Object source, ElapsedEventArgs e){
+        eventBus.RegisterEvent(
+                    new GameEvent {
+                        EventType = GameEventType.InputEvent,
+                        ObjectArg1 = KeyboardKey.Space,
+                        IntArg1 = (int)KeyboardAction.KeyRelease,
+                    }
+                );
+    }
+/////////////////////////////////////////////////////////////////////////////
 }

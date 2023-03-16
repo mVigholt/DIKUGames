@@ -11,16 +11,6 @@ public interface ISquadron {
         List<Image> enemyStride,
         List<Image> alternativeEnemyStride);
 
-    /// <summary>Return true if an enemy has reached the bottom of the viewport </summary>
-    bool HasWon() {
-        foreach (Enemy enemy in Enemies) {
-            if (enemy.Shape.Position.Y < 0f) {
-                return true;
-            }
-        }
-        return false;
-    }
-
     /// <summary>Return true if all enemies are dead </summary>
     bool HasLost() {
         foreach (Enemy enemy in Enemies) {
