@@ -11,7 +11,7 @@ public class Enemy : Entity {
     private static readonly Vec2F EXTENT = new Vec2F(0.1f, 0.1f);
     public readonly Vec2F startPosition;
     private IBaseImage alterImage;
-    private int hitpoints;
+    public int hitpoints {get; private set;}
 
     public Enemy(Vec2F position, IBaseImage image, IBaseImage alterImage)
         : base(new DynamicShape(position, EXTENT), image) {
@@ -30,8 +30,8 @@ public class Enemy : Entity {
         }
     }
 
-    public void LoseHealth() {
-        hitpoints--;
+    public void LoseHealth(int hp) {
+        hitpoints -= hp;
     }
 
     public bool IsDead() {
