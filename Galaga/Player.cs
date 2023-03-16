@@ -24,7 +24,7 @@ public class Player : Entity, IGameEventProcessor {
         : base(shape, image) {
         this.shape = shape;
         int startingHealth = 3;
-        health = new Health(shape.Position, shape.Extent, startingHealth);
+        health = new Health(new Vec2F(0.6f, 0.6f), new Vec2F(0.2f, 0.2f), startingHealth);
     }
 
     public void LoseHealth() {
@@ -45,6 +45,7 @@ public class Player : Entity, IGameEventProcessor {
 
     public void Render() {
         RenderEntity();
+        health.Render();
     }
 
     private Vec2F MinCorner() {return new Vec2F(0.0f, 0.0f);}

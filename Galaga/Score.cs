@@ -14,6 +14,13 @@ public class Score {
 
     public void IncrementPoints() {
         points++;
+        // Do not call SetText inside Render.
+        // It will create a bitmap on every frame,
+        // making the game incredibly slow
         display.SetText($"Score: {points}");
+    }
+
+    public void Render() {
+        display.RenderText();
     }
 }

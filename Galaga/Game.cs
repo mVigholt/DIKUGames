@@ -98,7 +98,7 @@ public class Game : DIKUGame, IGameEventProcessor {
         squadron.Enemies.RenderEntities();
         playerShots.RenderEntities();
         enemyExplosions.RenderAnimations();
-        score.display.RenderText();
+        score.Render();
     }
 
     ///<summary>call different methods in each game loop</summary>
