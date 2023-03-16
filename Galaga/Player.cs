@@ -23,7 +23,7 @@ public class Player : Entity, IGameEventProcessor {
     public Player(DynamicShape shape, IBaseImage image) 
         : base(shape, image) {
         this.shape = shape;
-        int startingHealth = 3;
+        int startingHealth = 100;
         health = new Health(this, startingHealth);
     }
 

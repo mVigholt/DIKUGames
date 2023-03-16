@@ -89,18 +89,20 @@ public class Game : DIKUGame, IGameEventProcessor {
     private void iterateEnemy(){
         squadron.Enemies.Iterate( enemy => {
             enemy.isEnraged();
+            bool collisionWithPlayer =
+                CollisionDetection.Aabb(player.Shape.AsDynamicShape(), enemy.Shape).Collision;
+            if (collisionWithPlayer || enemy.Shape.Position.Y < 0f) {
+                player.LoseHealth(enemy.hitpoints);
+                enemy.LoseHealth(enemy.hitpoints);
+            }
+
             if (enemy.IsDead()) {
                 Explode(enemy);
                 enemy.DeleteEntity();
                 score.IncrementPoints();
             }
-            bool collisionWithPlayer =
-                CollisionDetection.Aabb(player.Shape.AsDynamicShape(), enemy.Shape).Collision;
-            if (collisionWithPlayer) {
-                player.LoseHealth(enemy.hitpoints);
-                enemy.LoseHealth(enemy.hitpoints);
-            }
-            if (player.IsDead() || squadron.HasWon()) {
+
+            if (player.IsDead()){//} || squadron.HasWon()) {
                 GameOver();
             }
         });
