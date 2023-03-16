@@ -9,16 +9,14 @@ public class Enemy : Entity {
     private static readonly Vec2F EXTENT = new Vec2F(0.1f, 0.1f);
     public readonly Vec2F startPosition;
     private IBaseImage alterImage;
-    private int hitpoints = 4;
-    private Health health;
+    private int hitpoints;
 
     public Enemy(Vec2F position, IBaseImage image, IBaseImage alterImage)
         : base(new DynamicShape(position, EXTENT), image) {
-        this.Image = image;
+        Image = image;
         this.alterImage = alterImage;
-        this.startPosition = position;
-        int startingHealth = 4;
-        health = new Health(this, startingHealth);
+        startPosition = position;
+        hitpoints = 4;
     }
     
     public float Speed {
@@ -30,30 +28,17 @@ public class Enemy : Entity {
         }
     }
 
-    public int Hitpoints {
-        get {
-            return hitpoints;
-        }
-        set {
-            hitpoints = value;
-        }
-    }
-
-    public void RenderHealth() {
-        health.Render();
-    }
-
     public void LoseHealth() {
-        health.LoseHealth();
+        hitpoints--;
     }
 
     public bool IsDead() {
-        return health.Points == 0;
+        return hitpoints <= 0;
     }
 
 
     public bool isEnraged(){
-        if (this.Hitpoints <= 2) {
+        if (this.hitpoints <= 2) {
             this.Speed += 0.0001f;
             this.Image = alterImage;
             return true;

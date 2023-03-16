@@ -38,17 +38,11 @@ public class Game : DIKUGame, IGameEventProcessor {
 
     private void ResetState() {
         InitPlayer();
-        Console.WriteLine("Init player");
         InitEnemies();
-        Console.WriteLine("Init enemies");
         InitPlayerShot();
-        Console.WriteLine("Init shot");
         InitEventBus();
-        Console.WriteLine("Init bus");
         InitExplosion();
-        Console.WriteLine("Init explosion");
         InitScore();
-        Console.WriteLine("Init score");
         level = 0;
     }
 
@@ -115,12 +109,15 @@ public class Game : DIKUGame, IGameEventProcessor {
         ResetState();
     }
 
+    private void NextLevel() {
+
+    }
+
     ///<summary>Render different Entities, so that they can
     /// be drawn in the window </summary>
     public override void Render() {
         player.Render();
         squadron.Enemies.RenderEntities();
-        squadron.RenderHealth();
         playerShots.RenderEntities();
         enemyExplosions.RenderAnimations();
         score.Render();

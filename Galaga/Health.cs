@@ -1,6 +1,7 @@
 namespace Galaga;
 
 using System;
+using System.Collections.Generic;
 using DIKUArcade.Graphics;
 using DIKUArcade.Math;
 using DIKUArcade.Entities;
