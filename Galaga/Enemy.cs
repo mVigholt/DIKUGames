@@ -38,7 +38,7 @@ public class Enemy : Entity {
     }
 
     public bool isEnraged(){
-        if (this.Hitpoints <= 2){
+        if (this.Hitpoints <= 2) {
             this.Speed += 0.0001f;
             this.Image = alterImage;
             return true;

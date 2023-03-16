@@ -24,7 +24,7 @@ public class Player : Entity, IGameEventProcessor {
         : base(shape, image) {
         this.shape = shape;
         int startingHealth = 3;
-        health = new Health(new Vec2F(0.6f, 0.6f), new Vec2F(0.2f, 0.2f), startingHealth);
+        health = new Health(this, startingHealth);
     }
 
     public void LoseHealth() {
