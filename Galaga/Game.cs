@@ -21,26 +21,50 @@ public class Game : DIKUGame, IGameEventProcessor {
     private AnimationContainer enemyExplosions;
     private List<Image> explosionStrides;
     private const int EXPLOSION_LENGTH_MS = 500;
-    private List<Image> enemyStridesGreen ;
-    private List<Image> enemyStridesRed;
-    private List<Image> enemyStridesBlue;
     private IMovementStrategy movementStrategy;
     private ISquadron squadron;
     private Score score;
     private int level;
 
+    private List<Image> blueEnemyStride;
+    private List<Image> greenEnemyStride;
+    private List<Image> redEnemyStride;
+    private Image playerImage;
+
     public Game(WindowArgs windowArgs) : base(windowArgs) {
+        InitAssets();
         ResetState();
     }
 
     private void ResetState() {
         InitPlayer();
+        Console.WriteLine("Init player");
         InitEnemies();
+        Console.WriteLine("Init enemies");
         InitPlayerShot();
+        Console.WriteLine("Init shot");
         InitEventBus();
+        Console.WriteLine("Init bus");
         InitExplosion();
+        Console.WriteLine("Init explosion");
         InitScore();
+        Console.WriteLine("Init score");
         level = 0;
+    }
+
+    private void InitAssets() {
+        blueEnemyStride = ImageStride.CreateStrides(
+            4, Path.Combine("Assets", "Images", "BlueMonster.png"));
+        greenEnemyStride = ImageStride.CreateStrides(
+            2, Path.Combine("Assets", "Images", "GreenMonster.png"));
+        redEnemyStride = ImageStride.CreateStrides(
+            2, Path.Combine("Assets", "Images", "RedMonster.png"));
+        playerImage = new Image(
+            Path.Combine("Assets", "Images", "Player.png"));
+        explosionStrides = ImageStride.CreateStrides(8,
+            Path.Combine("Assets", "Images", "Explosion.png"));
+        playerShotImage = new Image(
+            Path.Combine("Assets", "Images", "BulletRed2.png"));
     }
 
     /// <summary>
@@ -207,25 +231,23 @@ public class Game : DIKUGame, IGameEventProcessor {
     public void InitPlayer() {
         player = new Player(
             new DynamicShape(new Vec2F(0.45f, 0.1f), new Vec2F(0.1f, 0.1f)),
-            new Image(Path.Combine("Assets", "Images", "Player.png")));
+            playerImage);
+    }
+
+    private ISquadron RandomSquadron() {
+        int nTypesOfSquadron = 3;
+        int randInt = new Random().Next(nTypesOfSquadron);
+        var squadrons = new Dictionary<int, ISquadron>() {
+            { 0, new RowSquadron(blueEnemyStride, redEnemyStride) },
+            { 1, new TriangleSquadron(greenEnemyStride, redEnemyStride) },
+            { 2, new ASquadron(blueEnemyStride, redEnemyStride) },
+        };
+        return squadrons[randInt];
     }
 
     /// <summary>Create a few enemies and add them to the game</summary>
     public void InitEnemies() {
-        enemyStridesBlue = ImageStride.CreateStrides
-                            (4,Path.Combine("Assets",
-                            "Images", "BlueMonster.png"));
-        enemyStridesGreen = ImageStride.CreateStrides
-                            (2, Path.Combine("Assets",
-                            "Images", "GreenMonster.png"));
-        enemyStridesRed = ImageStride.CreateStrides
-                            (2, Path.Combine("Assets",
-                            "Images", "RedMonster.png"));
-        // you can choose different squadron formations her
-        squadron = new TriangleSquadrons(enemyStridesGreen, enemyStridesRed);
-        // squadron = new RowSquadrons(enemyStridesBlue, enemyStridesRed);
-
-        // you can also choose different movement strategy her:
+        squadron = RandomSquadron();
         squadron.Enemies.Iterate(enemy=>{
             movementStrategy = new ZigZagDown(enemy);
         });
@@ -233,8 +255,6 @@ public class Game : DIKUGame, IGameEventProcessor {
 
     public void InitExplosion(){
         enemyExplosions = new AnimationContainer(squadron.MaxEnemies);
-        explosionStrides = ImageStride.CreateStrides(8,
-                Path.Combine("Assets", "Images", "Explosion.png"));
     }
 
     ///<summary> create new GameEventBus instance and
@@ -254,7 +274,6 @@ public class Game : DIKUGame, IGameEventProcessor {
     ///<summary> create new PlayerShot instance </summary>
     public void InitPlayerShot() {
         playerShots = new EntityContainer<PlayerShot>();
-        playerShotImage = new Image(Path.Combine("Assets", "Images", "BulletRed2.png"));
     }
 
     ///<summary> create new explosion animation instance </summary>

@@ -5,20 +5,21 @@ using DIKUArcade.Graphics;
 using DIKUArcade.Math;
 using Galaga.Squadron;
 
-public class TriangleSquadrons: ISquadron {
+public class TriangleSquadron : ISquadron {
 
     public EntityContainer<Enemy> Enemies {get;}
 
     public int MaxEnemies {get;}
 
-    public TriangleSquadrons (List<Image> enemyStride,
+    public TriangleSquadron (List<Image> enemyStride,
         List<Image> alternativeEnemyStride) {
         this.MaxEnemies = 8;
         this.Enemies =  new EntityContainer<Enemy>(MaxEnemies);
         this.CreateEnemies(enemyStride,alternativeEnemyStride);
     }
 
-    public void CreateEnemies(List<Image> enemyStride,
+    public void CreateEnemies(
+        List<Image> enemyStride,
         List<Image> alternativeEnemyStride) {
         int j = 4;
         Vec2F pos = new Vec2F(0.0f , 0.0f);
@@ -29,13 +30,13 @@ public class TriangleSquadrons: ISquadron {
                 j--;
             }
             else {
-                pos = new Vec2F(0.1f +(float) i * 0.1f, 1.0f - (j+1)* 0.1f);
+                pos = new Vec2F(0.1f + (float) i * 0.1f, 1.0f - (j + 1)* 0.1f);
                 j++;
             }
             Enemy enemy = new Enemy(pos,
                 new ImageStride(milliseconds, enemyStride),
                 new ImageStride(milliseconds, alternativeEnemyStride));
-            this.Enemies.AddEntity(enemy);
+            Enemies.AddEntity(enemy);
         }
     }
 }
