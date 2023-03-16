@@ -1,13 +1,10 @@
 namespace Galaga;
-
-using System;
-using System.IO;
 using DIKUArcade.Entities;
 using DIKUArcade.Graphics;
 using DIKUArcade.Math;
 
 public class Enemy : Entity {
-    private float speed = 0.001f;
+    private float speed = 0.0003f;
     public float Speed{
         get{
             return speed;
@@ -16,9 +13,13 @@ public class Enemy : Entity {
             speed = value;
         }
     }
+
     private static Vec2F extend = new(0.1f, 0.1f);
-    // public Vec2F startPosition {get;}
+
+    public readonly Vec2F startPosition;
+
     private IBaseImage alterImage;
+
     private int hitpoints = 4;
     public int Hitpoints{
         get {
@@ -28,16 +29,17 @@ public class Enemy : Entity {
             hitpoints = value;
         }
     }
+
     public Enemy(Vec2F position, IBaseImage image, IBaseImage alterImage)
-        :base(new DynamicShape(position, extend), image)  {
+        :base(new DynamicShape(position, extend), image) {
         this.Image = image;
         this.alterImage = alterImage;
-        // this.startPosition = position;
+        this.startPosition = position;
     }
 
     public bool isEnraged(){
         if (this.Hitpoints <= 2){
-            this.Speed += 0.0008f;
+            this.Speed += 0.0001f;
             this.Image = alterImage;
             return true;
         }
