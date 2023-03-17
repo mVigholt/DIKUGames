@@ -20,11 +20,13 @@ public class Player : Entity, IGameEventProcessor {
     private const float MOVEMENT_SPEED = 0.01f;
     public Health health;
 
-    public Player(DynamicShape shape, IBaseImage image) 
+    public Player(DynamicShape shape, IBaseImage image)
         : base(shape, image) {
         this.shape = shape;
-        int startingHealth = 100;
-        health = new Health(this, startingHealth);
+        int startingHealth = 50;
+        Vec2F pos = new Vec2F(0.0f, -0.2f) ;
+        Vec2F extent = new Vec2F(0.3f, 0.3f);
+        health = new Health(pos, extent, startingHealth);
     }
 
     public void LoseHealth(int hp) {
@@ -97,11 +99,11 @@ public class Player : Entity, IGameEventProcessor {
         GameEventType? eventType = gameEvent.EventType;
         KeyboardKey? key = (KeyboardKey?)gameEvent.ObjectArg1;
         KeyboardAction? action = (KeyboardAction?)gameEvent.IntArg1;
-        
+
         switch (eventType, key, action) {
             case (_, KeyboardKey.Left, _):
                 SetMoveLeft(action == KeyboardAction.KeyPress);
-                break; 
+                break;
             case (_, KeyboardKey.Right, _):
                 SetMoveRight(action == KeyboardAction.KeyPress);
                 break;
