@@ -45,7 +45,6 @@ public class Game : DIKUGame, IGameEventProcessor {
         InitExplosion();
         InitScore();
         Enemy.baseSpeed = 0.0003f;
-        Console.WriteLine(Enemy.baseSpeed);
     }
 
     private void InitAssets() {
@@ -111,7 +110,6 @@ public class Game : DIKUGame, IGameEventProcessor {
     }
 
     private void GameOver() {
-        Console.WriteLine("game over");
         ResetState();
     }
 
@@ -138,7 +136,6 @@ public class Game : DIKUGame, IGameEventProcessor {
         iterateEnemy();
         movementStrategy.MoveEnemies(squadron.Enemies);
         if (squadron.HasLost()) {
-            Console.WriteLine("Squadron has lost");
             NextLevel();
         }
 
@@ -259,9 +256,63 @@ public class Game : DIKUGame, IGameEventProcessor {
         int nTypesOfSquadron = 3;
         int randInt = new Random().Next(nTypesOfSquadron);
         var squadrons = new Dictionary<int, ISquadron>() {
-            { 0, new RowSquadron(blueEnemyStride, redEnemyStride) },
-            { 1, new TriangleSquadron(greenEnemyStride, redEnemyStride) },
-            { 2, new ASquadron(blueEnemyStride, redEnemyStride) },
+            { 
+                0,
+                new RowSquadron(
+                    blueEnemyStride,
+                    redEnemyStride,
+                    new int[,] {
+                        { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+                        { 0, 1, 1, 1, 1, 1, 1, 1, 1, 0 },
+                        { 0, 1, 1, 1, 1, 1, 1, 1, 1, 0 },
+                        { 0, 1, 1, 1, 1, 1, 1, 1, 1, 0 },
+                        { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+                        { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+                        { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+                        { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+                        { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+                        { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+                    }
+                )
+            },
+            { 
+                1, 
+                new TriangleSquadron(
+                    greenEnemyStride,
+                    redEnemyStride,
+                    new int[,] {
+                        { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+                        { 0, 0, 0, 0, 1, 1, 0, 0, 0, 0 },
+                        { 0, 0, 0, 1, 0, 0, 1, 0, 0, 0 },
+                        { 0, 0, 1, 0, 0, 0, 0, 1, 0, 0 },
+                        { 0, 1, 0, 0, 0, 0, 0, 0, 1, 0 },
+                        { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+                        { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+                        { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+                        { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+                        { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+                    }
+                )
+            },
+            { 
+                2,
+                new XSquadron(
+                    blueEnemyStride,
+                    redEnemyStride,
+                    new int[,] {
+                        { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+                        { 0, 0, 0, 1, 0, 0, 1, 0, 0, 0 },
+                        { 0, 0, 0, 0, 1, 1, 0, 0, 0, 0 },
+                        { 0, 0, 0, 0, 1, 1, 0, 0, 0, 0 },
+                        { 0, 0, 0, 1, 0, 0, 1, 0, 0, 0 },
+                        { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+                        { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+                        { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+                        { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+                        { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+                    }
+                )
+            },
         };
         return squadrons[randInt];
     }

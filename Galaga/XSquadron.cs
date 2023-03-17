@@ -2,15 +2,18 @@ namespace Galaga;
 using System.Collections.Generic;
 using DIKUArcade.Entities;
 using DIKUArcade.Graphics;
+using DIKUArcade.Math;
 using Galaga.Squadron;
 
-public class TriangleSquadron : BaseSquadron {
 
-    public TriangleSquadron (
+/// <summary> A squadron in the shape of an X </summary>
+public class XSquadron : BaseSquadron {
+
+    public XSquadron(
         List<Image> enemyStride,
         List<Image> alternativeEnemyStride,
         int[,] formation
-    ) : base(8, formation) {
-        this.CreateEnemies(enemyStride,alternativeEnemyStride);
+    ) : base(32, formation) {
+        CreateEnemies(enemyStride, alternativeEnemyStride);
     }
 }
