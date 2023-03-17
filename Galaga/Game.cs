@@ -251,14 +251,15 @@ public class Game : DIKUGame, IGameEventProcessor {
         var squadrons = new Dictionary<int, ISquadron>() {
             { 0, new RowSquadron(blueEnemyStride, redEnemyStride) },
             { 1, new TriangleSquadron(greenEnemyStride, redEnemyStride) },
-            { 2, new ASquadron(blueEnemyStride, redEnemyStride) },
+            { 2, new RiSquadron(blueEnemyStride, redEnemyStride) },
         };
         return squadrons[randInt];
     }
 
     /// <summary>Create a few enemies and add them to the game</summary>
     public void InitEnemies() {
-        squadron = RandomSquadron();
+        squadron = new RiSquadron(blueEnemyStride, redEnemyStride);
+        // squadron = RandomSquadron();
         squadron.Enemies.Iterate(enemy=>{
             movementStrategy = new ZigZagDown(enemy);
         });
