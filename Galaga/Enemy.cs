@@ -4,10 +4,10 @@ using DIKUArcade.Graphics;
 using DIKUArcade.Math;
 
 public class Enemy : Entity {
-    
+
     public static float baseSpeed = 0.0003f;
     private float speed = baseSpeed;
-    
+
     private static readonly Vec2F EXTENT = new Vec2F(0.1f, 0.1f);
     public readonly Vec2F startPosition;
     private IBaseImage alterImage;
@@ -20,7 +20,7 @@ public class Enemy : Entity {
         startPosition = position;
         hitpoints = 4;
     }
-    
+
     public float Speed {
         get {
             return speed;
@@ -41,7 +41,7 @@ public class Enemy : Entity {
 
     public bool isEnraged(){
         if (this.hitpoints <= 2) {
-            this.speed += baseSpeed * 1.5f;
+            this.speed = baseSpeed * 10f;
             this.Image = alterImage;
             return true;
         }
