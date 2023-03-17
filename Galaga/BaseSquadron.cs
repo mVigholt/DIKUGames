@@ -6,6 +6,13 @@ using DIKUArcade.Math;
 using Galaga.Squadron;
 
 
+/// <summary>
+/// We are using a BaseSquadron between ISquadron and the
+/// concrete classes. That is because we are using matrices
+/// to create formations of enemies.
+/// Without this BaseSquadron, we would have to
+/// repeat code in CreateEnemies().
+/// </summary>
 public class BaseSquadron : ISquadron {
 
     private EntityContainer<Enemy> enemies;
