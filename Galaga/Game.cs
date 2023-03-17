@@ -256,9 +256,63 @@ public class Game : DIKUGame, IGameEventProcessor {
         int nTypesOfSquadron = 3;
         int randInt = new Random().Next(nTypesOfSquadron);
         var squadrons = new Dictionary<int, ISquadron>() {
-            { 0, new RowSquadron(blueEnemyStride, redEnemyStride) },
-            { 1, new TriangleSquadron(greenEnemyStride, redEnemyStride) },
-            { 2, new XSquadron(blueEnemyStride, redEnemyStride) },
+            { 
+                0,
+                new RowSquadron(
+                    blueEnemyStride,
+                    redEnemyStride,
+                    new int[,] {
+                        { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+                        { 0, 1, 1, 1, 1, 1, 1, 1, 1, 0 },
+                        { 0, 1, 1, 1, 1, 1, 1, 1, 1, 0 },
+                        { 0, 1, 1, 1, 1, 1, 1, 1, 1, 0 },
+                        { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+                        { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+                        { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+                        { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+                        { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+                        { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+                    }
+                )
+            },
+            { 
+                1, 
+                new TriangleSquadron(
+                    greenEnemyStride,
+                    redEnemyStride,
+                    new int[,] {
+                        { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+                        { 0, 0, 0, 0, 1, 1, 0, 0, 0, 0 },
+                        { 0, 0, 0, 1, 0, 0, 1, 0, 0, 0 },
+                        { 0, 0, 1, 0, 0, 0, 0, 1, 0, 0 },
+                        { 0, 1, 0, 0, 0, 0, 0, 0, 1, 0 },
+                        { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+                        { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+                        { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+                        { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+                        { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+                    }
+                )
+            },
+            { 
+                2,
+                new XSquadron(
+                    blueEnemyStride,
+                    redEnemyStride,
+                    new int[,] {
+                        { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+                        { 0, 0, 0, 1, 0, 0, 1, 0, 0, 0 },
+                        { 0, 0, 0, 0, 1, 1, 0, 0, 0, 0 },
+                        { 0, 0, 0, 0, 1, 1, 0, 0, 0, 0 },
+                        { 0, 0, 0, 1, 0, 0, 1, 0, 0, 0 },
+                        { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+                        { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+                        { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+                        { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+                        { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+                    }
+                )
+            },
         };
         return squadrons[randInt];
     }

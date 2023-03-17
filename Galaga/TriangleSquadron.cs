@@ -2,41 +2,15 @@ namespace Galaga;
 using System.Collections.Generic;
 using DIKUArcade.Entities;
 using DIKUArcade.Graphics;
-using DIKUArcade.Math;
 using Galaga.Squadron;
 
-public class TriangleSquadron : ISquadron {
+public class TriangleSquadron : BaseSquadron {
 
-    public EntityContainer<Enemy> Enemies {get;}
-
-    public int MaxEnemies {get;}
-
-    public TriangleSquadron (List<Image> enemyStride,
-        List<Image> alternativeEnemyStride) {
-        this.MaxEnemies = 8;
-        this.Enemies =  new EntityContainer<Enemy>(MaxEnemies);
-        this.CreateEnemies(enemyStride,alternativeEnemyStride);
-    }
-
-    public void CreateEnemies(
+    public TriangleSquadron (
         List<Image> enemyStride,
-        List<Image> alternativeEnemyStride) {
-        int j = 4;
-        Vec2F pos = new Vec2F(0.0f , 0.0f);
-        for (int i = 0; i < 8; i++){
-            int milliseconds = 80;
-            if (i < 4){
-                pos = new Vec2F(0.1f + i * 0.1f, 1.0f - j * 0.1f);
-                j--;
-            }
-            else {
-                pos = new Vec2F(0.1f + (float) i * 0.1f, 1.0f - (j + 1)* 0.1f);
-                j++;
-            }
-            Enemy enemy = new Enemy(pos,
-                new ImageStride(milliseconds, enemyStride),
-                new ImageStride(milliseconds, alternativeEnemyStride));
-            Enemies.AddEntity(enemy);
-        }
+        List<Image> alternativeEnemyStride,
+        int[,] formation
+    ) : base(8, formation) {
+        this.CreateEnemies(enemyStride,alternativeEnemyStride);
     }
 }
