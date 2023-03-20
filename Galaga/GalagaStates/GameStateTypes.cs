@@ -1,3 +1,5 @@
+using System;
+
 namespace DIKUArcade.Galaga.GalagaStates
 {
     public enum GameStateType {
@@ -8,10 +10,15 @@ namespace DIKUArcade.Galaga.GalagaStates
 
     public class StateTransformer {
         public static GameStateType TransformStringToState(string state) {
-            return GameStateType.MainMenu;
+            GameStateType enumOut;
+            if (Enum.TryParse<GameStateType>(state, true, out enumOut)) {
+                return enumOut;
+            }
+            throw new ArgumentException();
+            
         }
         public static string TransformStateToString(GameStateType state) {
-            return "MainMenu";
+            return state.ToString();           
         }
     }
 }
