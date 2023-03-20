@@ -8,6 +8,4 @@ public class MovementStrategyTest {
     public void TestMovement() {
         Assert.That(stateMachine.ActiveState, Is.InstanceOf<MainMenu>());
     }
-    [Test]
-   
 }
