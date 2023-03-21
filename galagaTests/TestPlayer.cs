@@ -9,8 +9,9 @@ using System.IO;
 namespace GalagaTests;
 [TestFixture]
 public class TestPlayer{
-    private Player? player;
-    private Image? playerImage;
+
+    private Image playerImage;
+    private Player player;
     [SetUp]
     public void InitiatePlayer(){
         Window.CreateOpenGLContext();
@@ -23,16 +24,16 @@ public class TestPlayer{
 
     [Test]
     public void TestPlayerLoseHealth([Range(0, 10, 1)] int hp){
-        player?.LoseHealth(hp);
-        Assert.AreEqual(player?.health.Points, 50 - hp);
+        player.LoseHealth(hp);
+        Assert.AreEqual(player.health.Points, 50 - hp);
     }
 
     [TestCase (50)]
     [TestCase (60)]
     public void TestPlayerIsDead(int loseHP){
-        player?.LoseHealth(loseHP);
-        Assert.LessOrEqual(player?.health.Points, 0);
-        Assert.IsTrue(player?.IsDead());
+        player.LoseHealth(loseHP);
+        Assert.LessOrEqual(player.health.Points, 0);
+        Assert.IsTrue(player.IsDead());
     }
 }
 

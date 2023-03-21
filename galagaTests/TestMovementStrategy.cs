@@ -11,9 +11,9 @@ using System;
 namespace GalagaTests;
 [TestFixture]
 public class TestMovementStrategy {
-    private ZigZagDown? zigzagDown;
-    private IMovementStrategy? movementStrategy;
-    private Enemy? enemy;
+    private ZigZagDown zigzagDown;
+    private IMovementStrategy movementStrategy;
+    private Enemy enemy;
 
     [SetUp]
     public void InitiateMovementStrategy() {
@@ -32,33 +32,33 @@ public class TestMovementStrategy {
 
     [Test]
     public void DownTest(){
-        Vec2F? posBefore = enemy?.Shape.Position.Copy();
+        Vec2F posBefore = enemy.Shape.Position.Copy();
         movementStrategy = new Down(enemy);
         movementStrategy.MoveEnemy(enemy);
-        Assert.AreEqual(posBefore?.X, enemy?.Shape.Position.X);
-        Assert.AreEqual(posBefore?.Y - enemy?.Speed, enemy?.Shape.Position.Y);
+        Assert.AreEqual(posBefore.X, enemy.Shape.Position.X);
+        Assert.AreEqual(posBefore.Y - enemy.Speed, enemy.Shape.Position.Y);
     }
 
     [Test]
     public void NoMoveTest(){
-        Vec2F? posBefore = enemy?.Shape.Position.Copy();
+        Vec2F posBefore = enemy.Shape.Position.Copy();
         movementStrategy = new NoMove(enemy);
         movementStrategy.MoveEnemy(enemy);
-        Assert.AreEqual(posBefore?.X, enemy?.Shape.Position.X);
-        Assert.AreEqual(posBefore?.Y, enemy?.Shape.Position.Y);
+        Assert.AreEqual(posBefore.X, enemy.Shape.Position.X);
+        Assert.AreEqual(posBefore.Y, enemy.Shape.Position.Y);
     }
 
     [Test]
     public void ZigZagDown(){
-        Vec2F? posBefore = enemy?.Shape.Position.Copy();
-        Vec2F? startPos = enemy?.startPosition.Copy();
-        Vec2F? curPos = enemy?.Shape.Position;
+        Vec2F posBefore = enemy.Shape.Position.Copy();
+        Vec2F startPos = enemy.startPosition.Copy();
+        Vec2F curPos = enemy.Shape.Position;
         movementStrategy = new ZigZagDown(enemy);
         movementStrategy.MoveEnemy(enemy);
         float p = 0.045f;   //period / wavelength
         float a = 0.05f;    //amplitude
-        Assert.AreEqual(startPos?.X +(float)(a * Math.Sin(2 * Math.PI * (startPos.Y - curPos.Y)/p)),
+        Assert.AreEqual(startPos.X +(float)(a * Math.Sin(2 * Math.PI * (startPos.Y - curPos.Y)/p)),
             curPos.X);
-        Assert.AreEqual(posBefore?.Y - enemy?.Speed, enemy?.Shape.Position.Y);
+        Assert.AreEqual(posBefore.Y - enemy.Speed, enemy.Shape.Position.Y);
     }
 }
