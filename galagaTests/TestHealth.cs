@@ -2,7 +2,6 @@ using NUnit.Framework;
 using DIKUArcade.GUI;
 using Galaga;
 using DIKUArcade.Math;
-using DIKUArcade.Graphics;
 
 namespace GalagaTests;
 [TestFixture]

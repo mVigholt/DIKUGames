@@ -10,7 +10,7 @@ using System;
 
 namespace GalagaTests;
 [TestFixture]
-public class MovementStrategyTesting {
+public class TestMovementStrategy {
     private ZigZagDown? zigzagDown;
     private IMovementStrategy? movementStrategy;
     private Enemy? enemy;

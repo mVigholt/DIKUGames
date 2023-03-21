@@ -8,7 +8,7 @@ using System.IO;
 
 namespace GalagaTests;
 [TestFixture]
-public class PlayerTesting {
+public class TestPlayer{
     private Player? player;
     private Image? playerImage;
     [SetUp]
