@@ -6,7 +6,7 @@ using DIKUArcade.Math;
 namespace GalagaTests;
 [TestFixture]
 public class TestHealth {
-    private Health? health;
+    private Health health;
     [SetUp]
 
     public void InitiateHealth() {
@@ -18,14 +18,14 @@ public class TestHealth {
     }
     [Test]
     public void TestHealthLost([Range(0, 10, 1)] int lostPoint){
-        health?.LoseHealth(lostPoint);
-        Assert.AreEqual(health?.Points, 50-lostPoint);
+        health.LoseHealth(lostPoint);
+        Assert.AreEqual(health.Points, 50-lostPoint);
     }
 
     [Test]
     public void TestHealthMax(){
-        Assert.AreEqual(health?.Max, 50);
-        health?.LoseHealth(5);
-        Assert.AreEqual(health?.Max, 50);
+        Assert.AreEqual(health.Max, 50);
+        health.LoseHealth(5);
+        Assert.AreEqual(health.Max, 50);
     }
 }
