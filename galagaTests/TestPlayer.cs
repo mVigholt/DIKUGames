@@ -16,7 +16,7 @@ public class TestPlayer{
     public void InitiatePlayer(){
         Window.CreateOpenGLContext();
         playerImage = new Image(
-            Path.Combine("..\\Galaga","Assets", "Images", "Player.png"));
+            Path.Combine("..", "Galaga","Assets", "Images", "Player.png"));
         player = new Player(
             new DynamicShape(new Vec2F(0.45f, 0.1f), new Vec2F(0.1f, 0.1f)),
             playerImage);
