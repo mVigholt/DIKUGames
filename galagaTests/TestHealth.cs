@@ -7,8 +7,8 @@ namespace GalagaTests;
 [TestFixture]
 public class TestHealth {
     private Health health;
+    
     [SetUp]
-
     public void InitiateHealth() {
         Window.CreateOpenGLContext();
         Vec2F position = new Vec2F(0.45f, 0.1f);
