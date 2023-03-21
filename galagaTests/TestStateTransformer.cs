@@ -21,6 +21,9 @@ public class TestStateTransformer {
     public void TransformStringToState(){
         Assert.AreEqual(StateTransformer.TransformStringToState
             ("MainMenu"), GameStateType.MainMenu);
+        Assert.AreEqual(StateTransformer.TransformStringToState
+            ("GamePaused"), GameStateType.GamePaused);
+        Assert.AreEqual(StateTransformer.TransformStringToState
+            ("GameRunning"), GameStateType.GameRunning);
     }
-
 }
