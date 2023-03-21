@@ -1,4 +1,4 @@
-namespace DIKUArcade.Galaga.GalagaStates;
+namespace DIKUArcade.Galaga.GalagaState;
 
 using System;
 

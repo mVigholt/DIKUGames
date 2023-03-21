@@ -17,7 +17,7 @@ public class Game : DIKUGame, IGameEventProcessor {
     private Player player;
     private EntityContainer<PlayerShot> playerShots;
     private IBaseImage playerShotImage;
-    private GameEventBus eventBus = GalagaBus.GetBus();
+    private GameEventBus eventBus;
     private AnimationContainer enemyExplosions;
     private List<Image> explosionStrides;
     private const int EXPLOSION_LENGTH_MS = 500;
@@ -332,10 +332,7 @@ public class Game : DIKUGame, IGameEventProcessor {
     ///<summary> create new GameEventBus instance and
     ///subscribe it to a proper GameEventType</summary>
     public void InitEventBus() {
-        eventBus.InitializeEventBus(new List<GameEventType> {
-             GameEventType.InputEvent,
-             GameEventType.WindowEvent,
-             GameEventType.PlayerEvent });
+        eventBus = GalagaBus.GetBus();
         window.SetKeyEventHandler(KeyHandler);
         eventBus.Subscribe(GameEventType.InputEvent, this);
         eventBus.Subscribe(GameEventType.WindowEvent, this);
