@@ -12,6 +12,7 @@ public class TestPlayer{
 
     private Image playerImage;
     private Player player;
+    private int startingHealth;
     [SetUp]
     public void InitiatePlayer(){
         Window.CreateOpenGLContext();
@@ -19,13 +20,14 @@ public class TestPlayer{
             Path.Combine("..", "Galaga","Assets", "Images", "Player.png"));
         player = new Player(
             new DynamicShape(new Vec2F(0.45f, 0.1f), new Vec2F(0.1f, 0.1f)),
-            playerImage);
+            playerImage, 50);
+        startingHealth = 50;
     }
 
     [Test]
     public void TestPlayerLoseHealth([Range(0, 10, 1)] int hp){
         player.LoseHealth(hp);
-        Assert.AreEqual(player.health.Points, 50 - hp);
+        Assert.AreEqual(player.health.Points, startingHealth - hp);
     }
 
     [TestCase (50)]

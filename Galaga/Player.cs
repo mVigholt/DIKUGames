@@ -7,6 +7,8 @@ using DIKUArcade.Math;
 using DIKUArcade.Input;
 
 public class Player : Entity, IGameEventProcessor {
+    private GameEventBus eventBus;
+
     private DynamicShape shape;
 
     private float moveLeft = 0.0f;
@@ -20,13 +22,21 @@ public class Player : Entity, IGameEventProcessor {
     private const float MOVEMENT_SPEED = 0.01f;
     public Health health;
 
-    public Player(DynamicShape shape, IBaseImage image)
+    public Player(DynamicShape shape,  IBaseImage image)
+        : this(shape, image, 50) {
+    }
+
+    public Player(DynamicShape shape,  IBaseImage image, int startingHealth)
         : base(shape, image) {
         this.shape = shape;
-        int startingHealth = 50;
         Vec2F pos = new Vec2F(0.0f, -0.2f) ;
         Vec2F extent = new Vec2F(0.3f, 0.3f);
         health = new Health(pos, extent, startingHealth);
+    }
+
+    private void InitEventBus() {
+        eventBus = GalagaBus.GetBus();
+        eventBus.Subscribe(GameEventType.PlayerEvent, this);
     }
 
     public void LoseHealth(int hp) {
