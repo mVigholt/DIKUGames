@@ -4,6 +4,7 @@ using DIKUArcade.Entities;
 using DIKUArcade.Graphics;
 using DIKUArcade.Math;
 using Galaga.Squadron;
+using Galaga.Creation;
 
 
 /// <summary>
@@ -42,11 +43,12 @@ public class BaseSquadron : ISquadron {
             for (int x = 0; x < width; x++) {
                 if (Formation[y, x] == 1) {
                     Enemies.AddEntity(
-                        new Enemy(
-                            new Vec2F(x * 0.1f, 1 - y * 0.1f),
-                            new ImageStride(milliseconds, enemyStride),
-                            new ImageStride(milliseconds, alternativeEnemyStride)
-                    ));
+                        new EnemyBuilder()
+                            .WithPosition(new Vec2F(x * 0.1f, 1 - y * 0.1f))
+                            .WithImage(new ImageStride(milliseconds, enemyStride))
+                            .WithAlternativeImage(new ImageStride(milliseconds, alternativeEnemyStride))
+                            .Build()
+                    );
                 }
             }
         }
