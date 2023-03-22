@@ -6,7 +6,7 @@ using System.Collections.Generic;
 public static class GalagaBus {
     private static GameEventBus eventBus;
     public static GameEventBus GetBus() {
-        return GalagaBus.eventBus ?? NewBus();
+        return eventBus ?? NewBus();
     }
 
     private static GameEventBus NewBus() {
@@ -16,8 +16,8 @@ public static class GalagaBus {
                 GameEventType.InputEvent,
                 GameEventType.WindowEvent,
                 GameEventType.PlayerEvent
-                }
-            );
+            }
+        );
         return eventBus;
     }
 }

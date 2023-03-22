@@ -22,8 +22,8 @@ public class Player : Entity, IGameEventProcessor {
     private const float MOVEMENT_SPEED = 0.01f;
     public Health health;
 
-    public Player(DynamicShape shape,  IBaseImage image)
-        : this(shape, image, 50) {
+    public Player(DynamicShape shape,  IBaseImage image) : this(shape, image, 50) {
+        InitEventBus();
     }
 
     public Player(DynamicShape shape,  IBaseImage image, int startingHealth)
