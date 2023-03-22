@@ -15,7 +15,8 @@ public static class GalagaBus {
             new List<GameEventType> {
                 GameEventType.InputEvent,
                 GameEventType.WindowEvent,
-                GameEventType.PlayerEvent
+                GameEventType.PlayerEvent,
+                GameEventType.GameStateEvent
             }
         );
         return eventBus;
