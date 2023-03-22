@@ -47,7 +47,31 @@ public class TestEnemy {
     }
 
     [Test]
-    public void TestLoseHealth() {
+    public void TestIsDead() {
+        Enemy enemy = new EnemyBuilder()
+            .WithPosition(new Vec2F(0f, 0f))
+            .WithImage(image)
+            .WithAlternativeImage(alternativeImage)
+            .WithHitpoints(10)
+            .Build();
+        enemy.LoseHealth(5);
+        Assert.False(enemy.IsDead());
+        enemy.LoseHealth(5);
+        Assert.True(enemy.IsDead());
+    }
 
+    [Test]
+    public void TestIsEnraged() {
+        int enrageThreshold = 2;
+        float normalSpeed = 2;
+        Enemy enemy = new EnemyBuilder()
+            .WithPosition(new Vec2F(0f, 0f))
+            .WithImage(image)
+            .WithAlternativeImage(alternativeImage)
+            .WithHitpoints(3)
+            .WithSpeed(normalSpeed)
+            .Build();
+        enemy.LoseHealth(2);
+        Assert.True(enemy.isEnraged());
     }
 }
