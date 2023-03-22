@@ -3,7 +3,6 @@ namespace Galaga.Squadron;
 using System.Collections.Generic;
 using DIKUArcade.Entities;
 using DIKUArcade.Graphics;
-using DIKUArcade.Math;
 
 public interface ISquadron {
     EntityContainer<Enemy> Enemies {get;}
