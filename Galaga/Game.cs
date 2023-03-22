@@ -10,6 +10,7 @@ using DIKUArcade.GUI;
 using DIKUArcade.Input;
 using DIKUArcade.Math;
 using DIKUArcade.Physics;
+using Galaga.GalagaStates;
 using Galaga.MovementStrategy;
 using Galaga.Squadron;
 
@@ -17,7 +18,7 @@ public class Game : DIKUGame, IGameEventProcessor {
     private Player player;
     private EntityContainer<PlayerShot> playerShots;
     private IBaseImage playerShotImage;
-    private GameEventBus eventBus;
+    private GameEventBus eventBus = GalagaBus.GetBus();
     private AnimationContainer enemyExplosions;
     private List<Image> explosionStrides;
     private const int EXPLOSION_LENGTH_MS = 500;
@@ -31,6 +32,7 @@ public class Game : DIKUGame, IGameEventProcessor {
     private Image playerImage;
 
     private TimedEvent Autoshoot = new TimedEvent(100);
+    private StateMachine stateMachine;
 
     public Game(WindowArgs windowArgs) : base(windowArgs) {
         InitAssets();
@@ -38,6 +40,7 @@ public class Game : DIKUGame, IGameEventProcessor {
     }
 
     private void ResetState() {
+        stateMachine = new StateMachine();
         InitPlayer();
         InitEnemies();
         InitPlayerShot();
@@ -82,7 +85,7 @@ public class Game : DIKUGame, IGameEventProcessor {
                     enemy.LoseHealth(1);
                 }
             });
-        
+
         });
     }
 
@@ -126,6 +129,7 @@ public class Game : DIKUGame, IGameEventProcessor {
         playerShots.RenderEntities();
         enemyExplosions.RenderAnimations();
         score.Render();
+        stateMachine.ActiveState.RenderState();
     }
 
     ///<summary>call different methods in each game loop</summary>
@@ -256,7 +260,7 @@ public class Game : DIKUGame, IGameEventProcessor {
         int nTypesOfSquadron = 3;
         int randInt = new Random().Next(nTypesOfSquadron);
         var squadrons = new Dictionary<int, ISquadron>() {
-            { 
+            {
                 0,
                 new RowSquadron(
                     blueEnemyStride,
@@ -275,8 +279,8 @@ public class Game : DIKUGame, IGameEventProcessor {
                     }
                 )
             },
-            { 
-                1, 
+            {
+                1,
                 new TriangleSquadron(
                     greenEnemyStride,
                     redEnemyStride,
@@ -294,7 +298,7 @@ public class Game : DIKUGame, IGameEventProcessor {
                     }
                 )
             },
-            { 
+            {
                 2,
                 new XSquadron(
                     blueEnemyStride,
@@ -336,7 +340,7 @@ public class Game : DIKUGame, IGameEventProcessor {
         window.SetKeyEventHandler(KeyHandler);
         eventBus.Subscribe(GameEventType.InputEvent, this);
         eventBus.Subscribe(GameEventType.WindowEvent, this);
-        eventBus.Subscribe(GameEventType.PlayerEvent, player);
+        // eventBus.Subscribe(GameEventType.PlayerEvent, player);
     }
 
     ///<summary> create new PlayerShot instance </summary>
