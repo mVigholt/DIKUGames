@@ -19,11 +19,8 @@ public class BaseSquadron : ISquadron {
     private int maxEnemies;
     private int[,] formation;
 
-    public BaseSquadron(
-        int maxEnemies,
-        int[,] formation
-    ) {
-        this.maxEnemies = maxEnemies;
+    public BaseSquadron(/*int maxEnemies,*/ int[,] formation) {
+        this.maxEnemies = CountElements(formation);
         this.enemies = new EntityContainer<Enemy>(MaxEnemies);
         this.formation = formation;
     }
@@ -33,6 +30,16 @@ public class BaseSquadron : ISquadron {
     public int MaxEnemies { get { return maxEnemies; } }
 
     public int[,] Formation { get { return formation; } }
+
+    private int CountElements(int[,] formation) {
+        int count =  0;
+        for (int x = 0; x < Formation.GetLength(0); x++) {
+            for (int y = 0; y < Formation.GetLength(1); y++) {
+                count += formation[x,y];
+            }
+        }
+        return count;   
+    }   
 
     public void CreateEnemies (List<Image> enemyStride, List<Image> alternativeEnemyStride) {
         int milliseconds = 80;

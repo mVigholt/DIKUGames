@@ -10,7 +10,7 @@ public class TriangleSquadron : BaseSquadron {
         List<Image> enemyStride,
         List<Image> alternativeEnemyStride,
         int[,] formation
-    ) : base(8, formation) {
+    ) : base(/*8,*/ formation) {
         this.CreateEnemies(enemyStride,alternativeEnemyStride);
     }
 }
