@@ -33,8 +33,8 @@ public class BaseSquadron : ISquadron {
 
     private int CountElements(int[,] formation) {
         int count =  0;
-        for (int x = 0; x < Formation.GetLength(0); x++) {
-            for (int y = 0; y < Formation.GetLength(1); y++) {
+        for (int x = 0; x < formation.GetLength(0); x++) {
+            for (int y = 0; y < formation.GetLength(1); y++) {
                 count += formation[x,y];
             }
         }

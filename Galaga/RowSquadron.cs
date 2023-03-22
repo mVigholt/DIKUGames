@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using DIKUArcade.Graphics;
 
 public class RowSquadron : BaseSquadron {
-    private int[,] formation = 
+    private static int[,] formation = 
         new int[,] {
             { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
             { 0, 1, 1, 1, 1, 1, 1, 1, 1, 0 },
