@@ -5,7 +5,7 @@ using System;
 public enum GameStateType {
     MainMenu,
     GameRunning,
-    GamePaused
+    GamePaused,
 }
 
 public class StateTransformer {
@@ -15,9 +15,9 @@ public class StateTransformer {
             return enumOut;
         }
         throw new ArgumentException();
-        
+
     }
     public static string TransformStateToString(GameStateType state) {
-        return state.ToString();           
+        return state.ToString();
     }
 }
