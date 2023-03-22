@@ -13,16 +13,19 @@ using Galaga.MovementStrategy;
 [TestFixture]
 public class TestEnemy {
 
-    private List<Image> blueEnemyStride;
-    private List<Image> redEnemyStride;
+    private ImageStride image;
+    private ImageStride alternativeImage;
 
     [SetUp]
     public void SetUp() {
         Window.CreateOpenGLContext();
-        blueEnemyStride = ImageStride.CreateStrides(
+        List<Image> stdImages = ImageStride.CreateStrides(
             4, Path.Combine("..", "Galaga", "Assets", "Images", "BlueMonster.png"));
-        redEnemyStride = ImageStride.CreateStrides(
+        List<Image> altImages = ImageStride.CreateStrides(
             2, Path.Combine("..", "Galaga", "Assets", "Images", "RedMonster.png"));
+        int millis = 80;
+        image = new ImageStride(millis, stdImages);
+        alternativeImage = new ImageStride(millis, altImages);
     }
 
     // Vec2F does not have an equals method
@@ -32,16 +35,19 @@ public class TestEnemy {
 
     [Test]
     public void TestMovement() {
-        Vec2F pos = new Vec2F(1f, 1f);
-        float speed = -1f; // Move down
-        int millis = 80;
-        Enemy enemy = new Enemy(
-            pos,
-            speed,
-            new ImageStride(millis, blueEnemyStride),
-            new ImageStride(millis, redEnemyStride));
+        Enemy enemy = new EnemyBuilder()
+            .WithPosition(new Vec2F(1f, 1f))
+            .WithSpeed(-1f)
+            .WithImage(image)
+            .WithAlternativeImage(alternativeImage)
+            .Build();
         IMovementStrategy movementStrategy = new Down(enemy);
         movementStrategy.MoveEnemy(enemy);
         Assert.That(Vec2FEquals(new Vec2F(1f, 2f), enemy.Shape.Position));
+    }
+
+    [Test]
+    public void TestLoseHealth() {
+
     }
 }
