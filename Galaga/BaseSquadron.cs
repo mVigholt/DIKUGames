@@ -4,7 +4,6 @@ using DIKUArcade.Entities;
 using DIKUArcade.Graphics;
 using DIKUArcade.Math;
 using Galaga.Squadron;
-using Galaga.Creation;
 
 
 /// <summary>
@@ -47,6 +46,7 @@ public class BaseSquadron : ISquadron {
                             .WithPosition(new Vec2F(x * 0.1f, 1 - y * 0.1f))
                             .WithImage(new ImageStride(milliseconds, enemyStride))
                             .WithAlternativeImage(new ImageStride(milliseconds, alternativeEnemyStride))
+                            .WithSpeed(Enemy.baseSpeed)
                             .Build()
                     );
                 }

@@ -35,19 +35,19 @@ public class Game : DIKUGame, IGameEventProcessor {
     private StateMachine stateMachine;
 
     public Game(WindowArgs windowArgs) : base(windowArgs) {
+        InitEventBus();
         InitAssets();
         ResetState();
     }
 
     private void ResetState() {
+        Enemy.baseSpeed = 0.0003f;
         stateMachine = new StateMachine();
         InitPlayer();
         InitEnemies();
         InitPlayerShot();
-        InitEventBus();
         InitExplosion();
         InitScore();
-        Enemy.baseSpeed = 0.0003f;
     }
 
     private void InitAssets() {
@@ -117,7 +117,7 @@ public class Game : DIKUGame, IGameEventProcessor {
     }
 
     private void NextLevel() {
-        Enemy.baseSpeed += 0.0001f;
+        Enemy.baseSpeed += 0.0002f;
         InitEnemies();
     }
 

@@ -4,12 +4,13 @@ using System;
 using DIKUArcade.Entities;
 using DIKUArcade.Graphics;
 using DIKUArcade.Math;
-using Galaga.Creation;
 
 public class Enemy : Entity {
 
     public static float baseSpeed = 0.0003f;
     private float speed = baseSpeed;
+
+    private bool enraged = false;
 
     private static readonly Vec2F EXTENT = new Vec2F(0.1f, 0.1f);
     public readonly Vec2F startPosition;
@@ -65,14 +66,12 @@ public class Enemy : Entity {
     }
 
     public bool isEnraged(){
-        if (this.hitpoints <= 2) {
-            this.speed = baseSpeed * 10f;
+        if (this.hitpoints <= 2 && !enraged) {
+            this.speed = baseSpeed * 3f;
             this.Image = alterImage;
-            return true;
+            enraged = true;
         }
-        else {
-            return false;
-        }
+        return enraged;
     }
 }
 
@@ -91,7 +90,7 @@ public class Enemy : Entity {
 /// It's also inspired by the Java version from Effective Java.
 /// - Asger
 /// </summary>
-public class EnemyBuilder : IBuilder<Enemy> {
+public class EnemyBuilder {
 
     public Vec2F position;
     public IBaseImage image;
@@ -145,7 +144,7 @@ public class EnemyBuilder : IBuilder<Enemy> {
         }
         // Optional arguments
         if (speed == 0f) {
-            speed = 0.0003f;
+            speed = Enemy.baseSpeed;
         }
         if (hitpoints == 0) {
             hitpoints = 4;
