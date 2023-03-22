@@ -13,7 +13,7 @@ public class XSquadron : BaseSquadron {
         List<Image> enemyStride,
         List<Image> alternativeEnemyStride,
         int[,] formation
-    ) : base(32, formation) {
+    ) : base(/*32,*/ formation) {
         CreateEnemies(enemyStride, alternativeEnemyStride);
     }
 }
