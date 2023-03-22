@@ -13,10 +13,19 @@ public IGameState ActiveState { get; private set; }
         GalagaBus.GetBus().Subscribe(GameEventType.GameStateEvent, this);
         GalagaBus.GetBus().Subscribe(GameEventType.InputEvent, this);
         ActiveState = MainMenu.GetInstance();
+        // GameRunning.GetInstance();
+        // GamePaused.GetInstance();
     }
 
     private void SwitchState(GameStateType stateType) {
         switch (stateType) {
+            case GameStateType.MainMenu:
+
+                break;
+            case GameStateType.GameRunning:
+                break;
+            case GameStateType.GamePaused:
+                break;
             default:
                 break;
         }
@@ -27,8 +36,8 @@ public IGameState ActiveState { get; private set; }
         IGameState state = ActiveState;
         KeyboardKey key = (KeyboardKey) gameEvent.ObjectArg1;
         KeyboardAction keyboardAction = (KeyboardAction) gameEvent.IntArg1;
-
-
+        // System.Console.WriteLine("Key is:" + key);
+        ActiveState.HandleKeyEvent(keyboardAction, key);
     }
 
 }

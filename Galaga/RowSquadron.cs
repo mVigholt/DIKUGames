@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using DIKUArcade.Graphics;
 
 public class RowSquadron : BaseSquadron {
-    private static int[,] formation = 
+    private static int[,] formation =
         new int[,] {
             { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
             { 0, 1, 1, 1, 1, 1, 1, 1, 1, 0 },
@@ -20,8 +20,8 @@ public class RowSquadron : BaseSquadron {
 
     public RowSquadron (
         List<Image> enemyStride,
-        List<Image> alternativeEnemyStride
-    ) : base(formation) {
+        List<Image> alternativeEnemyStride)
+        : base(formation) {
         this.CreateEnemies(enemyStride, alternativeEnemyStride);
     }
 }

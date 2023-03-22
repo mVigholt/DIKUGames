@@ -170,13 +170,31 @@ public class Game : DIKUGame, IGameEventProcessor {
             case KeyboardKey.Right:
             case KeyboardKey.Up:
             case KeyboardKey.Down:
+                if (stateMachine.ActiveState is MainMenu){
+                    eventBus.RegisterEvent(
+                        new GameEvent{
+                            EventType = GameEventType.GameStateEvent,
+                            ObjectArg1 = key,
+                            IntArg1 = (int)KeyboardAction.KeyPress
+                        }
+                    );
+                }
+                if (stateMachine.ActiveState is GameRunning){
                 eventBus.RegisterEvent(
                     new GameEvent {
                         EventType = GameEventType.PlayerEvent,
                         ObjectArg1 = key,
                         IntArg1 = (int)KeyboardAction.KeyPress
                     }
-                );
+                );}
+                break;
+            case KeyboardKey.Enter:
+                eventBus.RegisterEvent(
+                    new GameEvent {
+                        EventType = GameEventType.GameStateEvent,
+                        ObjectArg1 = key,
+                        IntArg1 = (int)KeyboardAction.KeyPress
+                    });
                 break;
             case KeyboardKey.A: //Autoshoot
                 Autoshoot.startStop();

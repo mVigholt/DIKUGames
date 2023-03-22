@@ -29,17 +29,25 @@ public class BaseSquadron : ISquadron {
 
     public int MaxEnemies { get { return maxEnemies; } }
 
-    public int[,] Formation { get { return formation; } }
+    public int[,] Formation {
+        get {
+            return formation;
+        }
+        private set {
+            formation = value;
+        }
+    }
 
     private int CountElements(int[,] formation) {
+        this.Formation = formation;
         int count =  0;
         for (int x = 0; x < formation.GetLength(0); x++) {
             for (int y = 0; y < formation.GetLength(1); y++) {
                 count += formation[x,y];
             }
         }
-        return count;   
-    }   
+        return count;
+    }
 
     public void CreateEnemies (List<Image> enemyStride, List<Image> alternativeEnemyStride) {
         int milliseconds = 80;
