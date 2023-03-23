@@ -13,13 +13,15 @@ public IGameState ActiveState { get; private set; }
         GalagaBus.GetBus().Subscribe(GameEventType.GameStateEvent, this);
         GalagaBus.GetBus().Subscribe(GameEventType.InputEvent, this);
         ActiveState = MainMenu.GetInstance();
-        // GameRunning.GetInstance();
-        // GamePaused.GetInstance();
+        GameRunning.GetInstance();
+        GamePaused.GetInstance();
     }
 
     private void SwitchState(GameStateType stateType) {
         switch (stateType) {
             case GameStateType.MainMenu:
+
+
 
                 break;
             case GameStateType.GameRunning:
