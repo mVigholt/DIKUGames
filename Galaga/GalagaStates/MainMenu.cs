@@ -4,6 +4,7 @@ using System.IO;
 using DIKUArcade.Entities;
 using DIKUArcade.Events;
 using DIKUArcade.Graphics;
+using DIKUArcade.GUI;
 using DIKUArcade.Input;
 using DIKUArcade.Math;
 using DIKUArcade.State;
@@ -61,12 +62,24 @@ public class MainMenu : IGameState {
                 break;
 
             case (KeyboardAction.KeyPress, KeyboardKey.Enter):
-                GalagaBus.GetBus().RegisterEvent(
-                    new GameEvent{
-                    EventType = GameEventType.GameStateEvent,
-                    Message = "CHANGE_STATE",
-                    StringArg1 = "GameRuning"
-                });
+                switch (activeMenuButton) {
+                    case (0):
+                        GalagaBus.GetBus().RegisterEvent(
+                        new GameEvent {
+                            EventType = GameEventType.GameStateEvent,
+                            Message = "CHANGE_STATE",
+                            StringArg1 = "GameRuning"
+                        });
+                        break;
+                    case (1):
+                        GalagaBus.GetBus().RegisterEvent(
+                            new GameEvent {
+                                EventType = GameEventType.WindowEvent,
+                                ObjectArg1 = KeyboardKey.Escape,
+                                IntArg1 = (int) KeyboardAction.KeyPress
+                            });
+                        break;
+                }
                 break;
             default:
                 break;
