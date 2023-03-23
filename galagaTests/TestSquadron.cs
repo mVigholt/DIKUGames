@@ -29,21 +29,9 @@ public class TestSquadron {
                 new ImageStride(milliseconds, redEnemyStride));
         squadron = new RowSquadron(
                     blueEnemyStride,
-                    redEnemyStride,
-                    new int[,] {
-                        { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-                        { 0, 1, 1, 1, 1, 1, 1, 1, 1, 0 },
-                        { 0, 1, 1, 1, 1, 1, 1, 1, 1, 0 },
-                        { 0, 1, 1, 1, 1, 1, 1, 1, 1, 0 },
-                        { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-                        { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-                        { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-                        { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-                        { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-                        { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-                    });
+                    redEnemyStride
+                    );
         }
-
         [Test]
         public void TestSquadronMove(){
 
