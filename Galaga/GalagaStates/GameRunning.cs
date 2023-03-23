@@ -176,9 +176,19 @@ public class GameRunning : IGameState {
     }
     public void HandleKeyEvent(KeyboardAction action, KeyboardKey key) {
         switch(action, key){
+            case (KeyboardAction.KeyPress, KeyboardKey.Escape):
+                GalagaBus.GetBus().RegisterEvent(
+                    new GameEvent {
+                        EventType = GameEventType.GameStateEvent,
+                        Message = "CHANGE_STATE",
+                        StringArg1 = "GamePaused"
+                    }
+                );
+                break;
+
             case (KeyboardAction.KeyPress, KeyboardKey.A):
                 Autoshoot.startStop();
-            break;
+                break;
 
             case (KeyboardAction.KeyRelease, KeyboardKey.Space):
                 Vec2F shotFromMiddle = new (player.GetPosition().X +
@@ -214,7 +224,8 @@ public class GameRunning : IGameState {
         if (Autoshoot.EventIsActive()) {
              GalagaBus.GetBus().RegisterEvent(
                     new GameEvent {
-                        EventType = GameEventType.InputEvent,
+                        EventType = GameEventType.GameStateEvent,
+                        StringArg1 = "GameRunning",
                         ObjectArg1 = KeyboardKey.Space,
                         IntArg1 = (int)KeyboardAction.KeyRelease,
                     }

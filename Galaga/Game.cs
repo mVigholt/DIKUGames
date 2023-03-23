@@ -37,9 +37,9 @@ public class Game : DIKUGame, IGameEventProcessor {
             case KeyboardKey.Escape:
                 eventBus.RegisterEvent(
                     new GameEvent {
-                        EventType = GameEventType.WindowEvent,
+                        EventType = GameEventType.GameStateEvent,
                         ObjectArg1 = key,
-                        Message = "Quit",
+                        Message = "CHANGE_STATE",
                         StringArg1 = "GameRunning",
                         IntArg1 = (int)KeyboardAction.KeyPress
                     }
@@ -60,14 +60,26 @@ public class Game : DIKUGame, IGameEventProcessor {
                     );
                 }
                 if (stateMachine.ActiveState is GameRunning){
-                eventBus.RegisterEvent(
-                    new GameEvent {
-                        EventType = GameEventType.PlayerEvent,
-                        ObjectArg1 = key,
-                        StringArg1 = "GameRunning",
-                        IntArg1 = (int)KeyboardAction.KeyPress
-                    }
-                );}
+                    eventBus.RegisterEvent(
+                        new GameEvent {
+                            EventType = GameEventType.PlayerEvent,
+                            ObjectArg1 = key,
+                            StringArg1 = "GameRunning",
+                            IntArg1 = (int)KeyboardAction.KeyPress
+                        }
+                    );
+                }
+                if (stateMachine.ActiveState is GamePaused){
+                    eventBus.RegisterEvent(
+                        new GameEvent {
+                            EventType = GameEventType.GameStateEvent,
+                            ObjectArg1 = key,
+                            StringArg1 = "GamePaused",
+                            IntArg1 = (int)KeyboardAction.KeyPress
+                        }
+                    );
+
+                }
                 break;
             case KeyboardKey.Enter:
                 if (stateMachine.ActiveState is MainMenu){
@@ -80,14 +92,24 @@ public class Game : DIKUGame, IGameEventProcessor {
                         IntArg1 = (int)KeyboardAction.KeyPress
                     });
                 }
+                if (stateMachine.ActiveState is GamePaused){
+                    eventBus.RegisterEvent(
+                    new GameEvent {
+                        EventType = GameEventType.GameStateEvent,
+                        Message = "CHANGE_STATE",
+                        StringArg1 = "GamePaused",
+                        ObjectArg1 = key,
+                        IntArg1 = (int)KeyboardAction.KeyPress
+                    });
+                }
 
                 break;
             case KeyboardKey.A: //Autoshoot
                 eventBus.RegisterEvent(
                     new GameEvent {
                         EventType = GameEventType.GameStateEvent,
-                        ObjectArg1 = key,
                         StringArg1 = "GameRunning",
+                        ObjectArg1 = key,
                         IntArg1 = (int)KeyboardAction.KeyPress
                     });
                 break;
@@ -145,9 +167,10 @@ public class Game : DIKUGame, IGameEventProcessor {
         GameEventType? eventType = gameEvent.EventType;
         KeyboardKey? key = (KeyboardKey?)gameEvent.ObjectArg1;
         KeyboardAction? action = (KeyboardAction?)gameEvent.IntArg1;
+        string message = gameEvent.Message;
 
-        switch (eventType, key, action) {
-            case (GameEventType.WindowEvent, KeyboardKey.Escape, KeyboardAction.KeyPress):
+        switch (eventType, message) {
+            case (GameEventType.WindowEvent,"Quit"):
                 window.CloseWindow();
                 break;
             default:
@@ -160,7 +183,7 @@ public class Game : DIKUGame, IGameEventProcessor {
     public void InitEventBus() {
         eventBus = GalagaBus.GetBus();
         window.SetKeyEventHandler(KeyHandler);
-        eventBus.Subscribe(GameEventType.InputEvent, this);
+        // eventBus.Subscribe(GameEventType.InputEvent, this);
         eventBus.Subscribe(GameEventType.WindowEvent, this);
     }
 }
