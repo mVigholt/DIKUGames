@@ -15,6 +15,7 @@ using Galaga.Squadron;
 public class GameRunning : IGameState {
     private static GameRunning instance = null;
     private Player player;
+    private GameEventBus eventBus = GalagaBus.GetBus();
     private EntityContainer<PlayerShot> playerShots;
     private ISquadron squadron;
     private const int EXPLOSION_LENGTH_MS = 500;
@@ -128,18 +129,21 @@ public class GameRunning : IGameState {
             }
 
             if (player.IsDead()) {
-                // GameOver();
-                GalagaBus.GetBus().RegisterEvent(
-                    new GameEvent {
-                        EventType = GameEventType.GameStateEvent,
-                        Message = "CHANGE_STATE",
-                        StringArg1 = "GameLost"
-                    }
-                );
+                GameOver();
             }
         });
     }
-     public void Explode(Entity entity) {
+
+    public void GameOver() {
+        eventBus.RegisterEvent(
+            new GameEvent {
+                EventType = GameEventType.GameStateEvent,
+                ObjectArg1 = DIKUArcade.Galaga.GalagaStates.GameStateType.MainMenu,
+            }
+        );
+    }
+
+    public void Explode(Entity entity) {
         Vec2F pos = entity.Shape.Position;
         Vec2F extent = entity.Shape.Extent;
         StationaryShape explosion = new StationaryShape(pos, extent);
@@ -151,30 +155,6 @@ public class GameRunning : IGameState {
      private void NextLevel() {
         Enemy.baseSpeed += 0.0002f;
         InitEnemies();
-    }
-    public void HandleKeyEvent(KeyboardAction action, KeyboardKey key) {
-        switch(action, key){
-            case (KeyboardAction.KeyPress, KeyboardKey.Escape):
-                GalagaBus.GetBus().RegisterEvent(
-                    new GameEvent {
-                        EventType = GameEventType.GameStateEvent,
-                        Message = "CHANGE_STATE",
-                        StringArg1 = "GamePaused"
-                    }
-                );
-                break;
-
-            case (KeyboardAction.KeyPress, KeyboardKey.A):
-                Autoshoot.startStop();
-                break;
-
-            case (KeyboardAction.KeyRelease, KeyboardKey.Space):
-                Vec2F shotFromMiddle = new (player.GetPosition().X +
-                                            player.GetExtent().X/2,
-                                            player.GetPosition().Y);
-                playerShots.AddEntity(new PlayerShot(shotFromMiddle, Assets.playerShotImage));
-                break;
-        }
     }
 
     public void RenderState() {
@@ -200,14 +180,81 @@ public class GameRunning : IGameState {
             NextLevel();
         }
         if (Autoshoot.EventIsActive()) {
-             GalagaBus.GetBus().RegisterEvent(
+            eventBus.RegisterEvent(
+                new GameEvent {
+                    EventType = GameEventType.InputEvent,
+                    ObjectArg1 = KeyboardKey.Space,
+                    IntArg1 = (int)KeyboardAction.KeyRelease,
+                }
+            );
+        }
+    }
+
+    public void HandleKeyEvent(KeyboardAction action, KeyboardKey key) {
+        switch (action) {
+            case KeyboardAction.KeyPress:
+                this.KeyPress(key);
+                break;
+            case KeyboardAction.KeyRelease:
+                this.KeyRelease(key);
+                break;
+        }
+    }
+
+    private void KeyPress(KeyboardKey key) {
+        switch (key) {
+            case KeyboardKey.Escape:
+                eventBus.RegisterEvent(
                     new GameEvent {
                         EventType = GameEventType.GameStateEvent,
-                        StringArg1 = "GameRunning",
-                        ObjectArg1 = KeyboardKey.Space,
+                        ObjectArg1 = DIKUArcade.Galaga.GalagaStates.GameStateType.GamePaused,
+                    });
+                break;
+            case KeyboardKey.Left:
+            case KeyboardKey.Right:
+            case KeyboardKey.Up:
+            case KeyboardKey.Down:
+                eventBus.RegisterEvent(
+                        new GameEvent {
+                            EventType = GameEventType.PlayerEvent,
+                            ObjectArg1 = key,
+                            IntArg1 = (int)KeyboardAction.KeyPress
+                        });
+                break;
+            case KeyboardKey.A: //Autoshoot
+                Autoshoot.startStop();
+                break;
+            default:
+                break;
+        }
+    }
+
+    private void KeyRelease(KeyboardKey key) {
+        switch (key) {
+            case KeyboardKey.Left:
+            case KeyboardKey.Right:
+            case KeyboardKey.Up:
+            case KeyboardKey.Down:
+                eventBus.RegisterEvent(
+                    new GameEvent {
+                        EventType = GameEventType.PlayerEvent,
+                        ObjectArg1 = key,
+                        IntArg1 = (int)KeyboardAction.KeyRelease
+                    }
+                );
+                break;
+            case KeyboardKey.Space:
+                eventBus.RegisterEvent(
+                    new GameEvent {
+                        EventType = GameEventType.InputEvent,
+                        ObjectArg1 = key,
                         IntArg1 = (int)KeyboardAction.KeyRelease,
                     }
                 );
+                break;
+            default:
+                break;
         }
     }
+
 }
