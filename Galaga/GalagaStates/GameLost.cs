@@ -12,7 +12,8 @@ public class GameLost : IGameState {
     private static GameLost instance = null;
     private Entity backGroundImage;
     private Vec3I gameColor = new Vec3I(255, 0, 0);
-    private Vec3I menuColor = new Vec3I(255, 255, 255);
+    private Vec3I activeColor = new Vec3I(255, 255, 255);
+    private Vec3I inactiveColor = new Vec3I(51, 153, 255);
     private Text gameLost;
     private Text mainMenu;
 
@@ -35,7 +36,7 @@ public class GameLost : IGameState {
 
         Vec2F mainMenuExtend = new Vec2F(0.3f, 0.3f);
         mainMenu = new Text("Main Menu", new Vec2F(0.3f, 0.1f), mainMenuExtend);
-        mainMenu.SetColor(menuColor);
+        mainMenu.SetColor(inactiveColor);
 
     }
 
@@ -53,6 +54,10 @@ public class GameLost : IGameState {
 
     private void KeyPress(KeyboardKey key) {
         switch (key) {
+            case KeyboardKey.Up:
+            case KeyboardKey.Down:
+                mainMenu.SetColor(activeColor);
+                break;
             case KeyboardKey.Enter:
                 GalagaBus.GetBus().RegisterEvent(
                     new GameEvent {

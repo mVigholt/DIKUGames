@@ -12,7 +12,8 @@ public class GameWon : IGameState {
     private static GameWon instance = null;
     private Entity backGroundImage;
     private Vec3I gameColor = new Vec3I(255, 0, 0);
-    private Vec3I menuColor = new Vec3I(255, 255, 255);
+    private Vec3I activeColor = new Vec3I(255, 255, 255);
+    private Vec3I inactiveColor = new Vec3I(51, 153, 255);
     private Text gameWon;
     private Text mainMenu;
 
@@ -35,7 +36,7 @@ public class GameWon : IGameState {
 
         Vec2F mainMenuExtend = new Vec2F(0.3f, 0.3f);
         mainMenu = new Text("Main Menu", new Vec2F(0.3f, 0.1f), mainMenuExtend);
-        mainMenu.SetColor(menuColor);
+        mainMenu.SetColor(inactiveColor);
 
     }
 
@@ -50,10 +51,12 @@ public class GameWon : IGameState {
         }
     }
 
-
-
     private void KeyPress(KeyboardKey key) {
         switch (key) {
+            case KeyboardKey.Up:
+            case KeyboardKey.Down:
+                mainMenu.SetColor(activeColor);
+                break;
             case KeyboardKey.Enter:
                 GalagaBus.GetBus().RegisterEvent(
                     new GameEvent {

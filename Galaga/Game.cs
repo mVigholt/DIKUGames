@@ -39,8 +39,8 @@ public class Game : DIKUGame, IGameEventProcessor {
         KeyboardKey? key = (KeyboardKey?)gameEvent.ObjectArg1;
         KeyboardAction? action = (KeyboardAction?)gameEvent.IntArg1;
 
-        switch (eventType, key, action) {
-            case (GameEventType.WindowEvent, KeyboardKey.Enter, KeyboardAction.KeyPress):
+        switch (eventType, action) {
+            case (GameEventType.WindowEvent, KeyboardAction.KeyPress):
                 window.CloseWindow();
                 break;
             default:
@@ -64,15 +64,15 @@ public class Game : DIKUGame, IGameEventProcessor {
     ///<summary>Register each keypress to a corresponding game event</summary>
     private void KeyPress(KeyboardKey key) {
         switch (key) {
-            // case KeyboardKey.Q:
-            //     eventBus.RegisterEvent(
-            //         new GameEvent {
-            //             EventType = GameEventType.WindowEvent,
-            //             ObjectArg1 = key,
-            //             IntArg1 = (int)KeyboardAction.KeyPress
-            //         }
-            //     );
-            //     break;
+            case KeyboardKey.Q:
+                eventBus.RegisterEvent(
+                    new GameEvent {
+                        EventType = GameEventType.WindowEvent,
+                        ObjectArg1 = key,
+                        IntArg1 = (int)KeyboardAction.KeyPress
+                    }
+                );
+                break;
             case KeyboardKey.M:
                 eventBus.RegisterEvent(
                     new GameEvent {
