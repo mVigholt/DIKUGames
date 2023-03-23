@@ -10,7 +10,7 @@ using DIKUArcade.Input;
 /// GameEvent ev = new EventBuilder()
 ///     .WithType(GameEventType.PlayerEvent)
 ///     .WithKey(KeyboardKey.Up)
-///     .WithKeyboardAction(KeyboardAction.KeyPress)
+///     .WithAction(KeyboardAction.KeyPress)
 ///     .Build();
 /// 
 /// Additionally, a debug string can be set using
@@ -23,7 +23,7 @@ using DIKUArcade.Input;
 public class EventBuilder {
     
     private Nullable<GameEventType> _type;
-    private Nullable<int> _keyAction;
+    private Nullable<int> _action;
     // Strings and objects are already nullable
     private object _key;
     private string _debugString;
@@ -40,8 +40,8 @@ public class EventBuilder {
         return this;
     }
 
-    public EventBuilder WithKeyboardAction(KeyboardAction action) {
-        _keyAction = (int)action;
+    public EventBuilder WithAction(KeyboardAction action) {
+        _action = (int)action;
         return this;
     }
 
@@ -59,16 +59,16 @@ public class EventBuilder {
             throw new ArgumentException(
                 "Events must specify a KeyboardKey using WithKey()");
         }
-        if (_keyAction is null) {
+        if (_action is null) {
             throw new ArgumentException(
                 "Events must specify a keyboard action " +
-                "using WithKeyboardAction()");
+                "using WithAction()");
         }
         return new GameEvent {
             EventType = _type.Value,
             ObjectArg1 = _key,
             StringArg1 = _debugString,
-            IntArg1 = _keyAction.Value
+            IntArg1 = _action.Value
         };
     }
 }
