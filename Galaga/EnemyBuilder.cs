@@ -1,5 +1,6 @@
 namespace Galaga;
 
+using System;
 using DIKUArcade.Graphics;
 using DIKUArcade.Math;
 
