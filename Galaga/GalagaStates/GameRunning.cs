@@ -16,13 +16,7 @@ using Galaga.Squadron;
 public class GameRunning : IGameState {
     private static GameRunning instance = null;
     private Player player;
-    private Image playerImage;
-    private List<Image> blueEnemyStride;
-    private List<Image> greenEnemyStride;
-    private List<Image> redEnemyStride;
     private EntityContainer<PlayerShot> playerShots;
-    private IBaseImage playerShotImage;
-    private List<Image> explosionStrides;
     private ISquadron squadron;
     private const int EXPLOSION_LENGTH_MS = 500;
     private IMovementStrategy movementStrategy;
@@ -40,32 +34,17 @@ public class GameRunning : IGameState {
     }
 
     public void InitializeGameState(){
-        InitAssets();
         InitPlayer();
         InitEnemies();
         InitPlayerShot();
         InitExplosion();
         InitScore();
     }
-    private void InitAssets() {
-        blueEnemyStride = ImageStride.CreateStrides(
-            4, Path.Combine("Assets", "Images", "BlueMonster.png"));
-        greenEnemyStride = ImageStride.CreateStrides(
-            2, Path.Combine("Assets", "Images", "GreenMonster.png"));
-        redEnemyStride = ImageStride.CreateStrides(
-            2, Path.Combine("Assets", "Images", "RedMonster.png"));
-        playerImage = new Image(
-            Path.Combine("Assets", "Images", "Player.png"));
-        explosionStrides = ImageStride.CreateStrides(8,
-            Path.Combine("Assets", "Images", "Explosion.png"));
-        playerShotImage = new Image(
-            Path.Combine("Assets", "Images", "BulletRed2.png"));
-    }
 
     public void InitPlayer() {
             player = new Player(
             new DynamicShape(new Vec2F(0.45f, 0.1f), new Vec2F(0.1f, 0.1f)),
-            playerImage);
+            Game.playerImage);
 
     }
 
@@ -76,22 +55,22 @@ public class GameRunning : IGameState {
             {
                 0,
                 new RowSquadron(
-                    blueEnemyStride,
-                    redEnemyStride
+                    Game.blueEnemyStride,
+                    Game.redEnemyStride
                 )
             },
             {
                 1,
                 new TriangleSquadron(
-                    greenEnemyStride,
-                    redEnemyStride
+                    Game.greenEnemyStride,
+                    Game.redEnemyStride
                 )
             },
             {
                 2,
                 new XSquadron(
-                    blueEnemyStride,
-                    redEnemyStride
+                    Game.blueEnemyStride,
+                    Game.redEnemyStride
                 )
             },
         };
@@ -167,7 +146,7 @@ public class GameRunning : IGameState {
         StationaryShape explosion = new StationaryShape(pos, extent);
         int nImages = 8;
         ImageStride stride =
-            new ImageStride(EXPLOSION_LENGTH_MS / nImages, explosionStrides);
+            new ImageStride(EXPLOSION_LENGTH_MS / nImages, Game.explosionStrides);
         enemyExplosions.AddAnimation(explosion, EXPLOSION_LENGTH_MS, stride);
     }
      private void NextLevel() {
@@ -194,7 +173,7 @@ public class GameRunning : IGameState {
                 Vec2F shotFromMiddle = new (player.GetPosition().X +
                                             player.GetExtent().X/2,
                                             player.GetPosition().Y);
-                playerShots.AddEntity(new PlayerShot(shotFromMiddle, playerShotImage));
+                playerShots.AddEntity(new PlayerShot(shotFromMiddle, Game.playerShotImage));
                 break;
         }
     }
