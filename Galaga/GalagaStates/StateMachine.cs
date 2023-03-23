@@ -17,16 +17,25 @@ public IGameState ActiveState { get; private set; }
         GamePaused.GetInstance();
     }
 
-    private void SwitchState(GameStateType stateType) {
-        switch (stateType) {
-            case GameStateType.MainMenu:
-                ActiveState.ResetState();
+    private void SwitchState(GameStateType NextState) {
+        switch (ActiveState, NextState) {
+            case (MainMenu, GameStateType.GameRunning):
                 ActiveState = GameRunning.GetInstance();
+                ActiveState.ResetState();
                 break;
-            case GameStateType.GameRunning:
+            case (GameRunning, GameStateType.GamePaused):
                 ActiveState = GamePaused.GetInstance();
+                ActiveState.ResetState();
                 break;
-            case GameStateType.GamePaused:
+            case (GameRunning, GameStateType.MainMenu):
+                ActiveState = MainMenu.GetInstance();
+                ActiveState.ResetState();
+                break;
+            case (GamePaused, GameStateType.MainMenu):
+                ActiveState = MainMenu.GetInstance();
+                ActiveState.ResetState();
+                break;
+            case (GamePaused, GameStateType.GameRunning):
                 ActiveState = GameRunning.GetInstance();
                 break;
             default:
@@ -35,20 +44,22 @@ public IGameState ActiveState { get; private set; }
     }
 
     public void ProcessEvent(GameEvent gameEvent) {
-        GameEventType eventType = gameEvent.EventType;
-        string message = gameEvent.Message;
-        string gameState = gameEvent.StringArg1;
-        // System.Console.WriteLine("String is:" + gameState);
-        GameStateType stateType = StateTransformer.TransformStringToState(gameState);
-        KeyboardKey key = (KeyboardKey) gameEvent.ObjectArg1;
-        KeyboardAction keyboardAction = (KeyboardAction) gameEvent.IntArg1;
-        // System.Console.WriteLine("Active is:" + ActiveState);
-        switch(stateType, message){
-            case (_, "CHANGE_STATE"):
-                SwitchState(stateType);
+        GameEventType? eventType = gameEvent.EventType;
+        System.Enum key = (System.Enum)gameEvent.ObjectArg1;
+        KeyboardAction? action = (KeyboardAction?)gameEvent.IntArg1;
+
+        switch (eventType, key, action) {
+            case (GameEventType.GameStateEvent, GameStateType.MainMenu, _):
+                SwitchState((GameStateType)key);
+                break;
+            case (GameEventType.GameStateEvent, GameStateType.GameRunning, _):
+                SwitchState((GameStateType)key);
+                break;
+            case (GameEventType.GameStateEvent, GameStateType.GamePaused, _):
+                SwitchState((GameStateType)key);
+                break;
+            default:
                 break;
         }
-        ActiveState.HandleKeyEvent(keyboardAction, key);
     }
-
 }

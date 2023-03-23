@@ -12,16 +12,17 @@ public class Game : DIKUGame, IGameEventProcessor {
 
     public Game(WindowArgs windowArgs) : base(windowArgs) {
         InitEventBus();
-        ResetState();
-    }
-
-    private void ResetState() {
         stateMachine = new StateMachine();
     }
 
-    private void GameOver() {
-        ResetState();
+    ///<summary> create new GameEventBus instance and
+    ///subscribe it to a proper GameEventType</summary>
+    public void InitEventBus() {
+        eventBus = GalagaBus.GetBus();
+        window.SetKeyEventHandler(KeyHandler);
+        eventBus.Subscribe(GameEventType.WindowEvent, this);
     }
+
     public override void Render() {
         stateMachine.ActiveState.RenderState();
     }
@@ -30,8 +31,37 @@ public class Game : DIKUGame, IGameEventProcessor {
     public override void Update() {
         eventBus.ProcessEventsSequentially();
         stateMachine.ActiveState.UpdateState();
-
     }
+
+    ///<summary>Register keyboardAction to key press or key release</summary>
+    private void KeyHandler(KeyboardAction action, KeyboardKey key) {
+        switch (action) {
+            case KeyboardAction.KeyPress:
+                this.KeyPress(key);
+                break;
+            case KeyboardAction.KeyRelease:
+                this.KeyRelease(key);
+                break;
+        }
+        stateMachine.ActiveState.HandleKeyEvent(action, key);
+    }
+
+    public void ProcessEvent(GameEvent gameEvent) {
+        GameEventType? eventType = gameEvent.EventType;
+        KeyboardKey? key = (KeyboardKey?)gameEvent.ObjectArg1;
+        KeyboardAction? action = (KeyboardAction?)gameEvent.IntArg1;
+
+        switch (eventType, key, action) {
+            case (GameEventType.WindowEvent, KeyboardKey.Escape, KeyboardAction.KeyPress):
+                window.CloseWindow();
+                break;
+            default:
+                break;
+        }
+    }
+
+
+
 
     ///<summary>Register each keypress to a corresponding game event</summary>
     private void KeyPress(KeyboardKey key) {
@@ -39,11 +69,33 @@ public class Game : DIKUGame, IGameEventProcessor {
             case KeyboardKey.Escape:
                 eventBus.RegisterEvent(
                     new GameEvent {
-                        EventType = GameEventType.GameStateEvent,
+                        EventType = GameEventType.WindowEvent,
                         ObjectArg1 = key,
-                        Message = "CHANGE_STATE",
-                        StringArg1 = "GameRunning",
                         IntArg1 = (int)KeyboardAction.KeyPress
+                    }
+                );
+                break;
+            case KeyboardKey.M:
+                eventBus.RegisterEvent(
+                    new GameEvent {
+                        EventType = GameEventType.GameStateEvent,
+                        ObjectArg1 = DIKUArcade.Galaga.GalagaStates.GameStateType.MainMenu,
+                    }
+                );
+                break;
+            case KeyboardKey.G:
+                eventBus.RegisterEvent(
+                    new GameEvent {
+                        EventType = GameEventType.GameStateEvent,
+                        ObjectArg1 = DIKUArcade.Galaga.GalagaStates.GameStateType.GameRunning,
+                    }
+                );
+                break;
+            case KeyboardKey.P:
+                eventBus.RegisterEvent(
+                    new GameEvent {
+                        EventType = GameEventType.GameStateEvent,
+                        ObjectArg1 = DIKUArcade.Galaga.GalagaStates.GameStateType.GamePaused,
                     }
                 );
                 break;
@@ -51,59 +103,59 @@ public class Game : DIKUGame, IGameEventProcessor {
             case KeyboardKey.Right:
             case KeyboardKey.Up:
             case KeyboardKey.Down:
-                if (stateMachine.ActiveState is MainMenu){
-                    eventBus.RegisterEvent(
-                        new GameEvent{
-                            EventType = GameEventType.GameStateEvent,
-                            ObjectArg1 = key,
-                            StringArg1 = "MainMenu",
-                            IntArg1 = (int)KeyboardAction.KeyPress
-                        }
-                    );
-                }
-                if (stateMachine.ActiveState is GameRunning){
-                    eventBus.RegisterEvent(
-                        new GameEvent {
-                            EventType = GameEventType.PlayerEvent,
-                            ObjectArg1 = key,
-                            StringArg1 = "GameRunning",
-                            IntArg1 = (int)KeyboardAction.KeyPress
-                        }
-                    );
-                }
-                if (stateMachine.ActiveState is GamePaused){
-                    eventBus.RegisterEvent(
-                        new GameEvent {
-                            EventType = GameEventType.GameStateEvent,
-                            ObjectArg1 = key,
-                            StringArg1 = "GamePaused",
-                            IntArg1 = (int)KeyboardAction.KeyPress
-                        }
-                    );
+            //     if (stateMachine.ActiveState is MainMenu){
+            //         eventBus.RegisterEvent(
+            //             new GameEvent{
+            //                 EventType = GameEventType.GameStateEvent,
+            //                 ObjectArg1 = key,
+            //                 StringArg1 = "MainMenu",
+            //                 IntArg1 = (int)KeyboardAction.KeyPress
+            //             }
+            //         );
+            //     }
+            //     if (stateMachine.ActiveState is GameRunning){
+            //         eventBus.RegisterEvent(
+            //             new GameEvent {
+            //                 EventType = GameEventType.PlayerEvent,
+            //                 ObjectArg1 = key,
+            //                 StringArg1 = "GameRunning",
+            //                 IntArg1 = (int)KeyboardAction.KeyPress
+            //             }
+            //         );
+            //     }
+            //     if (stateMachine.ActiveState is GamePaused){
+            //         eventBus.RegisterEvent(
+            //             new GameEvent {
+            //                 EventType = GameEventType.GameStateEvent,
+            //                 ObjectArg1 = key,
+            //                 StringArg1 = "GamePaused",
+            //                 IntArg1 = (int)KeyboardAction.KeyPress
+            //             }
+            //         );
 
-                }
-                break;
-            case KeyboardKey.Enter:
-                if (stateMachine.ActiveState is MainMenu){
-                    eventBus.RegisterEvent(
-                    new GameEvent {
-                        EventType = GameEventType.GameStateEvent,
-                        Message = "CHANGE_STATE",
-                        StringArg1 = "MainMenu",
-                        ObjectArg1 = key,
-                        IntArg1 = (int)KeyboardAction.KeyPress
-                    });
-                }
-                if (stateMachine.ActiveState is GamePaused){
-                    eventBus.RegisterEvent(
-                    new GameEvent {
-                        EventType = GameEventType.GameStateEvent,
-                        Message = "CHANGE_STATE",
-                        StringArg1 = "GamePaused",
-                        ObjectArg1 = key,
-                        IntArg1 = (int)KeyboardAction.KeyPress
-                    });
-                }
+            //     }
+            //     break;
+            // case KeyboardKey.Enter:
+            //     if (stateMachine.ActiveState is MainMenu){
+            //         eventBus.RegisterEvent(
+            //         new GameEvent {
+            //             EventType = GameEventType.GameStateEvent,
+            //             Message = "CHANGE_STATE",
+            //             StringArg1 = "MainMenu",
+            //             ObjectArg1 = key,
+            //             IntArg1 = (int)KeyboardAction.KeyPress
+            //         });
+            //     }
+            //     if (stateMachine.ActiveState is GamePaused){
+            //         eventBus.RegisterEvent(
+            //         new GameEvent {
+            //             EventType = GameEventType.GameStateEvent,
+            //             Message = "CHANGE_STATE",
+            //             StringArg1 = "GamePaused",
+            //             ObjectArg1 = key,
+            //             IntArg1 = (int)KeyboardAction.KeyPress
+            //         });
+            //     }
 
                 break;
             case KeyboardKey.A: //Autoshoot
@@ -149,43 +201,5 @@ public class Game : DIKUGame, IGameEventProcessor {
             default:
                 break;
         }
-    }
-
-    ///<summary>Register keyboardAction to key press or key release</summary>
-    private void KeyHandler(KeyboardAction action, KeyboardKey key) {
-        switch (action) {
-            case KeyboardAction.KeyPress:
-                this.KeyPress(key);
-                break;
-            case KeyboardAction.KeyRelease:
-                this.KeyRelease(key);
-                break;
-        }
-    }
-
-    ///<summary>The method which is called in the ProcessEvents()
-    ///in GameEventBus, to handle each gameEvent</summary>
-    public void ProcessEvent(GameEvent gameEvent) {
-        GameEventType? eventType = gameEvent.EventType;
-        KeyboardKey? key = (KeyboardKey?)gameEvent.ObjectArg1;
-        KeyboardAction? action = (KeyboardAction?)gameEvent.IntArg1;
-        string message = gameEvent.Message;
-
-        switch (eventType, message) {
-            case (GameEventType.WindowEvent,"Quit"):
-                window.CloseWindow();
-                break;
-            default:
-                break;
-        }
-    }
-
-    ///<summary> create new GameEventBus instance and
-    ///subscribe it to a proper GameEventType</summary>
-    public void InitEventBus() {
-        eventBus = GalagaBus.GetBus();
-        window.SetKeyEventHandler(KeyHandler);
-        // eventBus.Subscribe(GameEventType.InputEvent, this);
-        eventBus.Subscribe(GameEventType.WindowEvent, this);
     }
 }
