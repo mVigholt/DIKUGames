@@ -33,6 +33,20 @@ public class Game : DIKUGame, IGameEventProcessor {
         stateMachine.ActiveState.UpdateState();
     }
 
+    public void ProcessEvent(GameEvent gameEvent) {
+        GameEventType? eventType = gameEvent.EventType;
+        KeyboardKey? key = (KeyboardKey?)gameEvent.ObjectArg1;
+        KeyboardAction? action = (KeyboardAction?)gameEvent.IntArg1;
+
+        switch (eventType, key, action) {
+            case (GameEventType.WindowEvent, KeyboardKey.Q, KeyboardAction.KeyPress):
+                window.CloseWindow();
+                break;
+            default:
+                break;
+        }
+    }
+
     ///<summary>Register keyboardAction to key press or key release</summary>
     private void KeyHandler(KeyboardAction action, KeyboardKey key) {
         switch (action) {
@@ -46,27 +60,10 @@ public class Game : DIKUGame, IGameEventProcessor {
         stateMachine.ActiveState.HandleKeyEvent(action, key);
     }
 
-    public void ProcessEvent(GameEvent gameEvent) {
-        GameEventType? eventType = gameEvent.EventType;
-        KeyboardKey? key = (KeyboardKey?)gameEvent.ObjectArg1;
-        KeyboardAction? action = (KeyboardAction?)gameEvent.IntArg1;
-
-        switch (eventType, key, action) {
-            case (GameEventType.WindowEvent, KeyboardKey.Escape, KeyboardAction.KeyPress):
-                window.CloseWindow();
-                break;
-            default:
-                break;
-        }
-    }
-
-
-
-
     ///<summary>Register each keypress to a corresponding game event</summary>
     private void KeyPress(KeyboardKey key) {
         switch (key) {
-            case KeyboardKey.Escape:
+            case KeyboardKey.Q:
                 eventBus.RegisterEvent(
                     new GameEvent {
                         EventType = GameEventType.WindowEvent,
@@ -91,26 +88,10 @@ public class Game : DIKUGame, IGameEventProcessor {
                     }
                 );
                 break;
-            case KeyboardKey.P:
-                eventBus.RegisterEvent(
-                    new GameEvent {
-                        EventType = GameEventType.GameStateEvent,
-                        ObjectArg1 = DIKUArcade.Galaga.GalagaStates.GameStateType.GamePaused,
-                    }
-                );
-                break;
             case KeyboardKey.Left:
             case KeyboardKey.Right:
             case KeyboardKey.Up:
             case KeyboardKey.Down:
-                eventBus.RegisterEvent(
-                        new GameEvent {
-                            EventType = GameEventType.PlayerEvent,
-                            ObjectArg1 = key,
-                            StringArg1 = "GameRunning",
-                            IntArg1 = (int)KeyboardAction.KeyPress
-                        }
-                    );
             //     if (stateMachine.ActiveState is MainMenu){
             //         eventBus.RegisterEvent(
             //             new GameEvent{
@@ -166,15 +147,6 @@ public class Game : DIKUGame, IGameEventProcessor {
             //     }
 
                 break;
-            case KeyboardKey.A: //Autoshoot
-                eventBus.RegisterEvent(
-                    new GameEvent {
-                        EventType = GameEventType.GameStateEvent,
-                        StringArg1 = "GameRunning",
-                        ObjectArg1 = key,
-                        IntArg1 = (int)KeyboardAction.KeyPress
-                    });
-                break;
             default:
                 break;
         }
@@ -183,29 +155,6 @@ public class Game : DIKUGame, IGameEventProcessor {
     ///<summary>Register each key release to a corresponding game event</summary>
     private void KeyRelease(KeyboardKey key) {
         switch (key) {
-            case KeyboardKey.Left:
-            case KeyboardKey.Right:
-            case KeyboardKey.Up:
-            case KeyboardKey.Down:
-                eventBus.RegisterEvent(
-                    new GameEvent {
-                        EventType = GameEventType.PlayerEvent,
-                        ObjectArg1 = key,
-                        StringArg1 = "GameRunning",
-                        IntArg1 = (int)KeyboardAction.KeyRelease
-                    }
-                );
-                break;
-            case KeyboardKey.Space:
-                eventBus.RegisterEvent(
-                    new GameEvent {
-                        EventType = GameEventType.GameStateEvent,
-                        ObjectArg1 = key,
-                        StringArg1 = "GameRunning",
-                        IntArg1 = (int)KeyboardAction.KeyRelease,
-                    }
-                );
-                break;
             default:
                 break;
         }
