@@ -12,20 +12,19 @@ public IGameState ActiveState { get; private set; }
     public StateMachine() {
         GalagaBus.GetBus().Subscribe(GameEventType.GameStateEvent, this);
         GalagaBus.GetBus().Subscribe(GameEventType.InputEvent, this);
-        GalagaBus.GetBus().Subscribe(GameEventType.WindowEvent, this);
-        MainMenu.GetInstance();
-        ActiveState = GameRunning.GetInstance();
+        ActiveState = MainMenu.GetInstance();
+        GameRunning.GetInstance();
         GamePaused.GetInstance();
     }
 
     private void SwitchState(GameStateType stateType) {
         switch (stateType) {
             case GameStateType.MainMenu:
-
-
-
+                ActiveState.ResetState();
+                ActiveState = GameRunning.GetInstance();
                 break;
             case GameStateType.GameRunning:
+                ActiveState = GamePaused.GetInstance();
                 break;
             case GameStateType.GamePaused:
                 break;
@@ -36,10 +35,16 @@ public IGameState ActiveState { get; private set; }
 
     public void ProcessEvent(GameEvent gameEvent) {
         GameEventType eventType = gameEvent.EventType;
-        IGameState state = ActiveState;
+        string message = gameEvent.Message;
+        string gameState = gameEvent.StringArg1;
+        // System.Console.WriteLine("String is:" + gameState);
+        GameStateType stateType = StateTransformer.TransformStringToState(gameState);
         KeyboardKey key = (KeyboardKey) gameEvent.ObjectArg1;
         KeyboardAction keyboardAction = (KeyboardAction) gameEvent.IntArg1;
-        // System.Console.WriteLine("Key is:" + key);
+        // System.Console.WriteLine("Active is:" + ActiveState);
+        if (message == "CHANGE_STATE"){
+            SwitchState(stateType);
+        }
         ActiveState.HandleKeyEvent(keyboardAction, key);
     }
 

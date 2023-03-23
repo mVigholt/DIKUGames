@@ -39,6 +39,8 @@ public class Game : DIKUGame, IGameEventProcessor {
                     new GameEvent {
                         EventType = GameEventType.WindowEvent,
                         ObjectArg1 = key,
+                        Message = "Quit",
+                        StringArg1 = "GameRunning",
                         IntArg1 = (int)KeyboardAction.KeyPress
                     }
                 );
@@ -52,6 +54,7 @@ public class Game : DIKUGame, IGameEventProcessor {
                         new GameEvent{
                             EventType = GameEventType.GameStateEvent,
                             ObjectArg1 = key,
+                            StringArg1 = "MainMenu",
                             IntArg1 = (int)KeyboardAction.KeyPress
                         }
                     );
@@ -61,23 +64,30 @@ public class Game : DIKUGame, IGameEventProcessor {
                     new GameEvent {
                         EventType = GameEventType.PlayerEvent,
                         ObjectArg1 = key,
+                        StringArg1 = "GameRunning",
                         IntArg1 = (int)KeyboardAction.KeyPress
                     }
                 );}
                 break;
             case KeyboardKey.Enter:
-                eventBus.RegisterEvent(
+                if (stateMachine.ActiveState is MainMenu){
+                    eventBus.RegisterEvent(
                     new GameEvent {
                         EventType = GameEventType.GameStateEvent,
+                        Message = "CHANGE_STATE",
+                        StringArg1 = "MainMenu",
                         ObjectArg1 = key,
                         IntArg1 = (int)KeyboardAction.KeyPress
                     });
+                }
+
                 break;
             case KeyboardKey.A: //Autoshoot
                 eventBus.RegisterEvent(
                     new GameEvent {
                         EventType = GameEventType.GameStateEvent,
                         ObjectArg1 = key,
+                        StringArg1 = "GameRunning",
                         IntArg1 = (int)KeyboardAction.KeyPress
                     });
                 break;
@@ -97,6 +107,7 @@ public class Game : DIKUGame, IGameEventProcessor {
                     new GameEvent {
                         EventType = GameEventType.PlayerEvent,
                         ObjectArg1 = key,
+                        StringArg1 = "GameRunning",
                         IntArg1 = (int)KeyboardAction.KeyRelease
                     }
                 );
@@ -106,6 +117,7 @@ public class Game : DIKUGame, IGameEventProcessor {
                     new GameEvent {
                         EventType = GameEventType.GameStateEvent,
                         ObjectArg1 = key,
+                        StringArg1 = "GameRunning",
                         IntArg1 = (int)KeyboardAction.KeyRelease,
                     }
                 );
