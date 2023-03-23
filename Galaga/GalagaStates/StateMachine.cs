@@ -13,8 +13,8 @@ public IGameState ActiveState { get; private set; }
         GalagaBus.GetBus().Subscribe(GameEventType.GameStateEvent, this);
         GalagaBus.GetBus().Subscribe(GameEventType.InputEvent, this);
         GalagaBus.GetBus().Subscribe(GameEventType.WindowEvent, this);
-        ActiveState = MainMenu.GetInstance();
-        GameRunning.GetInstance();
+        MainMenu.GetInstance();
+        ActiveState = GameRunning.GetInstance();
         GamePaused.GetInstance();
     }
 
