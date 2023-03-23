@@ -103,6 +103,14 @@ public class Game : DIKUGame, IGameEventProcessor {
             case KeyboardKey.Right:
             case KeyboardKey.Up:
             case KeyboardKey.Down:
+                eventBus.RegisterEvent(
+                        new GameEvent {
+                            EventType = GameEventType.PlayerEvent,
+                            ObjectArg1 = key,
+                            StringArg1 = "GameRunning",
+                            IntArg1 = (int)KeyboardAction.KeyPress
+                        }
+                    );
             //     if (stateMachine.ActiveState is MainMenu){
             //         eventBus.RegisterEvent(
             //             new GameEvent{
