@@ -23,7 +23,7 @@ public class GameRunning : IGameState {
     private AnimationContainer enemyExplosions;
     private Score score;
 
-    private TimedEvent Autoshoot = new TimedEvent(100);
+    private TimedEvent Autoshoot;
     public static GameRunning GetInstance() {
         if (GameRunning.instance == null) {
             GameRunning.instance = new GameRunning();
@@ -34,9 +34,10 @@ public class GameRunning : IGameState {
     }
 
     public void InitializeGameState(){
+        Autoshoot = new TimedEvent(100);
         InitPlayer();
         InitEnemies();
-        InitPlayerShot();
+        InitPlayerShot();;
         InitExplosion();
         InitScore();
     }
@@ -157,6 +158,13 @@ public class GameRunning : IGameState {
         InitEnemies();
     }
 
+    private void Shoot() {
+        Vec2F shotFromMiddle = new (player.GetPosition().X +
+                                    player.GetExtent().X/2,
+                                    player.GetPosition().Y);
+        playerShots.AddEntity(new PlayerShot(shotFromMiddle, Assets.playerShotImage));
+    } 
+
     public void RenderState() {
         player.Render();
         squadron.Enemies.RenderEntities();
@@ -180,13 +188,14 @@ public class GameRunning : IGameState {
             NextLevel();
         }
         if (Autoshoot.EventIsActive()) {
-            eventBus.RegisterEvent(
-                new GameEvent {
-                    EventType = GameEventType.InputEvent,
-                    ObjectArg1 = KeyboardKey.Space,
-                    IntArg1 = (int)KeyboardAction.KeyRelease,
-                }
-            );
+            Shoot();
+            // eventBus.RegisterEvent(
+            //     new GameEvent {
+            //         EventType = GameEventType.InputEvent,
+            //         ObjectArg1 = KeyboardKey.Space,
+            //         IntArg1 = (int)KeyboardAction.KeyRelease,
+            //     }
+            // );
         }
     }
 
@@ -244,13 +253,14 @@ public class GameRunning : IGameState {
                 );
                 break;
             case KeyboardKey.Space:
-                eventBus.RegisterEvent(
-                    new GameEvent {
-                        EventType = GameEventType.InputEvent,
-                        ObjectArg1 = key,
-                        IntArg1 = (int)KeyboardAction.KeyRelease,
-                    }
-                );
+                Shoot();
+                // eventBus.RegisterEvent(
+                //     new GameEvent {
+                //         EventType = GameEventType.InputEvent,
+                //         ObjectArg1 = key,
+                //         IntArg1 = (int)KeyboardAction.KeyRelease,
+                //     }
+                // );
                 break;
             default:
                 break;
