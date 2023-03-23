@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using DIKUArcade.Entities;
 using DIKUArcade.Events;
+using DIKUArcade.Galaga.GalagaStates;
 using DIKUArcade.Graphics;
 using DIKUArcade.Input;
 using DIKUArcade.Math;
@@ -139,7 +140,7 @@ public class GameRunning : IGameState {
         eventBus.RegisterEvent(
             new GameEvent {
                 EventType = GameEventType.GameStateEvent,
-                ObjectArg1 = DIKUArcade.Galaga.GalagaStates.GameStateType.MainMenu,
+                ObjectArg1 = GameStateType.GameLost,
             }
         );
     }
@@ -156,6 +157,20 @@ public class GameRunning : IGameState {
      private void NextLevel() {
         Enemy.baseSpeed += 0.0002f;
         InitEnemies();
+        player.Level++;
+        GameWon();
+    }
+
+    private void GameWon(){
+        if (player.Level == 2){
+            eventBus.RegisterEvent(
+                new GameEvent {
+                    EventType = GameEventType.GameStateEvent,
+                    ObjectArg1 = GameStateType.GameWon,
+                }
+        );
+        }
+
     }
 
     private void Shoot() {
@@ -163,7 +178,7 @@ public class GameRunning : IGameState {
                                     player.GetExtent().X/2,
                                     player.GetPosition().Y);
         playerShots.AddEntity(new PlayerShot(shotFromMiddle, Assets.playerShotImage));
-    } 
+    }
 
     public void RenderState() {
         player.Render();
