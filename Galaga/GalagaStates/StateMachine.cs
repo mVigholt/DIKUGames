@@ -11,7 +11,7 @@ public class StateMachine : IGameEventProcessor {
 public IGameState ActiveState { get; private set; }
     public StateMachine() {
         GalagaBus.GetBus().Subscribe(GameEventType.GameStateEvent, this);
-        GalagaBus.GetBus().Subscribe(GameEventType.InputEvent, this);
+        // GalagaBus.GetBus().Subscribe(GameEventType.InputEvent, this);
         ActiveState = MainMenu.GetInstance();
         GameRunning.GetInstance();
         GamePaused.GetInstance();
@@ -27,6 +27,7 @@ public IGameState ActiveState { get; private set; }
                 ActiveState = GamePaused.GetInstance();
                 break;
             case GameStateType.GamePaused:
+                ActiveState = GameRunning.GetInstance();
                 break;
             default:
                 break;
@@ -42,8 +43,10 @@ public IGameState ActiveState { get; private set; }
         KeyboardKey key = (KeyboardKey) gameEvent.ObjectArg1;
         KeyboardAction keyboardAction = (KeyboardAction) gameEvent.IntArg1;
         // System.Console.WriteLine("Active is:" + ActiveState);
-        if (message == "CHANGE_STATE"){
-            SwitchState(stateType);
+        switch(stateType, message){
+            case (_, "CHANGE_STATE"):
+                SwitchState(stateType);
+                break;
         }
         ActiveState.HandleKeyEvent(keyboardAction, key);
     }

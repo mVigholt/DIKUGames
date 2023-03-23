@@ -32,7 +32,7 @@ public class MainMenu : IGameState {
         Shape backGroundShape = new StationaryShape(backGroundPos, backGroundExtent);
         Image image = new Image(Path.Combine("Assets", "Images", "TitleImage.png"));
         backGroundImage = new Entity(backGroundShape, image);
-        Vec2F menuExtend = new Vec2F(0.2f, 0.2f);
+        Vec2F menuExtend = new Vec2F(0.3f, 0.3f);
         Text newGame = new Text("New Game", new Vec2F(0.2f, 0.4f), menuExtend);
         Text quit = new Text("Quit", new Vec2F(0.2f, 0.3f), menuExtend);
         menuButtons = new Text[] { newGame, quit };
@@ -76,8 +76,7 @@ public class MainMenu : IGameState {
                         GalagaBus.GetBus().RegisterEvent(
                             new GameEvent {
                                 EventType = GameEventType.WindowEvent,
-                                ObjectArg1 = KeyboardKey.Escape,
-                                IntArg1 = (int) KeyboardAction.KeyPress
+                                Message = "Quit",
                             });
                         break;
                 }
