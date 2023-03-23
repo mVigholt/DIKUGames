@@ -2,6 +2,7 @@ namespace Galaga;
 
 using DIKUArcade;
 using DIKUArcade.Events;
+using DIKUArcade.Galaga.GalagaStates;
 using DIKUArcade.GUI;
 using DIKUArcade.Input;
 using Galaga.GalagaStates;
@@ -39,7 +40,7 @@ public class Game : DIKUGame, IGameEventProcessor {
         KeyboardAction? action = (KeyboardAction?)gameEvent.IntArg1;
 
         switch (eventType, key, action) {
-            case (GameEventType.WindowEvent, KeyboardKey.Q, KeyboardAction.KeyPress):
+            case (GameEventType.WindowEvent, KeyboardKey.Enter, KeyboardAction.KeyPress):
                 window.CloseWindow();
                 break;
             default:
@@ -63,89 +64,28 @@ public class Game : DIKUGame, IGameEventProcessor {
     ///<summary>Register each keypress to a corresponding game event</summary>
     private void KeyPress(KeyboardKey key) {
         switch (key) {
-            case KeyboardKey.Q:
-                eventBus.RegisterEvent(
-                    new GameEvent {
-                        EventType = GameEventType.WindowEvent,
-                        ObjectArg1 = key,
-                        IntArg1 = (int)KeyboardAction.KeyPress
-                    }
-                );
-                break;
+            // case KeyboardKey.Q:
+            //     eventBus.RegisterEvent(
+            //         new GameEvent {
+            //             EventType = GameEventType.WindowEvent,
+            //             ObjectArg1 = key,
+            //             IntArg1 = (int)KeyboardAction.KeyPress
+            //         }
+            //     );
+            //     break;
             case KeyboardKey.M:
                 eventBus.RegisterEvent(
                     new GameEvent {
                         EventType = GameEventType.GameStateEvent,
-                        ObjectArg1 = DIKUArcade.Galaga.GalagaStates.GameStateType.MainMenu,
+                        ObjectArg1 = GameStateType.MainMenu,
                     }
                 );
                 break;
-            case KeyboardKey.G:
-                eventBus.RegisterEvent(
-                    new GameEvent {
-                        EventType = GameEventType.GameStateEvent,
-                        ObjectArg1 = DIKUArcade.Galaga.GalagaStates.GameStateType.GameRunning,
-                    }
-                );
-                break;
+            case KeyboardKey.Enter:
             case KeyboardKey.Left:
             case KeyboardKey.Right:
             case KeyboardKey.Up:
             case KeyboardKey.Down:
-            //     if (stateMachine.ActiveState is MainMenu){
-            //         eventBus.RegisterEvent(
-            //             new GameEvent{
-            //                 EventType = GameEventType.GameStateEvent,
-            //                 ObjectArg1 = key,
-            //                 StringArg1 = "MainMenu",
-            //                 IntArg1 = (int)KeyboardAction.KeyPress
-            //             }
-            //         );
-            //     }
-            //     if (stateMachine.ActiveState is GameRunning){
-            //         eventBus.RegisterEvent(
-            //             new GameEvent {
-            //                 EventType = GameEventType.PlayerEvent,
-            //                 ObjectArg1 = key,
-            //                 StringArg1 = "GameRunning",
-            //                 IntArg1 = (int)KeyboardAction.KeyPress
-            //             }
-            //         );
-            //     }
-            //     if (stateMachine.ActiveState is GamePaused){
-            //         eventBus.RegisterEvent(
-            //             new GameEvent {
-            //                 EventType = GameEventType.GameStateEvent,
-            //                 ObjectArg1 = key,
-            //                 StringArg1 = "GamePaused",
-            //                 IntArg1 = (int)KeyboardAction.KeyPress
-            //             }
-            //         );
-
-            //     }
-            //     break;
-            // case KeyboardKey.Enter:
-            //     if (stateMachine.ActiveState is MainMenu){
-            //         eventBus.RegisterEvent(
-            //         new GameEvent {
-            //             EventType = GameEventType.GameStateEvent,
-            //             Message = "CHANGE_STATE",
-            //             StringArg1 = "MainMenu",
-            //             ObjectArg1 = key,
-            //             IntArg1 = (int)KeyboardAction.KeyPress
-            //         });
-            //     }
-            //     if (stateMachine.ActiveState is GamePaused){
-            //         eventBus.RegisterEvent(
-            //         new GameEvent {
-            //             EventType = GameEventType.GameStateEvent,
-            //             Message = "CHANGE_STATE",
-            //             StringArg1 = "GamePaused",
-            //             ObjectArg1 = key,
-            //             IntArg1 = (int)KeyboardAction.KeyPress
-            //         });
-            //     }
-
                 break;
             default:
                 break;

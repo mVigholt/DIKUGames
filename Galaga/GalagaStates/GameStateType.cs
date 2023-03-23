@@ -6,6 +6,8 @@ public enum GameStateType {
     MainMenu,
     GameRunning,
     GamePaused,
+    GameWon,
+    GameLost
 }
 
 public class StateTransformer {

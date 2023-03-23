@@ -22,12 +22,18 @@ public class Player : Entity, IGameEventProcessor {
     private const float MOVEMENT_SPEED = 0.01f;
     public Health health;
 
-    public Player(DynamicShape shape,  IBaseImage image) : this(shape, image, 50) {
+    public int Level {
+        get;
+        internal set;
+    }
+
+    public Player(DynamicShape shape,  IBaseImage image) : this(shape, image, 3) {
         InitEventBus();
     }
 
     public Player(DynamicShape shape,  IBaseImage image, int startingHealth)
         : base(shape, image) {
+        this.Level = 0;
         this.shape = shape;
         Vec2F pos = new Vec2F(0.0f, -0.2f) ;
         Vec2F extent = new Vec2F(0.3f, 0.3f);

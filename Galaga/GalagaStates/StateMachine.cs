@@ -8,7 +8,9 @@ using DIKUArcade.Input;
 using DIKUArcade.GUI;
 
 public class StateMachine : IGameEventProcessor {
-public IGameState ActiveState { get; private set; }
+    public IGameState ActiveState {
+        get; private set;
+    }
     public StateMachine() {
         GalagaBus.GetBus().Subscribe(GameEventType.GameStateEvent, this);
         // GalagaBus.GetBus().Subscribe(GameEventType.InputEvent, this);
@@ -38,6 +40,22 @@ public IGameState ActiveState { get; private set; }
             case (GamePaused, GameStateType.GameRunning):
                 ActiveState = GameRunning.GetInstance();
                 break;
+            case (GameLost, GameStateType.MainMenu):
+                ActiveState = MainMenu.GetInstance();
+                ActiveState.RenderState();
+                break;
+            case (GameWon, GameStateType.MainMenu):
+                ActiveState = MainMenu.GetInstance();
+                ActiveState.RenderState();
+                break;
+            case (GameRunning, GameStateType.GameLost):
+                ActiveState = GameLost.GetInstance();
+                ActiveState.ResetState();
+                break;
+            case (GameRunning, GameStateType.GameWon):
+                ActiveState = GameWon.GetInstance();
+                ActiveState.ResetState();
+                break;
             default:
                 break;
         }
@@ -45,21 +63,18 @@ public IGameState ActiveState { get; private set; }
 
     public void ProcessEvent(GameEvent gameEvent) {
         GameEventType? eventType = gameEvent.EventType;
-        System.Enum key = (System.Enum)gameEvent.ObjectArg1;
-        KeyboardAction? action = (KeyboardAction?)gameEvent.IntArg1;
-
-        switch (eventType, key, action) {
-            case (GameEventType.GameStateEvent, GameStateType.MainMenu, _):
-                SwitchState((GameStateType)key);
-                break;
-            case (GameEventType.GameStateEvent, GameStateType.GameRunning, _):
-                SwitchState((GameStateType)key);
-                break;
-            case (GameEventType.GameStateEvent, GameStateType.GamePaused, _):
-                SwitchState((GameStateType)key);
-                break;
-            default:
-                break;
-        }
+        System.Enum key = (System.Enum) gameEvent.ObjectArg1;
+        KeyboardAction? action = (KeyboardAction?) gameEvent.IntArg1;
+        SwitchState((GameStateType) key);
+        // switch (eventType, key, action) {
+        //     case (GameEventType.GameStateEvent, GameStateType.MainMenu, _):
+        //     case (GameEventType.GameStateEvent, GameStateType.GameRunning, _):
+        //     case (GameEventType.GameStateEvent, GameStateType.GamePaused, _):
+        //     case (GameEventType.GameStateEvent, GameStateType.GameWon, _):
+        //         SwitchState((GameStateType)key);
+        //         break;
+        //     default:
+        //         break;
+        // }
     }
 }
