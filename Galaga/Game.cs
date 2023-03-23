@@ -1,6 +1,10 @@
 namespace Galaga;
+
+using System.Collections.Generic;
+using System.IO;
 using DIKUArcade;
 using DIKUArcade.Events;
+using DIKUArcade.Graphics;
 using DIKUArcade.GUI;
 using DIKUArcade.Input;
 using Galaga.GalagaStates;
@@ -8,6 +12,26 @@ using Galaga.GalagaStates;
 public class Game : DIKUGame, IGameEventProcessor {
     private GameEventBus eventBus = GalagaBus.GetBus();
     private StateMachine stateMachine;
+
+    public static List<Image> blueEnemyStride = 
+        ImageStride.CreateStrides(
+            4, Path.Combine("Assets", "Images", "BlueMonster.png"));
+    public static List<Image> greenEnemyStride = 
+        ImageStride.CreateStrides(
+            2, Path.Combine("Assets", "Images", "GreenMonster.png"));
+    public static List<Image> redEnemyStride = 
+        ImageStride.CreateStrides(
+            2, Path.Combine("Assets", "Images", "RedMonster.png"));
+    public static List<Image> explosionStrides = 
+        ImageStride.CreateStrides(
+            8, Path.Combine("Assets", "Images", "Explosion.png"));
+    public static Image playerImage = 
+        new Image(
+            Path.Combine("Assets", "Images", "Player.png"));
+    public static Image playerShotImage = 
+        new Image(
+            Path.Combine("Assets", "Images", "BulletRed2.png"));
+
     public Game(WindowArgs windowArgs) : base(windowArgs) {
         InitEventBus();
         ResetState();
