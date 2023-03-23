@@ -3,6 +3,7 @@ using System;
 using System.IO;
 using DIKUArcade.Entities;
 using DIKUArcade.Events;
+using DIKUArcade.Galaga.GalagaStates;
 using DIKUArcade.Graphics;
 using DIKUArcade.GUI;
 using DIKUArcade.Input;
@@ -68,7 +69,7 @@ public class MainMenu : IGameState {
                         new GameEvent {
                             EventType = GameEventType.GameStateEvent,
                             Message = "CHANGE_STATE",
-                            StringArg1 = "GameRuning"
+                            StringArg1 = "GameRunning"
                         });
                         break;
                     case (1):
