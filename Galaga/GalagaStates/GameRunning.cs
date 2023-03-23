@@ -2,7 +2,6 @@ namespace Galaga.GalagaStates;
 
 using System;
 using System.Collections.Generic;
-using System.IO;
 using DIKUArcade.Entities;
 using DIKUArcade.Events;
 using DIKUArcade.Graphics;
@@ -44,7 +43,7 @@ public class GameRunning : IGameState {
     public void InitPlayer() {
             player = new Player(
             new DynamicShape(new Vec2F(0.45f, 0.1f), new Vec2F(0.1f, 0.1f)),
-            Game.playerImage);
+            Assets.playerImage);
 
     }
 
@@ -55,22 +54,22 @@ public class GameRunning : IGameState {
             {
                 0,
                 new RowSquadron(
-                    Game.blueEnemyStride,
-                    Game.redEnemyStride
+                    Assets.blueEnemyStride,
+                    Assets.redEnemyStride
                 )
             },
             {
                 1,
                 new TriangleSquadron(
-                    Game.greenEnemyStride,
-                    Game.redEnemyStride
+                    Assets.greenEnemyStride,
+                    Assets.redEnemyStride
                 )
             },
             {
                 2,
                 new XSquadron(
-                    Game.blueEnemyStride,
-                    Game.redEnemyStride
+                    Assets.blueEnemyStride,
+                    Assets.redEnemyStride
                 )
             },
         };
@@ -146,7 +145,7 @@ public class GameRunning : IGameState {
         StationaryShape explosion = new StationaryShape(pos, extent);
         int nImages = 8;
         ImageStride stride =
-            new ImageStride(EXPLOSION_LENGTH_MS / nImages, Game.explosionStrides);
+            new ImageStride(EXPLOSION_LENGTH_MS / nImages, Assets.explosionStrides);
         enemyExplosions.AddAnimation(explosion, EXPLOSION_LENGTH_MS, stride);
     }
      private void NextLevel() {
@@ -173,7 +172,7 @@ public class GameRunning : IGameState {
                 Vec2F shotFromMiddle = new (player.GetPosition().X +
                                             player.GetExtent().X/2,
                                             player.GetPosition().Y);
-                playerShots.AddEntity(new PlayerShot(shotFromMiddle, Game.playerShotImage));
+                playerShots.AddEntity(new PlayerShot(shotFromMiddle, Assets.playerShotImage));
                 break;
         }
     }
