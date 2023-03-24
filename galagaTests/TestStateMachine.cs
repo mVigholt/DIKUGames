@@ -1,7 +1,9 @@
 namespace GalagaTests;
+
 using NUnit.Framework;
 using Galaga;
 using Galaga.GalagaStates;
+using DIKUArcade.Galaga.GalagaStates;
 using DIKUArcade.GUI;
 using DIKUArcade.Events;
 
@@ -11,30 +13,91 @@ public class StateMachineTesting {
     [SetUp]
     public void InitiateStateMachine() {
         Window.CreateOpenGLContext();
-        /*
-        Here you should:
-        (1) Initialize a GalagaBus with proper GameEventTypes
-        (2) Instantiate the StateMachine
-        (3) Subscribe the GalagaBus to proper GameEventTypes
-        and GameEventProcessors
-        */
         stateMachine = new StateMachine();
-
-
     }
-    [Test]
-    public void TestInitialState() {
-        Assert.That(stateMachine.ActiveState, Is.InstanceOf<MainMenu>());
+
+    public void GoToMainMenu() {
+        GalagaBus.GetBus().RegisterEvent(
+            new EventBuilder()
+                .WithType(GameEventType.GameStateEvent)
+                .WithObject(GameStateType.MainMenu)
+                .Build()
+        );
     }
-    [Test]
-    public void TestEventGamePaused() {
+
+    public void GoToGameRunning() {
+        GalagaBus.GetBus().RegisterEvent(
+            new EventBuilder()
+                .WithType(GameEventType.GameStateEvent)
+                .WithObject(GameStateType.GameRunning)
+                .Build()
+        );
+    }
+
+    public void GoToGamePaused() {
         GalagaBus.GetBus().RegisterEvent(
             new EventBuilder()
                 .WithType(GameEventType.GameStateEvent)
                 .WithObject(GameStateType.GamePaused)
                 .Build()
         );
+    }
+
+    public void GoToGameWon() {
+        GalagaBus.GetBus().RegisterEvent(
+            new EventBuilder()
+                .WithType(GameEventType.GameStateEvent)
+                .WithObject(GameStateType.GameWon)
+                .Build()
+        );
+    }
+
+    public void GoToGameLost() {
+        GalagaBus.GetBus().RegisterEvent(
+            new EventBuilder()
+                .WithType(GameEventType.GameStateEvent)
+                .WithObject(GameStateType.GameLost)
+                .Build()
+        );
+    }
+
+    [Test]
+    public void TestEventGameRunning() {
+        GoToGameRunning();
+        GalagaBus.GetBus().ProcessEventsSequentially();
+        Assert.That(stateMachine.ActiveState, Is.InstanceOf<GameRunning>());
+    }
+
+    [Test]
+    public void TestEventGamePaused() {
+        GoToGameRunning();
+        GoToGamePaused();
         GalagaBus.GetBus().ProcessEventsSequentially();
         Assert.That(stateMachine.ActiveState, Is.InstanceOf<GamePaused>());
+    }
+
+    [Test]
+    public void TestEventMainMenu() {
+        GoToGameRunning();
+        GoToGamePaused();
+        GoToMainMenu();
+        GalagaBus.GetBus().ProcessEventsSequentially();
+        Assert.That(stateMachine.ActiveState, Is.InstanceOf<MainMenu>());
+    }
+
+    [Test]
+    public void TestEventGameWon() {
+        GoToGameRunning();
+        GoToGameWon();
+        GalagaBus.GetBus().ProcessEventsSequentially();
+        Assert.That(stateMachine.ActiveState, Is.InstanceOf<GameWon>());
+    }
+
+    [Test]
+    public void TestEventGameLost() {
+        GoToGameRunning();
+        GoToGameLost();
+        GalagaBus.GetBus().ProcessEventsSequentially();
+        Assert.That(stateMachine.ActiveState, Is.InstanceOf<GameLost>());
     }
 }
