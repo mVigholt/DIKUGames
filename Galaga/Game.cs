@@ -34,6 +34,8 @@ public class Game : DIKUGame, IGameEventProcessor {
         stateMachine.ActiveState.UpdateState();
     }
 
+    ///<summary>Process incoming game event.
+    ///Her it handles only WindowEvent</summary>
     public void ProcessEvent(GameEvent gameEvent) {
         EventDTO ev = new EventDTO(gameEvent);
         switch (ev.Type, ev.Action.Value) {
