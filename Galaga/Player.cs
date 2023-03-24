@@ -113,7 +113,7 @@ public class Player : Entity, IGameEventProcessor {
 
     public void ProcessEvent(GameEvent gameEvent) {
         EventDTO ev = new EventDTO(gameEvent);
-        switch (ev.Key) {
+        switch (ev.Key.Value) {
             case KeyboardKey.Left:
                 SetMoveLeft(ev.Action == KeyboardAction.KeyPress);
                 break;

@@ -3,6 +3,8 @@ namespace Galaga;
 using System;
 using DIKUArcade.Events;
 using DIKUArcade.Input;
+using DIKUArcade.Galaga.GalagaStates;
+
 
 /// <summary>
 /// This event data transfer object is instantiated
@@ -13,20 +15,21 @@ using DIKUArcade.Input;
 public class EventDTO {
 
     public readonly GameEventType Type;
-    public readonly KeyboardKey Key;
-    public readonly object Obj;
-    public readonly Nullable<KeyboardAction> Action;
-    public readonly string DebugString; // optional
+    public readonly Nullable<KeyboardKey> Key = null;
+    public readonly Nullable<GameStateType> StateType = null;
+    public readonly Nullable<KeyboardAction> Action = null;
+    public readonly string DebugString;
 
     public EventDTO(GameEvent ev) {
+        // This code is ugly so the callers' code
+        // can be pretty
         Type = ev.EventType;
-        try {
+        if (!(ev.ObjectArg1 is null)) {
             Key = (KeyboardKey) ev.ObjectArg1;
-            Obj = ev.ObjectArg1;
-        } catch (Exception) {
-            Obj = ev.ObjectArg1;
         }
-        DebugString = ev.StringArg1;
+        if (!(ev.From is null)) {
+            StateType = (GameStateType) ev.From;
+        }
         if (ev.IntArg1 == -1) {
             Action = null;
         } else {

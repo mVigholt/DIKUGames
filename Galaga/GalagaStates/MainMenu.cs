@@ -78,7 +78,7 @@ public class MainMenu : IGameState {
                         GalagaBus.GetBus().RegisterEvent(
                             new EventBuilder()
                                 .WithType(GameEventType.GameStateEvent)
-                                .WithObject(GameStateType.GameRunning)
+                                .WithStateType(GameStateType.GameRunning)
                                 .Build()
                         );
                         break;
@@ -86,7 +86,7 @@ public class MainMenu : IGameState {
                         GalagaBus.GetBus().RegisterEvent(
                             new EventBuilder()
                                 .WithType(GameEventType.WindowEvent)
-                                .WithObject(key)
+                                .WithKey(key)
                                 .WithAction(KeyboardAction.KeyPress)
                                 .Build()
                         );

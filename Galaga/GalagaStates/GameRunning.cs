@@ -140,7 +140,7 @@ public class GameRunning : IGameState {
         eventBus.RegisterEvent(
             new EventBuilder()
                 .WithType(GameEventType.GameStateEvent)
-                .WithObject(GameStateType.GameLost)
+                .WithStateType(GameStateType.GameLost)
                 .Build()
         );
     }
@@ -166,7 +166,7 @@ public class GameRunning : IGameState {
             eventBus.RegisterEvent(
                 new EventBuilder()
                     .WithType(GameEventType.GameStateEvent)
-                    .WithObject(GameStateType.GameWon)
+                    .WithStateType(GameStateType.GameWon)
                     .Build()
             );
         }
@@ -224,7 +224,7 @@ public class GameRunning : IGameState {
                 eventBus.RegisterEvent(
                     new EventBuilder()
                         .WithType(GameEventType.GameStateEvent)
-                        .WithObject(GameStateType.GamePaused)
+                        .WithStateType(GameStateType.GamePaused)
                         .Build()
                 );
                 break;
@@ -235,7 +235,7 @@ public class GameRunning : IGameState {
                 eventBus.RegisterEvent(
                     new EventBuilder()
                         .WithType(GameEventType.PlayerEvent)
-                        .WithObject(key)
+                        .WithKey(key)
                         .WithAction(KeyboardAction.KeyPress)
                         .Build()
                 );
@@ -257,7 +257,7 @@ public class GameRunning : IGameState {
                 eventBus.RegisterEvent(
                     new EventBuilder()
                         .WithType(GameEventType.PlayerEvent)
-                        .WithObject(key)
+                        .WithKey(key)
                         .WithAction(KeyboardAction.KeyRelease)
                         .Build()
                 );

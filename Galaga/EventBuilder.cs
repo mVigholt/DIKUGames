@@ -3,19 +3,15 @@ namespace Galaga;
 using System;
 using DIKUArcade.Events;
 using DIKUArcade.Input;
+using DIKUArcade.Galaga.GalagaStates;
 
 /// <summary>
 /// The way we use events should be enforced.
 /// 
 /// GameEvent ev = new EventBuilder()
 ///     .WithType(GameEventType.PlayerEvent)
-///     .WithObject(KeyboardKey.Up)
+///     .WithKey(KeyboardKey.Up)
 ///     .Build();
-/// 
-/// Additionally, a debug string and a keyboard action can be set using
-/// 
-///     .WithAction(KeyboardAction.KeyPress)
-///     .WithString("Hello")
 /// 
 /// All other fields from Event are impossible to populate
 /// with this class, since we have decided not to use them.
@@ -25,8 +21,9 @@ public class EventBuilder {
     private Nullable<GameEventType> _type;
     private Nullable<int> _action;
     // Strings and objects are already nullable
-    private object _obj;
+    private object _key;
     private string _debugString;
+    private object _gameStateType; // Using Event.from
 
     public EventBuilder() {}
 
@@ -35,8 +32,13 @@ public class EventBuilder {
         return this;
     }
 
-    public EventBuilder WithObject(object obj) {
-        _obj = obj;
+    public EventBuilder WithKey(KeyboardKey key) {
+        _key = key;
+        return this;
+    }
+
+    public EventBuilder WithStateType(GameStateType stateType) {
+        _gameStateType = stateType;
         return this;
     }
 
@@ -55,23 +57,32 @@ public class EventBuilder {
             throw new ArgumentException(
                 "Events must specify an event type using WithType()");
         }
-        if (_obj is null) {
-            throw new ArgumentException(
-                "Events must specify a KeyboardKey using WithObject()");
+        if (_gameStateType is null &&
+            _key is null) {
+                throw new ArgumentException(
+                    "Events must provide either a KeyboardKey " +
+                    "or a GameStateType"
+                );
+            }
+        
+        GameEvent ev = new GameEvent();
+        // Required fields
+        ev.EventType = _type.Value;
+        // Optional fields
+        if (!(_key is null)) {
+            ev.ObjectArg1 = _key;
         }
-        if (_action is null) {
-            return new GameEvent {
-                EventType = _type.Value,
-                ObjectArg1 = _obj,
-                StringArg1 = _debugString,
-                IntArg1 = -1
-            };
+        if (!(_gameStateType is null)) {
+            ev.From = _gameStateType;
         }
-        return new GameEvent {
-            EventType = _type.Value,
-            ObjectArg1 = _obj,
-            StringArg1 = _debugString,
-            IntArg1 = _action.Value
-        };
+        if (!(_debugString is null)) {
+            ev.StringArg1 = _debugString;
+        }
+        if (!(_action is null)) {
+            ev.IntArg1 = _action.Value;
+        } else {
+            ev.IntArg1 = -1;
+        }
+        return ev;
     }
 }

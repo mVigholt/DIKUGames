@@ -62,7 +62,7 @@ public class GameLost : IGameState {
                 GalagaBus.GetBus().RegisterEvent(
                     new EventBuilder()
                         .WithType(GameEventType.GameStateEvent)
-                        .WithObject(GameStateType.MainMenu) // Todo: rename this method
+                        .WithStateType(GameStateType.MainMenu) // Todo: rename this method
                         .WithAction(KeyboardAction.KeyPress)
                         .Build()
                 );
