@@ -20,7 +20,7 @@ public class StateMachineTesting {
         GalagaBus.GetBus().RegisterEvent(
             new EventBuilder()
                 .WithType(GameEventType.GameStateEvent)
-                .WithObject(GameStateType.MainMenu)
+                .WithStateType(GameStateType.MainMenu)
                 .Build()
         );
     }
@@ -29,7 +29,7 @@ public class StateMachineTesting {
         GalagaBus.GetBus().RegisterEvent(
             new EventBuilder()
                 .WithType(GameEventType.GameStateEvent)
-                .WithObject(GameStateType.GameRunning)
+                .WithStateType(GameStateType.GameRunning)
                 .Build()
         );
     }
@@ -38,7 +38,7 @@ public class StateMachineTesting {
         GalagaBus.GetBus().RegisterEvent(
             new EventBuilder()
                 .WithType(GameEventType.GameStateEvent)
-                .WithObject(GameStateType.GamePaused)
+                .WithStateType(GameStateType.GamePaused)
                 .Build()
         );
     }
@@ -47,7 +47,7 @@ public class StateMachineTesting {
         GalagaBus.GetBus().RegisterEvent(
             new EventBuilder()
                 .WithType(GameEventType.GameStateEvent)
-                .WithObject(GameStateType.GameWon)
+                .WithStateType(GameStateType.GameWon)
                 .Build()
         );
     }
@@ -56,7 +56,7 @@ public class StateMachineTesting {
         GalagaBus.GetBus().RegisterEvent(
             new EventBuilder()
                 .WithType(GameEventType.GameStateEvent)
-                .WithObject(GameStateType.GameLost)
+                .WithStateType(GameStateType.GameLost)
                 .Build()
         );
     }

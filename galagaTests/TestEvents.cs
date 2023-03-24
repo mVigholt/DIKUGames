@@ -15,7 +15,7 @@ public class TestEvents {
     public void SetUp() {
         sampleEvent = new EventBuilder()
             .WithType(GameEventType.PlayerEvent)
-            .WithObject(KeyboardKey.Up)
+            .WithKey(KeyboardKey.Up)
             .WithAction(KeyboardAction.KeyPress)
             .WithString("Hello")
             .Build();
@@ -25,8 +25,8 @@ public class TestEvents {
     public void TestEventDTO() {
         EventDTO dto = new EventDTO(sampleEvent);
         Assert.AreEqual(GameEventType.PlayerEvent, dto.Type);
-        Assert.AreEqual(KeyboardKey.Up, dto.Key);
-        Assert.AreEqual(KeyboardAction.KeyPress, dto.Action);
+        Assert.AreEqual(KeyboardKey.Up, dto.Key.Value);
+        Assert.AreEqual(KeyboardAction.KeyPress, dto.Action.Value);
         Assert.AreEqual("Hello", dto.DebugString);
     }
 }
