@@ -112,22 +112,19 @@ public class Player : Entity, IGameEventProcessor {
     }
 
     public void ProcessEvent(GameEvent gameEvent) {
-        GameEventType? eventType = gameEvent.EventType;
-        KeyboardKey? key = (KeyboardKey?)gameEvent.ObjectArg1;
-        KeyboardAction? action = (KeyboardAction?)gameEvent.IntArg1;
-
-        switch (eventType, key, action) {
-            case (_, KeyboardKey.Left, _):
-                SetMoveLeft(action == KeyboardAction.KeyPress);
+        EventDTO ev = new EventDTO(gameEvent);
+        switch (ev.Key) {
+            case KeyboardKey.Left:
+                SetMoveLeft(ev.Action == KeyboardAction.KeyPress);
                 break;
-            case (_, KeyboardKey.Right, _):
-                SetMoveRight(action == KeyboardAction.KeyPress);
+            case KeyboardKey.Right:
+                SetMoveRight(ev.Action == KeyboardAction.KeyPress);
                 break;
-            case (_, KeyboardKey.Up, _):
-                SetMoveUp(action == KeyboardAction.KeyPress);
+            case KeyboardKey.Up:
+                SetMoveUp(ev.Action == KeyboardAction.KeyPress);
                 break;
-            case (_, KeyboardKey.Down, _):
-                SetMoveDown(action == KeyboardAction.KeyPress);
+            case KeyboardKey.Down:
+                SetMoveDown(ev.Action == KeyboardAction.KeyPress);
                 break;
             default:
                 break;

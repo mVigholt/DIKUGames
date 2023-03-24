@@ -73,17 +73,21 @@ public class GamePaused : IGameState {
                 switch (activeMenuButton) {
                     case (0):
                         GalagaBus.GetBus().RegisterEvent(
-                        new GameEvent {
-                            EventType = GameEventType.GameStateEvent,
-                            ObjectArg1 = GameStateType.GameRunning
-                        });
+                            new EventBuilder()
+                                .WithType(GameEventType.GameStateEvent)
+                                .WithObject(GameStateType.GameRunning)
+                                .WithAction(KeyboardAction.KeyPress)
+                                .Build()
+                        );
                         break;
                     case (1):
                         GalagaBus.GetBus().RegisterEvent(
-                            new GameEvent {
-                                EventType = GameEventType.GameStateEvent,
-                                ObjectArg1 = GameStateType.MainMenu
-                            });
+                            new EventBuilder()
+                                .WithType(GameEventType.GameStateEvent)
+                                .WithObject(GameStateType.MainMenu)
+                                .WithAction(KeyboardAction.KeyPress)
+                                .Build()
+                        );
                         break;
                 }
                 break;

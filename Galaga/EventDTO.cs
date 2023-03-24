@@ -1,5 +1,6 @@
 namespace Galaga;
 
+using System;
 using DIKUArcade.Events;
 using DIKUArcade.Input;
 
@@ -13,13 +14,23 @@ public class EventDTO {
 
     public readonly GameEventType Type;
     public readonly KeyboardKey Key;
-    public readonly KeyboardAction Action;
+    public readonly object Obj;
+    public readonly Nullable<KeyboardAction> Action;
     public readonly string DebugString; // optional
 
     public EventDTO(GameEvent ev) {
         Type = ev.EventType;
-        Key = (KeyboardKey) ev.ObjectArg1;
-        Action = (KeyboardAction) ev.IntArg1;
+        try {
+            Key = (KeyboardKey) ev.ObjectArg1;
+            Obj = ev.ObjectArg1;
+        } catch (Exception) {
+            Obj = ev.ObjectArg1;
+        }
         DebugString = ev.StringArg1;
+        if (ev.IntArg1 == -1) {
+            Action = null;
+        } else {
+            Action = (KeyboardAction) ev.IntArg1;
+        }
     }
 }

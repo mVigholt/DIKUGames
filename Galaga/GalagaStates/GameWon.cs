@@ -59,10 +59,11 @@ public class GameWon : IGameState {
                 break;
             case KeyboardKey.Enter:
                 GalagaBus.GetBus().RegisterEvent(
-                    new GameEvent {
-                        EventType = GameEventType.GameStateEvent,
-                        ObjectArg1 = GameStateType.MainMenu
-                    });
+                    new EventBuilder()
+                        .WithType(GameEventType.GameStateEvent)
+                        .WithObject(GameStateType.MainMenu)
+                        .Build()
+                );
                 break;
             default:
                 break;

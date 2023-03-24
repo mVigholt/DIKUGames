@@ -13,10 +13,7 @@ public class StateMachine : IGameEventProcessor {
     }
     public StateMachine() {
         GalagaBus.GetBus().Subscribe(GameEventType.GameStateEvent, this);
-        // GalagaBus.GetBus().Subscribe(GameEventType.InputEvent, this);
         ActiveState = MainMenu.GetInstance();
-        GameRunning.GetInstance();
-        GamePaused.GetInstance();
     }
 
     private void SwitchState(GameStateType NextState) {
@@ -58,19 +55,7 @@ public class StateMachine : IGameEventProcessor {
     }
 
     public void ProcessEvent(GameEvent gameEvent) {
-        GameEventType? eventType = gameEvent.EventType;
-        System.Enum key = (System.Enum) gameEvent.ObjectArg1;
-        KeyboardAction? action = (KeyboardAction?) gameEvent.IntArg1;
-        SwitchState((GameStateType) key);
-        // switch (eventType, key, action) {
-        //     case (GameEventType.GameStateEvent, GameStateType.MainMenu, _):
-        //     case (GameEventType.GameStateEvent, GameStateType.GameRunning, _):
-        //     case (GameEventType.GameStateEvent, GameStateType.GamePaused, _):
-        //     case (GameEventType.GameStateEvent, GameStateType.GameWon, _):
-        //         SwitchState((GameStateType)key);
-        //         break;
-        //     default:
-        //         break;
-        // }
+        EventDTO ev = new EventDTO(gameEvent);
+        SwitchState((GameStateType) ev.Obj);
     }
 }

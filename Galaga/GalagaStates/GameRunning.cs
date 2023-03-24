@@ -138,10 +138,10 @@ public class GameRunning : IGameState {
 
     public void GameOver() {
         eventBus.RegisterEvent(
-            new GameEvent {
-                EventType = GameEventType.GameStateEvent,
-                ObjectArg1 = GameStateType.GameLost,
-            }
+            new EventBuilder()
+                .WithType(GameEventType.GameStateEvent)
+                .WithObject(GameStateType.GameLost)
+                .Build()
         );
     }
 
@@ -164,11 +164,11 @@ public class GameRunning : IGameState {
     private void GameWon(){
         if (player.Level >= 15){
             eventBus.RegisterEvent(
-                new GameEvent {
-                    EventType = GameEventType.GameStateEvent,
-                    ObjectArg1 = GameStateType.GameWon,
-                }
-        );
+                new EventBuilder()
+                    .WithType(GameEventType.GameStateEvent)
+                    .WithObject(GameStateType.GameWon)
+                    .Build()
+            );
         }
 
     }
@@ -222,21 +222,23 @@ public class GameRunning : IGameState {
         switch (key) {
             case KeyboardKey.Escape:
                 eventBus.RegisterEvent(
-                    new GameEvent {
-                        EventType = GameEventType.GameStateEvent,
-                        ObjectArg1 = DIKUArcade.Galaga.GalagaStates.GameStateType.GamePaused,
-                    });
+                    new EventBuilder()
+                        .WithType(GameEventType.GameStateEvent)
+                        .WithObject(GameStateType.GamePaused)
+                        .Build()
+                );
                 break;
             case KeyboardKey.Left:
             case KeyboardKey.Right:
             case KeyboardKey.Up:
             case KeyboardKey.Down:
                 eventBus.RegisterEvent(
-                        new GameEvent {
-                            EventType = GameEventType.PlayerEvent,
-                            ObjectArg1 = key,
-                            IntArg1 = (int)KeyboardAction.KeyPress
-                        });
+                    new EventBuilder()
+                        .WithType(GameEventType.PlayerEvent)
+                        .WithObject(key)
+                        .WithAction(KeyboardAction.KeyPress)
+                        .Build()
+                );
                 break;
             case KeyboardKey.A: //Autoshoot
                 Autoshoot.startStop();
@@ -253,11 +255,11 @@ public class GameRunning : IGameState {
             case KeyboardKey.Up:
             case KeyboardKey.Down:
                 eventBus.RegisterEvent(
-                    new GameEvent {
-                        EventType = GameEventType.PlayerEvent,
-                        ObjectArg1 = key,
-                        IntArg1 = (int)KeyboardAction.KeyRelease
-                    }
+                    new EventBuilder()
+                        .WithType(GameEventType.PlayerEvent)
+                        .WithObject(key)
+                        .WithAction(KeyboardAction.KeyRelease)
+                        .Build()
                 );
                 break;
             case KeyboardKey.Space:

@@ -9,12 +9,12 @@ using DIKUArcade.Input;
 /// 
 /// GameEvent ev = new EventBuilder()
 ///     .WithType(GameEventType.PlayerEvent)
-///     .WithKey(KeyboardKey.Up)
-///     .WithAction(KeyboardAction.KeyPress)
+///     .WithObject(KeyboardKey.Up)
 ///     .Build();
 /// 
-/// Additionally, a debug string can be set using
+/// Additionally, a debug string and a keyboard action can be set using
 /// 
+///     .WithAction(KeyboardAction.KeyPress)
 ///     .WithString("Hello")
 /// 
 /// All other fields from Event are impossible to populate
@@ -25,7 +25,7 @@ public class EventBuilder {
     private Nullable<GameEventType> _type;
     private Nullable<int> _action;
     // Strings and objects are already nullable
-    private object _key;
+    private object _obj;
     private string _debugString;
 
     public EventBuilder() {}
@@ -35,8 +35,8 @@ public class EventBuilder {
         return this;
     }
 
-    public EventBuilder WithKey(KeyboardKey key) {
-        _key = key;
+    public EventBuilder WithObject(object obj) {
+        _obj = obj;
         return this;
     }
 
@@ -55,18 +55,21 @@ public class EventBuilder {
             throw new ArgumentException(
                 "Events must specify an event type using WithType()");
         }
-        if (_key is null) {
+        if (_obj is null) {
             throw new ArgumentException(
-                "Events must specify a KeyboardKey using WithKey()");
+                "Events must specify a KeyboardKey using WithObject()");
         }
         if (_action is null) {
-            throw new ArgumentException(
-                "Events must specify a keyboard action " +
-                "using WithAction()");
+            return new GameEvent {
+                EventType = _type.Value,
+                ObjectArg1 = _obj,
+                StringArg1 = _debugString,
+                IntArg1 = -1
+            };
         }
         return new GameEvent {
             EventType = _type.Value,
-            ObjectArg1 = _key,
+            ObjectArg1 = _obj,
             StringArg1 = _debugString,
             IntArg1 = _action.Value
         };
