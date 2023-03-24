@@ -29,8 +29,12 @@ public class StateMachine : IGameEventProcessor {
                 ActiveState = GamePaused.GetInstance();
                 ActiveState.ResetState();
                 break;
-            case (GameRunning, GameStateType.MainMenu):
-                ActiveState = MainMenu.GetInstance();
+            case (GameRunning, GameStateType.GameLost):
+                ActiveState = GameLost.GetInstance();
+                ActiveState.ResetState();
+                break;
+            case (GameRunning, GameStateType.GameWon):
+                ActiveState = GameWon.GetInstance();
                 ActiveState.ResetState();
                 break;
             case (GamePaused, GameStateType.MainMenu):
@@ -47,14 +51,6 @@ public class StateMachine : IGameEventProcessor {
             case (GameWon, GameStateType.MainMenu):
                 ActiveState = MainMenu.GetInstance();
                 ActiveState.RenderState();
-                break;
-            case (GameRunning, GameStateType.GameLost):
-                ActiveState = GameLost.GetInstance();
-                ActiveState.ResetState();
-                break;
-            case (GameRunning, GameStateType.GameWon):
-                ActiveState = GameWon.GetInstance();
-                ActiveState.ResetState();
                 break;
             default:
                 break;

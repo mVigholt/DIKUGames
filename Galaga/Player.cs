@@ -27,8 +27,7 @@ public class Player : Entity, IGameEventProcessor {
         internal set;
     }
 
-    public Player(DynamicShape shape,  IBaseImage image) : this(shape, image, 3) {
-        InitEventBus();
+    public Player(DynamicShape shape,  IBaseImage image) : this(shape, image, 50) {
     }
 
     public Player(DynamicShape shape,  IBaseImage image, int startingHealth)
@@ -38,6 +37,7 @@ public class Player : Entity, IGameEventProcessor {
         Vec2F pos = new Vec2F(0.0f, -0.2f) ;
         Vec2F extent = new Vec2F(0.3f, 0.3f);
         health = new Health(pos, extent, startingHealth);
+        InitEventBus();
     }
 
     private void InitEventBus() {
