@@ -165,7 +165,7 @@ public class GameRunning : IGameState {
 
     /// <summary> when the level reaches to a certain number, GameWon</summary>
     private void GameWon(){
-        if (player.Level >= 3){
+        if (player.Level >= 8){
             eventBus.RegisterEvent(
                 new EventBuilder()
                     .WithType(GameEventType.GameStateEvent)
@@ -179,7 +179,8 @@ public class GameRunning : IGameState {
     private void Shoot() {
         Vec2F shotFromMiddle = new (player.GetPosition().X +
                                     player.GetExtent().X/2,
-                                    player.GetPosition().Y);
+                                    player.GetPosition().Y +
+                                    player.GetExtent().Y);
         playerShots.AddEntity(new PlayerShot(shotFromMiddle, Assets.playerShotImage));
     }
 
