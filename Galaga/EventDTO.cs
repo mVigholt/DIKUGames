@@ -9,12 +9,21 @@ using DIKUArcade.Galaga.GalagaStates;
 /// <summary>
 /// This event data transfer object is instantiated
 /// with a GameEvent and exposes the fields
-/// that our business layer needs:
-/// Type, Key, Action and an optional DebugString
+/// that our business layer needs.
+/// Type is required. All other fields are optional.
+///
+/// We use DIKUArcade.Events.GameEvent for our underlying
+/// logic, but we have remodelled it using this class.
+/// Since we wanted to have an additional object field,
+/// we have repurposed GameEvent.From to hold a
+/// GameStateType.
+/// Using EventBuilder and EventDTO, you do not need
+/// to know the fields of GameEvent.
 /// </summary>
 public class EventDTO {
 
     public readonly GameEventType Type;
+    // Optional fields
     public readonly Nullable<KeyboardKey> Key = null;
     public readonly Nullable<GameStateType> StateType = null;
     public readonly Nullable<KeyboardAction> Action = null;

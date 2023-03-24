@@ -15,6 +15,8 @@ using DIKUArcade.Galaga.GalagaStates;
 /// 
 /// All other fields from Event are impossible to populate
 /// with this class, since we have decided not to use them.
+/// Just like you can create events with this class,
+/// you can read them with EventDTO.
 /// </summary>
 public class EventBuilder {
     
