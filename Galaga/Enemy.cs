@@ -1,5 +1,6 @@
 namespace Galaga;
 
+using System;
 using DIKUArcade.Entities;
 using DIKUArcade.Graphics;
 using DIKUArcade.Math;
@@ -16,35 +17,13 @@ public class Enemy : Entity {
     private IBaseImage alterImage;
     public int hitpoints {get; private set;}
 
-    public Enemy(Vec2F position, IBaseImage image, IBaseImage alterImage)
-        : base(new DynamicShape(position, EXTENT), image) {
-        Image = image;
-        this.alterImage = alterImage;
-        startPosition = position;
-        hitpoints = 4;
-    }
-
-    public Enemy(EnemyBuilder builder)
+    public Enemy(Enemy.Builder builder)
         : base(new DynamicShape(builder.position, EXTENT), builder.image) {
         this.startPosition = builder.position;
         this.Image = builder.image;
         this.alterImage = builder.alterImage;
         this.speed = builder.speed;
         this.hitpoints = builder.hitpoints;
-    }
-
-    public Enemy(
-        Vec2F position,
-        float speed,
-        IBaseImage image,
-        IBaseImage alterImage
-    ) : base(new DynamicShape(position, EXTENT), image) {
-        // Use this constructor to set speed
-        Image = image;
-        this.alterImage = alterImage;
-        startPosition = position;
-        hitpoints = 4;
-        this.speed = speed;
     }
 
     public float Speed {
@@ -77,5 +56,63 @@ public class Enemy : Entity {
             enraged = true;
         }
         return enraged;
+    }
+
+    public class Builder {
+        public Vec2F position;
+        public IBaseImage image;
+        public IBaseImage alterImage;
+        public int hitpoints;
+        public float speed;
+
+        public Builder() {}
+        public Builder WithSpeed(float speed) {
+            this.speed = speed;
+            return this;
+        }
+
+        public Builder WithPosition(Vec2F position) {
+            this.position = position;
+            return this;
+        }
+
+        public Builder WithImage(IBaseImage image) {
+            this.image = image;
+            return this;
+        }
+
+        public Builder WithAlternativeImage(IBaseImage image) {
+            this.alterImage = image;
+            return this;
+        }
+
+        public Builder WithHitpoints(int hitpoints) {
+            this.hitpoints = hitpoints;
+            return this;
+        }
+
+        /// <summary>
+        /// The final method you need to call when constructing
+        /// an enemy. It is common practice to put all validation
+        /// inside this method.
+        /// </summary>
+        public Enemy Build() {
+            // Required arguments
+            if (position is null ||
+                image is null ||
+                alterImage is null
+            ) {
+                throw new ArgumentException(
+                    "An enemy must have a position and two images");
+            }
+            // Optional arguments
+            if (speed == 0f) {
+                speed = Enemy.baseSpeed;
+            }
+            if (hitpoints == 0) {
+                hitpoints = 4;
+            }
+            return new Enemy(this);
+        }
     }
 }

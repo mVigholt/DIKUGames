@@ -19,7 +19,7 @@ public class BaseSquadron : ISquadron {
     private int maxEnemies;
     private int[,] formation;
 
-    public BaseSquadron(/*int maxEnemies,*/ int[,] formation) {
+    public BaseSquadron(int[,] formation) {
         this.maxEnemies = CountElements(formation);
         this.enemies = new EntityContainer<Enemy>(MaxEnemies);
         this.formation = formation;
@@ -66,7 +66,7 @@ public class BaseSquadron : ISquadron {
             for (int x = 0; x < width; x++) {
                 if (Formation[y, x] == 1) {
                     Enemies.AddEntity(
-                        new EnemyBuilder()
+                        new Enemy.Builder()
                             .WithPosition(new Vec2F(x * 0.1f, 1 - y * 0.1f))
                             .WithImage(new ImageStride(milliseconds, enemyStride))
                             .WithAlternativeImage(new ImageStride(milliseconds, alternativeEnemyStride))
