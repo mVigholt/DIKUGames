@@ -1,7 +1,7 @@
 namespace Galaga;
 using System;
 using System.Timers;
-
+///<summary>This is used to make auto shot possible</summary>
 public class TimedEvent {
     private static System.Timers.Timer aTimer;
 
@@ -14,13 +14,13 @@ public class TimedEvent {
         this.interval = interval; //Event Interval
     }
 
-    private void start() { 
-        aTimer = new System.Timers.Timer(interval); 
+    private void start() {
+        aTimer = new System.Timers.Timer(interval);
         aTimer.Elapsed += OnTimedEvent;
         aTimer.AutoReset = true;
         aTimer.Start();
         timerOn = true;
-    } 
+    }
 
     private void OnTimedEvent(Object source, ElapsedEventArgs e){
         eventActive = true;
@@ -33,7 +33,7 @@ public class TimedEvent {
         timerOn = false;
         eventActive = false;
     }
-   
+
     public void startStop() {
         if (timerOn) {
             stop();
@@ -49,5 +49,5 @@ public class TimedEvent {
             return true;
         }
         return false;
-    } 
+    }
 }

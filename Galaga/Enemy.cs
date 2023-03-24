@@ -55,7 +55,9 @@ public class Enemy : Entity {
             speed = value;
         }
     }
-
+    ///<summary>Make the enemy's hitpoint drop by input hp</summary>
+    ///<param name = "hp">The input hitpoint</param>
+    ///<return>no return</return>
     public void LoseHealth(int hp) {
         hitpoints -= hp;
     }

@@ -9,6 +9,8 @@ public static class GalagaBus {
         return eventBus ?? NewBus();
     }
 
+    ///<summary>Initialize the eventbus by putting the used event
+    ///in to the list.</summary>
     private static GameEventBus NewBus() {
         eventBus = new GameEventBus();
         eventBus.InitializeEventBus(
