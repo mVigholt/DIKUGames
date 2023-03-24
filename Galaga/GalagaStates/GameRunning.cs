@@ -165,7 +165,7 @@ public class GameRunning : IGameState {
 
     /// <summary> when the level reaches to a certain number, GameWon</summary>
     private void GameWon(){
-        if (player.Level >= 15){
+        if (player.Level >= 3){
             eventBus.RegisterEvent(
                 new EventBuilder()
                     .WithType(GameEventType.GameStateEvent)

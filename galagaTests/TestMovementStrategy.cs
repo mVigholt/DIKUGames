@@ -19,13 +19,15 @@ public class TestMovementStrategy {
         Window.CreateOpenGLContext();
        
         int milliseconds = 80;
-        enemy = new Enemy(new Vec2F(0.1f, 0.9f),
-                new ImageStride(milliseconds, Assets.blueEnemyStride),
-                new ImageStride(milliseconds, Assets.redEnemyStride));
+        enemy = new Enemy.Builder()
+            .WithPosition(new Vec2F(0.1f, 0.9f))
+            .WithImage(new ImageStride(milliseconds, Assets.blueEnemyStride))
+            .WithAlternativeImage(new ImageStride(milliseconds, Assets.redEnemyStride))
+            .Build();
     }
 
     [Test]
-    public void DownTest(){
+    public void DownTest() {
         Vec2F posBefore = enemy.Shape.Position.Copy();
         movementStrategy = new Down(enemy);
         movementStrategy.MoveEnemy(enemy);
