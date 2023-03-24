@@ -162,7 +162,7 @@ public class GameRunning : IGameState {
     }
 
     private void GameWon(){
-        if (player.Level == 2){
+        if (player.Level >= 15){
             eventBus.RegisterEvent(
                 new GameEvent {
                     EventType = GameEventType.GameStateEvent,
@@ -204,13 +204,6 @@ public class GameRunning : IGameState {
         }
         if (Autoshoot.EventIsActive()) {
             Shoot();
-            // eventBus.RegisterEvent(
-            //     new GameEvent {
-            //         EventType = GameEventType.InputEvent,
-            //         ObjectArg1 = KeyboardKey.Space,
-            //         IntArg1 = (int)KeyboardAction.KeyRelease,
-            //     }
-            // );
         }
     }
 
@@ -269,13 +262,6 @@ public class GameRunning : IGameState {
                 break;
             case KeyboardKey.Space:
                 Shoot();
-                // eventBus.RegisterEvent(
-                //     new GameEvent {
-                //         EventType = GameEventType.InputEvent,
-                //         ObjectArg1 = key,
-                //         IntArg1 = (int)KeyboardAction.KeyRelease,
-                //     }
-                // );
                 break;
             default:
                 break;
