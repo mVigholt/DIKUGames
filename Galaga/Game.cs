@@ -61,24 +61,6 @@ public class Game : DIKUGame, IGameEventProcessor {
     ///<summary>Register each keypress to a corresponding game event</summary>
     private void KeyPress(KeyboardKey key) {
         switch (key) {
-            case KeyboardKey.Q:
-                eventBus.RegisterEvent(
-                    new EventBuilder()
-                        .WithType(GameEventType.WindowEvent)
-                        .WithKey(key)
-                        .WithAction(KeyboardAction.KeyPress)
-                        .Build()
-                );
-                break;
-            case KeyboardKey.M:
-                eventBus.RegisterEvent(
-                    new EventBuilder()
-                        .WithType(GameEventType.GameStateEvent)
-                        .WithKey(key)
-                        .WithAction(KeyboardAction.KeyPress)
-                        .Build()
-                );
-                break;
             default:
                 break;
         }
