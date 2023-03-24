@@ -44,5 +44,6 @@ public class EventDTO {
         } else {
             Action = (KeyboardAction) ev.IntArg1;
         }
+        DebugString = ev.StringArg1;
     }
 }
