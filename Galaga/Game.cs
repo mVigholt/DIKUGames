@@ -36,7 +36,7 @@ public class Game : DIKUGame, IGameEventProcessor {
 
     public void ProcessEvent(GameEvent gameEvent) {
         EventDTO ev = new EventDTO(gameEvent);
-        switch (ev.Type, ev.Action) {
+        switch (ev.Type, ev.Action.Value) {
             case (GameEventType.WindowEvent, KeyboardAction.KeyPress):
                 window.CloseWindow();
                 break;
@@ -65,7 +65,7 @@ public class Game : DIKUGame, IGameEventProcessor {
                 eventBus.RegisterEvent(
                     new EventBuilder()
                         .WithType(GameEventType.WindowEvent)
-                        .WithObject(key)
+                        .WithKey(key)
                         .WithAction(KeyboardAction.KeyPress)
                         .Build()
                 );
@@ -74,7 +74,7 @@ public class Game : DIKUGame, IGameEventProcessor {
                 eventBus.RegisterEvent(
                     new EventBuilder()
                         .WithType(GameEventType.GameStateEvent)
-                        .WithObject(key)
+                        .WithKey(key)
                         .WithAction(KeyboardAction.KeyPress)
                         .Build()
                 );

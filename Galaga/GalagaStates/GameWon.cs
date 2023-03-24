@@ -61,7 +61,7 @@ public class GameWon : IGameState {
                 GalagaBus.GetBus().RegisterEvent(
                     new EventBuilder()
                         .WithType(GameEventType.GameStateEvent)
-                        .WithObject(GameStateType.MainMenu)
+                        .WithStateType(GameStateType.MainMenu)
                         .Build()
                 );
                 break;
