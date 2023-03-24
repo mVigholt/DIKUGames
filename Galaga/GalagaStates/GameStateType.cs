@@ -10,6 +10,7 @@ public enum GameStateType {
     GameLost
 }
 
+/// <summary> Transfor the GameStateType by string and the other way around </summary>
 public class StateTransformer {
     public static GameStateType TransformStringToState(string state) {
         GameStateType enumOut;

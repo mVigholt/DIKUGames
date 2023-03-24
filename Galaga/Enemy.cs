@@ -34,15 +34,21 @@ public class Enemy : Entity {
             speed = value;
         }
     }
-
+    ///<summary>Make the enemy's hitpoint drop by input hp</summary>
+    ///<param name = "hp">The input hitpoint</param>
+    ///<return>no return</return>
     public void LoseHealth(int hp) {
         hitpoints -= hp;
     }
 
+    ///<summary>Check if the enemy is dead</summary>
+    ///<return>True for hitpoints is equal and below 0, false for over</return>
     public bool IsDead() {
         return hitpoints <= 0;
     }
 
+    ///<summary>Check if the enemy is enraged by its hitpoints</summary>
+    ///<return>True for enraged state, false for not</return>
     public bool isEnraged(){
         if (this.hitpoints <= 2 && !enraged) {
             this.speed = baseSpeed * 3f;

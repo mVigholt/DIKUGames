@@ -38,6 +38,10 @@ public class BaseSquadron : ISquadron {
         }
     }
 
+    ///<summary>Count the numbers of enemies in squadron</summary>
+    ///<param name = "formation">The formation
+    ///which is represented by a matrix</param>
+    ///<return>The number of enemies</return>
     private int CountElements(int[,] formation) {
         this.Formation = formation;
         int count =  0;
@@ -49,6 +53,11 @@ public class BaseSquadron : ISquadron {
         return count;
     }
 
+    ///<summary>Put the enemies on the squadron formation according to
+    /// the matrix</summary>
+    ///<param name = "enemyStride">The original image of each enemy</param>
+    ///<param name = "alternativeEnemyStride">The enraged image of enemy</param>
+    ///<return>No return</return>
     public void CreateEnemies (List<Image> enemyStride, List<Image> alternativeEnemyStride) {
         int milliseconds = 80;
         int height = Formation.GetLength(0);

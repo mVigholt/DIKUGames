@@ -154,6 +154,8 @@ public class GameRunning : IGameState {
             new ImageStride(EXPLOSION_LENGTH_MS / nImages, Assets.explosionStrides);
         enemyExplosions.AddAnimation(explosion, EXPLOSION_LENGTH_MS, stride);
     }
+
+    /// <summary> Player increases level and enemies increase speed</summary>
      private void NextLevel() {
         Enemy.baseSpeed += 0.0002f;
         InitEnemies();
@@ -161,6 +163,7 @@ public class GameRunning : IGameState {
         GameWon();
     }
 
+    /// <summary> when the level reaches to a certain number, GameWon</summary>
     private void GameWon(){
         if (player.Level >= 15){
             eventBus.RegisterEvent(
@@ -172,7 +175,7 @@ public class GameRunning : IGameState {
         }
 
     }
-
+    
     private void Shoot() {
         Vec2F shotFromMiddle = new (player.GetPosition().X +
                                     player.GetExtent().X/2,

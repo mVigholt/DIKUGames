@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using DIKUArcade.Graphics;
 
+///<summary>Initialize all the images we are going to use as static varaibles</summary>
 public static class Assets{
     public static List<Image> blueEnemyStride =
         ImageStride.CreateStrides(

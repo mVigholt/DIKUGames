@@ -34,6 +34,8 @@ public class Game : DIKUGame, IGameEventProcessor {
         stateMachine.ActiveState.UpdateState();
     }
 
+    ///<summary>Process incoming game event.
+    ///Her it handles only WindowEvent</summary>
     public void ProcessEvent(GameEvent gameEvent) {
         EventDTO ev = new EventDTO(gameEvent);
         switch (ev.Type, ev.Action.Value) {
@@ -47,30 +49,6 @@ public class Game : DIKUGame, IGameEventProcessor {
 
     ///<summary>Register keyboardAction to key press or key release</summary>
     private void KeyHandler(KeyboardAction action, KeyboardKey key) {
-        switch (action) {
-            case KeyboardAction.KeyPress:
-                this.KeyPress(key);
-                break;
-            case KeyboardAction.KeyRelease:
-                this.KeyRelease(key);
-                break;
-        }
         stateMachine.ActiveState.HandleKeyEvent(action, key);
-    }
-
-    ///<summary>Register each keypress to a corresponding game event</summary>
-    private void KeyPress(KeyboardKey key) {
-        switch (key) {
-            default:
-                break;
-        }
-    }
-
-    ///<summary>Register each key release to a corresponding game event</summary>
-    private void KeyRelease(KeyboardKey key) {
-        switch (key) {
-            default:
-                break;
-        }
     }
 }
