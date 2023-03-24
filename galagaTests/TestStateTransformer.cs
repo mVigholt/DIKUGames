@@ -6,16 +6,20 @@ using NUnit.Framework;
 [TestFixture]
 
 public class TestStateTransformer {
-    GameStateType stateType;
 
-    [TestCase (GameStateType.MainMenu)]
-    [TestCase (GameStateType.GamePaused)]
-    [TestCase (GameStateType.GameRunning)]
-    public void TestTransformStateToString(GameStateType stateType){
-        Assert.AreEqual(StateTransformer.TransformStateToString(stateType),
-            stateType.ToString());
+    [Test]
+    public void TestTransformStateToString(){
+        Assert.AreEqual(StateTransformer.TransformStateToString(GameStateType.MainMenu),
+            "MainMenu");
+        Assert.AreEqual(StateTransformer.TransformStateToString(GameStateType.GameRunning),
+            "GameRunning");
+        Assert.AreEqual(StateTransformer.TransformStateToString(GameStateType.GamePaused),
+            "GamePaused");
+        Assert.AreEqual(StateTransformer.TransformStateToString(GameStateType.GameWon),
+            "GameWon");
+        Assert.AreEqual(StateTransformer.TransformStateToString(GameStateType.GameLost),
+            "GameLost");
     }
-
 
     [Test]
     public void TransformStringToState(){
@@ -25,5 +29,9 @@ public class TestStateTransformer {
             ("GamePaused"), GameStateType.GamePaused);
         Assert.AreEqual(StateTransformer.TransformStringToState
             ("GameRunning"), GameStateType.GameRunning);
+        Assert.AreEqual(StateTransformer.TransformStringToState
+            ("GameWon"), GameStateType.GameWon);
+        Assert.AreEqual(StateTransformer.TransformStringToState
+            ("GameLost"), GameStateType.GameLost);
     }
 }
