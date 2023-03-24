@@ -62,16 +62,13 @@ public class TestEnemy {
 
     [Test]
     public void TestIsEnraged() {
-        int enrageThreshold = 2;
-        float normalSpeed = 2;
         Enemy enemy = new EnemyBuilder()
             .WithPosition(new Vec2F(0f, 0f))
             .WithImage(image)
             .WithAlternativeImage(alternativeImage)
             .WithHitpoints(3)
-            .WithSpeed(normalSpeed)
             .Build();
-        enemy.LoseHealth(2);
+        enemy.LoseHealth(enemy.hitpoints - 1);
         Assert.True(enemy.isEnraged());
     }
 }

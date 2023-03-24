@@ -12,28 +12,18 @@ namespace GalagaTests;
 [TestFixture]
 public class TestSquadron {
     private ISquadron squadron;
-    private Enemy enemy;
 
     [SetUp]
     public void InitiateSquadron() {
         Window.CreateOpenGLContext();
-        List<Image> blueEnemyStride = ImageStride.CreateStrides(
-            4, Path.Combine("..", "Galaga", "Assets", "Images", "BlueMonster.png"));
-        List<Image> greenEnemyStride = ImageStride.CreateStrides(
-            2, Path.Combine("..", "Galaga", "Assets", "Images", "GreenMonster.png"));
-        List<Image> redEnemyStride = ImageStride.CreateStrides(
-            2, Path.Combine("..", "Galaga", "Assets", "Images", "RedMonster.png"));
-        int milliseconds = 80;
-        enemy = new Enemy(new Vec2F(0.1f, 0.9f),
-                new ImageStride(milliseconds, blueEnemyStride),
-                new ImageStride(milliseconds, redEnemyStride));
         squadron = new RowSquadron(
-                    blueEnemyStride,
-                    redEnemyStride
-                    );
-        }
-        [Test]
-        public void TestSquadronMove(){
+            Assets.blueEnemyStride,
+            Assets.redEnemyStride
+        );
+    }
 
-        }
+    [Test]
+    public void TestSquadronNotEmpty(){
+        Assert.IsTrue(squadron.Enemies.CountEntities() > 0);
+    }
 }
