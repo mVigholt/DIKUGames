@@ -76,18 +76,20 @@ public class MainMenu : IGameState {
                 switch (activeMenuButton) {
                     case (0):
                         GalagaBus.GetBus().RegisterEvent(
-                            new GameEvent {
-                                EventType = GameEventType.GameStateEvent,
-                                ObjectArg1 = GameStateType.GameRunning,
-                            });
+                            new EventBuilder()
+                                .WithType(GameEventType.GameStateEvent)
+                                .WithObject(GameStateType.GameRunning)
+                                .Build()
+                        );
                         break;
                     case (1):
                         GalagaBus.GetBus().RegisterEvent(
-                            new GameEvent {
-                            EventType = GameEventType.WindowEvent,
-                            ObjectArg1 = key,
-                            IntArg1 = (int)KeyboardAction.KeyPress
-                        });
+                            new EventBuilder()
+                                .WithType(GameEventType.WindowEvent)
+                                .WithObject(key)
+                                .WithAction(KeyboardAction.KeyPress)
+                                .Build()
+                        );
                         break;
                 }
             break;

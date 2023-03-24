@@ -35,11 +35,8 @@ public class Game : DIKUGame, IGameEventProcessor {
     }
 
     public void ProcessEvent(GameEvent gameEvent) {
-        GameEventType? eventType = gameEvent.EventType;
-        KeyboardKey? key = (KeyboardKey?)gameEvent.ObjectArg1;
-        KeyboardAction? action = (KeyboardAction?)gameEvent.IntArg1;
-
-        switch (eventType, action) {
+        EventDTO ev = new EventDTO(gameEvent);
+        switch (ev.Type, ev.Action) {
             case (GameEventType.WindowEvent, KeyboardAction.KeyPress):
                 window.CloseWindow();
                 break;
@@ -66,26 +63,21 @@ public class Game : DIKUGame, IGameEventProcessor {
         switch (key) {
             case KeyboardKey.Q:
                 eventBus.RegisterEvent(
-                    new GameEvent {
-                        EventType = GameEventType.WindowEvent,
-                        ObjectArg1 = key,
-                        IntArg1 = (int)KeyboardAction.KeyPress
-                    }
+                    new EventBuilder()
+                        .WithType(GameEventType.WindowEvent)
+                        .WithObject(key)
+                        .WithAction(KeyboardAction.KeyPress)
+                        .Build()
                 );
                 break;
             case KeyboardKey.M:
                 eventBus.RegisterEvent(
-                    new GameEvent {
-                        EventType = GameEventType.GameStateEvent,
-                        ObjectArg1 = GameStateType.MainMenu,
-                    }
+                    new EventBuilder()
+                        .WithType(GameEventType.GameStateEvent)
+                        .WithObject(key)
+                        .WithAction(KeyboardAction.KeyPress)
+                        .Build()
                 );
-                break;
-            case KeyboardKey.Enter:
-            case KeyboardKey.Left:
-            case KeyboardKey.Right:
-            case KeyboardKey.Up:
-            case KeyboardKey.Down:
                 break;
             default:
                 break;

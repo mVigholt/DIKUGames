@@ -15,7 +15,7 @@ public class TestEvents {
     public void SetUp() {
         sampleEvent = new EventBuilder()
             .WithType(GameEventType.PlayerEvent)
-            .WithKey(KeyboardKey.Up)
+            .WithObject(KeyboardKey.Up)
             .WithAction(KeyboardAction.KeyPress)
             .WithString("Hello")
             .Build();
