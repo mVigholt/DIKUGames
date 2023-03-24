@@ -35,7 +35,7 @@ public class TestEnemy {
 
     [Test]
     public void TestMovement() {
-        Enemy enemy = new EnemyBuilder()
+        Enemy enemy = new Enemy.Builder()
             .WithPosition(new Vec2F(1f, 1f))
             .WithSpeed(-1f)
             .WithImage(image)
@@ -48,7 +48,7 @@ public class TestEnemy {
 
     [Test]
     public void TestIsDead() {
-        Enemy enemy = new EnemyBuilder()
+        Enemy enemy = new Enemy.Builder()
             .WithPosition(new Vec2F(0f, 0f))
             .WithImage(image)
             .WithAlternativeImage(alternativeImage)
@@ -62,7 +62,7 @@ public class TestEnemy {
 
     [Test]
     public void TestIsEnraged() {
-        Enemy enemy = new EnemyBuilder()
+        Enemy enemy = new Enemy.Builder()
             .WithPosition(new Vec2F(0f, 0f))
             .WithImage(image)
             .WithAlternativeImage(alternativeImage)
