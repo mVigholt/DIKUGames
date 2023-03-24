@@ -75,7 +75,7 @@ public class GamePaused : IGameState {
                         GalagaBus.GetBus().RegisterEvent(
                             new EventBuilder()
                                 .WithType(GameEventType.GameStateEvent)
-                                .WithObject(GameStateType.GameRunning)
+                                .WithStateType(GameStateType.GameRunning)
                                 .WithAction(KeyboardAction.KeyPress)
                                 .Build()
                         );
@@ -84,7 +84,7 @@ public class GamePaused : IGameState {
                         GalagaBus.GetBus().RegisterEvent(
                             new EventBuilder()
                                 .WithType(GameEventType.GameStateEvent)
-                                .WithObject(GameStateType.MainMenu)
+                                .WithStateType(GameStateType.MainMenu)
                                 .WithAction(KeyboardAction.KeyPress)
                                 .Build()
                         );

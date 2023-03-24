@@ -56,6 +56,6 @@ public class StateMachine : IGameEventProcessor {
 
     public void ProcessEvent(GameEvent gameEvent) {
         EventDTO ev = new EventDTO(gameEvent);
-        SwitchState((GameStateType) ev.Obj);
+        SwitchState(ev.StateType.Value);
     }
 }
