@@ -45,10 +45,14 @@ public class Player : Entity, IGameEventProcessor {
         eventBus.Subscribe(GameEventType.PlayerEvent, this);
     }
 
+    ///<summary>Lose health when enemy touch the ground</summary>
+    ///<param name = "hp">The health belong to player</param>
+    ///<return>no return</return>
     public void LoseHealth(int hp) {
         health.LoseHealth(hp);
     }
-
+    ///<summary>Check if the player's health is equal or smaller than 0</summary>
+    ///<return>True for death, false for not dying </return>
     public bool IsDead() {
         return health.Points <= 0;
     }
@@ -110,7 +114,9 @@ public class Player : Entity, IGameEventProcessor {
         moveDown = -MOVEMENT_SPEED * (val ? 1 : 0);
         UpdateDirection();
     }
-
+    ///<summary>Process Player event</summary>
+    ///<param name = "gameEvent">The input event</param>
+    ///<return>no return</return>
     public void ProcessEvent(GameEvent gameEvent) {
         EventDTO ev = new EventDTO(gameEvent);
         switch (ev.Key.Value) {

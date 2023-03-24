@@ -45,7 +45,7 @@ public class Enemy : Entity {
         startPosition = position;
         hitpoints = 4;
         this.speed = speed;
-    }    
+    }
 
     public float Speed {
         get {
@@ -60,10 +60,14 @@ public class Enemy : Entity {
         hitpoints -= hp;
     }
 
+    ///<summary>Check if the enemy is dead</summary>
+    ///<return>True for hitpoints is equal and below 0, false for over</return>
     public bool IsDead() {
         return hitpoints <= 0;
     }
 
+    ///<summary>Check if the enemy is enraged by its hitpoints</summary>
+    ///<return>True for enraged state, false for not</return>
     public bool isEnraged(){
         if (this.hitpoints <= 2 && !enraged) {
             this.speed = baseSpeed * 3f;
