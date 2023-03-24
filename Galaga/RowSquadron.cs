@@ -3,6 +3,7 @@ namespace Galaga;
 using System.Collections.Generic;
 using DIKUArcade.Graphics;
 
+/// <summary> A squadron lies in rows </summary>
 public class RowSquadron : BaseSquadron {
     private static int[,] formation =
         new int[,] {

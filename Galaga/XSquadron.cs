@@ -1,14 +1,11 @@
 namespace Galaga;
 using System.Collections.Generic;
-using DIKUArcade.Entities;
 using DIKUArcade.Graphics;
-using DIKUArcade.Math;
-using Galaga.Squadron;
 
 
 /// <summary> A squadron in the shape of an X </summary>
 public class XSquadron : BaseSquadron {
-    private static int[,] formation = 
+    private static int[,] formation =
         new int[,] {
             { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
             { 0, 0, 0, 1, 0, 0, 1, 0, 0, 0 },
