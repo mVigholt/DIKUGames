@@ -11,23 +11,17 @@ using System;
 namespace GalagaTests;
 [TestFixture]
 public class TestMovementStrategy {
-    private ZigZagDown zigzagDown;
     private IMovementStrategy movementStrategy;
     private Enemy enemy;
 
     [SetUp]
     public void InitiateMovementStrategy() {
         Window.CreateOpenGLContext();
-        List<Image> blueEnemyStride = ImageStride.CreateStrides(
-            4, Path.Combine("..", "Galaga", "Assets", "Images", "BlueMonster.png"));
-        List<Image> greenEnemyStride = ImageStride.CreateStrides(
-            2, Path.Combine("..", "Galaga", "Assets", "Images", "GreenMonster.png"));
-        List<Image> redEnemyStride = ImageStride.CreateStrides(
-            2, Path.Combine("..", "Galaga", "Assets", "Images", "RedMonster.png"));
+       
         int milliseconds = 80;
         enemy = new Enemy(new Vec2F(0.1f, 0.9f),
-                new ImageStride(milliseconds, blueEnemyStride),
-                new ImageStride(milliseconds, redEnemyStride));
+                new ImageStride(milliseconds, Assets.blueEnemyStride),
+                new ImageStride(milliseconds, Assets.redEnemyStride));
     }
 
     [Test]
