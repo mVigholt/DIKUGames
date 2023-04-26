@@ -1,4 +1,4 @@
-namespace Breakout;
+namespace Breakout.BreakoutEntities;
 
 using System;
 using DIKUArcade.Entities;

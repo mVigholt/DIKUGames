@@ -10,12 +10,14 @@ using DIKUArcade.Math;
 using DIKUArcade.Physics;
 using DIKUArcade.State;
 using Breakout.Events;
-
+using Breakout.BreakoutEntities;
+using Breakout.LevelMaps;
 
 public class GameRunning : IGameState {
     private static GameRunning instance = null;
     private GameEventBus eventBus = GameBus.GetBus();
     private Player player;
+    private LevelMap map;
 
     public static GameRunning GetInstance() {
         if (GameRunning.instance == null) {
@@ -28,12 +30,18 @@ public class GameRunning : IGameState {
 
     public void InitPlayer() {
         player = new Player(
-        new DynamicShape(new Vec2F(0.45f, 0.1f), new Vec2F(0.1f, 0.1f)),
+        new DynamicShape(new Vec2F(0.4f, 0.1f), new Vec2F(0.15f, 0.03f)),
         Assets.playerImage);
     }
 
     public void InitializeGameState(){
         InitPlayer();
+        InitMap();
+    }
+
+    public void InitMap(){
+        map = new LevelMap("level1.txt");
+        map.CreateMap();
     }
 
     public void GameOver() {
@@ -47,6 +55,7 @@ public class GameRunning : IGameState {
 
     public void RenderState() {
         player.Render();
+        map.blocks.RenderEntities();
     }
 
     public void ResetState() {
