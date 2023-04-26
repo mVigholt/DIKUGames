@@ -1,0 +1,117 @@
+namespace Breakout.GameStates;
+
+using System;
+using System.Collections.Generic;
+using DIKUArcade.Entities;
+using DIKUArcade.Events;
+using DIKUArcade.Graphics;
+using DIKUArcade.Input;
+using DIKUArcade.Math;
+using DIKUArcade.Physics;
+using DIKUArcade.State;
+using Breakout.Events;
+
+
+public class GameRunning : IGameState {
+    private static GameRunning instance = null;
+    private GameEventBus eventBus = GameBus.GetBus();
+    private Player player;
+
+    public static GameRunning GetInstance() {
+        if (GameRunning.instance == null) {
+            GameRunning.instance = new GameRunning();
+            GameRunning.instance.InitializeGameState();
+        }
+        return GameRunning.instance;
+
+    }
+
+    public void InitPlayer() {
+        player = new Player(
+        new DynamicShape(new Vec2F(0.45f, 0.1f), new Vec2F(0.1f, 0.1f)),
+        Assets.playerImage);
+    }
+
+    public void InitializeGameState(){
+        InitPlayer();
+    }
+
+    public void GameOver() {
+        eventBus.RegisterEvent(
+            new EventBuilder()
+                .WithType(GameEventType.GameStateEvent)
+                .WithStateType(GameStateType.GameLost)
+                .Build()
+        );
+    }
+
+    public void RenderState() {
+        player.Render();
+    }
+
+    public void ResetState() {
+        this.InitializeGameState();
+    }
+
+    public void UpdateState() {
+        player.Move();
+    }
+
+    public void HandleKeyEvent(KeyboardAction action, KeyboardKey key) {
+        switch (action) {
+            case KeyboardAction.KeyPress:
+                this.KeyPress(key);
+                break;
+            case KeyboardAction.KeyRelease:
+                this.KeyRelease(key);
+                break;
+        }
+    }
+
+    private void KeyPress(KeyboardKey key) {
+        switch (key) {
+            case KeyboardKey.Escape:
+                eventBus.RegisterEvent(
+                    new EventBuilder()
+                        .WithType(GameEventType.GameStateEvent)
+                        .WithStateType(GameStateType.GamePaused)
+                        .Build()
+                );
+                break;
+            case KeyboardKey.Left:
+            case KeyboardKey.Right:
+            case KeyboardKey.Up:
+            case KeyboardKey.Down:
+                eventBus.RegisterEvent(
+                    new EventBuilder()
+                        .WithType(GameEventType.PlayerEvent)
+                        .WithKey(key)
+                        .WithAction(KeyboardAction.KeyPress)
+                        .Build()
+                );
+                break;
+            default:
+                break;
+        }
+    }
+
+    private void KeyRelease(KeyboardKey key) {
+        switch (key) {
+            case KeyboardKey.Left:
+            case KeyboardKey.Right:
+            case KeyboardKey.Up:
+            case KeyboardKey.Down:
+                eventBus.RegisterEvent(
+                    new EventBuilder()
+                        .WithType(GameEventType.PlayerEvent)
+                        .WithKey(key)
+                        .WithAction(KeyboardAction.KeyRelease)
+                        .Build()
+                );
+                break;
+            default:
+                break;
+        }
+    }
+
+}
