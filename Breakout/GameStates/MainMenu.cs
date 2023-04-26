@@ -10,6 +10,7 @@ using DIKUArcade.Input;
 using DIKUArcade.Math;
 using DIKUArcade.State;
 using Breakout.Events;
+using Breakout.BreakoutEntities;
 
 /// <summary> Main menu state </summary>
 public class MainMenu : IGameState {
@@ -28,7 +29,7 @@ public class MainMenu : IGameState {
         }
         return MainMenu.instance;
     }
-    
+
     private void InitializeGameState() {
         Vec2F backGroundPos = new Vec2F(0.0f, 0.0f);
         Vec2F backGroundExtent = new Vec2F(1.0f, 1.0f);
