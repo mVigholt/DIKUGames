@@ -1,9 +1,9 @@
 namespace Breakout.Events;
 
 using System;
+using Breakout.GameStates;
 using DIKUArcade.Events;
 using DIKUArcade.Input;
-using Breakout.GameStates;
 
 /// <summary>
 /// The way we use events should be enforced.
@@ -19,7 +19,7 @@ using Breakout.GameStates;
 /// you can read them with EventDTO.
 /// </summary>
 public class EventBuilder {
-    
+
     private Nullable<GameEventType> _type;
     private Nullable<int> _action;
     // Strings and objects are already nullable
@@ -27,7 +27,8 @@ public class EventBuilder {
     private string _debugString;
     private object _gameStateType; // Using Event.from
 
-    public EventBuilder() {}
+    public EventBuilder() {
+    }
 
     public EventBuilder WithType(GameEventType eventType) {
         _type = eventType;
@@ -45,7 +46,7 @@ public class EventBuilder {
     }
 
     public EventBuilder WithAction(KeyboardAction action) {
-        _action = (int)action;
+        _action = (int) action;
         return this;
     }
 
@@ -61,12 +62,12 @@ public class EventBuilder {
         }
         if (_gameStateType is null &&
             _key is null) {
-                throw new ArgumentException(
-                    "Events must provide either a KeyboardKey " +
-                    "or a GameStateType"
-                );
-            }
-        
+            throw new ArgumentException(
+                "Events must provide either a KeyboardKey " +
+                "or a GameStateType"
+            );
+        }
+
         GameEvent ev = new GameEvent();
         // Required fields
         ev.EventType = _type.Value;

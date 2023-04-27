@@ -1,9 +1,9 @@
 namespace Breakout.Events;
 
 using System;
+using Breakout.GameStates;
 using DIKUArcade.Events;
 using DIKUArcade.Input;
-using Breakout.GameStates;
 
 
 /// <summary>

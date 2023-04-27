@@ -1,14 +1,14 @@
 namespace Breakout.GameStates;
 
+using Breakout.BreakoutEntities;
+using Breakout.Events;
+using Breakout.IO;
 using DIKUArcade.Entities;
 using DIKUArcade.Events;
 using DIKUArcade.Graphics;
 using DIKUArcade.Input;
 using DIKUArcade.Math;
 using DIKUArcade.State;
-using Breakout.Events;
-using Breakout.BreakoutEntities;
-using Breakout.IO;
 
 public class GameLost : IGameState {
     private static GameLost instance = null;

@@ -4,15 +4,17 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using Breakout.BreakoutEntities;
+using Breakout.IO;
 using DIKUArcade.Entities;
 using DIKUArcade.Graphics;
 using DIKUArcade.Math;
-using Breakout.BreakoutEntities;
-using Breakout.IO;
 
 
 public class LevelMap {
-    public string TxtFile{get; private set;}
+    public string TxtFile {
+        get; private set;
+    }
     public EntityContainer<Block> blocks;
     private int colNum;
     private int rowNum;
@@ -24,10 +26,9 @@ public class LevelMap {
     private Dictionary<string, string> legendsDict = new Dictionary<string, string>();
     public LevelMap(string txtFile) {
         this.TxtFile = txtFile;
-        this.blocks = new EntityContainer<Block>(24*12);
+        this.blocks = new EntityContainer<Block>(24 * 12);
     }
-    public void CreateMap()
-    {
+    public void CreateMap() {
         string baseDir = AppDomain.CurrentDomain.BaseDirectory;
         string filePath = Path.Combine(PathFinder.Levels(), TxtFile);
         try {
@@ -63,10 +64,10 @@ public class LevelMap {
             rowNum = brickArray.Length; // The total row number
             colNum = brickArray[0].Length; // The total column number
 
-            xExtend = 1.0f / colNum ;
-            yExtend = 1.0f /rowNum ;
+            xExtend = 1.0f / colNum;
+            yExtend = 1.0f / rowNum;
 
-            this.blocks = new EntityContainer<Block>(rowNum*colNum);
+            this.blocks = new EntityContainer<Block>(rowNum * colNum);
             for (int r = 0; r < brickArray.Length; r++) {
                 for (int c = 0; c < brickArray[r].Length; c++) {
                     // Console.WriteLine($"brickArray[{r}, {c}]: " + brickArray[r][c].ToString());
@@ -81,8 +82,7 @@ public class LevelMap {
                 }
             }
 
-        }
-    catch (FileNotFoundException e) {
+        } catch (FileNotFoundException e) {
             Console.WriteLine(e.Message);
         }
 

@@ -23,7 +23,8 @@ public class Block : Entity {
         public Vec2F position;
         public IBaseImage image;
         public IBaseImage alterImage;
-        public Builder() {}
+        public Builder() {
+        }
 
         public Builder WithPosition(Vec2F position) {
             this.position = position;
@@ -35,7 +36,7 @@ public class Block : Entity {
             return this;
         }
 
-        public Builder WithAlterImage(IBaseImage alterImage){
+        public Builder WithAlterImage(IBaseImage alterImage) {
             this.alterImage = alterImage;
             return this;
         }

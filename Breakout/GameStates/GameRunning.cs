@@ -1,8 +1,12 @@
 namespace Breakout.GameStates;
 
 using System;
-using System.IO;
 using System.Collections.Generic;
+using System.IO;
+using Breakout.BreakoutEntities;
+using Breakout.Events;
+using Breakout.IO;
+using Breakout.LevelMaps;
 using DIKUArcade.Entities;
 using DIKUArcade.Events;
 using DIKUArcade.Graphics;
@@ -10,10 +14,6 @@ using DIKUArcade.Input;
 using DIKUArcade.Math;
 using DIKUArcade.Physics;
 using DIKUArcade.State;
-using Breakout.Events;
-using Breakout.BreakoutEntities;
-using Breakout.IO;
-using Breakout.LevelMaps;
 
 public class GameRunning : IGameState {
     private static GameRunning instance = null;
@@ -41,12 +41,12 @@ public class GameRunning : IGameState {
         player = new Player(shape, image);
     }
 
-    public void InitializeGameState(){
+    public void InitializeGameState() {
         InitPlayer();
         InitMap();
     }
 
-    public void InitMap(){
+    public void InitMap() {
         map = new LevelMap("level1.txt");
         map.CreateMap();
     }

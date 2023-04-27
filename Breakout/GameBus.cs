@@ -1,7 +1,7 @@
 namespace Breakout;
 
-using DIKUArcade.Events;
 using System.Collections.Generic;
+using DIKUArcade.Events;
 
 public static class GameBus {
     private static GameEventBus eventBus;

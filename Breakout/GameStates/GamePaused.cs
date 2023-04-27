@@ -2,15 +2,15 @@ namespace Breakout.GameStates;
 
 using System;
 using System.IO;
+using Breakout.BreakoutEntities;
+using Breakout.Events;
+using Breakout.IO;
 using DIKUArcade.Entities;
 using DIKUArcade.Events;
 using DIKUArcade.Graphics;
 using DIKUArcade.Input;
 using DIKUArcade.Math;
 using DIKUArcade.State;
-using Breakout.Events;
-using Breakout.BreakoutEntities;
-using Breakout.IO;
 
 
 public class GamePaused : IGameState {
@@ -75,7 +75,7 @@ public class GamePaused : IGameState {
                 break;
             case KeyboardKey.Enter:
                 switch (activeMenuButton) {
-                    case (0):
+                    case 0:
                         GameBus.GetBus().RegisterEvent(
                             new EventBuilder()
                                 .WithType(GameEventType.GameStateEvent)
@@ -84,7 +84,7 @@ public class GamePaused : IGameState {
                                 .Build()
                         );
                         break;
-                    case (1):
+                    case 1:
                         GameBus.GetBus().RegisterEvent(
                             new EventBuilder()
                                 .WithType(GameEventType.GameStateEvent)

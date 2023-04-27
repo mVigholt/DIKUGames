@@ -1,12 +1,12 @@
 namespace Breakout.BreakoutEntities;
 
 using System;
+using Breakout.Events;
 using DIKUArcade.Entities;
 using DIKUArcade.Events;
 using DIKUArcade.Graphics;
-using DIKUArcade.Math;
 using DIKUArcade.Input;
-using Breakout.Events;
+using DIKUArcade.Math;
 
 public class Player : Entity, IGameEventProcessor {
     private GameEventBus eventBus;
@@ -28,14 +28,14 @@ public class Player : Entity, IGameEventProcessor {
         internal set;
     }
 
-    public Player(DynamicShape shape,  IBaseImage image) : this(shape, image, 50) {
+    public Player(DynamicShape shape, IBaseImage image) : this(shape, image, 50) {
     }
 
-    public Player(DynamicShape shape,  IBaseImage image, int startingHealth)
+    public Player(DynamicShape shape, IBaseImage image, int startingHealth)
         : base(shape, image) {
         this.Level = 0;
         this.shape = shape;
-        Vec2F pos = new Vec2F(0.0f, -0.2f) ;
+        Vec2F pos = new Vec2F(0.0f, -0.2f);
         Vec2F extent = new Vec2F(0.3f, 0.3f);
         InitEventBus();
     }
@@ -49,7 +49,7 @@ public class Player : Entity, IGameEventProcessor {
         return shape.Position.Copy();
     }
 
-    public Vec2F GetExtent(){
+    public Vec2F GetExtent() {
         return shape.Extent.Copy();
     }
 
@@ -57,9 +57,13 @@ public class Player : Entity, IGameEventProcessor {
         RenderEntity();
     }
 
-    private Vec2F MinCorner() {return new Vec2F(0.0f, 0.0f);}
+    private Vec2F MinCorner() {
+        return new Vec2F(0.0f, 0.0f);
+    }
 
-    private Vec2F MaxCorner() {return new Vec2F(1.0f - shape.Extent.X, 1.0f - shape.Extent.Y);}
+    private Vec2F MaxCorner() {
+        return new Vec2F(1.0f - shape.Extent.X, 1.0f - shape.Extent.Y);
+    }
 
     public void Move() {
         shape.Move();
