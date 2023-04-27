@@ -1,8 +1,8 @@
 namespace Breakout.GameStates;
 
+using Breakout.Events;
 using DIKUArcade.Events;
 using DIKUArcade.State;
-using Breakout.Events;
 
 ///<summary>Handle the transition of different states and process inputs</summary>
 public class StateMachine : IGameEventProcessor {

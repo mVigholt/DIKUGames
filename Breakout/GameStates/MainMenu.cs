@@ -2,6 +2,9 @@ namespace Breakout.GameStates;
 
 using System;
 using System.IO;
+using Breakout.BreakoutEntities;
+using Breakout.Events;
+using Breakout.IO;
 using DIKUArcade.Entities;
 using DIKUArcade.Events;
 using DIKUArcade.Graphics;
@@ -9,9 +12,6 @@ using DIKUArcade.GUI;
 using DIKUArcade.Input;
 using DIKUArcade.Math;
 using DIKUArcade.State;
-using Breakout.Events;
-using Breakout.BreakoutEntities;
-using Breakout.IO;
 
 
 /// <summary> Main menu state </summary>
@@ -62,8 +62,8 @@ public class MainMenu : IGameState {
         }
     }
 
-    private void KeyPress(KeyboardKey key){
-        switch (key){
+    private void KeyPress(KeyboardKey key) {
+        switch (key) {
             case KeyboardKey.Up:
                 foreach (Text i in menuButtons) {
                     i.SetColor(inactiveColor);
@@ -80,7 +80,7 @@ public class MainMenu : IGameState {
                 break;
             case KeyboardKey.Enter:
                 switch (activeMenuButton) {
-                    case (0):
+                    case 0:
                         eventBus.RegisterEvent(
                             new EventBuilder()
                                 .WithType(GameEventType.GameStateEvent)
@@ -88,7 +88,7 @@ public class MainMenu : IGameState {
                                 .Build()
                         );
                         break;
-                    case (1):
+                    case 1:
                         eventBus.RegisterEvent(
                             new EventBuilder()
                                 .WithType(GameEventType.WindowEvent)
@@ -98,14 +98,14 @@ public class MainMenu : IGameState {
                         );
                         break;
                 }
-            break;
+                break;
             default:
                 break;
         }
     }
 
-    private void KeyRelease(KeyboardKey key){
-        switch(key){
+    private void KeyRelease(KeyboardKey key) {
+        switch (key) {
             default:
                 break;
         }

@@ -1,11 +1,11 @@
 namespace Breakout;
 
+using Breakout.Events;
+using Breakout.GameStates;
 using DIKUArcade;
 using DIKUArcade.Events;
 using DIKUArcade.GUI;
 using DIKUArcade.Input;
-using Breakout.GameStates;
-using Breakout.Events;
 
 public class Game : DIKUGame, IGameEventProcessor {
     private GameEventBus eventBus;

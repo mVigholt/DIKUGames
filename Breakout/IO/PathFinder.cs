@@ -11,7 +11,7 @@ using System.IO;
 /// in either Breakout/ or BreakoutTests/
 /// </summary>
 public static class PathFinder {
-    
+
     /// <summary>
     /// Get the absolute path to DIKUGames, the root of our application.
     /// </summary>
@@ -28,18 +28,10 @@ public static class PathFinder {
         return Path.Combine(Assets(), "Levels");
     }
 
-    public static string Level(string fileName) {
-        return Path.Combine(Levels(), fileName);
-    }
-
     public static string Images() {
         return Path.Combine(Assets(), "Images");
     }
 
-    public static string Image(string fileName) {
-        return Path.Combine(Images(), fileName);
-    }
-    
     /// <summary>Find the path to a directory</summary>
     public static string Find(string dirName) {
         return GetDirName(Directory.GetCurrentDirectory(), dirName);
