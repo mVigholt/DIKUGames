@@ -8,6 +8,7 @@ using DIKUArcade.Math;
 using DIKUArcade.State;
 using Breakout.Events;
 using Breakout.BreakoutEntities;
+using Breakout.IO;
 
 public class GameWon : IGameState {
     private static GameWon instance = null;

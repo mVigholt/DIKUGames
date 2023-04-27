@@ -1,6 +1,7 @@
 namespace Breakout.GameStates;
 
 using System;
+using System.IO;
 using System.Collections.Generic;
 using DIKUArcade.Entities;
 using DIKUArcade.Events;
@@ -11,6 +12,7 @@ using DIKUArcade.Physics;
 using DIKUArcade.State;
 using Breakout.Events;
 using Breakout.BreakoutEntities;
+using Breakout.IO;
 using Breakout.LevelMaps;
 
 public class GameRunning : IGameState {
@@ -29,9 +31,14 @@ public class GameRunning : IGameState {
     }
 
     public void InitPlayer() {
-        player = new Player(
-        new DynamicShape(new Vec2F(0.4f, 0.1f), new Vec2F(0.15f, 0.03f)),
-        Assets.playerImage);
+        DynamicShape shape = new DynamicShape(
+            new Vec2F(0.4f, 0.1f),
+            new Vec2F(0.15f, 0.03f)
+        );
+        IBaseImage image = new Image(
+            Path.Combine(PathFinder.Images(), "player.png")
+        );
+        player = new Player(shape, image);
     }
 
     public void InitializeGameState(){

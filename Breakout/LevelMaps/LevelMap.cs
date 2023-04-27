@@ -1,4 +1,5 @@
 namespace Breakout.LevelMaps;
+
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -7,6 +8,9 @@ using DIKUArcade.Entities;
 using DIKUArcade.Graphics;
 using DIKUArcade.Math;
 using Breakout.BreakoutEntities;
+using Breakout.IO;
+
+
 public class LevelMap {
     public string TxtFile{get; private set;}
     public EntityContainer<Block> blocks;
@@ -25,7 +29,7 @@ public class LevelMap {
     public void CreateMap()
     {
         string baseDir = AppDomain.CurrentDomain.BaseDirectory;
-        string filePath = Path.Combine("Breakout", "Assets", "Levels", TxtFile);
+        string filePath = Path.Combine(PathFinder.Levels(), TxtFile);
         try {
             var legends = File.ReadLines(filePath)
                 .SkipWhile(legend => legend != "Legend:")
@@ -69,7 +73,7 @@ public class LevelMap {
                     if (brickArray[r][c] != '-') {
                         blocks.AddEntity(
                         new Block.Builder()
-                            .WithImage(new Image(Path.Combine("..", "Breakout", "Assets", "Images", legendsDict[brickArray[r][c].ToString()])))
+                            .WithImage(new Image(Path.Combine(PathFinder.Images(), legendsDict[brickArray[r][c].ToString()])))
                             .WithPosition(new Vec2F(c * xExtend, 1 - r * yExtend))
                             .Build()
                         );
