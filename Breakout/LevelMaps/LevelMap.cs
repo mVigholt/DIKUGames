@@ -72,9 +72,10 @@ public class LevelMap {
                 for (int c = 0; c < brickArray[r].Length; c++) {
                     // Console.WriteLine($"brickArray[{r}, {c}]: " + brickArray[r][c].ToString());
                     if (brickArray[r][c] != '-') {
+                        string imgFileName = legendsDict[brickArray[r][c].ToString()];
                         blocks.AddEntity(
                         new Block.Builder()
-                            .WithImage(new Image(Path.Combine(PathFinder.Images(), legendsDict[brickArray[r][c].ToString()])))
+                            .WithImage(Assets.LoadImage(imgFileName))
                             .WithPosition(new Vec2F(c * xExtend, 1 - r * yExtend))
                             .Build()
                         );

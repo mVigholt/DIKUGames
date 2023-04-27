@@ -28,16 +28,8 @@ public static class PathFinder {
         return Path.Combine(Assets(), "Levels");
     }
 
-    public static string Level(string fileName) {
-        return Path.Combine(Levels(), fileName);
-    }
-
     public static string Images() {
         return Path.Combine(Assets(), "Images");
-    }
-
-    public static string Image(string fileName) {
-        return Path.Combine(Images(), fileName);
     }
 
     /// <summary>Find the path to a directory</summary>
