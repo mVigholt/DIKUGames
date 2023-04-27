@@ -156,7 +156,7 @@ public class GameRunning : IGameState {
     }
 
     /// <summary> Player increases level and enemies increase speed</summary>
-     private void NextLevel() {
+    private void NextLevel() {
         Enemy.baseSpeed += 0.0002f;
         InitEnemies();
         player.Level++;
