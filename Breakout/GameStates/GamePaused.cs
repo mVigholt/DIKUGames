@@ -10,6 +10,9 @@ using DIKUArcade.Math;
 using DIKUArcade.State;
 using Breakout.Events;
 using Breakout.BreakoutEntities;
+using Breakout.IO;
+
+
 public class GamePaused : IGameState {
     private static GamePaused instance = null;
     private GameEventBus eventBus = GameBus.GetBus();

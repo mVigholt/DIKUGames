@@ -6,9 +6,9 @@ using System.IO;
 
 /// <summary>
 /// A utility for finding paths in a file system.
-/// Call PathFinder.Root() to get the path to DIKUGames.
-/// Call PathFinder.Find(dirName) to get the path 
 /// to a specific directory or file.
+/// It allows for less headaches when working
+/// in either Breakout/ or BreakoutTests/
 /// </summary>
 public static class PathFinder {
     
@@ -19,6 +19,26 @@ public static class PathFinder {
         return Find("DIKUGames");
     }
 
+    public static string Assets() {
+        // Hardcoded for now
+        return Path.Combine(Root(), "Breakout", "Assets");
+    }
+
+    public static string Levels() {
+        return Path.Combine(Assets(), "Levels");
+    }
+
+    public static string Level(string fileName) {
+        return Path.Combine(Levels(), fileName);
+    }
+
+    public static string Images() {
+        return Path.Combine(Assets(), "Images");
+    }
+
+    public static string Image(string fileName) {
+        return Path.Combine(Images(), fileName);
+    }
     
     /// <summary>Find the path to a directory</summary>
     public static string Find(string dirName) {

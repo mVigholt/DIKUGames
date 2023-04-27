@@ -6,9 +6,6 @@ using System;
 
 
 public class TestPathFinder {
-    [SetUp]
-    public void Setup() {
-    }
 
     private bool IsCorrectPathToDir(string path, string dir) {
         return path.Split(dir)[^1] == "";
@@ -24,9 +21,15 @@ public class TestPathFinder {
 
     [Test]
     public void TestFind() {
-        string binaryOutputDir = "bin";
-        string path = PathFinder.Find(binaryOutputDir);
-        Assert.That(IsCorrectPathToDir(path, binaryOutputDir));
+        string bin = "bin";
+        string path = PathFinder.Find(bin);
+        string assetsPath = PathFinder.Assets();
+        string images = PathFinder.Images();
+        string levels = PathFinder.Levels();
+        Assert.That(IsCorrectPathToDir(path, bin));
+        Assert.That(IsCorrectPathToDir(assetsPath, "Assets"));
+        Assert.That(IsCorrectPathToDir(images, "Images"));
+        Assert.That(IsCorrectPathToDir(levels, "Levels"));
         string nonexistentDirName = "pwkjMx5Zu5SNh";
         Exception exception = Assert.Throws<ArgumentException>(() => {
             PathFinder.Find(nonexistentDirName);

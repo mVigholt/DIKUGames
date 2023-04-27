@@ -8,6 +8,7 @@ using DIKUArcade.Math;
 using DIKUArcade.State;
 using Breakout.Events;
 using Breakout.BreakoutEntities;
+using Breakout.IO;
 
 public class GameLost : IGameState {
     private static GameLost instance = null;
