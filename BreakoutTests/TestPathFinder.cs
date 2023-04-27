@@ -31,12 +31,9 @@ public class TestPathFinder {
         Assert.That(IsCorrectPathToDir(images, "Images"));
         Assert.That(IsCorrectPathToDir(levels, "Levels"));
         string nonexistentDirName = "pwkjMx5Zu5SNh";
-        Exception exception = Assert.Throws<ArgumentException>(() => {
-            PathFinder.Find(nonexistentDirName);
-        });
-        Assert.AreEqual(
-            exception.Message, 
-            $"Could not find \"{nonexistentDirName}\""
-        );
+        Assert.That(
+            () => PathFinder.Find(nonexistentDirName), 
+            Throws.ArgumentException.With.Message.EqualTo(
+                $"Could not find \"{nonexistentDirName}\""));
     }
 }
