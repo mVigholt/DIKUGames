@@ -45,7 +45,7 @@ public static class PathFinder {
     /// <param name="dirName">The directory you want to climb up to</param>
     /// <returns>The path to the directory</returns>
     private static string GetDirName(string path, string dirName) {
-        if (path == "") {
+        if (path == "" || !path.Contains(dirName)) {
             throw new ArgumentException($"Could not find \"{dirName}\"");
         }
         var (firstPart, lastPart) = SplitPath(path);
@@ -62,8 +62,13 @@ public static class PathFinder {
     /// <param name="path">The path you want to split</param>
     /// <returns>A shorter path and a directory or file name</returns>
     private static Tuple<string, string> SplitPath(string path) {
-        Console.WriteLine($"Trying to split the string {path}");
-        int index = path.LastIndexOf('/');
+        char delimiterMacLinux = '/';
+        char delimiterWindows = '\\';
+        int index = path.LastIndexOf(delimiterMacLinux);
+        bool usingWindows = index == -1;
+        if (usingWindows) {
+            index = path.LastIndexOf(delimiterWindows);
+        }
         string subPath = path.Substring(0, index);
         string dir = path.Substring(index + 1);
         return Tuple.Create(subPath, dir);
