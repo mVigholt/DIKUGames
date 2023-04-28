@@ -26,6 +26,12 @@ public class Loader {
             LevelLoader.Load(fileName);
         }
         Assert.Pass();
+        // By loading every level, we assure that it can
+        // handle all metadata. By not throwing an exception,
+        // we know that requirement 1 is being upheld.
+        // We do not have any additional requirements for
+        // what those metadata fields should be used for,
+        // so for now, this test is sufficient.
     }
 
     [Test]
@@ -37,7 +43,7 @@ public class Loader {
         int numBlocks = 76;
         Assert.AreEqual(numBlocks, container.CountEntities());
         // Then check that a level with missing image files
-        // still can be instantiated
+        // still can be instantiated, upholding requirement 3.
         var containerWithMissingImage = new EntityContainer<Block>();
         containerWithMissingImage = LevelLoader.Load(
             "level_with_missing_files.txt");
