@@ -55,6 +55,15 @@ public static class PathFinder {
         return GetDirName(firstPart, dirName);
     }
 
+    
+
+    /* 
+    
+    /a/b/c/d
+    /a/b/c
+    /a/b   
+     */
+
     /// <summary>
     /// Split a path on the last "/", i.e.:
     ///     "/path/to/dir" -> ("/path/to", "dir")

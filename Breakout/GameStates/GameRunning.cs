@@ -36,7 +36,7 @@ public class GameRunning : IGameState {
             new Vec2F(0.15f, 0.03f)
         );
         IBaseImage image = new Image(
-            Path.Combine(PathFinder.Images(), "player.png")
+            Path.Combine("..", "Breakout", "Assets", "Images", "player.png")
         );
         player = new Player(shape, image);
     }
