@@ -21,7 +21,7 @@ public class Player : Entity, IGameEventProcessor {
 
     private float moveDown = 0.0f;
 
-    private const float MOVEMENT_SPEED = 0.01f;
+    public const float MOVEMENT_SPEED = 0.01f;
 
     public int Level {
         get;
@@ -86,23 +86,13 @@ public class Player : Entity, IGameEventProcessor {
         shape.ChangeDirection(new Vec2F(moveLeft + moveRight, moveUp + moveDown));
     }
 
-    private void SetMoveLeft(bool val) {
+    public void SetMoveLeft(bool val) {
         moveLeft = -MOVEMENT_SPEED * (val ? 1 : 0);
         UpdateDirection();
     }
 
-    private void SetMoveRight(bool val) {
+    public void SetMoveRight(bool val) {
         moveRight = MOVEMENT_SPEED * (val ? 1 : 0);
-        UpdateDirection();
-    }
-
-    private void SetMoveUp(bool val) {
-        moveUp = MOVEMENT_SPEED * (val ? 1 : 0);
-        UpdateDirection();
-    }
-
-    private void SetMoveDown(bool val) {
-        moveDown = -MOVEMENT_SPEED * (val ? 1 : 0);
         UpdateDirection();
     }
 
@@ -120,12 +110,6 @@ public class Player : Entity, IGameEventProcessor {
             case KeyboardKey.D:
                 SetMoveRight(ev.Action == KeyboardAction.KeyPress);
                 break;
-            // case KeyboardKey.Up:
-            //     SetMoveUp(ev.Action == KeyboardAction.KeyPress);
-            //     break;
-            // case KeyboardKey.Down:
-            //     SetMoveDown(ev.Action == KeyboardAction.KeyPress);
-            //     break;
             default:
                 break;
         }
