@@ -20,7 +20,6 @@ public class GameRunning : IGameState {
     private GameEventBus eventBus = GameBus.GetBus();
     private Player player;
     private EntityContainer<Block> blocks;
-
     public static GameRunning GetInstance() {
         if (GameRunning.instance == null) {
             GameRunning.instance = new GameRunning();
