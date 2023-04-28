@@ -14,28 +14,53 @@ using Breakout.IO;
 [TestFixture]
 public class TestPlayer{
 
-    private Image playerImage;
     private Player player;
-    private int startingHealth;
-    private Vec2F POSITION = new Vec2F(0.4f, 0.1f);
+    private Vec2F START_POSITION = new Vec2F(0.4f, 0.1f);
 
     [SetUp]
     public void InitiatePlayer(){
         Window.CreateOpenGLContext();
-        playerImage = Assets.LoadImage("player.png");
+        Image playerImage = Assets.LoadImage("player.png");
         player = new Player(
-            new DynamicShape(POSITION, new Vec2F(0.15f, 0.03f)),
+            new DynamicShape(START_POSITION, new Vec2F(0.15f, 0.03f)),
             playerImage, 3);
+    }
+
+    private bool IsOutOfBounds(Player player) {
+        return  player.GetPosition().X <= 1 &&
+                player.GetPosition().X >= 0;
     }
 
     [Test]
     public void TestMoveLeft() {
         player.SetMoveLeft(true);
+        // Precondition: Player is not out of bounds
+        Assert.False(!IsOutOfBounds(player));
         for (int i = 0; i < 1000; i++) {
             player.Move();
         }
-        Assert.LessOrEqual(player.GetPosition().X, 1);
-        Assert.GreaterOrEqual(player.GetPosition().X, 0);
+        // Postcondition: Player is still not out of bounds
+        Assert.False(!IsOutOfBounds(player));
+    }
+
+    [Test]
+    public void PlayerIsEntity() {
+        // R5: Player must be a DIKU entity
+        Assert.That(player is Entity);
+    }
+
+    [Test]
+    public void TestMoveRight() {
+        player.SetMoveRight(true);
+        // Precondition R3: Player is not out of bounds
+        Assert.False(!IsOutOfBounds(player));
+        for (int i = 0; i < 1000; i++) {
+            player.Move();
+        }
+        // Postcondition R1: Player has moved
+        // Postcondition R3: Player is still not out of bounds
+        Assert.False(!IsOutOfBounds(player));
+        Assert.AreNotEqual(player.GetPosition(), START_POSITION);
     }
 }
 
