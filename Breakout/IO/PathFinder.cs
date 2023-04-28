@@ -55,15 +55,6 @@ public static class PathFinder {
         return GetDirName(firstPart, dirName);
     }
 
-    
-
-    /* 
-    
-    /a/b/c/d
-    /a/b/c
-    /a/b   
-     */
-
     /// <summary>
     /// Split a path on the last "/", i.e.:
     ///     "/path/to/dir" -> ("/path/to", "dir")
@@ -71,6 +62,7 @@ public static class PathFinder {
     /// <param name="path">The path you want to split</param>
     /// <returns>A shorter path and a directory or file name</returns>
     private static Tuple<string, string> SplitPath(string path) {
+        Console.WriteLine($"Trying to split the string {path}");
         int index = path.LastIndexOf('/');
         string subPath = path.Substring(0, index);
         string dir = path.Substring(index + 1);
