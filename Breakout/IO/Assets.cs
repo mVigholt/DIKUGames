@@ -13,7 +13,7 @@ public static class Assets {
     /// </summary>
     public static Image LoadImage(string fileName) {
         return new Image(
-            Path.Combine("Assets", "Images", fileName));
+            Path.Combine(PathFinder.Images(), fileName));
     }
 
     public static Image playerImage = LoadImage("player.png");
