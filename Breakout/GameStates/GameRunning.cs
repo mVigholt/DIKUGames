@@ -6,7 +6,7 @@ using System.IO;
 using Breakout.BreakoutEntities;
 using Breakout.Events;
 using Breakout.IO;
-using Breakout.LevelMaps;
+using Breakout.Levels;
 using DIKUArcade.Entities;
 using DIKUArcade.Events;
 using DIKUArcade.Graphics;
@@ -19,7 +19,7 @@ public class GameRunning : IGameState {
     private static GameRunning instance = null;
     private GameEventBus eventBus = GameBus.GetBus();
     private Player player;
-    private LevelMap map;
+    private Level map;
 
     public static GameRunning GetInstance() {
         if (GameRunning.instance == null) {
@@ -47,7 +47,7 @@ public class GameRunning : IGameState {
     }
 
     public void InitMap() {
-        map = new LevelMap("level1.txt");
+        map = new Level("level1.txt");
         map.CreateMap();
     }
 
