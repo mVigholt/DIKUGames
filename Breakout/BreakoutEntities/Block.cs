@@ -9,14 +9,20 @@ public class Block : Entity {
     private static readonly Vec2F EXTENT = new Vec2F(0.083f, 0.041f);
     public readonly Vec2F position;
     private IBaseImage alterImage;
-    // private int value = 3;
-    // private Health health;
+    private int value;
+    private int health = 8;
 
     public Block(Block.Builder builder)
         : base(new DynamicShape(builder.position, EXTENT), builder.image) {
         this.position = builder.position;
         this.Image = builder.image;
         this.alterImage = builder.alterImage;
+    }
+    public void LoseHealth(int hp) {
+            this.health-= hp;
+        }
+    public bool IsDead() {
+        return this.health <= 0;
     }
 
     public class Builder {
