@@ -19,7 +19,7 @@ public class GameRunning : IGameState {
     private static GameRunning instance = null;
     private GameEventBus eventBus = GameBus.GetBus();
     private Player player;
-    private Level map;
+    private EntityContainer<Block> blocks;
 
     public static GameRunning GetInstance() {
         if (GameRunning.instance == null) {
@@ -43,12 +43,11 @@ public class GameRunning : IGameState {
 
     public void InitializeGameState() {
         InitPlayer();
-        InitMap();
+        InitLevel();
     }
 
-    public void InitMap() {
-        map = new Level("level1.txt");
-        map.CreateMap();
+    public void InitLevel() {
+        blocks = LevelLoader.Load("level1.txt");
     }
 
     public void GameOver() {
@@ -62,7 +61,7 @@ public class GameRunning : IGameState {
 
     public void RenderState() {
         player.Render();
-        map.blocks.RenderEntities();
+        blocks.RenderEntities();
     }
 
     public void ResetState() {
