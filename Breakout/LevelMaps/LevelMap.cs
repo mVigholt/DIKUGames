@@ -30,7 +30,7 @@ public class LevelMap {
     }
     public void CreateMap() {
         string baseDir = AppDomain.CurrentDomain.BaseDirectory;
-        string filePath = Path.Combine("Breakout", "Assets", "Levels", TxtFile);
+        string filePath = Path.Combine(PathFinder.Levels(), TxtFile);
         try {
             var legends = File.ReadLines(filePath)
                 .SkipWhile(legend => legend != "Legend:")
