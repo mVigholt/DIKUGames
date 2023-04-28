@@ -36,4 +36,16 @@ public class TestPathFinder {
             Throws.ArgumentException.With.Message.EqualTo(
                 $"Could not find \"{nonexistentDirName}\""));
     }
+
+    [Test]
+    public void TestFindNonexistentAsset() {
+        string fileName = "Tgz7VXx3GL4KM.png";
+        Assert.That(
+            () => PathFinder.Find(fileName),
+            Throws.ArgumentException.With.Message.EqualTo(
+                $"Could not find \"{fileName}\""
+            )
+        );
+        Assert.Pass();
+    }
 }

@@ -2,13 +2,13 @@ namespace BreakoutTests;
 
 using NUnit.Framework;
 using DIKUArcade.GUI; // Needed for OpenGL contexts
-using Breakout.LevelMaps;
+using Breakout.Levels;
 using Breakout.IO;
 using System;
 using System.IO;
 
 
-public class TestLevelMap {
+public class TestLevel {
 
     [SetUp]
     public void SetUp() {
@@ -21,8 +21,13 @@ public class TestLevelMap {
         Console.WriteLine(Directory.GetCurrentDirectory());
         string[] fileNames = Directory.GetFiles(PathFinder.Levels());
         foreach (string fileName in fileNames) {
-            new LevelMap(fileName).CreateMap();
+            new Level(fileName).CreateMap();
         }
         Assert.Pass();
+    }
+
+    [Test]
+    public void TestMetaData() {
+        
     }
 }
