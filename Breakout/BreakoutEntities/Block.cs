@@ -9,7 +9,6 @@ public class Block : Entity {
     private static readonly Vec2F EXTENT = new Vec2F(0.083f, 0.041f);
     public readonly Vec2F position;
     private IBaseImage alterImage;
-    private int value;
     private int health = 8;
 
     public Block(Block.Builder builder)

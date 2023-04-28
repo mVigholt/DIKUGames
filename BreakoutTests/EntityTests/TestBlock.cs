@@ -13,7 +13,6 @@ using Breakout.BreakoutEntities;
 public class TestBlock {
 
     private Image image;
-    private Image alternativeImage;
     private Block block;
 
     [SetUp]
