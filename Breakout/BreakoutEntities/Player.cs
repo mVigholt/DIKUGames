@@ -86,12 +86,12 @@ public class Player : Entity, IGameEventProcessor {
         shape.ChangeDirection(new Vec2F(moveLeft + moveRight, moveUp + moveDown));
     }
 
-    public void SetMoveLeft(bool val) {
+    private void SetMoveLeft(bool val) {
         moveLeft = -MOVEMENT_SPEED * (val ? 1 : 0);
         UpdateDirection();
     }
 
-    public void SetMoveRight(bool val) {
+    private void SetMoveRight(bool val) {
         moveRight = MOVEMENT_SPEED * (val ? 1 : 0);
         UpdateDirection();
     }
