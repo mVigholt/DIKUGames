@@ -59,7 +59,7 @@ public class TestPlayer {
         if (!almostEqual) {
             Console.WriteLine(
                 $"|a - b| < {max_allowed_diff} =>" +
-                $"|{a} - {b}| < {max_allowed_diff}" +
+                $"|{a} - {b}| < {max_allowed_diff} =>" +
                 $"{diff} < {max_allowed_diff} => false");
         }
         return almostEqual;
