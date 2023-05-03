@@ -44,6 +44,8 @@ public class Loader {
         Assert.AreEqual(numBlocks, container.CountEntities());
         // Then check that a level with missing image files
         // still can be instantiated, upholding requirement 3.
+        // We are also, partly, testing requirement 2:
+        // "The data read from the file is stored as expected in data structures."
         var containerWithMissingImage = new EntityContainer<Block>();
         containerWithMissingImage = LevelLoader.Load(
             "level_with_missing_files.txt");

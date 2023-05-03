@@ -21,7 +21,7 @@ public class Player : Entity, IGameEventProcessor {
 
     private float moveDown = 0.0f;
 
-    public const float MOVEMENT_SPEED = 0.01f;
+    public readonly float MOVEMENT_SPEED = 0.01f;
 
     public int Level {
         get;
