@@ -50,7 +50,7 @@ public class TestPlayer {
             .Build());
         eventBus.ProcessEventsSequentially();
         player.Move();
-        Assert.AreEqual(0.4f - 0.01f , player.GetPosition().X);
+        Assert.AreEqual(0.4f - 0.01f, player.GetPosition().X);
         // Precondition: Player is not out of bounds
         Assert.IsTrue(IsWithinBounds(player));
     }
@@ -60,18 +60,26 @@ public class TestPlayer {
     // [TestCase(2)]
     // [TestCase(3)]
     // public void TestMoveRight(int moveCount) {
-    //     for (int i = 0; i < moveCount; i++) {
-    //         eventBus.RegisterEvent(new EventBuilder()
-    //             .WithType(GameEventType.PlayerEvent)
-    //             .WithKey(KeyboardKey.Right)
-    //             .WithAction(KeyboardAction.KeyPress)
-    //             .Build());
+    //     // for (int i = 0; i < moveCount; i++) {
+    //     eventBus.RegisterEvent(new EventBuilder()
+    //         .WithType(GameEventType.PlayerEvent)
+    //         .WithKey(KeyboardKey.Right)
+    //         .WithAction(KeyboardAction.KeyPress)
+    //         .Build());
+    //     eventBus.RegisterEvent(new EventBuilder()
+    //         .WithType(GameEventType.PlayerEvent)
+    //         .WithKey(KeyboardKey.Right)
+    //         .WithAction(KeyboardAction.KeyRelease)
+    //         .Build());
+    //     // for (int i = 0; i < moveCount; i++) {
     //         eventBus.ProcessEventsSequentially();
     //         player.Move();
-    //     }
+    // }
+
+    // }
     //     Assert.AreEqual(0.40f + 0.01f * moveCount, player.GetPosition().X);
     //     // Precondition: Player is not out of bounds
-    //     Assert.False(!IsOutOfBounds(player));
+    //     Assert.IsTrue(IsWithinBounds(player));
     // }
 
     [Test]
@@ -81,11 +89,18 @@ public class TestPlayer {
             .WithKey(KeyboardKey.Right)
             .WithAction(KeyboardAction.KeyPress)
             .Build());
+
         eventBus.ProcessEventsSequentially();
         player.Move();
         Assert.AreEqual(0.4f + 0.01f, player.GetPosition().X);
         // Precondition: Player is not out of bounds
         Assert.IsTrue(IsWithinBounds(player));
+        eventBus.RegisterEvent(new EventBuilder()
+         .WithType(GameEventType.PlayerEvent)
+         .WithKey(KeyboardKey.Right)
+         .WithAction(KeyboardAction.KeyRelease)
+         .Build());
+        eventBus.ProcessEventsSequentially();
     }
 
     [TestCase(100)]
