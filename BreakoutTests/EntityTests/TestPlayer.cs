@@ -52,10 +52,8 @@ public class TestPlayer {
     /// (difference is less than 1 / 1,000,000).
     /// </summary>
     private bool AreAlmostEqual(float a, float b) {
-        Console.WriteLine($"Comparing {a} and {b}");
         float max_allowed_diff = 0.000001f;
         float diff = Math.Abs(a - b);
-        Console.WriteLine($"    Diff: {diff}");
         return diff < max_allowed_diff;
     }
 
