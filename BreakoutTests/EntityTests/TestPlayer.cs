@@ -50,29 +50,21 @@ public class TestPlayer {
     /// <summary>
     /// Return true if a is almost equal to b
     /// (difference is less than 1 / 1,000,000).
+    /// Print a debug message if that is not the case.
     /// </summary>
     private bool AreAlmostEqual(float a, float b) {
         float max_allowed_diff = 0.000001f;
         float diff = Math.Abs(a - b);
-        return diff < max_allowed_diff;
+        bool almostEqual = diff < max_allowed_diff;
+        if (!almostEqual) {
+            Console.WriteLine(
+                $"|a - b| < {max_allowed_diff} =>" +
+                $"|{a} - {b}| < {max_allowed_diff}" +
+                $"{diff} < {max_allowed_diff} => false");
+        }
+        return almostEqual;
     }
 
-
-    [Test]
-    public void TestMoveLeft() {
-        eventBus.RegisterEvent(new EventBuilder()
-            .WithType(GameEventType.PlayerEvent)
-            .WithKey(KeyboardKey.Left)
-            .WithAction(KeyboardAction.KeyPress)
-            .Build());
-        eventBus.ProcessEventsSequentially();
-        player.Move();
-        Assert.AreEqual(START_POS - player.MOVEMENT_SPEED, player.GetPosition().X);
-        // Precondition: Player is not out of bounds
-        Assert.IsTrue(IsWithinBounds(player));
-    }
-
-    // If I use for loop here, it will give precision problem.
     [TestCase(1)]
     [TestCase(2)]
     [TestCase(3)]
@@ -99,38 +91,55 @@ public class TestPlayer {
         
         }
         // Precondition P: Player is not out of bounds
-        // after moving (moveCount * movement speed) times.
+        // after moving [moveCount * MOVEMENT_SPEED] times.
         Assert.IsTrue(IsWithinBounds(player));
         // Postcondition R': Player's updated x position
-        // should be (moveCount * movement speed + starting position).
+        // should be moveCount * MOVEMENT_SPEED + START_POS
         float expectedXPos = START_POS + player.MOVEMENT_SPEED * moveCount;
         Assert.That(AreAlmostEqual(expectedXPos, player.GetPosition().X));
     }
 
-    [Test]
-    public void TestMoveRight() {
-        eventBus.RegisterEvent(new EventBuilder()
-            .WithType(GameEventType.PlayerEvent)
-            .WithKey(KeyboardKey.Right)
-            .WithAction(KeyboardAction.KeyPress)
-            .Build());
-
-        eventBus.ProcessEventsSequentially();
-        player.Move();
+    /// <summary>
+    /// Copy of TestMoveRight, only the event keys have changed
+    /// </summary>
+    [TestCase(1)]
+    [TestCase(2)]
+    [TestCase(3)]
+    [TestCase(5)]
+    [TestCase(7)]
+    [TestCase(11)]
+    public void TestMoveLeft(int moveCount) {
+        // Precondition R: Player is not out of bounds
         Assert.IsTrue(IsWithinBounds(player));
-        Assert.AreEqual(START_POS + player.MOVEMENT_SPEED, player.GetPosition().X);
-        // Precondition: Player is not out of bounds
-        eventBus.RegisterEvent(new EventBuilder()
-            .WithType(GameEventType.PlayerEvent)
-            .WithKey(KeyboardKey.Right)
-            .WithAction(KeyboardAction.KeyRelease)
-            .Build());
-        eventBus.ProcessEventsSequentially();
+        for (int i = 0; i < moveCount; i++) {
+            eventBus.RegisterEvent(new EventBuilder()
+                .WithType(GameEventType.PlayerEvent)
+                .WithKey(KeyboardKey.Left)
+                .WithAction(KeyboardAction.KeyPress)
+                .Build());
+            eventBus.ProcessEventsSequentially();
+            player.Move();
+            eventBus.RegisterEvent(new EventBuilder()
+                .WithType(GameEventType.PlayerEvent)
+                .WithKey(KeyboardKey.Left)
+                .WithAction(KeyboardAction.KeyRelease)
+                .Build());
+            eventBus.ProcessEventsSequentially();
+        
+        }
+        // Precondition P: Player is not out of bounds
+        // after moving [moveCount * (-MOVEMENT_SPEED)] times.
+        Assert.IsTrue(IsWithinBounds(player));
+        // Postcondition R': Player's updated x position
+        // should be moveCount * (-MOVEMENT_SPEED) + START_POS
+        float expectedXPos = START_POS + (-player.MOVEMENT_SPEED) * moveCount;
+        Assert.That(AreAlmostEqual(expectedXPos, player.GetPosition().X));
     }
 
     [TestCase(100)]
     [TestCase(200)]
     [TestCase(300)]
+    [TestCase(30000)]
     public void TestMoveWithinBorder(int moveCount) {
         for (int i = 0; i < moveCount; i++) {
             eventBus.RegisterEvent(new EventBuilder()
@@ -148,36 +157,9 @@ public class TestPlayer {
 
     [Test]
     public void PlayerIsEntity() {
-        // R5: Player must be a DIKU entity
+        // Requirement 5: Player must be a DIKU entity
         Assert.That(player is Entity);
     }
-
-    public void TestMoveLeft2() {
-        eventBus.RegisterEvent(new EventBuilder()
-            .WithType(GameEventType.PlayerEvent)
-            .WithKey(KeyboardKey.Left)
-            .WithAction(KeyboardAction.KeyPress)
-            .Build());
-        eventBus.ProcessEventsSequentially();
-        player.Move();
-        eventBus.RegisterEvent(new EventBuilder()
-            .WithType(GameEventType.PlayerEvent)
-            .WithKey(KeyboardKey.Left)
-            .WithAction(KeyboardAction.KeyPress)
-            .Build());
-        eventBus.ProcessEventsSequentially();
-        player.Move();
-        eventBus.RegisterEvent(new EventBuilder()
-            .WithType(GameEventType.PlayerEvent)
-            .WithKey(KeyboardKey.Left)
-            .WithAction(KeyboardAction.KeyPress)
-            .Build());
-        eventBus.ProcessEventsSequentially();
-        player.Move();
-        Assert.AreEqual(START_POS - player.MOVEMENT_SPEED * 3, player.GetPosition().X);
-        Assert.IsTrue(IsWithinBounds(player));
-    }
-
 }
 
 
