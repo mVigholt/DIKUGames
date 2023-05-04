@@ -1,6 +1,6 @@
 namespace Breakout.GameStates;
 
-using Breakout.BreakoutEntities;
+using Breakout.Entities;
 using Breakout.Events;
 using Breakout.IO;
 using DIKUArcade.Entities;
