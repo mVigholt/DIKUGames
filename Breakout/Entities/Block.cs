@@ -5,17 +5,13 @@ using DIKUArcade.Entities;
 using DIKUArcade.Graphics;
 using DIKUArcade.Math;
 
-public class Block : Entity {
+public class Block : MoveableEntity {
     private static readonly Vec2F EXTENT = new Vec2F(0.083f, 0.041f);
-    public readonly Vec2F position;
     private IBaseImage alterImage;
     private int health = 8;
 
     public Block(Block.Builder builder)
         : base(new DynamicShape(builder.position, EXTENT), builder.image) {
-        this.position = builder.position;
-        this.Image = builder.image;
-        this.alterImage = builder.alterImage;
     }
     public void LoseHealth(int hp) {
             this.health-= hp;
@@ -28,7 +24,20 @@ public class Block : Entity {
         public Vec2F position;
         public IBaseImage image;
         public IBaseImage alterImage;
+        public bool isUnbreakable = false;
+        public bool isHardened = false;
+
         public Builder() {
+        }
+
+         public Builder WithIsUnbreakable(Vec2F position) {
+            this.isUnbreakable = true;
+            return this;
+        }
+
+        public Builder WithIsHardened(Vec2F position) {
+            this.isUnbreakable = true;
+            return this;
         }
 
         public Builder WithPosition(Vec2F position) {
@@ -45,7 +54,6 @@ public class Block : Entity {
             this.alterImage = alterImage;
             return this;
         }
-
 
         public Block Build() {
             // Required arguments
