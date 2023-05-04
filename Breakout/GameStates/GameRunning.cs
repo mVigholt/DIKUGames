@@ -3,7 +3,7 @@ namespace Breakout.GameStates;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using Breakout.BreakoutEntities;
+using Breakout.Entities;
 using Breakout.Events;
 using Breakout.IO;
 using Breakout.Levels;

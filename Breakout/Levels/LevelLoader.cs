@@ -7,7 +7,7 @@ using System.Linq;
 using DIKUArcade.Entities;
 using DIKUArcade.Math;
 using DIKUArcade.Graphics;
-using Breakout.BreakoutEntities;
+using Breakout.Entities;
 using Breakout.IO;
 
 public static class LevelLoader {

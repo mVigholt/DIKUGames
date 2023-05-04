@@ -4,7 +4,7 @@ using System;
 using System.IO;
 using DIKUArcade.Entities;
 using DIKUArcade.Graphics;
-using Breakout.BreakoutEntities;
+using Breakout.Entities;
 using Breakout.IO;
 
 

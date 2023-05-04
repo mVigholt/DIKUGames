@@ -3,3 +3,4 @@
 **/obj/
 .ionide/
 **/.format-report.json
+.fake
