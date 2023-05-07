@@ -5,6 +5,7 @@ using DIKUArcade.Entities;
 using DIKUArcade.Events;
 using DIKUArcade.Graphics;
 using DIKUArcade.Input;
+using DIKUArcade.Math;
 
 public class Player : MoveableEntity, IGameEventProcessor {
     private GameEventBus eventBus;
@@ -14,10 +15,10 @@ public class Player : MoveableEntity, IGameEventProcessor {
         internal set;
     }
 
-    public Player(DynamicShape shape, IBaseImage image)
-        : base(shape, image, 0.01f) {
-        this.Level = 0;
-        InitEventBus();
+    public Player(Vec2F position, IBaseImage image)
+        : base(new DynamicShape(position, new Vec2F(0.15f, 0.03f)), image, 0.01f) {
+            this.Level = 0;
+            InitEventBus();
     }
 
     private void InitEventBus() {
