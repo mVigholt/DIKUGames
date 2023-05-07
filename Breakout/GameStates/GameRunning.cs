@@ -30,14 +30,11 @@ public class GameRunning : IGameState {
     }
 
     public void InitPlayer() {
-        DynamicShape shape = new DynamicShape(
-            new Vec2F(0.4f, 0.1f),
-            new Vec2F(0.15f, 0.03f)
-        );
+        Vec2F pos = new Vec2F(0.15f, 0.03f);
         IBaseImage image = new Image(
             Path.Combine(PathFinder.Images(), "player.png")
         );
-        player = new Player(shape, image);
+        player = new Player(pos, image);
     }
 
     public void InitializeGameState() {
