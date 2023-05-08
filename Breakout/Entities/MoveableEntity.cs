@@ -63,15 +63,15 @@ public class MoveableEntity : Entity {
         UpdateDirection();
     }
 
-    private Vec2F MinCorner() {
+    protected Vec2F MinCorner() {
         return new Vec2F(0.0f, 0.0f);
     }
 
-    private Vec2F MaxCorner() {
+    protected Vec2F MaxCorner() {
         return new Vec2F(1.0f - shape.Extent.X, 1.0f - shape.Extent.Y);
     }
 
-    public void Move() {
+    virtual public void Move() {
         shape.Move();
 
         if (shape.Position.X < MinCorner().X) {
