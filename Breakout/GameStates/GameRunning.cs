@@ -19,6 +19,7 @@ public class GameRunning : IGameState {
     private static GameRunning instance = null;
     private GameEventBus eventBus = GameBus.GetBus();
     private Player player;
+    private Ball ball;
     private EntityContainer<Block> blocks;
     public static GameRunning GetInstance() {
         if (GameRunning.instance == null) {
@@ -36,9 +37,28 @@ public class GameRunning : IGameState {
         );
         player = new Player(pos, image);
     }
+    public void InitBall() {
+        Vec2F playerPosition = player.GetPosition();
+        float ballDiameter = 0.03f;
+        float ballRadius = ballDiameter/2;
+        Vec2F ballExtent = new Vec2F(ballDiameter, ballDiameter);
+        // Initialize ball in the middle of the paddel
+        Vec2F ballPostiion = new Vec2F(
+                playerPosition.X + player.GetExtent().X/2 - ballRadius,
+                playerPosition.Y + player.GetExtent().Y/2);
+        DynamicShape ballShape = new DynamicShape(
+            ballPostiion,
+            ballExtent
+        );
+        IBaseImage ballImage = new Image(
+            Path.Combine(PathFinder.Images(), "ball.png")
+        );
+        ball = new Ball(ballShape, ballImage);
+    }
 
     public void InitializeGameState() {
         InitPlayer();
+        InitBall();
         InitLevel();
     }
 
@@ -58,6 +78,7 @@ public class GameRunning : IGameState {
     public void RenderState() {
         player.Render();
         blocks.RenderEntities();
+        ball.Render();
     }
 
     public void ResetState() {
@@ -66,6 +87,7 @@ public class GameRunning : IGameState {
 
     public void UpdateState() {
         player.Move();
+        ball.Move();
     }
 
     public void HandleKeyEvent(KeyboardAction action, KeyboardKey key) {
@@ -100,6 +122,13 @@ public class GameRunning : IGameState {
                         .WithAction(KeyboardAction.KeyPress)
                         .Build()
                 );
+                eventBus.RegisterEvent(
+                    new EventBuilder()
+                        .WithType(GameEventType.InputEvent)
+                        .WithKey(key)
+                        .WithAction(KeyboardAction.KeyPress)
+                        .Build()
+                );
                 break;
             default:
                 break;
@@ -115,6 +144,13 @@ public class GameRunning : IGameState {
                 eventBus.RegisterEvent(
                     new EventBuilder()
                         .WithType(GameEventType.PlayerEvent)
+                        .WithKey(key)
+                        .WithAction(KeyboardAction.KeyRelease)
+                        .Build()
+                );
+                eventBus.RegisterEvent(
+                    new EventBuilder()
+                        .WithType(GameEventType.InputEvent)
                         .WithKey(key)
                         .WithAction(KeyboardAction.KeyRelease)
                         .Build()
