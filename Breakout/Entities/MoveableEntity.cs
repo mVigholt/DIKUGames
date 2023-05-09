@@ -34,6 +34,10 @@ public class MoveableEntity : Entity {
         return shape.Position.Copy();
     }
 
+    public Vec2F GetDirection(){
+        return shape.Direction.Copy();
+    }
+
     public Vec2F GetExtent() {
         return shape.Extent.Copy();
     }
@@ -44,14 +48,14 @@ public class MoveableEntity : Entity {
 
     private protected void UpdateDirection() {
         float C = (float) System.Math.Sqrt(System.Math.Pow((dir.X), 2) + System.Math.Pow(dir.Y, 2));
-        C = (C != 0 ? C : 1); 
+        C = (C != 0 ? C : 1);
         var D = new Vec2F((SPEED * dir.X / C), (SPEED * dir.Y / C));
         shape.ChangeDirection(D);
 
         //shape.ChangeDirection(new Vec2F(moveLeft + moveRight, moveUp + moveDown));
     }
 
-    protected void ChangeDir(CollisionDirection colDir, Vec2F ColidingObjectVector) {
+    public void ChangeDir(CollisionDirection colDir, Vec2F ColidingObjectVector) {
         switch (colDir) {
             case (CollisionDirection.CollisionDirLeft):
             case (CollisionDirection.CollisionDirRight):
@@ -64,7 +68,7 @@ public class MoveableEntity : Entity {
             default:
                 break;
         }
-        dir += ColidingObjectVector;   
+        dir += ColidingObjectVector;
         UpdateDirection();
     }
 
