@@ -11,14 +11,6 @@ public class MoveableEntity : Entity {
 
     private Vec2F dir = new Vec2F(0,0);
 
-    // private float moveLeft = 0.0f;
-
-    // private float moveRight = 0.0f;
-
-    // private float moveUp = 0.0f;
-
-    // private float moveDown = 0.0f;
-
     public readonly float SPEED;
 
     public MoveableEntity(DynamicShape shape, IBaseImage image) : this(shape, image, 0.0f) {
@@ -46,16 +38,13 @@ public class MoveableEntity : Entity {
         RenderEntity();
     }
 
-    private protected void UpdateDirection() {
-        float C = (float) System.Math.Sqrt(System.Math.Pow((dir.X), 2) + System.Math.Pow(dir.Y, 2));
-        C = (C != 0 ? C : 1);
-        var D = new Vec2F((SPEED * dir.X / C), (SPEED * dir.Y / C));
-        shape.ChangeDirection(D);
+    private Vec2F UnitVector(Vec2F vector) {
+            float hyp = (float) System.Math.Sqrt(System.Math.Pow((vector.X), 2) + System.Math.Pow(vector.Y, 2));
+            hyp = (hyp != 0 ? hyp : 1);
+            return new Vec2F((vector.X / hyp), (vector.Y / hyp));;
+        }
 
-        //shape.ChangeDirection(new Vec2F(moveLeft + moveRight, moveUp + moveDown));
-    }
-
-    public void ChangeDir(CollisionDirection colDir, Vec2F ColidingObjectVector) {
+    public void UpdateDirection(CollisionDirection colDir, Vec2F addVector) {
         switch (colDir) {
             case (CollisionDirection.CollisionDirLeft):
             case (CollisionDirection.CollisionDirRight):
@@ -68,29 +57,9 @@ public class MoveableEntity : Entity {
             default:
                 break;
         }
-        dir += ColidingObjectVector;
-        UpdateDirection();
+        dir = UnitVector(UnitVector(dir) + UnitVector(addVector));
+        shape.ChangeDirection(new Vec2F((SPEED * dir.X), (SPEED * dir.Y)));
     }
-
-    // private protected void SetMoveLeft(bool val) {
-    //     moveLeft = -SPEED * (val ? 1 : 0);
-    //     UpdateDirection();
-    // }
-
-    // private protected void SetMoveRight(bool val) {
-    //     moveRight = SPEED * (val ? 1 : 0);
-    //     UpdateDirection();
-    // }
-
-    // private protected void SetMoveUp(bool val) {
-    //     moveUp = SPEED * (val ? 1 : 0);
-    //     UpdateDirection();
-    // }
-
-    // private protected void SetMoveDown(bool val) {
-    //     moveDown = -SPEED * (val ? 1 : 0);
-    //     UpdateDirection();
-    // }
 
     protected Vec2F MinCorner() {
         return new Vec2F(0.0f, 0.0f);
@@ -101,8 +70,6 @@ public class MoveableEntity : Entity {
     }
 
     virtual public void Move() {
-        shape.Move();
-
         if (shape.Position.X < MinCorner().X) {
             shape.Position.X = MinCorner().X;
         }
@@ -115,5 +82,6 @@ public class MoveableEntity : Entity {
         if (shape.Position.Y > MaxCorner().Y) {
             shape.Position.Y = MaxCorner().Y;
         }
+        shape.Move();
     }
 }

@@ -118,21 +118,22 @@ public class GameRunning : IGameState {
                         .WithAction(KeyboardAction.KeyPress)
                         .Build()
                 );
-                if (key == KeyboardKey.Right){
-                    ball.ChangeDir(CollisionDirection.CollisionDirUnchecked,
-                    new Vec2F(0.01f, 0.01f));
-                }
-                else if (key == KeyboardKey.Left){
-                    ball.ChangeDir(CollisionDirection.CollisionDirUnchecked,
-                    new Vec2F(-0.01f, 0.01f));
-                }
-                break;
-            case KeyboardKey.Space:
-                ball.ChangeDir(CollisionDirection.CollisionDirUnchecked,
-                    new Vec2F(0, 0.01f));
                 break;
             default:
                 break;
+        }
+
+        if (ball.GetDirection().X == 0 && ball.GetDirection().Y == 0) {
+            if (key == KeyboardKey.Right) {
+                ball.UpdateDirection(CollisionDirection.CollisionDirUnchecked,
+                    new Vec2F(0.01f, 0.01f));
+            } else if (key == KeyboardKey.Left) {
+                ball.UpdateDirection(CollisionDirection.CollisionDirUnchecked,
+                    new Vec2F(-0.01f, 0.01f));
+            } else if (key == KeyboardKey.Space) {
+                ball.UpdateDirection(CollisionDirection.CollisionDirUnchecked,
+                    new Vec2F(0, 0.01f));
+            }
         }
     }
 
@@ -159,13 +160,12 @@ public class GameRunning : IGameState {
     }
 
     public void iterateBall() {
-
         bool collisionWithPlayer =
             CollisionDetection.Aabb(ball.Shape.AsDynamicShape(), player.Shape).Collision;
         CollisionDirection collisionWithPlayerDir =
             CollisionDetection.Aabb(ball.Shape.AsDynamicShape(), player.Shape).CollisionDir;
         if (collisionWithPlayer) {
-            ball.ChangeDir(collisionWithPlayerDir, player.GetDirection());
+            ball.UpdateDirection(collisionWithPlayerDir, player.GetDirection());
         }
 
 
@@ -179,7 +179,7 @@ public class GameRunning : IGameState {
             CollisionDirection collisionDir =
                 CollisionDetection.Aabb(ball.Shape.AsDynamicShape(), block.Shape).CollisionDir;
             if (collisionWithBall) {
-                ball.ChangeDir(collisionDir, block.GetDirection());
+                ball.UpdateDirection(collisionDir, block.GetDirection());
                 // player.gainPoint();
                 block.DeleteEntity();
             }
