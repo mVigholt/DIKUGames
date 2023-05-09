@@ -7,7 +7,7 @@ using DIKUArcade.Graphics;
 using DIKUArcade.Math;
 using DIKUArcade.Physics;
 
-public class Ball : MoveableEntity {
+public class Ball : MoveableEntity, IGameEventProcessor{
     private GameEventBus eventBus;
 
 
@@ -38,44 +38,10 @@ public class Ball : MoveableEntity {
         if (this.GetPosition().Y < 0.0f){
             this.DeleteEntity();
         }
-        // base.Move();
         this.shape.Move();
     }
-}
 
-//     public void ChangeSpeed(CollisionDirection dir, Vec2F CollidingShapeDir) {
-//         // static Vec2F VectorCal(Vec2F v1, Vec2F v2) {
-//         //     return new Vec2F(v1.X + v2.X, v1.Y + v2.Y);
-//         // }
-//         switch (dir) {
-//             case CollisionDirection.CollisionDirUp:
-//                 System.Console.WriteLine("ball moveDown: " + moveDown);
-//                 SetMoveUp(false);
-//                 SetMoveDown(true);
-//                 System.Console.WriteLine("ball moveDown: " + moveDown);
-//                 addDirection((CollidingShapeDir));
-//                 // Move();
-//                 break;
-//             case CollisionDirection.CollisionDirDown:
-//                 SetMoveUp(true);
-//                 SetMoveDown(false);
-//                 addDirection((CollidingShapeDir));
-//                 // Move();
-//                 break;
-//             case CollisionDirection.CollisionDirLeft:
-//                 SetMoveLeft(false);
-//                 SetMoveRight(true);
-//                 addDirection((CollidingShapeDir));
-//                 // Move();
-//                 break;
-//             case CollisionDirection.CollisionDirRight:
-//                 SetMoveLeft(true);
-//                 SetMoveRight(false);
-//                 addDirection((CollidingShapeDir));
-//                 // Move();
-//                 break;
-//             default:
-//                 break;
-//         }
-//     }
-// }
+    void IGameEventProcessor.ProcessEvent(GameEvent gameEvent) {
+        throw new System.NotImplementedException();
+    }
+}
