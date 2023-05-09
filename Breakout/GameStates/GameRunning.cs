@@ -30,7 +30,7 @@ public class GameRunning : IGameState {
     }
 
     public void InitPlayer() {
-        Vec2F pos = new Vec2F(0.15f, 0.03f);
+        Vec2F pos = new Vec2F(0.5f - 0.15f/2, 0.03f);
         IBaseImage image = new Image(
             Path.Combine(PathFinder.Images(), "player.png")
         );
@@ -118,19 +118,18 @@ public class GameRunning : IGameState {
                         .WithAction(KeyboardAction.KeyPress)
                         .Build()
                 );
+                if (key == KeyboardKey.Right){
+                    ball.ChangeDir(CollisionDirection.CollisionDirUnchecked,
+                    new Vec2F(0.01f, 0.01f));
+                }
+                else if (key == KeyboardKey.Left){
+                    ball.ChangeDir(CollisionDirection.CollisionDirUnchecked,
+                    new Vec2F(-0.01f, 0.01f));
+                }
                 break;
             case KeyboardKey.Space:
                 ball.ChangeDir(CollisionDirection.CollisionDirUnchecked,
                     new Vec2F(0, 0.01f));
-                //ball.SetMoveUp(true);
-                // ball.SetMoveLeft(true);
-                // eventBus.RegisterEvent(
-                //     new EventBuilder()
-                //         .WithType(GameEventType.InputEvent)
-                //         .WithKey(key)
-                //         .WithAction(KeyboardAction.KeyPress)
-                //         .Build()
-                // );
                 break;
             default:
                 break;
