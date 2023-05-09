@@ -28,12 +28,12 @@ public class Player : MoveableEntity, IGameEventProcessor {
     }
 
     private protected void SetMoveLeft(bool val) {
-        ChangeDir(CollisionDirection.CollisionDirUnchecked, 
+        UpdateDirection(CollisionDirection.CollisionDirUnchecked, 
             new Vec2F((val ? -1 : 1), 0));
     }
 
     private protected void SetMoveRight(bool val) {
-        ChangeDir(CollisionDirection.CollisionDirUnchecked, 
+        UpdateDirection(CollisionDirection.CollisionDirUnchecked, 
             new Vec2F((val ? 1 : -1), 0));
     }
 
