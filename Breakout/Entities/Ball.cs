@@ -22,6 +22,25 @@ public class Ball : MoveableEntity {
         : base(new DynamicShape(position, new Vec2F(0.03f, 0.03f)), image, 0.01f) {
         this.Level = 0;
     }
+
+    public override void Move() {
+        Vec2F nullSpeed = new Vec2F(0, 0);
+
+        if (this.GetPosition().X < 0.0f) {
+            this.ChangeDir(CollisionDirection.CollisionDirRight, nullSpeed);
+        }
+        if (this.GetPosition().X > 1.0f - this.GetExtent().X) {
+            this.ChangeDir(CollisionDirection.CollisionDirLeft, nullSpeed);
+        }
+        if (this.GetPosition().Y > 1.0f - this.GetExtent().Y){
+            this.ChangeDir(CollisionDirection.CollisionDirDown, nullSpeed);
+        }
+        if (this.GetPosition().Y < 0.0f){
+            this.DeleteEntity();
+        }
+        // base.Move();
+        this.shape.Move();
+    }
 }
 
 //     public void ChangeSpeed(CollisionDirection dir, Vec2F CollidingShapeDir) {
