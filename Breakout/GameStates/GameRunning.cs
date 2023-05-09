@@ -1,7 +1,6 @@
 namespace Breakout.GameStates;
 
 using System;
-using System.Collections.Generic;
 using System.IO;
 using Breakout.Entities;
 using Breakout.Events;
@@ -35,25 +34,22 @@ public class GameRunning : IGameState {
         IBaseImage image = new Image(
             Path.Combine(PathFinder.Images(), "player.png")
         );
+        Console.WriteLine("Player");
         player = new Player(pos, image);
     }
     public void InitBall() {
+        Console.WriteLine("Ball");
         Vec2F playerPosition = player.GetPosition();
         float ballDiameter = 0.03f;
-        float ballRadius = ballDiameter/2;
-        Vec2F ballExtent = new Vec2F(ballDiameter, ballDiameter);
+        float ballRadius = ballDiameter / 2;
         // Initialize ball in the middle of the paddel
         Vec2F ballPostiion = new Vec2F(
-                playerPosition.X + player.GetExtent().X/2 - ballRadius,
-                playerPosition.Y + player.GetExtent().Y/2);
-        DynamicShape ballShape = new DynamicShape(
-            ballPostiion,
-            ballExtent
-        );
+                playerPosition.X + player.GetExtent().X / 2 - ballRadius,
+                playerPosition.Y + player.GetExtent().Y / 2);
         IBaseImage ballImage = new Image(
             Path.Combine(PathFinder.Images(), "ball.png")
         );
-        ball = new Ball(ballShape, ballImage);
+        ball = new Ball(ballPostiion, ballImage);
     }
 
     public void InitializeGameState() {
@@ -88,6 +84,8 @@ public class GameRunning : IGameState {
     public void UpdateState() {
         player.Move();
         ball.Move();
+        iterateBlock();
+        iterateBall();
     }
 
     public void HandleKeyEvent(KeyboardAction action, KeyboardKey key) {
@@ -115,6 +113,7 @@ public class GameRunning : IGameState {
             case KeyboardKey.Right:
             case KeyboardKey.Up:
             case KeyboardKey.Down:
+                Console.WriteLine("Some");
                 eventBus.RegisterEvent(
                     new EventBuilder()
                         .WithType(GameEventType.PlayerEvent)
@@ -122,13 +121,19 @@ public class GameRunning : IGameState {
                         .WithAction(KeyboardAction.KeyPress)
                         .Build()
                 );
-                eventBus.RegisterEvent(
-                    new EventBuilder()
-                        .WithType(GameEventType.InputEvent)
-                        .WithKey(key)
-                        .WithAction(KeyboardAction.KeyPress)
-                        .Build()
-                );
+                break;
+            case KeyboardKey.Space:
+                ball.ChangeDir(CollisionDirection.CollisionDirUnchecked,
+                    new Vec2F(0, 0.01f));
+                //ball.SetMoveUp(true);
+                // ball.SetMoveLeft(true);
+                // eventBus.RegisterEvent(
+                //     new EventBuilder()
+                //         .WithType(GameEventType.InputEvent)
+                //         .WithKey(key)
+                //         .WithAction(KeyboardAction.KeyPress)
+                //         .Build()
+                // );
                 break;
             default:
                 break;
@@ -141,6 +146,7 @@ public class GameRunning : IGameState {
             case KeyboardKey.Right:
             case KeyboardKey.Up:
             case KeyboardKey.Down:
+                Console.WriteLine("RUnning");
                 eventBus.RegisterEvent(
                     new EventBuilder()
                         .WithType(GameEventType.PlayerEvent)
@@ -148,17 +154,54 @@ public class GameRunning : IGameState {
                         .WithAction(KeyboardAction.KeyRelease)
                         .Build()
                 );
-                eventBus.RegisterEvent(
-                    new EventBuilder()
-                        .WithType(GameEventType.InputEvent)
-                        .WithKey(key)
-                        .WithAction(KeyboardAction.KeyRelease)
-                        .Build()
-                );
+                break;
+            case KeyboardKey.Space:
+
                 break;
             default:
                 break;
         }
     }
 
+    public void iterateBall() {
+        Vec2F nullSpeed = new Vec2F(0, 0);
+        bool collisionWithPlayer =
+            CollisionDetection.Aabb(ball.Shape.AsDynamicShape(), player.Shape).Collision;
+        CollisionDirection collisionWithPlayerDir =
+            CollisionDetection.Aabb(ball.Shape.AsDynamicShape(), player.Shape).CollisionDir;
+        if (collisionWithPlayer) {
+            ball.ChangeDir(collisionWithPlayerDir, player.GetDirection());
+        }
+        if (ball.GetPosition().X <= 0.0f) {
+            ball.ChangeDir(CollisionDirection.CollisionDirRight, nullSpeed);
+        }
+        if (ball.GetPosition().X >= 1.0f) {
+            ball.ChangeDir(CollisionDirection.CollisionDirLeft, nullSpeed);
+        }
+        if (ball.GetPosition().Y >= 1.0f){
+            ball.ChangeDir(CollisionDirection.CollisionDirDown, nullSpeed);
+        }
+        if (ball.GetPosition().Y <= 0.0f){
+            ball.DeleteEntity();
+        }
+
+    }
+
+
+    private void iterateBlock() {
+        blocks.Iterate(block => {
+            bool collisionWithBall =
+                CollisionDetection.Aabb(ball.Shape.AsDynamicShape(), block.Shape).Collision;
+            CollisionDirection collisionDir =
+                CollisionDetection.Aabb(ball.Shape.AsDynamicShape(), block.Shape).CollisionDir;
+            if (collisionWithBall) {
+                ball.ChangeDir(collisionDir, block.GetDirection());
+                // player.gainPoint();
+                block.DeleteEntity();
+            }
+        }
+        );
+
+    }
 }
+

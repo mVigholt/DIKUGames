@@ -4,79 +4,59 @@ using Breakout.Events;
 using DIKUArcade.Entities;
 using DIKUArcade.Events;
 using DIKUArcade.Graphics;
-using DIKUArcade.Input;
 using DIKUArcade.Math;
+using DIKUArcade.Physics;
 
-public class Ball : MoveableEntity, IGameEventProcessor {
+public class Ball : MoveableEntity {
     private GameEventBus eventBus;
-    private Vec2F speed;
-    public Vec2F Speed {
-        get{
-            return this.speed;
-        }
-        set{
-            this.speed = value;
-        }
-    }
 
-     public int Level {
+
+    public int Level {
         get;
         internal set;
     }
-
-    public Ball(DynamicShape shape, IBaseImage image)
-        : base(shape, image, 0.01f) {
+    // float ballDiameter = 0.03f;
+    // float ballRadius = ballDiameter / 2;
+    // Vec2F ballExtent = new Vec2F(ballDiameter, ballDiameter);
+    public Ball(Vec2F position, IBaseImage image)
+        : base(new DynamicShape(position, new Vec2F(0.03f, 0.03f)), image, 0.01f) {
         this.Level = 0;
-        this.speed = new Vec2F(0.0f, 0.0f);
-        InitEventBus();
-    }
-
-
-    private void InitEventBus() {
-        eventBus = GameBus.GetBus();
-        eventBus.Subscribe(GameEventType.InputEvent, this);
-    }
-
-    override public void Move(){
-        Vec2F curPosition =  this.GetPosition();
-        Vec2F curPos = this.Shape.Position;
-        Vec2F pos = new Vec2F();
-        if (this.GetPosition().X <= MinCorner().X){
-            this.Speed.X = -this.Speed.X;
-            this.Speed.Y = -this.Speed.Y;
-        }
-        if (this.GetPosition().Y >= MaxCorner().Y){
-            this.Speed.X = -this.Speed.X;
-            this.Speed.Y = -this.Speed.Y;
-        }
-            pos.Y = curPos.Y  + this.Speed.Y;
-            pos.X = curPos.X + this.Speed.X;
-            this.Shape.SetPosition(pos);
-    }
-
-
-    ///<summary>Process Player event</summary>
-    ///<param name = "gameEvent">The input event</param>
-    ///<return>no return</return>
-    public void ProcessEvent(GameEvent gameEvent) {
-        EventDTO ev = new EventDTO(gameEvent);
-        switch (ev.Key.Value) {
-            case KeyboardKey.Left:
-            case KeyboardKey.A:
-                if (Speed.X == 0.0f && Speed.Y == 0.0f){
-                    Speed.X =  -0.01f;
-                    Speed.Y = 0.01f;
-                }
-                break;
-            case KeyboardKey.Right:
-            case KeyboardKey.D:
-                if (Speed.X == 0.0f && Speed.Y == 0.0f){
-                    Speed.X =  0.01f;
-                    Speed.Y = 0.01f;
-                }
-                break;
-            default:
-                break;
-        }
     }
 }
+
+//     public void ChangeSpeed(CollisionDirection dir, Vec2F CollidingShapeDir) {
+//         // static Vec2F VectorCal(Vec2F v1, Vec2F v2) {
+//         //     return new Vec2F(v1.X + v2.X, v1.Y + v2.Y);
+//         // }
+//         switch (dir) {
+//             case CollisionDirection.CollisionDirUp:
+//                 System.Console.WriteLine("ball moveDown: " + moveDown);
+//                 SetMoveUp(false);
+//                 SetMoveDown(true);
+//                 System.Console.WriteLine("ball moveDown: " + moveDown);
+//                 addDirection((CollidingShapeDir));
+//                 // Move();
+//                 break;
+//             case CollisionDirection.CollisionDirDown:
+//                 SetMoveUp(true);
+//                 SetMoveDown(false);
+//                 addDirection((CollidingShapeDir));
+//                 // Move();
+//                 break;
+//             case CollisionDirection.CollisionDirLeft:
+//                 SetMoveLeft(false);
+//                 SetMoveRight(true);
+//                 addDirection((CollidingShapeDir));
+//                 // Move();
+//                 break;
+//             case CollisionDirection.CollisionDirRight:
+//                 SetMoveLeft(true);
+//                 SetMoveRight(false);
+//                 addDirection((CollidingShapeDir));
+//                 // Move();
+//                 break;
+//             default:
+//                 break;
+//         }
+//     }
+// }
