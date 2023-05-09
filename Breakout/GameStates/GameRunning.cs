@@ -34,11 +34,9 @@ public class GameRunning : IGameState {
         IBaseImage image = new Image(
             Path.Combine(PathFinder.Images(), "player.png")
         );
-        Console.WriteLine("Player");
         player = new Player(pos, image);
     }
     public void InitBall() {
-        Console.WriteLine("Ball");
         Vec2F playerPosition = player.GetPosition();
         float ballDiameter = 0.03f;
         float ballRadius = ballDiameter / 2;
@@ -113,7 +111,6 @@ public class GameRunning : IGameState {
             case KeyboardKey.Right:
             case KeyboardKey.Up:
             case KeyboardKey.Down:
-                Console.WriteLine("Some");
                 eventBus.RegisterEvent(
                     new EventBuilder()
                         .WithType(GameEventType.PlayerEvent)
@@ -146,7 +143,6 @@ public class GameRunning : IGameState {
             case KeyboardKey.Right:
             case KeyboardKey.Up:
             case KeyboardKey.Down:
-                Console.WriteLine("RUnning");
                 eventBus.RegisterEvent(
                     new EventBuilder()
                         .WithType(GameEventType.PlayerEvent)
@@ -164,7 +160,7 @@ public class GameRunning : IGameState {
     }
 
     public void iterateBall() {
-        Vec2F nullSpeed = new Vec2F(0, 0);
+
         bool collisionWithPlayer =
             CollisionDetection.Aabb(ball.Shape.AsDynamicShape(), player.Shape).Collision;
         CollisionDirection collisionWithPlayerDir =
@@ -172,18 +168,7 @@ public class GameRunning : IGameState {
         if (collisionWithPlayer) {
             ball.ChangeDir(collisionWithPlayerDir, player.GetDirection());
         }
-        if (ball.GetPosition().X <= 0.0f) {
-            ball.ChangeDir(CollisionDirection.CollisionDirRight, nullSpeed);
-        }
-        if (ball.GetPosition().X >= 1.0f) {
-            ball.ChangeDir(CollisionDirection.CollisionDirLeft, nullSpeed);
-        }
-        if (ball.GetPosition().Y >= 1.0f){
-            ball.ChangeDir(CollisionDirection.CollisionDirDown, nullSpeed);
-        }
-        if (ball.GetPosition().Y <= 0.0f){
-            ball.DeleteEntity();
-        }
+
 
     }
 
