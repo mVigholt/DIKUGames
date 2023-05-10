@@ -124,6 +124,7 @@ public class GameRunning : IGameState {
         }
 
         if (ball.GetDirection().X == 0 && ball.GetDirection().Y == 0) {
+            // todo: 0.01f occurs many time. We need a variable somewhere to store it
             if (key == KeyboardKey.Right) {
                 ball.UpdateDirection(CollisionDirection.CollisionDirUnchecked,
                     new Vec2F(0.01f, 0.01f));

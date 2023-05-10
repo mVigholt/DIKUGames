@@ -70,6 +70,7 @@ public class MoveableEntity : Entity {
     }
 
     virtual public void Move() {
+        shape.Move();
         if (shape.Position.X < MinCorner().X) {
             shape.Position.X = MinCorner().X;
         }
@@ -82,6 +83,5 @@ public class MoveableEntity : Entity {
         if (shape.Position.Y > MaxCorner().Y) {
             shape.Position.Y = MaxCorner().Y;
         }
-        shape.Move();
     }
 }

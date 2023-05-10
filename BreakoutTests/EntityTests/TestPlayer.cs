@@ -60,8 +60,8 @@ public class TestPlayer {
         bool almostEqual = diff < max_allowed_diff;
         if (!almostEqual) {
             Console.WriteLine(
-                $"|a - b| < {max_allowed_diff} =>" +
-                $"|{a} - {b}| < {max_allowed_diff} =>" +
+                $"|a - b| < {max_allowed_diff} => \n" +
+                $"|{a} - {b}| < {max_allowed_diff} => \n" +
                 $"{diff} < {max_allowed_diff} => false");
         }
         return almostEqual;
@@ -73,6 +73,7 @@ public class TestPlayer {
     [TestCase(5)]
     [TestCase(7)]
     [TestCase(11)]
+    [TestCase(30000)]
     public void TestMoveRight(int moveCount) {
         // Precondition R: Player is not out of bounds
         Assert.IsTrue(IsWithinBounds(player));
@@ -84,6 +85,13 @@ public class TestPlayer {
                 .Build());
             eventBus.ProcessEventsSequentially();
             player.Move();
+            if (moveCount == 30000) {
+                if (i > 100) {
+                    continue;
+                }
+                string msg_ = $"Test({i}): {player.GetPosition().X}";
+                Console.WriteLine(msg_);
+            }
             eventBus.RegisterEvent(new EventBuilder()
                 .WithType(GameEventType.PlayerEvent)
                 .WithKey(KeyboardKey.Right)
@@ -97,8 +105,13 @@ public class TestPlayer {
         Assert.IsTrue(IsWithinBounds(player));
         // Postcondition R': Player's updated x position
         // should be moveCount * MOVEMENT_SPEED + START_POS
+        // float expectedXPos = START_POS + SPEED * moveCount;
         float expectedXPos = START_POS + SPEED * moveCount;
-        Assert.That(AreAlmostEqual(expectedXPos, player.GetPosition().X));
+        if (expectedXPos > 1f) {
+            expectedXPos = 1f - player.GetExtent().X;
+        }
+        string msg = $"TestCase({moveCount}): {expectedXPos}, {player.GetPosition().X}";
+        Assert.That(AreAlmostEqual(expectedXPos, player.GetPosition().X), msg);
     }
 
     /// <summary>
@@ -110,7 +123,7 @@ public class TestPlayer {
     [TestCase(5)]
     [TestCase(7)]
     [TestCase(11)]
-    // [TestCase(30000)]
+    [TestCase(30000)]
     public void TestMoveLeft(int moveCount) {
         // Precondition R: Player is not out of bounds
         Assert.IsTrue(IsWithinBounds(player));
@@ -134,15 +147,19 @@ public class TestPlayer {
         // after moving [moveCount * (-MOVEMENT_SPEED)] times.
         Assert.IsTrue(IsWithinBounds(player));
         // Postcondition R': Player's updated x position
-        // should be moveCount * (-MOVEMENT_SPEED) + START_POS
+        // should be moveCount * (-MOVEMENT_SPEED) + START_POS,
+        // unless that is out of bounds.
         float expectedXPos = START_POS + (-SPEED) * moveCount;
+        if (expectedXPos < 0f) {
+            expectedXPos = 0f;
+        }
         Assert.That(AreAlmostEqual(expectedXPos, player.GetPosition().X));
     }
 
     [TestCase(100)]
     [TestCase(200)]
     [TestCase(300)]
-    // [TestCase(30000)]
+    [TestCase(30000)]
     public void TestMoveWithinBorder(int moveCount) {
         for (int i = 0; i < moveCount; i++) {
             eventBus.RegisterEvent(new EventBuilder()
@@ -160,7 +177,7 @@ public class TestPlayer {
             eventBus.ProcessEventsSequentially();
         }
         // Postcondition: Player is still not out of bounds
-        Console.WriteLine($"{player.GetPosition().X}, {player.GetPosition().Y}");
+        Console.WriteLine($"{player.GetPosition().X}");
         Assert.IsTrue(IsWithinBounds(player));
     }
 
