@@ -8,8 +8,6 @@ using DIKUArcade.Math;
 using DIKUArcade.Physics;
 
 public class Ball : MoveableEntity{
-    private GameEventBus eventBus;
-
     public Ball(Vec2F position, IBaseImage image)
         : base(new DynamicShape(position, new Vec2F(0.03f, 0.03f)), image, 0.01f) {
     }

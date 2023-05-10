@@ -18,7 +18,7 @@ public class GameRunning : IGameState {
     private static GameRunning instance = null;
     private GameEventBus eventBus = GameBus.GetBus();
     private Player player;
-    private Ball ball;
+    private EntityContainer<Ball> ball = new EntityContainer<Ball>(5);
     private EntityContainer<Block> blocks;
     public static GameRunning GetInstance() {
         if (GameRunning.instance == null) {
@@ -47,7 +47,7 @@ public class GameRunning : IGameState {
         IBaseImage ballImage = new Image(
             Path.Combine(PathFinder.Images(), "ball.png")
         );
-        ball = new Ball(ballPostiion, ballImage);
+        ball.AddEntity(new Ball(ballPostiion, ballImage));
     }
 
     public void InitializeGameState() {
@@ -72,7 +72,7 @@ public class GameRunning : IGameState {
     public void RenderState() {
         player.Render();
         blocks.RenderEntities();
-        ball.Render();
+        ball.RenderEntities();
     }
 
     public void ResetState() {
@@ -81,7 +81,6 @@ public class GameRunning : IGameState {
 
     public void UpdateState() {
         player.Move();
-        ball.Move();
         iterateBlock();
         iterateBall();
     }
@@ -123,19 +122,20 @@ public class GameRunning : IGameState {
                 break;
         }
 
-        if (ball.GetDirection().X == 0 && ball.GetDirection().Y == 0) {
-            // todo: 0.01f occurs many time. We need a variable somewhere to store it
-            if (key == KeyboardKey.Right) {
-                ball.UpdateDirection(CollisionDirection.CollisionDirUnchecked,
-                    new Vec2F(0.01f, 0.01f));
-            } else if (key == KeyboardKey.Left) {
-                ball.UpdateDirection(CollisionDirection.CollisionDirUnchecked,
-                    new Vec2F(-0.01f, 0.01f));
-            } else if (key == KeyboardKey.Space) {
-                ball.UpdateDirection(CollisionDirection.CollisionDirUnchecked,
-                    new Vec2F(0, 0.01f));
+        ball.Iterate(ball => {
+            if (ball.GetDirection().X == 0 && ball.GetDirection().Y == 0) {
+                if (key == KeyboardKey.Right) {
+                    ball.UpdateDirection(CollisionDirection.CollisionDirUnchecked,
+                        new Vec2F(1, 1));
+                } else if (key == KeyboardKey.Left) {
+                    ball.UpdateDirection(CollisionDirection.CollisionDirUnchecked,
+                        new Vec2F(-1, 1));
+                } else if (key == KeyboardKey.Space) {
+                    ball.UpdateDirection(CollisionDirection.CollisionDirUnchecked,
+                        new Vec2F(0, 1));
+                }
             }
-        }
+        });
     }
 
     private void KeyRelease(KeyboardKey key) {
@@ -161,31 +161,33 @@ public class GameRunning : IGameState {
     }
 
     public void iterateBall() {
-        bool collisionWithPlayer =
-            CollisionDetection.Aabb(ball.Shape.AsDynamicShape(), player.Shape).Collision;
-        CollisionDirection collisionWithPlayerDir =
-            CollisionDetection.Aabb(ball.Shape.AsDynamicShape(), player.Shape).CollisionDir;
-        if (collisionWithPlayer) {
-            ball.UpdateDirection(collisionWithPlayerDir, player.GetDirection());
-        }
-
-
+        ball.Iterate(ball => {
+            bool collisionWithPlayer =
+                CollisionDetection.Aabb(ball.Shape.AsDynamicShape(), player.Shape).Collision;
+            CollisionDirection collisionWithPlayerDir =
+                CollisionDetection.Aabb(ball.Shape.AsDynamicShape(), player.Shape).CollisionDir;
+            if (collisionWithPlayer) {
+                ball.UpdateDirection(collisionWithPlayerDir, player.GetDirection());
+            }
+            ball.Move();
+        });
     }
 
 
     private void iterateBlock() {
         blocks.Iterate(block => {
-            bool collisionWithBall =
-                CollisionDetection.Aabb(ball.Shape.AsDynamicShape(), block.Shape).Collision;
-            CollisionDirection collisionDir =
-                CollisionDetection.Aabb(ball.Shape.AsDynamicShape(), block.Shape).CollisionDir;
-            if (collisionWithBall) {
-                ball.UpdateDirection(collisionDir, block.GetDirection());
-                // player.gainPoint();
-                block.DeleteEntity();
-            }
-        }
-        );
+            ball.Iterate(ball => {
+                bool collisionWithBall =
+                    CollisionDetection.Aabb(ball.Shape.AsDynamicShape(), block.Shape).Collision;
+                CollisionDirection collisionDir =
+                    CollisionDetection.Aabb(ball.Shape.AsDynamicShape(), block.Shape).CollisionDir;
+                if (collisionWithBall) {
+                    ball.UpdateDirection(collisionDir, block.GetDirection());
+                    // player.gainPoint();
+                    block.DeleteEntity();
+                }
+            });
+        });
 
     }
 }
