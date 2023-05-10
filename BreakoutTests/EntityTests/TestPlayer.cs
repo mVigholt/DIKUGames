@@ -73,7 +73,7 @@ public class TestPlayer {
     [TestCase(5)]
     [TestCase(7)]
     [TestCase(11)]
-    [TestCase(30000)]
+    [TestCase(3000)]
     public void TestMoveRight(int moveCount) {
         // Precondition R: Player is not out of bounds
         Assert.IsTrue(IsWithinBounds(player));
@@ -100,7 +100,7 @@ public class TestPlayer {
         // should be moveCount * MOVEMENT_SPEED + START_POS
         float expectedXPos = Math.Min(
             START_POS + SPEED * moveCount, 
-            1f + SPEED - player.GetExtent().X
+            1f - player.GetExtent().X
         );
         string msg = $"TestCase({moveCount}): {expectedXPos}, {player.GetPosition().X}";
         Assert.That(AreAlmostEqual(expectedXPos, player.GetPosition().X), msg);
