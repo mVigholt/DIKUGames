@@ -70,18 +70,20 @@ public class MoveableEntity : Entity {
     }
 
     virtual public void Move() {
-        shape.Move();
+        // If out of bounds, move back to the window border
+        // and an additional step of SPEED
         if (shape.Position.X < MinCorner().X) {
-            shape.Position.X = MinCorner().X;
+            shape.Position.X = MinCorner().X + SPEED;
         }
         if (shape.Position.X > MaxCorner().X) {
-            shape.Position.X = MaxCorner().X;
+            shape.Position.X = MaxCorner().X - SPEED;
         }
         if (shape.Position.Y < MinCorner().Y) {
-            shape.Position.Y = MinCorner().Y;
+            shape.Position.Y = MinCorner().Y + SPEED;
         }
         if (shape.Position.Y > MaxCorner().Y) {
-            shape.Position.Y = MaxCorner().Y;
+            shape.Position.Y = MaxCorner().Y - SPEED;
         }
+        shape.Move();
     }
 }
