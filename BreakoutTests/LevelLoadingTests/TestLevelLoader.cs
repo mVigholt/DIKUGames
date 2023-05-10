@@ -5,7 +5,7 @@ using DIKUArcade.GUI; // Needed for OpenGL contexts
 using DIKUArcade.Entities;
 using Breakout.Levels;
 using Breakout.IO;
-using Breakout.BreakoutEntities;
+using Breakout.Entities;
 using System;
 using System.IO;
 
