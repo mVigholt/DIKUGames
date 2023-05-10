@@ -20,7 +20,6 @@ public class Loader {
 
     [Test]
     public void TestLevelsCanBeLoaded() {
-        Console.WriteLine(Directory.GetCurrentDirectory());
         string[] fileNames = Directory.GetFiles(PathFinder.Levels());
         foreach (string fileName in fileNames) {
             LevelLoader.Load(fileName);

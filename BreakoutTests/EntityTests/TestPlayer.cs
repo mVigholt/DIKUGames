@@ -85,13 +85,6 @@ public class TestPlayer {
                 .Build());
             eventBus.ProcessEventsSequentially();
             player.Move();
-            if (moveCount == 30000) {
-                if (i > 100) {
-                    continue;
-                }
-                string msg_ = $"Test({i}): {player.GetPosition().X}";
-                Console.WriteLine(msg_);
-            }
             eventBus.RegisterEvent(new EventBuilder()
                 .WithType(GameEventType.PlayerEvent)
                 .WithKey(KeyboardKey.Right)
@@ -106,10 +99,10 @@ public class TestPlayer {
         // Postcondition R': Player's updated x position
         // should be moveCount * MOVEMENT_SPEED + START_POS
         // float expectedXPos = START_POS + SPEED * moveCount;
-        float expectedXPos = START_POS + SPEED * moveCount;
-        if (expectedXPos > 1f) {
-            expectedXPos = 1f - player.GetExtent().X;
-        }
+        float expectedXPos = Math.Min(
+            START_POS + SPEED * moveCount, 
+            1f - player.GetExtent().X
+        );
         string msg = $"TestCase({moveCount}): {expectedXPos}, {player.GetPosition().X}";
         Assert.That(AreAlmostEqual(expectedXPos, player.GetPosition().X), msg);
     }
@@ -149,10 +142,9 @@ public class TestPlayer {
         // Postcondition R': Player's updated x position
         // should be moveCount * (-MOVEMENT_SPEED) + START_POS,
         // unless that is out of bounds.
-        float expectedXPos = START_POS + (-SPEED) * moveCount;
-        if (expectedXPos < 0f) {
-            expectedXPos = 0f;
-        }
+        float expectedXPos = Math.Max(
+            START_POS + (-SPEED) * moveCount, 0f
+        );
         Assert.That(AreAlmostEqual(expectedXPos, player.GetPosition().X));
     }
 
@@ -177,7 +169,6 @@ public class TestPlayer {
             eventBus.ProcessEventsSequentially();
         }
         // Postcondition: Player is still not out of bounds
-        Console.WriteLine($"{player.GetPosition().X}");
         Assert.IsTrue(IsWithinBounds(player));
     }
 

@@ -55,7 +55,6 @@ public static class LevelLoader {
         var blocks = new EntityContainer<Block>(rows * columns);
         for (int r = 0; r < bricks.Length; r++) {
             for (int c = 0; c < bricks[r].Length; c++) {
-                // Console.WriteLine($"brickArray[{r}, {c}]: " + brickArray[r][c].ToString());
                 if (bricks[r][c] != '-') {
                     string imgFileName = legendsDict[bricks[r][c].ToString()];
                     Image image;
