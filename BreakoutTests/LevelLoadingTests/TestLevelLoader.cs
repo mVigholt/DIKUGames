@@ -5,7 +5,7 @@ using DIKUArcade.GUI; // Needed for OpenGL contexts
 using DIKUArcade.Entities;
 using Breakout.Levels;
 using Breakout.IO;
-using Breakout.BreakoutEntities;
+using Breakout.Entities;
 using System;
 using System.IO;
 
@@ -20,7 +20,6 @@ public class Loader {
 
     [Test]
     public void TestLevelsCanBeLoaded() {
-        Console.WriteLine(Directory.GetCurrentDirectory());
         string[] fileNames = Directory.GetFiles(PathFinder.Levels());
         foreach (string fileName in fileNames) {
             LevelLoader.Load(fileName);

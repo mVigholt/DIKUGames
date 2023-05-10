@@ -7,7 +7,7 @@ using DIKUArcade.Graphics;
 using DIKUArcade.Math;
 using DIKUArcade.GUI; // Needed for OpenGL contexts
 using Breakout.IO;
-using Breakout.BreakoutEntities;
+using Breakout.Entities;
 
 [TestFixture]
 public class TestBlock {

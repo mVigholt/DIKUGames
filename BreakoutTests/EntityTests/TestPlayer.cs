@@ -9,7 +9,7 @@ using DIKUArcade.Graphics;
 using DIKUArcade.Events;
 using DIKUArcade.Input;
 using Breakout;
-using Breakout.BreakoutEntities;
+using Breakout.Entities;
 using Breakout.IO;
 using Breakout.Events;
 
@@ -21,18 +21,20 @@ public class TestPlayer {
     private Player player;
     private DynamicShape playerShape;
     private readonly float START_POS = 0.4f;
+    private readonly float SPEED = 0.01f;
 
     [SetUp]
     public void InitiatePlayer() {
         Window.CreateOpenGLContext();
 
         playerImage = Assets.LoadImage("player.png");
+        Vec2F pos = new Vec2F(START_POS, 0.1f);
         playerShape = new DynamicShape(
-            new Vec2F(START_POS, 0.1f),
-            new Vec2F(0.15f, 0.03f));
+            pos, new Vec2F(0.15f, 0.03f)
+        );
         eventBus = GameBus.GetBus();
 
-        player = new Player(playerShape, playerImage);
+        player = new Player(pos, playerImage);
 
         eventBus.Subscribe(GameEventType.PlayerEvent, player);
 
@@ -58,8 +60,8 @@ public class TestPlayer {
         bool almostEqual = diff < max_allowed_diff;
         if (!almostEqual) {
             Console.WriteLine(
-                $"|a - b| < {max_allowed_diff} =>" +
-                $"|{a} - {b}| < {max_allowed_diff} =>" +
+                $"|a - b| < {max_allowed_diff} => \n" +
+                $"|{a} - {b}| < {max_allowed_diff} => \n" +
                 $"{diff} < {max_allowed_diff} => false");
         }
         return almostEqual;
@@ -71,6 +73,7 @@ public class TestPlayer {
     [TestCase(5)]
     [TestCase(7)]
     [TestCase(11)]
+    [TestCase(30000)]
     public void TestMoveRight(int moveCount) {
         // Precondition R: Player is not out of bounds
         Assert.IsTrue(IsWithinBounds(player));
@@ -95,8 +98,13 @@ public class TestPlayer {
         Assert.IsTrue(IsWithinBounds(player));
         // Postcondition R': Player's updated x position
         // should be moveCount * MOVEMENT_SPEED + START_POS
-        float expectedXPos = START_POS + player.MOVEMENT_SPEED * moveCount;
-        Assert.That(AreAlmostEqual(expectedXPos, player.GetPosition().X));
+        // float expectedXPos = START_POS + SPEED * moveCount;
+        float expectedXPos = Math.Min(
+            START_POS + SPEED * moveCount, 
+            1f - player.GetExtent().X
+        );
+        string msg = $"TestCase({moveCount}): {expectedXPos}, {player.GetPosition().X}";
+        Assert.That(AreAlmostEqual(expectedXPos, player.GetPosition().X), msg);
     }
 
     /// <summary>
@@ -108,6 +116,7 @@ public class TestPlayer {
     [TestCase(5)]
     [TestCase(7)]
     [TestCase(11)]
+    [TestCase(30000)]
     public void TestMoveLeft(int moveCount) {
         // Precondition R: Player is not out of bounds
         Assert.IsTrue(IsWithinBounds(player));
@@ -131,8 +140,11 @@ public class TestPlayer {
         // after moving [moveCount * (-MOVEMENT_SPEED)] times.
         Assert.IsTrue(IsWithinBounds(player));
         // Postcondition R': Player's updated x position
-        // should be moveCount * (-MOVEMENT_SPEED) + START_POS
-        float expectedXPos = START_POS + (-player.MOVEMENT_SPEED) * moveCount;
+        // should be moveCount * (-MOVEMENT_SPEED) + START_POS,
+        // unless that is out of bounds.
+        float expectedXPos = Math.Max(
+            START_POS + (-SPEED) * moveCount, 0f
+        );
         Assert.That(AreAlmostEqual(expectedXPos, player.GetPosition().X));
     }
 
@@ -149,8 +161,13 @@ public class TestPlayer {
                 .Build());
             eventBus.ProcessEventsSequentially();
             player.Move();
+            eventBus.RegisterEvent(new EventBuilder()
+                .WithType(GameEventType.PlayerEvent)
+                .WithKey(KeyboardKey.Left)
+                .WithAction(KeyboardAction.KeyRelease)
+                .Build());
+            eventBus.ProcessEventsSequentially();
         }
-        Assert.AreEqual(0.0f, player.GetPosition().X);
         // Postcondition: Player is still not out of bounds
         Assert.IsTrue(IsWithinBounds(player));
     }
