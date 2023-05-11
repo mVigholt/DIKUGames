@@ -18,7 +18,7 @@ public class GameRunning : IGameState {
     private static GameRunning instance = null;
     private GameEventBus eventBus = GameBus.GetBus();
     private Player player;
-    private EntityContainer<Ball> balls = new EntityContainer<Ball>(5);
+    private EntityContainer<Ball> balls;
     private EntityContainer<Block> blocks;
     public static GameRunning GetInstance() {
         if (GameRunning.instance == null) {
@@ -49,6 +49,7 @@ public class GameRunning : IGameState {
         IBaseImage ballImage = new Image(
             Path.Combine(PathFinder.Images(), "ball.png"));
 
+        balls = new EntityContainer<Ball>(5);
         balls.AddEntity(new Ball(BallPosOnPlayer(), ballImage));
     }
 
@@ -80,8 +81,10 @@ public class GameRunning : IGameState {
     public void UpdateState() {
         MoveEntities();
         CollidingEntities();
+        if (blocks.CountEntities() == 0) {
+            ResetState();
+        }
     }
-
 
     private void MoveEntities() {
         player.Move();
