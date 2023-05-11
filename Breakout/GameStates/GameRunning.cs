@@ -39,15 +39,17 @@ public class GameRunning : IGameState {
         player = Player.NewPlayer(playerPosition, image);
     }
 
-    private void InitBall() {
-        Vec2F ballPostiion = new Vec2F(
+    private Vec2F BallPosOnPlayer() {
+        return new Vec2F(
             player.GetPosition().X + (player.GetExtent().X / 2) - (Ball.STD_EXTEND.X / 2),
             player.GetPosition().Y + (player.GetExtent().Y / 2));
+    }
 
+    private void InitBall() {
         IBaseImage ballImage = new Image(
             Path.Combine(PathFinder.Images(), "ball.png"));
 
-        balls.AddEntity(new Ball(ballPostiion, ballImage));
+        balls.AddEntity(new Ball(BallPosOnPlayer(), ballImage));
     }
 
     public void InitLevel() {
@@ -83,7 +85,13 @@ public class GameRunning : IGameState {
 
     private void MoveEntities() {
         player.Move();
-        foreach (Ball ball in balls) {ball.Move();}
+        foreach (Ball ball in balls) {
+            ball.Move();
+            //let the ball follow the player until released
+            if (ball.GetDirection().Length() == new Vec2F(0,0).Length()) {
+                ball.Shape.SetPosition(BallPosOnPlayer());
+            }
+        }
         //foreach (Block block in blocks) {block.Move();}
     }
 
@@ -142,24 +150,19 @@ public class GameRunning : IGameState {
                         .Build()
                 );
                 break;
+            case KeyboardKey.Space:
+                //release ball
+                foreach (Ball ball in balls) {
+                    if (ball.GetDirection().Length() == new Vec2F(0,0).Length()) {
+                        var X = player.GetDirection().X;
+                        X = (X != 0 ? (X > 0 ? 1 : -1) : 0);
+                        ball.UpdateDirection(CollisionDirection.CollisionDirUnchecked, new Vec2F(X, 1));
+                    }
+                }
+                break;
             default:
                 break;
         }
-
-        balls.Iterate(ball => {
-            if (ball.GetDirection().X == 0 && ball.GetDirection().Y == 0) {
-                if (key == KeyboardKey.Right) {
-                    ball.UpdateDirection(CollisionDirection.CollisionDirUnchecked,
-                        new Vec2F(1, 1));
-                } else if (key == KeyboardKey.Left) {
-                    ball.UpdateDirection(CollisionDirection.CollisionDirUnchecked,
-                        new Vec2F(-1, 1));
-                } else if (key == KeyboardKey.Space) {
-                    ball.UpdateDirection(CollisionDirection.CollisionDirUnchecked,
-                        new Vec2F(0, 1));
-                }
-            }
-        });
     }
 
     private void KeyRelease(KeyboardKey key) {
