@@ -11,7 +11,7 @@ public class Block : MoveableEntity {
 
     private int health = 1;
 
-    public Block(Block.Builder builder)
+    private Block(Block.Builder builder)
         : base(new DynamicShape(builder.position, STD_EXTEND), builder.image) {
         this.build = builder;
         if (this.build.isHardened) {
