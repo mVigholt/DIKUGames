@@ -8,7 +8,7 @@ using DIKUArcade.Math;
 using DIKUArcade.Physics;
 
 public class Ball : MoveableEntity{
-    public static readonly Vec2F STD_EXTEND = new Vec2F(0.03f, 0.03f); 
+    public static readonly Vec2F STD_EXTEND = new Vec2F(0.03f, 0.03f);
 
     public int damage{get; private set;} = 1;
 
