@@ -20,6 +20,9 @@ public class GameRunning : IGameState {
     private Player player;
     private EntityContainer<Ball> balls = new EntityContainer<Ball>(5);
     private EntityContainer<Block> blocks;
+
+    private int points = 0;
+
     public static GameRunning GetInstance() {
         if (GameRunning.instance == null) {
             GameRunning.instance = new GameRunning();
@@ -110,7 +113,8 @@ public class GameRunning : IGameState {
                 
                 if (ballVsblock.Collision) {
                     ball.UpdateDirection(ballVsblock.CollisionDir, block.GetDirection());
-                    // player.gainPoint();
+                    points++;
+                    Console.WriteLine($"Points: {points}");
                     block.LoseHealth(ball.damage);
                 }
             });
