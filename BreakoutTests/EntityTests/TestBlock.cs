@@ -29,7 +29,6 @@ public class TestBlock {
 
     [Test]
     public void TestIsDead() {
-        block.LoseHealth(5);
         Assert.False(block.IsDead());
         block.LoseHealth(5);
         Assert.True(block.IsDead());
