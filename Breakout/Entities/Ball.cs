@@ -8,8 +8,12 @@ using DIKUArcade.Math;
 using DIKUArcade.Physics;
 
 public class Ball : MoveableEntity{
+    public static readonly Vec2F STD_EXTEND = new Vec2F(0.03f, 0.03f); 
+
+    public int damage{get; private set;} = 1;
+
     public Ball(Vec2F position, IBaseImage image)
-        : base(new DynamicShape(position, new Vec2F(0.03f, 0.03f)), image, 0.01f) {
+        : base(new DynamicShape(position, STD_EXTEND), image, 0.015f) {
     }
 
     public override void Move() {
