@@ -67,11 +67,11 @@ public class GameRunning : IGameState {
 
     public void ResetState() {
         InitScoreBoard();
-        ChangeLavel();
+        ChangeLevel();
         balls = 2;
     }
 
-    private void ChangeLavel() {
+    private void ChangeLevel() {
         if (scoreBoard.level <= 3) {
             scoreBoard.NextLevel();
             InitShuttle();
@@ -118,7 +118,7 @@ public class GameRunning : IGameState {
         }
         
         if (blocks.CountEntities() == Unbreakables) {
-            ChangeLavel();
+            ChangeLevel();
         }
         
         if (balls + activeBalls.CountEntities() > 0) {
