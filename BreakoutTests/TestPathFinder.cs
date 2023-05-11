@@ -1,22 +1,30 @@
 namespace BreakoutTests;
 
 using System;
+using System.IO;
 using Breakout.IO;
 using NUnit.Framework;
 
 
+// Make sure that no tests contain the word "DIKUGames",
+// as our TA's root folder probably has a different name
+// such as "DIKUGames (5)".
 public class TestPathFinder {
 
+    /// <summary>
+    /// True if the path has no trailing slash and
+    /// the directory name is the last part of the path.
+    /// </summary>
     private bool IsCorrectPathToDir(string path, string dir) {
         return path.Split(dir)[^1] == "";
     }
 
     [Test]
     public void TestRoot() {
-        string pathToRoot = PathFinder.Root();
-        string dir = "DIKUGames";
-        Assert.That(pathToRoot.Contains(dir));
-        Assert.That(IsCorrectPathToDir(pathToRoot, dir));
+        string root = PathFinder.Root();
+        string breakoutPath = Path.Combine(root, "Breakout");
+        Assert.That(Directory.Exists(breakoutPath));
+        Assert.That(IsCorrectPathToDir(breakoutPath, "Breakout"));
     }
 
     [Test]
@@ -47,5 +55,14 @@ public class TestPathFinder {
             )
         );
         Assert.Pass();
+    }
+
+    [Test]
+    public void TestBaseDir() {
+        Assert.That(PathFinder.BaseDir().Contains("bin"));
+        Assert.AreEqual(
+            PathFinder.UpNLevels(PathFinder.BaseDir(), 4),
+            PathFinder.Root()
+        );
     }
 }

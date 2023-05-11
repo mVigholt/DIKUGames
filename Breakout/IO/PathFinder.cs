@@ -8,7 +8,7 @@ using System.IO;
 /// A utility for finding paths in a file system.
 /// to a specific directory or file.
 /// It allows for less headaches when working
-/// in either Breakout/ or BreakoutTests/
+/// in either Breakout/ or BreakoutTests/.
 /// </summary>
 public static class PathFinder {
 
@@ -16,7 +16,33 @@ public static class PathFinder {
     /// Get the absolute path to DIKUGames, the root of our application.
     /// </summary>
     public static string Root() {
-        return Find("DIKUGames");
+        // The root of our project is located 4 layers
+        // above the base directory, which is a build directory
+        int generations = 4;
+        return UpNLevels(BaseDir(), generations);
+    }
+
+    public static string BaseDir() {
+        string path = AppDomain.CurrentDomain.BaseDirectory;
+        string noTrailingSlash = path.Substring(0, path.Length - 1);
+        return noTrailingSlash;
+    }
+
+    /// <summary>
+    /// Shorten a path by removing one layer from the right.
+    /// </summary>
+    /// <param name="path">A path in the form of a string</param>
+    /// <param name="n">The number of levels to chop off the path</param>
+    /// <returns>
+    /// A new path, i.e. 
+    /// UpNLevels("/a/b/c/d", 2) -> "/a/b"
+    /// </returns>
+    public static string UpNLevels(string path, int n) {
+        if (n <= 0) {
+            return path;
+        }
+        var (parentPath, _) = SplitPath(path);
+        return UpNLevels(parentPath, n - 1);
     }
 
     public static string Assets() {
@@ -34,7 +60,7 @@ public static class PathFinder {
 
     /// <summary>Find the path to a directory</summary>
     public static string Find(string dirName) {
-        return GetDirName(Directory.GetCurrentDirectory(), dirName);
+        return PathToDir(Directory.GetCurrentDirectory(), dirName);
     }
 
     /// <summary>
@@ -44,7 +70,7 @@ public static class PathFinder {
     /// <param name="path">Starting path</param>
     /// <param name="dirName">The directory you want to climb up to</param>
     /// <returns>The path to the directory</returns>
-    private static string GetDirName(string path, string dirName) {
+    private static string PathToDir(string path, string dirName) {
         if (path == "" || !path.Contains(dirName)) {
             throw new ArgumentException($"Could not find \"{dirName}\"");
         }
@@ -52,7 +78,7 @@ public static class PathFinder {
         if (lastPart == dirName) {
             return path;
         }
-        return GetDirName(firstPart, dirName);
+        return PathToDir(firstPart, dirName);
     }
 
     /// <summary>
