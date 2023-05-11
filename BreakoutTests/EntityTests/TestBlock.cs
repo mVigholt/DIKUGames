@@ -22,6 +22,7 @@ public class TestBlock {
         block = new Block.Builder()
                     .WithImage(image)
                     .WithPosition(new Vec2F(0.5f, 0.5f))
+                    .WithValue(1)
                     .Build();
     }
 
