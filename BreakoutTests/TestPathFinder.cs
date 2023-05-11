@@ -1,8 +1,8 @@
 namespace BreakoutTests;
 
-using NUnit.Framework;
-using Breakout.IO;
 using System;
+using Breakout.IO;
+using NUnit.Framework;
 
 
 public class TestPathFinder {
@@ -32,7 +32,7 @@ public class TestPathFinder {
         Assert.That(IsCorrectPathToDir(levels, "Levels"));
         string nonexistentDirName = "pwkjMx5Zu5SNh";
         Assert.That(
-            () => PathFinder.Find(nonexistentDirName), 
+            () => PathFinder.Find(nonexistentDirName),
             Throws.ArgumentException.With.Message.EqualTo(
                 $"Could not find \"{nonexistentDirName}\""));
     }

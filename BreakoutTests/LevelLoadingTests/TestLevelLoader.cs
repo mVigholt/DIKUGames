@@ -1,13 +1,13 @@
 namespace BreakoutTests;
 
-using NUnit.Framework;
-using DIKUArcade.GUI; // Needed for OpenGL contexts
-using DIKUArcade.Entities;
-using Breakout.Levels;
-using Breakout.IO;
-using Breakout.Entities;
 using System;
 using System.IO;
+using Breakout.Entities;
+using Breakout.IO;
+using Breakout.Levels;
+using DIKUArcade.Entities;
+using DIKUArcade.GUI; // Needed for OpenGL contexts
+using NUnit.Framework;
 
 
 public class Loader {

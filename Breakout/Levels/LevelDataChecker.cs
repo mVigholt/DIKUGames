@@ -2,10 +2,10 @@ namespace Breakout.Levels;
 
 using System;
 using System.IO;
-using DIKUArcade.Entities;
-using DIKUArcade.Graphics;
 using Breakout.Entities;
 using Breakout.IO;
+using DIKUArcade.Entities;
+using DIKUArcade.Graphics;
 
 
 public class LevelDataChecker {

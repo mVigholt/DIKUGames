@@ -1,13 +1,13 @@
 namespace BreakoutTests;
 
-using System.IO;
 using System.Collections.Generic;
-using NUnit.Framework;
-using DIKUArcade.Graphics;
-using DIKUArcade.Math;
-using DIKUArcade.GUI; // Needed for OpenGL contexts
-using Breakout.IO;
+using System.IO;
 using Breakout.Entities;
+using Breakout.IO;
+using DIKUArcade.Graphics;
+using DIKUArcade.GUI; // Needed for OpenGL contexts
+using DIKUArcade.Math;
+using NUnit.Framework;
 
 [TestFixture]
 public class TestBlock {
@@ -21,7 +21,7 @@ public class TestBlock {
         image = Assets.LoadImage("green-block.png");
         block = new Block.Builder()
                     .WithImage(image)
-                    .WithPosition(new Vec2F(0.5f,0.5f))
+                    .WithPosition(new Vec2F(0.5f, 0.5f))
                     .Build();
     }
 

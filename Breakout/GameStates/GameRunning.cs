@@ -17,7 +17,7 @@ using DIKUArcade.State;
 public class GameRunning : IGameState {
     private static GameRunning instance = null;
     private GameEventBus eventBus = GameBus.GetBus();
-    private Player player;
+    private Shuttle shuttle;
     private EntityContainer<Ball> balls;
     private EntityContainer<Block> blocks;
 
@@ -33,19 +33,19 @@ public class GameRunning : IGameState {
     }
 
     private void InitPlayer() {
-        Vec2F playerPosition = new Vec2F(0.5f - (Player.STD_EXTEND.X / 2), 0.03f);
+        Vec2F playerPosition = new Vec2F(0.5f - Shuttle.STD_EXTEND.X / 2, 0.03f);
 
         IBaseImage image = new Image(
             Path.Combine(PathFinder.Images(), "player.png")
         );
 
-        player = Player.NewPlayer(playerPosition, image);
+        shuttle = Shuttle.NewPlayer(playerPosition, image);
     }
 
     private Vec2F BallPosOnPlayer() {
         return new Vec2F(
-            player.GetPosition().X + (player.GetExtent().X / 2) - (Ball.STD_EXTEND.X / 2),
-            player.GetPosition().Y + (player.GetExtent().Y / 2));
+            shuttle.GetPosition().X + shuttle.GetExtent().X / 2 - Ball.STD_EXTEND.X / 2,
+            shuttle.GetPosition().Y + shuttle.GetExtent().Y / 2);
     }
 
     private void InitBall() {
@@ -83,7 +83,7 @@ public class GameRunning : IGameState {
     }
 
     public void RenderState() {
-        player.Render();
+        shuttle.Render();
         blocks.RenderEntities();
         balls.RenderEntities();
         scoreBoard.RenderText();
@@ -98,30 +98,30 @@ public class GameRunning : IGameState {
     }
 
     private void MoveEntities() {
-        player.Move();
+        shuttle.Move();
         foreach (Ball ball in balls) {
             ball.Move();
-            //let the ball follow the player until released
-            if (ball.GetDirection().Length() == new Vec2F(0,0).Length()) {
+            //let the ball follow the shuttle until released
+            if (ball.GetDirection().Length() == new Vec2F(0, 0).Length()) {
                 ball.Shape.SetPosition(BallPosOnPlayer());
             }
         }
         //foreach (Block block in blocks) {block.Move();}
     }
 
-    private void CollidingEntities() {    
+    private void CollidingEntities() {
         balls.Iterate(ball => {
-            CollisionData ballVsPlayer = 
-                CollisionDetection.Aabb(ball.Shape.AsDynamicShape(), player.Shape);
+            CollisionData ballVsPlayer =
+                CollisionDetection.Aabb(ball.Shape.AsDynamicShape(), shuttle.Shape);
 
             if (ballVsPlayer.Collision) {
-                ball.UpdateDirection(ballVsPlayer.CollisionDir, player.GetDirection());
+                ball.UpdateDirection(ballVsPlayer.CollisionDir, shuttle.GetDirection());
             }
 
             blocks.Iterate(block => {
-                CollisionData ballVsblock = 
+                CollisionData ballVsblock =
                     CollisionDetection.Aabb(ball.Shape.AsDynamicShape(), block.Shape);
-                
+
                 if (ballVsblock.Collision) {
                     ball.UpdateDirection(ballVsblock.CollisionDir, block.GetDirection());
                     scoreBoard.AddPoints(1);
@@ -167,9 +167,9 @@ public class GameRunning : IGameState {
             case KeyboardKey.Space:
                 //release ball
                 foreach (Ball ball in balls) {
-                    if (ball.GetDirection().Length() == new Vec2F(0,0).Length()) {
-                        var X = player.GetDirection().X;
-                        X = (X != 0 ? (X > 0 ? 1 : -1) : 0);
+                    if (ball.GetDirection().Length() == new Vec2F(0, 0).Length()) {
+                        var X = shuttle.GetDirection().X;
+                        X = X != 0 ? (X > 0 ? 1 : -1) : 0;
                         ball.UpdateDirection(CollisionDirection.CollisionDirUnchecked, new Vec2F(X, 1));
                     }
                 }

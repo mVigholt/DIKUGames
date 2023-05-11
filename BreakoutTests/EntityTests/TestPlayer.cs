@@ -1,24 +1,24 @@
 namespace BreakoutTests;
 
 using System;
-using NUnit.Framework;
-using DIKUArcade.GUI;
-using DIKUArcade.Entities;
-using DIKUArcade.Math;
-using DIKUArcade.Graphics;
-using DIKUArcade.Events;
-using DIKUArcade.Input;
 using Breakout;
 using Breakout.Entities;
-using Breakout.IO;
 using Breakout.Events;
+using Breakout.IO;
+using DIKUArcade.Entities;
+using DIKUArcade.Events;
+using DIKUArcade.Graphics;
+using DIKUArcade.GUI;
+using DIKUArcade.Input;
+using DIKUArcade.Math;
+using NUnit.Framework;
 
 [TestFixture]
 public class TestPlayer {
     private GameEventBus eventBus;
     private GameEvent playerEvent;
     private Image playerImage;
-    private Player player;
+    private Shuttle shuttle;
     private DynamicShape playerShape;
     private readonly float START_POS = 0.4f;
     private readonly float SPEED = 0.01f;
@@ -34,18 +34,18 @@ public class TestPlayer {
         );
         eventBus = GameBus.GetBus();
 
-        player = Player.NewPlayer(pos, playerImage);
+        shuttle = Shuttle.NewPlayer(pos, playerImage);
 
-        eventBus.Subscribe(GameEventType.PlayerEvent, player);
+        eventBus.Subscribe(GameEventType.PlayerEvent, shuttle);
 
     }
 
     /// <summary>
-    /// Return true if the player is within the borders of the window.
+    /// Return true if the shuttle is within the borders of the window.
     /// </summary>
-    private bool IsWithinBounds(Player player) {
-        return player.GetPosition().X <= 1.0f &&
-                player.GetPosition().X >= 0.0f;
+    private bool IsWithinBounds(Shuttle shuttle) {
+        return shuttle.GetPosition().X <= 1.0f &&
+                shuttle.GetPosition().X >= 0.0f;
     }
 
 
@@ -75,8 +75,8 @@ public class TestPlayer {
     [TestCase(11)]
     [TestCase(3000)]
     public void TestMoveRight(int moveCount) {
-        // Precondition R: Player is not out of bounds
-        Assert.IsTrue(IsWithinBounds(player));
+        // Precondition R: Shuttle is not out of bounds
+        Assert.IsTrue(IsWithinBounds(shuttle));
         for (int i = 0; i < moveCount; i++) {
             eventBus.RegisterEvent(new EventBuilder()
                 .WithType(GameEventType.PlayerEvent)
@@ -84,26 +84,26 @@ public class TestPlayer {
                 .WithAction(KeyboardAction.KeyPress)
                 .Build());
             eventBus.ProcessEventsSequentially();
-            player.Move();
+            shuttle.Move();
             eventBus.RegisterEvent(new EventBuilder()
                 .WithType(GameEventType.PlayerEvent)
                 .WithKey(KeyboardKey.Right)
                 .WithAction(KeyboardAction.KeyRelease)
                 .Build());
             eventBus.ProcessEventsSequentially();
-        
+
         }
-        // Precondition P: Player is not out of bounds
+        // Precondition P: Shuttle is not out of bounds
         // after moving [moveCount * MOVEMENT_SPEED] times.
-        Assert.IsTrue(IsWithinBounds(player));
-        // Postcondition R': Player's updated x position
+        Assert.IsTrue(IsWithinBounds(shuttle));
+        // Postcondition R': Shuttle's updated x position
         // should be moveCount * MOVEMENT_SPEED + START_POS
         float expectedXPos = Math.Min(
-            START_POS + SPEED * moveCount, 
-            1f - player.GetExtent().X
+            START_POS + SPEED * moveCount,
+            1f - shuttle.GetExtent().X
         );
-        string msg = $"TestCase({moveCount}): {expectedXPos}, {player.GetPosition().X}";
-        Assert.That(AreAlmostEqual(expectedXPos, player.GetPosition().X), msg);
+        string msg = $"TestCase({moveCount}): {expectedXPos}, {shuttle.GetPosition().X}";
+        Assert.That(AreAlmostEqual(expectedXPos, shuttle.GetPosition().X), msg);
     }
 
     /// <summary>
@@ -117,8 +117,8 @@ public class TestPlayer {
     [TestCase(11)]
     [TestCase(30000)]
     public void TestMoveLeft(int moveCount) {
-        // Precondition R: Player is not out of bounds
-        Assert.IsTrue(IsWithinBounds(player));
+        // Precondition R: Shuttle is not out of bounds
+        Assert.IsTrue(IsWithinBounds(shuttle));
         for (int i = 0; i < moveCount; i++) {
             eventBus.RegisterEvent(new EventBuilder()
                 .WithType(GameEventType.PlayerEvent)
@@ -126,25 +126,25 @@ public class TestPlayer {
                 .WithAction(KeyboardAction.KeyPress)
                 .Build());
             eventBus.ProcessEventsSequentially();
-            player.Move();
+            shuttle.Move();
             eventBus.RegisterEvent(new EventBuilder()
                 .WithType(GameEventType.PlayerEvent)
                 .WithKey(KeyboardKey.Left)
                 .WithAction(KeyboardAction.KeyRelease)
                 .Build());
             eventBus.ProcessEventsSequentially();
-        
+
         }
-        // Precondition P: Player is not out of bounds
+        // Precondition P: Shuttle is not out of bounds
         // after moving [moveCount * (-MOVEMENT_SPEED)] times.
-        Assert.IsTrue(IsWithinBounds(player));
-        // Postcondition R': Player's updated x position
+        Assert.IsTrue(IsWithinBounds(shuttle));
+        // Postcondition R': Shuttle's updated x position
         // should be moveCount * (-MOVEMENT_SPEED) + START_POS,
         // unless that is out of bounds.
         float expectedXPos = Math.Max(
-            START_POS + (-SPEED) * moveCount, 0f
+            START_POS + -SPEED * moveCount, 0f
         );
-        Assert.That(AreAlmostEqual(expectedXPos, player.GetPosition().X));
+        Assert.That(AreAlmostEqual(expectedXPos, shuttle.GetPosition().X));
     }
 
     [TestCase(100)]
@@ -159,7 +159,7 @@ public class TestPlayer {
                 .WithAction(KeyboardAction.KeyPress)
                 .Build());
             eventBus.ProcessEventsSequentially();
-            player.Move();
+            shuttle.Move();
             eventBus.RegisterEvent(new EventBuilder()
                 .WithType(GameEventType.PlayerEvent)
                 .WithKey(KeyboardKey.Left)
@@ -167,14 +167,14 @@ public class TestPlayer {
                 .Build());
             eventBus.ProcessEventsSequentially();
         }
-        // Postcondition: Player is still not out of bounds
-        Assert.IsTrue(IsWithinBounds(player));
+        // Postcondition: Shuttle is still not out of bounds
+        Assert.IsTrue(IsWithinBounds(shuttle));
     }
 
     [Test]
     public void PlayerIsEntity() {
-        // Requirement 5: Player must be a DIKU entity
-        Assert.That(player is Entity);
+        // Requirement 5: Shuttle must be a DIKU entity
+        Assert.That(shuttle is Entity);
     }
 }
 

@@ -7,5 +7,5 @@ using DIKUArcade.Math;
 
 
 public class EntityFactory {
-    
+
 }

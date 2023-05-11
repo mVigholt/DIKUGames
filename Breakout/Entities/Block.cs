@@ -6,20 +6,24 @@ using DIKUArcade.Graphics;
 using DIKUArcade.Math;
 
 public class Block : MoveableEntity {
-    public static readonly Vec2F STD_EXTEND = new Vec2F(0.083f, 0.041f); 
+    public static readonly Vec2F STD_EXTEND = new Vec2F(0.083f, 0.041f);
     private Builder build;
 
     private int health = 1;
 
     public Block(Block.Builder builder)
         : base(new DynamicShape(builder.position, STD_EXTEND), builder.image) {
-            this.build = builder;
-            if (this.build.isHardened) {
-                health *= 2;
-            }
+        this.build = builder;
+        if (this.build.isHardened) {
+            health *= 2;
+        }
     }
 
-    public int Value { get { return build.value; } }
+    public int Value {
+        get {
+            return build.value;
+        }
+    }
 
     public bool IsDead() {
         return this.health <= 0;
@@ -27,7 +31,7 @@ public class Block : MoveableEntity {
 
     public void LoseHealth(int hp) {
         if (!this.build.isUnbreakable) {
-            this.health-= hp;
+            this.health -= hp;
         }
 
         if (this.IsDead()) {

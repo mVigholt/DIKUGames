@@ -8,9 +8,10 @@ using DIKUArcade.Input;
 using DIKUArcade.Math;
 using DIKUArcade.Physics;
 
-public class Player : MoveableEntity, IGameEventProcessor {
-    public static readonly Vec2F STD_EXTEND = new Vec2F(0.15f, 0.03f); 
-    private static Player instance = null;
+public class Shuttle : MoveableEntity, IGameEventProcessor {
+    
+    public static readonly Vec2F STD_EXTEND = new Vec2F(0.15f, 0.03f);
+    private static Shuttle instance = null;
     private GameEventBus eventBus;
 
     public int Level {
@@ -18,22 +19,22 @@ public class Player : MoveableEntity, IGameEventProcessor {
         internal set;
     }
 
-    private Player(Vec2F position, IBaseImage image)
+    private Shuttle(Vec2F position, IBaseImage image)
         : base(new DynamicShape(position, STD_EXTEND), image, 0.02f) {
     }
 
     private void ResetPlayer(Vec2F position) {
-        Player.instance.Level = 0;
-        Player.instance.Shape.SetPosition(position);
-        Player.instance.Shape.Extent = STD_EXTEND;
+        Shuttle.instance.Level = 0;
+        Shuttle.instance.Shape.SetPosition(position);
+        Shuttle.instance.Shape.Extent = STD_EXTEND;
     }
 
-    public static Player NewPlayer(Vec2F position, IBaseImage image) {
-        if (Player.instance == null) {
-            Player.instance = new Player(position, image);
-            Player.instance.InitEventBus();
+    public static Shuttle NewPlayer(Vec2F position, IBaseImage image) {
+        if (Shuttle.instance == null) {
+            Shuttle.instance = new Shuttle(position, image);
+            Shuttle.instance.InitEventBus();
         }
-        return Player.instance;
+        return Shuttle.instance;
     }
 
     private void InitEventBus() {
@@ -42,16 +43,16 @@ public class Player : MoveableEntity, IGameEventProcessor {
     }
 
     private protected void SetMoveLeft(bool val) {
-        UpdateDirection(CollisionDirection.CollisionDirUnchecked, 
-            new Vec2F((val ? -1 : 1), 0));
+        UpdateDirection(CollisionDirection.CollisionDirUnchecked,
+            new Vec2F(val ? -1 : 1, 0));
     }
 
     private protected void SetMoveRight(bool val) {
-        UpdateDirection(CollisionDirection.CollisionDirUnchecked, 
-            new Vec2F((val ? 1 : -1), 0));
+        UpdateDirection(CollisionDirection.CollisionDirUnchecked,
+            new Vec2F(val ? 1 : -1, 0));
     }
-    
-    ///<summary>Process Player event</summary>
+
+    ///<summary>Process Shuttle event</summary>
     ///<param name = "gameEvent">The input event</param>
     ///<return>no return</return>
     public void ProcessEvent(GameEvent gameEvent) {

@@ -1,8 +1,8 @@
 namespace Breakout.Entities;
 
 using System;
-using DIKUArcade.Math;
 using DIKUArcade.Graphics;
+using DIKUArcade.Math;
 
 public class ScoreBoard : Text {
 
