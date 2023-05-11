@@ -8,7 +8,7 @@ public class ScoreBoard : Text {
 
     private int points;
 
-    public ScoreBoard(Vec2F pos, Vec2F extent) : base("0", pos, extent) {
+    public ScoreBoard(Vec2F pos, Vec2F extent) : base("Score: 0", pos, extent) {
         SetColor(new Vec3I(255, 0, 0));
     }
 
