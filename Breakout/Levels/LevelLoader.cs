@@ -71,6 +71,7 @@ public static class LevelLoader {
                         new Block.Builder()
                             .WithImage(Assets.LoadImage(imgFileName))
                             .WithPosition(new Vec2F(c * xExtent, 1 - r * yExtent))
+                            .WithValue(1)
                             .Build()
                         );
                 }

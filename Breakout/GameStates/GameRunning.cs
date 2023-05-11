@@ -124,7 +124,7 @@ public class GameRunning : IGameState {
 
                 if (ballVsblock.Collision) {
                     ball.UpdateDirection(ballVsblock.CollisionDir, block.GetDirection());
-                    scoreBoard.AddPoints(1);
+                    scoreBoard.AddPoints(block.Value);
                     block.LoseHealth(ball.damage);
                 }
             });
