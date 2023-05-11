@@ -34,7 +34,7 @@ public class TestPlayer {
         );
         eventBus = GameBus.GetBus();
 
-        player = new Player(pos, playerImage);
+        player = Player.NewPlayer(pos, playerImage);
 
         eventBus.Subscribe(GameEventType.PlayerEvent, player);
 

@@ -18,46 +18,46 @@ public class GameRunning : IGameState {
     private static GameRunning instance = null;
     private GameEventBus eventBus = GameBus.GetBus();
     private Player player;
-    private EntityContainer<Ball> ball = new EntityContainer<Ball>(5);
+    private EntityContainer<Ball> balls = new EntityContainer<Ball>(5);
     private EntityContainer<Block> blocks;
     public static GameRunning GetInstance() {
         if (GameRunning.instance == null) {
             GameRunning.instance = new GameRunning();
-            GameRunning.instance.InitializeGameState();
+            GameRunning.instance.ResetState();
         }
         return GameRunning.instance;
 
     }
 
-    public void InitPlayer() {
-        Vec2F pos = new Vec2F(0.5f - 0.15f/2, 0.03f);
+    private void InitPlayer() {
+        Vec2F playerPosition = new Vec2F(0.5f - (Player.STD_EXTEND.X / 2), 0.03f);
+
         IBaseImage image = new Image(
             Path.Combine(PathFinder.Images(), "player.png")
         );
-        player = new Player(pos, image);
-    }
-    public void InitBall() {
-        Vec2F playerPosition = player.GetPosition();
-        float ballDiameter = 0.03f;
-        float ballRadius = ballDiameter / 2;
-        // Initialize ball in the middle of the paddel
-        Vec2F ballPostiion = new Vec2F(
-                playerPosition.X + player.GetExtent().X / 2 - ballRadius,
-                playerPosition.Y + player.GetExtent().Y / 2);
-        IBaseImage ballImage = new Image(
-            Path.Combine(PathFinder.Images(), "ball.png")
-        );
-        ball.AddEntity(new Ball(ballPostiion, ballImage));
+
+        player = Player.NewPlayer(playerPosition, image);
     }
 
-    public void InitializeGameState() {
-        InitPlayer();
-        InitBall();
-        InitLevel();
+    private void InitBall() {
+        Vec2F ballPostiion = new Vec2F(
+            player.GetPosition().X + (player.GetExtent().X / 2) - (Ball.STD_EXTEND.X / 2),
+            player.GetPosition().Y + (player.GetExtent().Y / 2));
+
+        IBaseImage ballImage = new Image(
+            Path.Combine(PathFinder.Images(), "ball.png"));
+
+        balls.AddEntity(new Ball(ballPostiion, ballImage));
     }
 
     public void InitLevel() {
         blocks = LevelLoader.Load("level1.txt");
+    }
+
+    public void ResetState() {
+        InitPlayer();
+        InitBall();
+        InitLevel();
     }
 
     public void GameOver() {
@@ -72,17 +72,41 @@ public class GameRunning : IGameState {
     public void RenderState() {
         player.Render();
         blocks.RenderEntities();
-        ball.RenderEntities();
-    }
-
-    public void ResetState() {
-        this.InitializeGameState();
+        balls.RenderEntities();
     }
 
     public void UpdateState() {
+        MoveEntities();
+        CollidingEntities();
+    }
+
+
+    private void MoveEntities() {
         player.Move();
-        iterateBlock();
-        iterateBall();
+        foreach (Ball ball in balls) {ball.Move();}
+        //foreach (Block block in blocks) {block.Move();}
+    }
+
+    private void CollidingEntities() {    
+        balls.Iterate(ball => {
+            CollisionData ballVsPlayer = 
+                CollisionDetection.Aabb(ball.Shape.AsDynamicShape(), player.Shape);
+
+            if (ballVsPlayer.Collision) {
+                ball.UpdateDirection(ballVsPlayer.CollisionDir, player.GetDirection());
+            }
+
+            blocks.Iterate(block => {
+                CollisionData ballVsblock = 
+                    CollisionDetection.Aabb(ball.Shape.AsDynamicShape(), block.Shape);
+                
+                if (ballVsblock.Collision) {
+                    ball.UpdateDirection(ballVsblock.CollisionDir, block.GetDirection());
+                    // player.gainPoint();
+                    block.LoseHealth(ball.damage);
+                }
+            });
+        });
     }
 
     public void HandleKeyEvent(KeyboardAction action, KeyboardKey key) {
@@ -122,7 +146,7 @@ public class GameRunning : IGameState {
                 break;
         }
 
-        ball.Iterate(ball => {
+        balls.Iterate(ball => {
             if (ball.GetDirection().X == 0 && ball.GetDirection().Y == 0) {
                 if (key == KeyboardKey.Right) {
                     ball.UpdateDirection(CollisionDirection.CollisionDirUnchecked,
@@ -158,37 +182,6 @@ public class GameRunning : IGameState {
             default:
                 break;
         }
-    }
-
-    public void iterateBall() {
-        ball.Iterate(ball => {
-            bool collisionWithPlayer =
-                CollisionDetection.Aabb(ball.Shape.AsDynamicShape(), player.Shape).Collision;
-            CollisionDirection collisionWithPlayerDir =
-                CollisionDetection.Aabb(ball.Shape.AsDynamicShape(), player.Shape).CollisionDir;
-            if (collisionWithPlayer) {
-                ball.UpdateDirection(collisionWithPlayerDir, player.GetDirection());
-            }
-            ball.Move();
-        });
-    }
-
-
-    private void iterateBlock() {
-        blocks.Iterate(block => {
-            ball.Iterate(ball => {
-                bool collisionWithBall =
-                    CollisionDetection.Aabb(ball.Shape.AsDynamicShape(), block.Shape).Collision;
-                CollisionDirection collisionDir =
-                    CollisionDetection.Aabb(ball.Shape.AsDynamicShape(), block.Shape).CollisionDir;
-                if (collisionWithBall) {
-                    ball.UpdateDirection(collisionDir, block.GetDirection());
-                    // player.gainPoint();
-                    block.DeleteEntity();
-                }
-            });
-        });
-
     }
 }
 
