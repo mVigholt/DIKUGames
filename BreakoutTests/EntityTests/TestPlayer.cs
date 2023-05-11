@@ -34,7 +34,7 @@ public class TestPlayer {
         );
         eventBus = GameBus.GetBus();
 
-        shuttle = Shuttle.NewPlayer(pos, playerImage);
+        shuttle = Shuttle.NewShuttle(pos, playerImage);
 
         eventBus.Subscribe(GameEventType.PlayerEvent, shuttle);
 
@@ -99,7 +99,7 @@ public class TestPlayer {
         // Postcondition R': Shuttle's updated x position
         // should be moveCount * MOVEMENT_SPEED + START_POS
         float expectedXPos = Math.Min(
-            START_POS + SPEED * moveCount,
+            START_POS + (SPEED * moveCount), 
             1f - shuttle.GetExtent().X
         );
         string msg = $"TestCase({moveCount}): {expectedXPos}, {shuttle.GetPosition().X}";
@@ -142,7 +142,8 @@ public class TestPlayer {
         // should be moveCount * (-MOVEMENT_SPEED) + START_POS,
         // unless that is out of bounds.
         float expectedXPos = Math.Max(
-            START_POS + -SPEED * moveCount, 0f
+            START_POS + -SPEED * moveCount, 
+            0f
         );
         Assert.That(AreAlmostEqual(expectedXPos, shuttle.GetPosition().X));
     }

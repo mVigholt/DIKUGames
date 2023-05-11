@@ -14,22 +14,16 @@ public class Shuttle : MoveableEntity, IGameEventProcessor {
     private static Shuttle instance = null;
     private GameEventBus eventBus;
 
-    public int Level {
-        get;
-        internal set;
-    }
-
     private Shuttle(Vec2F position, IBaseImage image)
         : base(new DynamicShape(position, STD_EXTEND), image, 0.02f) {
     }
 
-    private void ResetPlayer(Vec2F position) {
-        Shuttle.instance.Level = 0;
+    private void ResetShuttle(Vec2F position) {
         Shuttle.instance.Shape.SetPosition(position);
         Shuttle.instance.Shape.Extent = STD_EXTEND;
     }
 
-    public static Shuttle NewPlayer(Vec2F position, IBaseImage image) {
+    public static Shuttle NewShuttle(Vec2F position, IBaseImage image) {
         if (Shuttle.instance == null) {
             Shuttle.instance = new Shuttle(position, image);
             Shuttle.instance.InitEventBus();

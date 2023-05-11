@@ -18,9 +18,9 @@ public class GameRunning : IGameState {
     private static GameRunning instance = null;
     private GameEventBus eventBus = GameBus.GetBus();
     private Shuttle shuttle;
-    private EntityContainer<Ball> balls;
+    private EntityContainer<Ball> activeBalls;
     private EntityContainer<Block> blocks;
-
+    private int balls;
     private ScoreBoard scoreBoard;
 
     public static GameRunning GetInstance() {
@@ -32,17 +32,17 @@ public class GameRunning : IGameState {
 
     }
 
-    private void InitPlayer() {
+    private void InitShuttle() {
         Vec2F playerPosition = new Vec2F(0.5f - Shuttle.STD_EXTEND.X / 2, 0.03f);
 
         IBaseImage image = new Image(
             Path.Combine(PathFinder.Images(), "player.png")
         );
 
-        shuttle = Shuttle.NewPlayer(playerPosition, image);
+        shuttle = Shuttle.NewShuttle(playerPosition, image);
     }
 
-    private Vec2F BallPosOnPlayer() {
+    private Vec2F BallPosOnShuttle() {
         return new Vec2F(
             shuttle.GetPosition().X + shuttle.GetExtent().X / 2 - Ball.STD_EXTEND.X / 2,
             shuttle.GetPosition().Y + shuttle.GetExtent().Y / 2);
@@ -51,13 +51,12 @@ public class GameRunning : IGameState {
     private void InitBall() {
         IBaseImage ballImage = new Image(
             Path.Combine(PathFinder.Images(), "ball.png"));
-
-        balls = new EntityContainer<Ball>(5);
-        balls.AddEntity(new Ball(BallPosOnPlayer(), ballImage));
+        activeBalls = new EntityContainer<Ball>(5);
+        activeBalls.AddEntity(new Ball(BallPosOnShuttle(), ballImage));
     }
 
     private void InitLevel() {
-        blocks = LevelLoader.Load("level1.txt");
+        blocks = LevelLoader.Load("level" + scoreBoard.level.ToString() + ".txt");
     }
 
     public void InitScoreBoard() {
@@ -67,10 +66,18 @@ public class GameRunning : IGameState {
     }
 
     public void ResetState() {
-        InitPlayer();
-        InitBall();
-        InitLevel();
         InitScoreBoard();
+        ChangeLavel();
+        balls = 2;
+    }
+
+    private void ChangeLavel() {
+        if (scoreBoard.level <= 3) {
+            scoreBoard.NextLevel();
+            InitShuttle();
+            InitBall();
+            InitLevel();
+        } else {GameWon();}
     }
 
     public void GameOver() {
@@ -82,40 +89,67 @@ public class GameRunning : IGameState {
         );
     }
 
+    public void GameWon() {
+        eventBus.RegisterEvent(
+            new EventBuilder()
+                .WithType(GameEventType.GameStateEvent)
+                .WithStateType(GameStateType.GameWon)
+                .Build()
+        );
+    }
+
     public void RenderState() {
         shuttle.Render();
         blocks.RenderEntities();
-        balls.RenderEntities();
+        activeBalls.RenderEntities();
         scoreBoard.RenderText();
     }
 
     public void UpdateState() {
+        StateCheker();
         MoveEntities();
         CollidingEntities();
-        if (blocks.CountEntities() == 0) {
-            ResetState();
+    }
+
+    private void StateCheker() {
+        var Unbreakables = 0;
+        foreach (Block block in blocks) {
+            if (block.build.isUnbreakable) {Unbreakables += 1;}
+        }
+        
+        if (blocks.CountEntities() == Unbreakables) {
+            ChangeLavel();
+        }
+        
+        if (balls + activeBalls.CountEntities() > 0) {
+            if (activeBalls.CountEntities() == 0) {
+                InitBall();
+                balls --;
+            }
+        } else {
+            GameOver();
         }
     }
 
     private void MoveEntities() {
         shuttle.Move();
-        foreach (Ball ball in balls) {
+        foreach (Ball ball in activeBalls) {
             ball.Move();
             //let the ball follow the shuttle until released
             if (ball.GetDirection().Length() == new Vec2F(0, 0).Length()) {
-                ball.Shape.SetPosition(BallPosOnPlayer());
+                ball.Shape.SetPosition(BallPosOnShuttle());
             }
         }
         //foreach (Block block in blocks) {block.Move();}
     }
 
     private void CollidingEntities() {
-        balls.Iterate(ball => {
-            CollisionData ballVsPlayer =
+        activeBalls.Iterate(ball => {
+            CollisionData ballVsShuttle =
                 CollisionDetection.Aabb(ball.Shape.AsDynamicShape(), shuttle.Shape);
 
-            if (ballVsPlayer.Collision) {
-                ball.UpdateDirection(ballVsPlayer.CollisionDir, shuttle.GetDirection());
+            if (ballVsShuttle.Collision) {
+                ball.UpdateDirection(ballVsShuttle.CollisionDir, shuttle.GetDirection());
             }
 
             blocks.Iterate(block => {
@@ -166,7 +200,7 @@ public class GameRunning : IGameState {
                 break;
             case KeyboardKey.Space:
                 //release ball
-                foreach (Ball ball in balls) {
+                foreach (Ball ball in activeBalls) {
                     if (ball.GetDirection().Length() == new Vec2F(0, 0).Length()) {
                         var X = shuttle.GetDirection().X;
                         X = X != 0 ? (X > 0 ? 1 : -1) : 0;
