@@ -7,7 +7,7 @@ using DIKUArcade.Math;
 
 public class Block : MoveableEntity {
     public static readonly Vec2F STD_EXTEND = new Vec2F(0.083f, 0.041f);
-    private Builder build;
+    public Builder build {get; private set;}
 
     private int health = 1;
 
