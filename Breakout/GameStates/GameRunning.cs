@@ -20,6 +20,9 @@ public class GameRunning : IGameState {
     private Player player;
     private EntityContainer<Ball> balls;
     private EntityContainer<Block> blocks;
+
+    private ScoreBoard scoreBoard;
+
     public static GameRunning GetInstance() {
         if (GameRunning.instance == null) {
             GameRunning.instance = new GameRunning();
@@ -53,14 +56,21 @@ public class GameRunning : IGameState {
         balls.AddEntity(new Ball(BallPosOnPlayer(), ballImage));
     }
 
-    public void InitLevel() {
+    private void InitLevel() {
         blocks = LevelLoader.Load("level1.txt");
+    }
+
+    public void InitScoreBoard() {
+        Vec2F position = new Vec2F(0.8f, 0.8f);
+        Vec2F extent = new Vec2F(0.2f, 0.2f);
+        scoreBoard = new ScoreBoard(position, extent);
     }
 
     public void ResetState() {
         InitPlayer();
         InitBall();
         InitLevel();
+        InitScoreBoard();
     }
 
     public void GameOver() {
@@ -76,6 +86,7 @@ public class GameRunning : IGameState {
         player.Render();
         blocks.RenderEntities();
         balls.RenderEntities();
+        scoreBoard.RenderText();
     }
 
     public void UpdateState() {
@@ -113,7 +124,7 @@ public class GameRunning : IGameState {
                 
                 if (ballVsblock.Collision) {
                     ball.UpdateDirection(ballVsblock.CollisionDir, block.GetDirection());
-                    // player.gainPoint();
+                    scoreBoard.AddPoints(1);
                     block.LoseHealth(ball.damage);
                 }
             });

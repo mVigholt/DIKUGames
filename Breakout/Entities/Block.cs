@@ -19,6 +19,8 @@ public class Block : MoveableEntity {
             }
     }
 
+    public int Value { get { return build.value; } }
+
     public bool IsDead() {
         return this.health <= 0;
     }
@@ -39,6 +41,7 @@ public class Block : MoveableEntity {
         public IBaseImage alterImage;
         public bool isUnbreakable = false;
         public bool isHardened = false;
+        public int value;
 
         public Builder() {
         }
@@ -66,6 +69,15 @@ public class Block : MoveableEntity {
 
         public Builder WithAlterImage(IBaseImage alterImage) {
             this.alterImage = alterImage;
+            return this;
+        }
+
+        public Builder WithValue(int value) {
+            if (value < 0) {
+                throw new ArgumentException(
+                    "A block's value cannot be negative");
+            }
+            this.value = value;
             return this;
         }
 
