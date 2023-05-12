@@ -22,14 +22,13 @@ public class GameRunning : IGameState {
     private EntityContainer<Block> blocks;
     private int balls;
     private ScoreBoard scoreBoard;
-
+    private readonly int NUM_LEVELS = 4;
     public static GameRunning GetInstance() {
         if (GameRunning.instance == null) {
             GameRunning.instance = new GameRunning();
             GameRunning.instance.ResetState();
         }
         return GameRunning.instance;
-
     }
 
     private void InitShuttle() {
@@ -72,7 +71,7 @@ public class GameRunning : IGameState {
     }
 
     private void ChangeLevel() {
-        if (scoreBoard.level <= 3) {
+        if (scoreBoard.level <= NUM_LEVELS) {
             scoreBoard.NextLevel();
             InitShuttle();
             InitBall();
