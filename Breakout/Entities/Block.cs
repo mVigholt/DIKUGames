@@ -50,13 +50,13 @@ public class Block : MoveableEntity {
         public Builder() {
         }
 
-        public Builder WithIsUnbreakable(Vec2F position) {
-            this.isUnbreakable = true;
+        public Builder WithIsUnbreakable(bool statement) {
+            if (statement) {this.isUnbreakable = true;}
             return this;
         }
 
-        public Builder WithIsHardened(Vec2F position) {
-            this.isHardened = true;
+        public Builder WithIsHardened(bool statement) {
+            if (statement) {this.isHardened = true;}
             return this;
         }
 
