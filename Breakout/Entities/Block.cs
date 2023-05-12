@@ -9,14 +9,16 @@ public class Block : MoveableEntity {
     public static readonly Vec2F STD_EXTEND = new Vec2F(0.083f, 0.041f);
     public Builder build {get; private set;}
 
-    private int health = 1;
+    private int maxHealth = 1;
+    public int Health{get; private set;} = 1;
 
     private Block(Block.Builder builder)
         : base(new DynamicShape(builder.position, STD_EXTEND), builder.image) {
         this.build = builder;
         if (this.build.isHardened) {
-            health *= 2;
+            maxHealth *= 2;
         }
+        Health = maxHealth;
     }
 
     public int Value {
@@ -26,16 +28,18 @@ public class Block : MoveableEntity {
     }
 
     public bool IsDead() {
-        return this.health <= 0;
+        return this.Health <= 0;
     }
 
     public void LoseHealth(int hp) {
         if (!this.build.isUnbreakable) {
-            this.health -= hp;
+            this.Health -= hp;
         }
 
         if (this.IsDead()) {
             this.DeleteEntity();
+        } else if (hp <= maxHealth / 2) {
+            this.Image = this.build.alterImage;
         }
     }
 
@@ -67,7 +71,6 @@ public class Block : MoveableEntity {
 
         public Builder WithImage(IBaseImage image) {
             this.image = image;
-            this.alterImage = image;
             return this;
         }
 
@@ -87,12 +90,15 @@ public class Block : MoveableEntity {
 
         public Block Build() {
             // Required arguments
-            if (position is null ||
-                image is null
-            ) {
+            if (position is null || image is null) {
                 throw new ArgumentException(
                     "A brick must have a position and a image");
             }
+
+            if (this.alterImage == null) {
+                this.alterImage = this.image;
+            }
+
             return new Block(this);
         }
     }
