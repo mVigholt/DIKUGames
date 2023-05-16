@@ -55,7 +55,8 @@ public class GameRunning : IGameState {
     }
 
     private void InitLevel() {
-        blocks = LevelLoader.Load("level" + scoreBoard.level.ToString() + ".txt");
+        LevelLoader levelLoader = new LevelLoader("level" + scoreBoard.level.ToString() + ".txt");
+        blocks = levelLoader.blocks;
     }
 
     public void InitScoreBoard() {
@@ -115,11 +116,11 @@ public class GameRunning : IGameState {
         foreach (Block block in blocks) {
             if (block.build.isUnbreakable) {Unbreakables += 1;}
         }
-        
+
         if (blocks.CountEntities() == Unbreakables) {
             ChangeLevel();
         }
-        
+
         if (balls + activeBalls.CountEntities() > 0) {
             if (activeBalls.CountEntities() == 0) {
                 InitBall();
