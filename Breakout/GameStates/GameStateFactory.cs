@@ -26,7 +26,7 @@ public class GameStateFactory : IGameState {
     public void HandleKeyEvent(KeyboardAction action, KeyboardKey key) {
         switch (action) {
             case KeyboardAction.KeyPress:
-                buttonSwitch.KeyPress(key, GameStateType.GameLost);
+                buttonSwitch.KeyPress(key);
                 break;
             case KeyboardAction.KeyRelease:
                 buttonSwitch.KeyRelease(key);
