@@ -25,7 +25,6 @@ public class GameRunning : IGameState {
     private int balls;
     private ScoreBoard scoreBoard;
     private readonly int NUM_LEVELS = 4;
-    //
     private EffectItemHandler effectItemHandler;
 
     public static GameRunning GetInstance() {
@@ -71,16 +70,11 @@ public class GameRunning : IGameState {
     public void ResetState() {
         InitScoreBoard();
         ChangeLevel();
-<<<<<<< HEAD
         balls = 2;
-        //
         effectItemHandler = EffectItemHandler.GetInstance();
         effectItemHandler.SetResponseTo(
             "EXTRA_LIFE",
             () => Console.WriteLine("Power-Up received: EXTRA_LIFE"));
-=======
-        balls = 1;
->>>>>>> main
     }
 
     private void ChangeLevel() {
