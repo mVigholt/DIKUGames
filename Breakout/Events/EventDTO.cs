@@ -44,6 +44,6 @@ public class EventDTO {
         } else {
             Action = (KeyboardAction) ev.IntArg1;
         }
-        Message = ev.StringArg1;
+        Message = ev.Message;
     }
 }

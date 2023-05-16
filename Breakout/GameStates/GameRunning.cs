@@ -2,10 +2,6 @@ namespace Breakout.GameStates;
 
 using System;
 using System.IO;
-using Breakout.Entities;
-using Breakout.Events;
-using Breakout.IO;
-using Breakout.Levels;
 using DIKUArcade.Entities;
 using DIKUArcade.Events;
 using DIKUArcade.Graphics;
@@ -13,6 +9,12 @@ using DIKUArcade.Input;
 using DIKUArcade.Math;
 using DIKUArcade.Physics;
 using DIKUArcade.State;
+using DIKUArcade.Timers;
+using Breakout.Entities;
+using Breakout.Entities.Effects;
+using Breakout.Events;
+using Breakout.IO;
+using Breakout.Levels;
 
 public class GameRunning : IGameState {
     private static GameRunning instance = null;
@@ -23,6 +25,9 @@ public class GameRunning : IGameState {
     private int balls;
     private ScoreBoard scoreBoard;
     private readonly int NUM_LEVELS = 4;
+    //
+    private EffectItemHandler effectItemHandler;
+
     public static GameRunning GetInstance() {
         if (GameRunning.instance == null) {
             GameRunning.instance = new GameRunning();
@@ -67,6 +72,11 @@ public class GameRunning : IGameState {
         InitScoreBoard();
         ChangeLevel();
         balls = 2;
+        //
+        effectItemHandler = EffectItemHandler.GetInstance();
+        effectItemHandler.SetResponseTo(
+            "EXTRA_LIFE",
+            () => Console.WriteLine("Power-Up received: EXTRA_LIFE"));
     }
 
     private void ChangeLevel() {
@@ -205,6 +215,13 @@ public class GameRunning : IGameState {
                         ball.UpdateDirection(CollisionDirection.CollisionDirUnchecked, new Vec2F(X, 1));
                     }
                 }
+                // Not finished implementing all this stuff,
+                // i just want to merge now
+                EffectItem item = new EffectItemFactory().ExtraLife();
+                eventBus.RegisterTimedEvent(
+                    item.ActivationEvent.GameEvent,
+                    TimePeriod.NewMilliseconds(0)
+                );
                 break;
             default:
                 break;

@@ -60,13 +60,6 @@ public class EventBuilder {
             throw new ArgumentException(
                 "Events must specify an event type using WithType()");
         }
-        if (_gameStateType is null &&
-            _key is null) {
-            throw new ArgumentException(
-                "Events must provide either a KeyboardKey " +
-                "or a GameStateType"
-            );
-        }
 
         GameEvent ev = new GameEvent();
         // Required fields
@@ -79,7 +72,7 @@ public class EventBuilder {
             ev.From = _gameStateType;
         }
         if (!(_message is null)) {
-            ev.StringArg1 = _message;
+            ev.Message = _message;
         }
         if (!(_action is null)) {
             ev.IntArg1 = _action.Value;

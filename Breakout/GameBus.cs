@@ -18,7 +18,8 @@ public static class GameBus {
                 GameEventType.InputEvent,
                 GameEventType.WindowEvent,
                 GameEventType.PlayerEvent,
-                GameEventType.GameStateEvent
+                GameEventType.GameStateEvent,
+                GameEventType.StatusEvent,
             }
         );
         return eventBus;

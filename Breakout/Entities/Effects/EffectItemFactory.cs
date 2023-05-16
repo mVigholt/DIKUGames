@@ -15,7 +15,6 @@ using Breakout.Events;
 public class EffectItemFactory {
 
     private readonly int STD_DURATION = 5000;
-    
 
     private TimedGameEvent CreateTimedEvent(string message) {
         GameEvent ev = new EventBuilder()
