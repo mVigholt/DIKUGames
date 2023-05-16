@@ -41,7 +41,7 @@ public class ButtonSwitch {
         }
         menuButtons[activeMenuButton].ActiveButton();
     }
-    public void KeyPress(KeyboardKey key, GameStateType currentState) {
+    public void KeyPress(KeyboardKey key) {
         switch (key) {
             case KeyboardKey.Up:
                 foreach (Button i in this.menuButtons) {
