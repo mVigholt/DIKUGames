@@ -19,26 +19,23 @@ public class ButtonSwitch {
 
     public ButtonSwitch(Button button1) {
         this.menuButtons = new Button[]{button1};
-        maxMenuButtons = menuButtons.Length;
         initialButtons();
     }
     public ButtonSwitch(Button button1, Button button2) {
         this.menuButtons = new Button[]{button1, button2};
-        maxMenuButtons = menuButtons.Length;
         initialButtons();
     }
     public ButtonSwitch(Button button1, Button button2, Button button3) {
         this.menuButtons = new Button[]{button1, button2, button3};
-        maxMenuButtons = menuButtons.Length;
         initialButtons();
     }
     public ButtonSwitch(params Button[] buttons) {
         this.menuButtons = buttons;
-        maxMenuButtons = menuButtons.Length;
         initialButtons();
     }
 
     private void initialButtons() {
+        maxMenuButtons = menuButtons.Length;
         foreach (Button i in menuButtons) {
             i.InactiveButton();
         }
