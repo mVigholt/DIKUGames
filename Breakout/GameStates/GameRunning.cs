@@ -71,12 +71,16 @@ public class GameRunning : IGameState {
     public void ResetState() {
         InitScoreBoard();
         ChangeLevel();
+<<<<<<< HEAD
         balls = 2;
         //
         effectItemHandler = EffectItemHandler.GetInstance();
         effectItemHandler.SetResponseTo(
             "EXTRA_LIFE",
             () => Console.WriteLine("Power-Up received: EXTRA_LIFE"));
+=======
+        balls = 1;
+>>>>>>> main
     }
 
     private void ChangeLevel() {
