@@ -24,7 +24,7 @@ public class EventBuilder {
     private Nullable<int> _action;
     // Strings and objects are already nullable
     private object _key;
-    private string _debugString;
+    private string _message;
     private object _gameStateType; // Using Event.from
 
     public EventBuilder() {
@@ -50,8 +50,8 @@ public class EventBuilder {
         return this;
     }
 
-    public EventBuilder WithString(string debugString) {
-        _debugString = debugString;
+    public EventBuilder WithMessage(string message) {
+        _message = message;
         return this;
     }
 
@@ -78,8 +78,8 @@ public class EventBuilder {
         if (!(_gameStateType is null)) {
             ev.From = _gameStateType;
         }
-        if (!(_debugString is null)) {
-            ev.StringArg1 = _debugString;
+        if (!(_message is null)) {
+            ev.StringArg1 = _message;
         }
         if (!(_action is null)) {
             ev.IntArg1 = _action.Value;

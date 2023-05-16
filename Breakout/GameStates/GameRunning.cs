@@ -33,11 +33,9 @@ public class GameRunning : IGameState {
 
     private void InitShuttle() {
         Vec2F playerPosition = new Vec2F(0.5f - Shuttle.STD_EXTEND.X / 2, 0.03f);
-
         IBaseImage image = new Image(
             Path.Combine(PathFinder.Images(), "player.png")
         );
-
         shuttle = Shuttle.NewShuttle(playerPosition, image);
     }
 

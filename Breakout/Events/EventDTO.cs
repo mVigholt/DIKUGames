@@ -27,7 +27,7 @@ public class EventDTO {
     public readonly Nullable<KeyboardKey> Key = null;
     public readonly Nullable<GameStateType> StateType = null;
     public readonly Nullable<KeyboardAction> Action = null;
-    public readonly string DebugString;
+    public readonly string Message;
 
     public EventDTO(GameEvent ev) {
         // This code is ugly so the callers' code
@@ -44,6 +44,6 @@ public class EventDTO {
         } else {
             Action = (KeyboardAction) ev.IntArg1;
         }
-        DebugString = ev.StringArg1;
+        Message = ev.StringArg1;
     }
 }
