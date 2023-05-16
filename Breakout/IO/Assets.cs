@@ -1,6 +1,5 @@
 namespace Breakout.IO;
 
-using System.Collections.Generic;
 using System.IO;
 using DIKUArcade.Graphics;
 
