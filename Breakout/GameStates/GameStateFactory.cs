@@ -6,7 +6,6 @@ using DIKUArcade.Math;
 using DIKUArcade.State;
 
 public class GameStateFactory : IGameState {
-    private static GameWon instance = null;
     private Text titleText;
     private string Text;
     private BackGround backGround;
@@ -44,10 +43,10 @@ public class GameStateFactory : IGameState {
     }
 
     public void ResetState() {
-        GameLost.GetInstance();
+        buttonSwitch.activeMenuButton = 0;
     }
 
     public void UpdateState() {
-        GameLost.GetInstance();
+
     }
 }
