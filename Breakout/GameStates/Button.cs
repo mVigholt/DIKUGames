@@ -40,6 +40,8 @@ public class Button : Text
                 return GameStateType.GameLost;
             case "New Game":
                 return GameStateType.GameRunning;
+            case "Continue":
+                return GameStateType.GameRunning;
             default:
                 return GameStateType.MainMenu;
         }
