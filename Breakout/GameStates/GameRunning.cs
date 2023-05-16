@@ -68,7 +68,7 @@ public class GameRunning : IGameState {
     public void ResetState() {
         InitScoreBoard();
         ChangeLevel();
-        balls = 2;
+        balls = 1;
     }
 
     private void ChangeLevel() {

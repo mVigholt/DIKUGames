@@ -1,5 +1,6 @@
 namespace Breakout.GameStates;
 
+using System;
 using Breakout.Events;
 using DIKUArcade.Events;
 using DIKUArcade.State;
@@ -36,19 +37,13 @@ public class StateMachine : IGameEventProcessor {
                 ActiveState.ResetState();
                 break;
             case (GamePaused, GameStateType.MainMenu):
+            case (GameLost, GameStateType.MainMenu):
+            case (GameWon, GameStateType.MainMenu):
                 ActiveState = MainMenu.GetInstance();
                 ActiveState.ResetState();
                 break;
             case (GamePaused, GameStateType.GameRunning):
                 ActiveState = GameRunning.GetInstance();
-                break;
-            case (GameLost, GameStateType.MainMenu):
-                ActiveState = MainMenu.GetInstance();
-                ActiveState.RenderState();
-                break;
-            case (GameWon, GameStateType.MainMenu):
-                ActiveState = MainMenu.GetInstance();
-                ActiveState.RenderState();
                 break;
             default:
                 break;
