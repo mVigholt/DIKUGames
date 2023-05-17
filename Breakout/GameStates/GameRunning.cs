@@ -220,18 +220,23 @@ public class GameRunning : IGameState {
                 }
                 // Not finished implementing all this stuff,
                 // i just want to merge now
-                Block testBlock = new Block.Builder()
-                    .WithPosition(new Vec2F(0.5f, 0.5f))
-                    .WithImage(Assets.LoadImage("red-block.png"))
-                    .WithPowerUp()
-                    .Build();
+                Vec2F pos = new Vec2F(0.5f, 0.5f);
                 EffectItemFactory factory = new EffectItemFactory();
-                EffectItem extraPoints = factory.ExtraPoints(testBlock.GetPosition());
-                factory.AddPowerUp(extraPoints);
+                factory.AddPowerUp(factory.ExtraPoints(pos));
+                factory.AddPowerUp(factory.Wide(pos));
+                Block testBlock = new Block.Builder()
+                    .WithPosition(pos)
+                    .WithImage(Assets.LoadImage("red-block.png"))
+                    .WithEffectItem(factory.RandomPowerUp(pos))
+                    .Build();
 
                 // Below here is yet to change. For now it's a mess.
                 // We should try to get the powerup/hazard from the block
                 // and register its event(s)
+                EffectItem itemFromBlock = testBlock.build.effectItem;
+                GameEvent eventFromItem = itemFromBlock.ActivationEvent;
+                Console.WriteLine("da type: " + itemFromBlock.GetType());
+                // Problem is: Factory has no effectitems
                 GameEvent ev = new EventBuilder()
                     .WithType(GameEventType.StatusEvent)
                     .WithMessage(EffectItemType.ExtraPoints.ToString())

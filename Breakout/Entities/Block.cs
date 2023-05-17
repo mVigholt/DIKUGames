@@ -52,8 +52,6 @@ public class Block : MoveableEntity {
         public bool isUnbreakable = false;
         public bool isHardened = false;
         public int value;
-        private bool withPowerUp = false;
-        private bool withHazard = false;
         public EffectItem effectItem;
 
         public Builder() {
@@ -93,12 +91,8 @@ public class Block : MoveableEntity {
             return this;
         }
 
-        public Builder WithPowerUp() {
-            // Since a powerup needs a position, we will
-            // instantiate it in Build(). 
-            // This way, we avoid creating a scenario where
-            // the order in which you call WithX()-methods matters.
-            this.withPowerUp = true;
+        public Builder WithEffectItem(EffectItem powerUp) {
+            this.effectItem = powerUp;
             return this;
         }
 
@@ -110,14 +104,6 @@ public class Block : MoveableEntity {
             }
             if (this.alterImage == null) {
                 this.alterImage = this.image;
-            }
-            if (withPowerUp) {
-                // Replace with RandomPowerUp()
-                this.effectItem = new EffectItemFactory().RandomPowerUp(position);
-            }
-            else if (withHazard) {
-                // Replace with RandomHazard()
-                this.effectItem = new EffectItemFactory().ExtraPoints(position);
             }
 
             return new Block(this);
