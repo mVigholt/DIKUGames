@@ -4,6 +4,8 @@ using System;
 using DIKUArcade.Entities;
 using DIKUArcade.Graphics;
 using DIKUArcade.Math;
+using Breakout.Entities.Effects;
+
 
 public class Block : MoveableEntity {
     public static readonly Vec2F STD_EXTEND = new Vec2F(0.083f, 0.041f);
@@ -50,6 +52,9 @@ public class Block : MoveableEntity {
         public bool isUnbreakable = false;
         public bool isHardened = false;
         public int value;
+        private bool withPowerUp = false;
+        private bool withHazard = false;
+        public EffectItem effectItem;
 
         public Builder() {
         }
@@ -88,15 +93,31 @@ public class Block : MoveableEntity {
             return this;
         }
 
+        public Builder WithPowerUp() {
+            // Since a powerup needs a position, we will
+            // instantiate it in Build(). 
+            // This way, we avoid creating a scenario where
+            // the order in which you call WithX()-methods matters.
+            this.withPowerUp = true;
+            return this;
+        }
+
         public Block Build() {
             // Required arguments
             if (position is null || image is null) {
                 throw new ArgumentException(
                     "A brick must have a position and a image");
             }
-
             if (this.alterImage == null) {
                 this.alterImage = this.image;
+            }
+            if (withPowerUp) {
+                // Replace with RandomPowerUp()
+                this.effectItem = new EffectItemFactory().ExtraLife(position);
+            }
+            else if (withHazard) {
+                // Replace with RandomHazard()
+                this.effectItem = new EffectItemFactory().ExtraLife(position);
             }
 
             return new Block(this);

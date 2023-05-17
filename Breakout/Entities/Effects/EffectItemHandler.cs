@@ -12,7 +12,6 @@ public class EffectItemHandler : IGameEventProcessor {
     private Dictionary<string, Action> _responses;
 
     private EffectItemHandler() {
-        GameBus.GetBus().Subscribe(GameEventType.StatusEvent, this);
         _responses = new Dictionary<string, Action>();
     }
 

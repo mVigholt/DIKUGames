@@ -30,7 +30,7 @@ public class GameRunning : IGameState {
     public static GameRunning GetInstance() {
         if (GameRunning.instance == null) {
             GameRunning.instance = new GameRunning();
-            GameRunning.instance.ResetState();
+            // GameRunning.instance.ResetState();
         }
         return GameRunning.instance;
     }
@@ -68,10 +68,13 @@ public class GameRunning : IGameState {
     }
 
     public void ResetState() {
+        Console.WriteLine("Resetstate");
         InitScoreBoard();
         ChangeLevel();
         balls = 2;
         effectItemHandler = EffectItemHandler.GetInstance();
+        eventBus.Unsubscribe(GameEventType.StatusEvent, effectItemHandler);
+        eventBus.Subscribe(GameEventType.StatusEvent, effectItemHandler);
         effectItemHandler.SetResponseTo(
             "EXTRA_LIFE",
             () => Console.WriteLine("Power-Up received: EXTRA_LIFE"));
@@ -215,9 +218,13 @@ public class GameRunning : IGameState {
                 }
                 // Not finished implementing all this stuff,
                 // i just want to merge now
-                EffectItem item = new EffectItemFactory().ExtraLife();
+                EffectItem item = new EffectItemFactory().ExtraLife(new Vec2F(0.1f, 0.1f));
+                GameEvent ev = new EventBuilder()
+                    .WithType(GameEventType.StatusEvent)
+                    .WithMessage("EXTRA_LIFE")
+                    .Build();
                 eventBus.RegisterTimedEvent(
-                    item.ActivationEvent.GameEvent,
+                    ev,
                     TimePeriod.NewMilliseconds(0)
                 );
                 break;
