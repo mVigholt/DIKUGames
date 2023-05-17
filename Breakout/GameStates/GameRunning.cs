@@ -12,6 +12,7 @@ using DIKUArcade.State;
 using DIKUArcade.Timers;
 using Breakout.Entities;
 using Breakout.Entities.Effects;
+using Breakout.Entities.Effects.PowerUps;
 using Breakout.Events;
 using Breakout.IO;
 using Breakout.Levels;
@@ -68,16 +69,17 @@ public class GameRunning : IGameState {
     }
 
     public void ResetState() {
-        Console.WriteLine("Resetstate");
         InitScoreBoard();
         ChangeLevel();
         balls = 2;
         effectItemHandler = EffectItemHandler.GetInstance();
+        effectItemHandler.AddEventHandler(new ExtraPoints(scoreBoard));
         eventBus.Unsubscribe(GameEventType.StatusEvent, effectItemHandler);
         eventBus.Subscribe(GameEventType.StatusEvent, effectItemHandler);
-        effectItemHandler.SetResponseTo(
-            "EXTRA_LIFE",
-            () => Console.WriteLine("Power-Up received: EXTRA_LIFE"));
+
+        // effectItemHandler.SetResponseTo(
+        //     "EXTRA_LIFE",
+        //     () => Console.WriteLine("Power-Up received: EXTRA_LIFE"));
     }
 
     private void ChangeLevel() {
@@ -218,10 +220,21 @@ public class GameRunning : IGameState {
                 }
                 // Not finished implementing all this stuff,
                 // i just want to merge now
-                EffectItem item = new EffectItemFactory().ExtraLife(new Vec2F(0.1f, 0.1f));
+                Block testBlock = new Block.Builder()
+                    .WithPosition(new Vec2F(0.5f, 0.5f))
+                    .WithImage(Assets.LoadImage("red-block.png"))
+                    .WithPowerUp()
+                    .Build();
+                EffectItemFactory factory = new EffectItemFactory();
+                EffectItem extraPoints = factory.ExtraPoints(testBlock.GetPosition());
+                factory.AddPowerUp(extraPoints);
+
+                // Below here is yet to change. For now it's a mess.
+                // We should try to get the powerup/hazard from the block
+                // and register its event(s)
                 GameEvent ev = new EventBuilder()
                     .WithType(GameEventType.StatusEvent)
-                    .WithMessage("EXTRA_LIFE")
+                    .WithMessage(EffectItemType.ExtraPoints.ToString())
                     .Build();
                 eventBus.RegisterTimedEvent(
                     ev,

@@ -113,11 +113,11 @@ public class Block : MoveableEntity {
             }
             if (withPowerUp) {
                 // Replace with RandomPowerUp()
-                this.effectItem = new EffectItemFactory().ExtraLife(position);
+                this.effectItem = new EffectItemFactory().RandomPowerUp(position);
             }
             else if (withHazard) {
                 // Replace with RandomHazard()
-                this.effectItem = new EffectItemFactory().ExtraLife(position);
+                this.effectItem = new EffectItemFactory().ExtraPoints(position);
             }
 
             return new Block(this);

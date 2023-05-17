@@ -9,14 +9,14 @@ using Breakout.Events;
 public class EffectItemHandler : IGameEventProcessor {
 
     private static EffectItemHandler instance = null;
-    private Dictionary<string, Action> _responses;
+    private Dictionary<EffectItemType, IEffect> _effects;
 
     private EffectItemHandler() {
-        _responses = new Dictionary<string, Action>();
+        _effects = new Dictionary<EffectItemType, IEffect>();
     }
 
-    public void SetResponseTo(string message, Action action) {
-        _responses[message] = action;
+    public void AddEventHandler(IEffect effect) {
+        _effects[effect.Type] = effect;
     }
 
     public static EffectItemHandler GetInstance() {
@@ -27,13 +27,9 @@ public class EffectItemHandler : IGameEventProcessor {
     }
 
     public void ProcessEvent(GameEvent gameEvent) {
-        EventDTO ev = new EventDTO(gameEvent);
-        if (!(_responses.ContainsKey(ev.Message))) {
-            Console.WriteLine(
-                $"EffectItemHandler does not have a response for: {ev.Message}"
-            );
-            return;
-        }
-        _responses[ev.Message]();
+        string msg = gameEvent.Message;
+        EffectItemType type;
+        Enum.TryParse<EffectItemType>(gameEvent.Message, out type);
+        Console.WriteLine("Type is " + type.ToString());
     }
 }

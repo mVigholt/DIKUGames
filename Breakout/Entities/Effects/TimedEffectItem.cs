@@ -6,11 +6,14 @@ using DIKUArcade.Events;
 
 public class TimedEffectItem : EffectItem {
 
+    public override EffectItemType Type { get; }
     public override GameEvent ActivationEvent { get; }
     public virtual GameEvent DeactivationEvent { get; }
     public virtual int TimeLeft { get; }
 
+
     public TimedEffectItem(
+        EffectItemType type,
         DynamicShape shape,
         IBaseImage image,
         GameEvent activationEvent,
@@ -19,6 +22,7 @@ public class TimedEffectItem : EffectItem {
     )
         : base(shape, image, activationEvent) {
         // Consider a builder
+        Type = type;
         DeactivationEvent = deactivationEvent;
         TimeLeft = timeLeft;
     }

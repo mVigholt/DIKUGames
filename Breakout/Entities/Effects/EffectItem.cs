@@ -7,6 +7,7 @@ using Breakout.Events;
 
 public abstract class EffectItem : MoveableEntity
 {
+    public abstract EffectItemType Type { get; }
     public abstract GameEvent ActivationEvent { get; }
 
     // Todo: Should not receive argument ev

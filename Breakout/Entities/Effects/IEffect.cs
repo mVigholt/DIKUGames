@@ -1,6 +1,7 @@
 namespace Breakout.Entities.Effects;
 
 
-public interface IInstantEffect {
+public interface IEffect {
+    EffectItemType Type { get; }
     void Activate();
 }
