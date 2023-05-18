@@ -6,7 +6,6 @@ using DIKUArcade.Timers;
 // An easily tested powerup
 public class Wide : ITimedEffect {
 
-    private ScoreBoard _scoreBoard;
     private EffectItemType _type = EffectItemType.Wide;
 
     public TimePeriod TimeLeft { get; }

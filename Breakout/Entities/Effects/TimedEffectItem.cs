@@ -23,6 +23,7 @@ public class TimedEffectItem : EffectItem {
         : base(shape, image, activationEvent) {
         // Consider a builder
         Type = type;
+        ActivationEvent = activationEvent;
         DeactivationEvent = deactivationEvent;
         TimeLeft = timeLeft;
     }

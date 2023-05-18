@@ -52,7 +52,7 @@ public class EffectItemFactory {
         }
         int index = random.Next(_powerUps.Count);
         EffectItemType randomType = _powerUps.Keys.ToList()[index];
-        Console.WriteLine($"i: {index}: count: {_powerUps.Count}, random: {randomType.ToString()}");
+        Console.WriteLine("Randomly chose " + _powerUps[randomType].Type + ", " + _powerUps[randomType].ActivationEvent.Message);
         return _powerUps[randomType];
     }
 

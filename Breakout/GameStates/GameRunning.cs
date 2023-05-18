@@ -235,14 +235,8 @@ public class GameRunning : IGameState {
                 // and register its event(s)
                 EffectItem itemFromBlock = testBlock.build.effectItem;
                 GameEvent eventFromItem = itemFromBlock.ActivationEvent;
-                Console.WriteLine("da type: " + itemFromBlock.GetType());
-                // Problem is: Factory has no effectitems
-                GameEvent ev = new EventBuilder()
-                    .WithType(GameEventType.StatusEvent)
-                    .WithMessage(EffectItemType.ExtraPoints.ToString())
-                    .Build();
                 eventBus.RegisterTimedEvent(
-                    ev,
+                    eventFromItem,
                     TimePeriod.NewMilliseconds(0)
                 );
                 break;

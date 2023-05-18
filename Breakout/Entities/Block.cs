@@ -91,8 +91,8 @@ public class Block : MoveableEntity {
             return this;
         }
 
-        public Builder WithEffectItem(EffectItem powerUp) {
-            this.effectItem = powerUp;
+        public Builder WithEffectItem(EffectItem effectItem) {
+            this.effectItem = effectItem;
             return this;
         }
 
