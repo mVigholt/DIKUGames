@@ -72,8 +72,9 @@ public class GameRunning : IGameState {
     public void InitEffectItems() {
         effectItemHandler = EffectItemHandler.GetInstance();
         effectItemHandler.AddEventHandler(new ExtraPoints(scoreBoard));
-        effectItemHandler.AddEventHandler(new Wide());
+        effectItemHandler.AddEventHandler(new Wide(shuttle));
         effectItemHandler.AddEventHandler(new SlowDown(shuttle));
+        effectItemHandler.AddEventHandler(new ExtraBalls(activeBalls, shuttle));
         eventBus.Unsubscribe(GameEventType.StatusEvent, effectItemHandler);
         eventBus.Subscribe(GameEventType.StatusEvent, effectItemHandler);
         fallingItems = new EntityContainer<EffectItem>();
@@ -242,35 +243,13 @@ public class GameRunning : IGameState {
             case KeyboardKey.Space:
                 //release ball
                 foreach (Ball ball in activeBalls) {
+                    Console.WriteLine("ball");
                     if (ball.GetDirection().Length() == new Vec2F(0, 0).Length()) {
                         var X = shuttle.GetDirection().X;
                         X = X != 0 ? (X > 0 ? 1 : -1) : 0;
                         ball.UpdateDirection(CollisionDirection.CollisionDirUnchecked, new Vec2F(X, 1));
                     }
                 }
-                // Not finished implementing all this stuff,
-                // i just want to merge now
-
-                // Vec2F pos = new Vec2F(0.5f, 0.5f);
-                // EffectItemFactory factory = new EffectItemFactory();
-                // factory.AddPowerUp(factory.ExtraPoints);
-                // factory.AddPowerUp(factory.Wide);
-                // Block testBlock = new Block.Builder()
-                //     .WithPosition(pos)
-                //     .WithImage(Assets.LoadImage("red-block.png"))
-                //     .WithEffectItem(factory.RandomPowerUp(pos))
-                //     .Build();
-
-                // Below here is yet to change. For now it's a mess.
-                // We should try to get the powerup/hazard from the block
-                // and register its event(s)
-
-                // EffectItem itemFromBlock = testBlock.build.effectItem;
-                // GameEvent eventFromItem = itemFromBlock.ActivationEvent;
-                // eventBus.RegisterTimedEvent(
-                //     eventFromItem,
-                //     TimePeriod.NewMilliseconds(0)
-                // );
                 break;
             default:
                 break;

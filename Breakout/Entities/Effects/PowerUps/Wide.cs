@@ -9,8 +9,10 @@ public class Wide : ITimedEffect {
     public TimePeriod TimeLeft { get; }
 
     public EffectItemType Type { get { return _type; } }
+    private Shuttle _shuttle;
 
-    public Wide() {
+    public Wide(Shuttle shuttle) {
+        _shuttle = shuttle;
         TimeLeft = TimePeriod.NewSeconds(5);
     }
 

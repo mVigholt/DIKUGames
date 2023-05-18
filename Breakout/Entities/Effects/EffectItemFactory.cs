@@ -127,6 +127,12 @@ public class EffectItemFactory {
         );
     }
 
+    public InstantEffectItem ExtraBalls(Vec2F pos) {
+        return CreateInstantEffectItem(
+            pos, "ExtraBallPowerUp.png", EffectItemType.ExtraBalls
+        );
+    }
+
     /// <summary>
     /// Hazard: The shuttle's movement speed increases for a while
     /// </summary>

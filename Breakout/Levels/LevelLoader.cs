@@ -30,8 +30,9 @@ public class LevelLoader {
         // have to do with time.
         // For now this is just hardcoded, so we can easily
         // change it, once we know more.
-        eiFactory.AddPowerUp(eiFactory.ExtraPoints);
+        // eiFactory.AddPowerUp(eiFactory.ExtraPoints);
         eiFactory.AddPowerUp(eiFactory.Wide);
+        eiFactory.AddPowerUp(eiFactory.ExtraBalls);
         eiFactory.AddHazard(eiFactory.SlowDown);
     }
 

@@ -19,12 +19,14 @@ public class SlowDown : ITimedEffect {
     }
 
     public void Activate() {
-        _shuttle.Shape.AsDynamicShape().Direction.X *= SCALAR;
+        // _shuttle.Shape.AsDynamicShape().Direction.X *= SCALAR;
+        _shuttle.Speed *= SCALAR;
         System.Console.WriteLine("PowerUp: SlowDown");
     }
 
     public void Deactivate() {
-        _shuttle.Shape.AsDynamicShape().Direction.X /= SCALAR;
+        // _shuttle.Shape.AsDynamicShape().Direction.X /= SCALAR;
+        _shuttle.Speed /= SCALAR;
         System.Console.WriteLine("PowerUp: SlowDown deactivated");
     }
 }
