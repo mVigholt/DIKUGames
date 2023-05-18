@@ -20,14 +20,14 @@ using Breakout.Events;
 /// To do that, add their creation methods
 /// to the factory like so:
 /// 
-/// var factory = new EffectItemFactory();
-/// factory.AddPowerUp(factory.Wide);
-/// factory.AddPowerUp(factory.ExtraLife);
+///     var factory = new EffectItemFactory();
+///     factory.AddPowerUp(factory.Wide);
+///     factory.AddPowerUp(factory.ExtraLife);
 /// 
 /// When you want a random power-up, you can
 /// get one from the collection by calling
 /// 
-/// factory.RandomPowerUp(pos)
+///     factory.RandomPowerUp(pos)
 ///
 /// where pos is a position, typically of a Block.
 /// </summary>
@@ -111,7 +111,7 @@ public class EffectItemFactory {
     public TimedEffectItem Wide(Vec2F pos) {
         return CreateTimedEffectItem(
             pos, "heart_empty.png", EffectItemType.Wide
-        );   
+        );
     }
 
     private InstantEffectItem CreateInstantEffectItem(

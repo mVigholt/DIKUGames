@@ -9,6 +9,7 @@ using DIKUArcade.Math;
 using Breakout.Entities;
 using Breakout.IO;
 using Breakout.Entities.Effects;
+using Breakout.Graphics;
 
 
 public class LevelLoader {
@@ -52,6 +53,12 @@ public class LevelLoader {
                     string baseName = filenameParts[0];
                     string fileExt = filenameParts[1];
                     string alterImgFileName = $"{baseName}-damaged.{fileExt}";
+                    
+                    string overlayFilename = "BigPowerUp.png";
+                    OverlayImage overlayImage = new OverlayImage(imgFileName, overlayFilename);
+                    OverlayImage overlayAltImage = new OverlayImage(alterImgFileName, overlayFilename);
+                    
+
                     Image image;
                     try {
                         image = Assets.LoadImage(imgFileName);
@@ -64,7 +71,8 @@ public class LevelLoader {
                     }
                     // :: My powerup would be added here
                     var builder = new Block.Builder()
-                            .WithImage(Assets.LoadImage(imgFileName))
+                            .WithImage(overlayImage)
+                            // .WithImage(Assets.LoadImage(imgFileName))
                             .WithAlterImage(Assets.LoadImage(alterImgFileName))
                             .WithPosition(new Vec2F(c * xExtent, 1 - r * yExtent))
                             .WithValue(1);
