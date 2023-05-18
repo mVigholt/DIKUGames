@@ -12,8 +12,26 @@ using Breakout.IO;
 using Breakout.Events;
 
 
+/// <summary>
+/// Create EffectItems (power-ups and hazards).
+/// To use this factory, you should configure it
+/// to include the power-ups and hazards you want
+/// in your level.
+/// To do that, add their creation methods
+/// to the factory like so:
+/// 
+/// var factory = new EffectItemFactory();
+/// factory.AddPowerUp(factory.Wide);
+/// factory.AddPowerUp(factory.ExtraLife);
+/// 
+/// When you want a random power-up, you can
+/// get one from the collection by calling
+/// 
+/// factory.RandomPowerUp(pos)
+///
+/// where pos is a position, typically of a Block.
+/// </summary>
 public class EffectItemFactory {
-    // It is not clear what this factory should produce
 
     private readonly int STD_DURATION = 5000;
     private readonly Vec2F STD_EXTENT = new Vec2F(0.05f, 0.05f);
@@ -27,17 +45,22 @@ public class EffectItemFactory {
         _hazardCreators = new Dictionary<EffectItemType, Func<Vec2F, EffectItem>>();
     }
 
-    private GameEvent CreateEvent(EffectItemType type) {
-        return new EventBuilder()
-            .WithType(GameEventType.StatusEvent)
-            .WithMessage(type.ToString())
-            .Build();
-    }
-
+    /// <summary>
+    /// Add a factory method to the collection of available power-up
+    /// creation methods.
+    /// </summary>
+    /// <param name="creationMethod">
+    /// A factory method that creates an EffectItem based on a position,
+    /// such as effectItemFactory.Wide
+    /// </param>
     public void AddPowerUp(Func<Vec2F, EffectItem> creationMethod) {
         AddEffectItem(creationMethod, _powerUpCreators);
     }
 
+    /// <summary>
+    /// Add a factory method to the collection of available power-up
+    /// creation methods.
+    /// </summary>
     public void AddHazard(Func<Vec2F, EffectItem> creationMethod) {
         AddEffectItem(creationMethod, _hazardCreators);
     }
@@ -46,11 +69,13 @@ public class EffectItemFactory {
         Func<Vec2F, EffectItem> creationMethod,
         Dictionary<EffectItemType, Func<Vec2F, EffectItem>> creators
     ) {
-        EffectItem temp = creationMethod(new Vec2F(-1f, -1f));
+        Vec2F arbitraryPos = new Vec2F(-1f, -1f);
+        EffectItem temp = creationMethod(arbitraryPos);
         EffectItemType type = temp.Type;
         creators[temp.Type] = creationMethod;
     }
 
+    /// <summary>Get a random power-up placed at a given position</summary>
     public EffectItem RandomPowerUp(Vec2F pos) {
         if (_powerUpCreators.Count == 0) {
             throw new Exception(
@@ -65,7 +90,29 @@ public class EffectItemFactory {
         return powerUp;
     }
 
+    /// <summary>Get a random hazard placed at a given position</summary>
     public void RandomHazard() {}
+
+    /// <summary>
+    /// Power-up: Get some extra points.
+    /// This was added for testing purposes, because it is
+    /// easy to test.
+    /// </summary>
+    public InstantEffectItem ExtraPoints(Vec2F pos) {
+        return CreateInstantEffectItem(
+            pos, "heart_filled.png", EffectItemType.ExtraPoints
+        );
+    }
+
+
+    /// <summary>
+    /// Power-up: The shuttle gets wider for a time duration
+    /// </summary>
+    public TimedEffectItem Wide(Vec2F pos) {
+        return CreateTimedEffectItem(
+            pos, "heart_empty.png", EffectItemType.Wide
+        );   
+    }
 
     private InstantEffectItem CreateInstantEffectItem(
         Vec2F pos,
@@ -92,15 +139,10 @@ public class EffectItemFactory {
         return new TimedEffectItem(type, shape, image, activationEvent, deactivationEvent, 5000);
     }
 
-    public InstantEffectItem ExtraPoints(Vec2F pos) {
-        return CreateInstantEffectItem(
-            pos, "heart_filled.png", EffectItemType.ExtraPoints
-        );
-    }
-
-    public TimedEffectItem Wide(Vec2F pos) {
-        return CreateTimedEffectItem(
-            pos, "heart_empty.png", EffectItemType.Wide
-        );   
+    private GameEvent CreateEvent(EffectItemType type) {
+        return new EventBuilder()
+            .WithType(GameEventType.StatusEvent)
+            .WithMessage(type.ToString())
+            .Build();
     }
 }
