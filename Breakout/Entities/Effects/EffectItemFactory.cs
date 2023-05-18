@@ -19,12 +19,12 @@ public class EffectItemFactory {
     private readonly Vec2F STD_EXTENT = new Vec2F(0.05f, 0.05f);
     private Random random = new Random();
     // private Dictionary<EffectItemType, EffectItem> _availableItems;
-    private Dictionary<EffectItemType, EffectItem> _powerUps;
-    private Dictionary<EffectItemType, EffectItem> _hazards;
+    private Dictionary<EffectItemType, Func<Vec2F, EffectItem>> _powerUpCreators;
+    private Dictionary<EffectItemType, Func<Vec2F, EffectItem>> _hazardCreators;
 
     public EffectItemFactory() {
-        _powerUps = new Dictionary<EffectItemType, EffectItem>();
-        _hazards = new Dictionary<EffectItemType, EffectItem>();
+        _powerUpCreators = new Dictionary<EffectItemType, Func<Vec2F, EffectItem>>();
+        _hazardCreators = new Dictionary<EffectItemType, Func<Vec2F, EffectItem>>();
     }
 
     private GameEvent CreateEvent(EffectItemType type) {
@@ -34,47 +34,56 @@ public class EffectItemFactory {
             .Build();
     }
 
-    public void AddPowerUp(EffectItem powerUp) {
-        _powerUps[powerUp.Type] = powerUp;
+    public void AddPowerUp(Func<Vec2F, EffectItem> creationMethod) {
+        AddEffectItem(creationMethod, _powerUpCreators);
     }
 
-    public void AddHazard(EffectItem hazard) {
-        _hazards[hazard.Type] = hazard;
+    public void AddHazard(Func<Vec2F, EffectItem> creationMethod) {
+        AddEffectItem(creationMethod, _hazardCreators);
+    }
+
+    private void AddEffectItem(
+        Func<Vec2F, EffectItem> creationMethod,
+        Dictionary<EffectItemType, Func<Vec2F, EffectItem>> creators
+    ) {
+        EffectItem temp = creationMethod(new Vec2F(-1f, -1f));
+        EffectItemType type = temp.Type;
+        creators[temp.Type] = creationMethod;
     }
 
     public EffectItem RandomPowerUp(Vec2F pos) {
-        if (_powerUps.Count == 0) {
+        if (_powerUpCreators.Count == 0) {
             throw new Exception(
                 "Cannot choose a random power-up.\n" +
                 "Use EffectItemFactory.AddPowerUp to add more available powerups " +
                 "for the factory to choose from. You have 0."
             );
         }
-        int index = random.Next(_powerUps.Count);
-        EffectItemType randomType = _powerUps.Keys.ToList()[index];
-        EffectItem powerUp = _powerUps[randomType];
-        EffectItem correctlyPlaced = (EffectItem)powerUp.Clone();
-        correctlyPlaced.Shape.SetPosition(pos);
-        return correctlyPlaced;
+        int index = random.Next(_powerUpCreators.Count);
+        EffectItemType randomType = _powerUpCreators.Keys.ToList()[index];
+        EffectItem powerUp = _powerUpCreators[randomType](pos);
+        return powerUp;
     }
 
     public void RandomHazard() {}
 
     private InstantEffectItem CreateInstantEffectItem(
+        Vec2F pos,
         string imageFilename,
         EffectItemType type
     ) {
-        DynamicShape shape = new DynamicShape(new Vec2F(-1f, -1f), STD_EXTENT);
+        DynamicShape shape = new DynamicShape(pos, STD_EXTENT);
         Image image = Assets.LoadImage(imageFilename);
         GameEvent ev = CreateEvent(type);
         return new InstantEffectItem(type, shape, image, ev);
     }
 
     private TimedEffectItem CreateTimedEffectItem(
+        Vec2F pos,
         string imageFilename,
         EffectItemType type
     ) {
-        DynamicShape shape = new DynamicShape(new Vec2F(-1f, -1f), STD_EXTENT);
+        DynamicShape shape = new DynamicShape(pos, STD_EXTENT);
         Image image = Assets.LoadImage(imageFilename);
         GameEvent activationEvent = CreateEvent(type);
         EffectItemType deactivationType;
@@ -83,16 +92,15 @@ public class EffectItemFactory {
         return new TimedEffectItem(type, shape, image, activationEvent, deactivationEvent, 5000);
     }
 
-    public InstantEffectItem ExtraPoints() {
+    public InstantEffectItem ExtraPoints(Vec2F pos) {
         return CreateInstantEffectItem(
-            "heart_filled.png", EffectItemType.ExtraPoints
+            pos, "heart_filled.png", EffectItemType.ExtraPoints
         );
     }
 
-    public TimedEffectItem Wide() {
+    public TimedEffectItem Wide(Vec2F pos) {
         return CreateTimedEffectItem(
-            "heart_empty.png", EffectItemType.Wide
-        );
-        
+            pos, "heart_empty.png", EffectItemType.Wide
+        );   
     }
 }
