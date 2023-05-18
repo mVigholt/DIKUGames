@@ -42,7 +42,6 @@ public class MoveableEntity : Entity {
         float hyp = (float) System.Math.Sqrt(System.Math.Pow(vector.X, 2) + System.Math.Pow(vector.Y, 2));
         hyp = hyp != 0 ? hyp : 1;
         return new Vec2F(vector.X / hyp, vector.Y / hyp);
-        ;
     }
 
     public void UpdateDirection(CollisionDirection colDir, Vec2F addVector) {

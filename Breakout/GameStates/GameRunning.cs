@@ -12,6 +12,7 @@ using DIKUArcade.State;
 using DIKUArcade.Timers;
 using Breakout.Entities;
 using Breakout.Entities.Effects;
+using Breakout.Entities.Effects.PowerUps;
 using Breakout.Events;
 using Breakout.IO;
 using Breakout.Levels;
@@ -22,6 +23,7 @@ public class GameRunning : IGameState {
     private Shuttle shuttle;
     private EntityContainer<Ball> activeBalls;
     private EntityContainer<Block> blocks;
+    private EntityContainer<EffectItem> fallingItems;
     private int balls;
     private ScoreBoard scoreBoard;
     private readonly int NUM_LEVELS = 4;
@@ -30,7 +32,7 @@ public class GameRunning : IGameState {
     public static GameRunning GetInstance() {
         if (GameRunning.instance == null) {
             GameRunning.instance = new GameRunning();
-            // GameRunning.instance.ResetState();
+            GameRunning.instance.ResetState();
         }
         return GameRunning.instance;
     }
@@ -67,18 +69,20 @@ public class GameRunning : IGameState {
         scoreBoard = new ScoreBoard(position, extent);
     }
 
+    public void InitEffectItems() {
+        effectItemHandler = EffectItemHandler.GetInstance();
+        effectItemHandler.AddEventHandler(new ExtraPoints(scoreBoard));
+        effectItemHandler.AddEventHandler(new Wide(TimePeriod.NewSeconds(5)));
+        eventBus.Unsubscribe(GameEventType.StatusEvent, effectItemHandler);
+        eventBus.Subscribe(GameEventType.StatusEvent, effectItemHandler);
+        fallingItems = new EntityContainer<EffectItem>();
+    }
+
     public void ResetState() {
         InitScoreBoard();
         ChangeLevel();
         balls = 2;
-        effectItemHandler = EffectItemHandler.GetInstance();
-        // effectItemHandler.AddEventHandler(new ExtraPoints(scoreBoard));
-        eventBus.Unsubscribe(GameEventType.StatusEvent, effectItemHandler);
-        eventBus.Subscribe(GameEventType.StatusEvent, effectItemHandler);
-
-        // effectItemHandler.SetResponseTo(
-        //     "EXTRA_LIFE",
-        //     () => Console.WriteLine("Power-Up received: EXTRA_LIFE"));
+        InitEffectItems();
     }
 
     private void ChangeLevel() {
@@ -113,6 +117,7 @@ public class GameRunning : IGameState {
         blocks.RenderEntities();
         activeBalls.RenderEntities();
         scoreBoard.RenderText();
+        fallingItems.RenderEntities();
     }
 
     public void UpdateState() {
@@ -150,7 +155,9 @@ public class GameRunning : IGameState {
                 ball.Shape.SetPosition(BallPosOnShuttle());
             }
         }
-        //foreach (Block block in blocks) {block.Move();}
+        foreach (EffectItem item in fallingItems) {
+            item.Move();
+        }
     }
 
     private void CollidingEntities() {
@@ -170,6 +177,8 @@ public class GameRunning : IGameState {
                     ball.UpdateDirection(ballVsblock.CollisionDir, block.GetDirection());
                     scoreBoard.AddPoints(block.Value);
                     block.LoseHealth(ball.damage);
+                    // EffectItem
+                    fallingItems.AddEntity(block.build.effectItem);
                 }
             });
         });

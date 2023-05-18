@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using DIKUArcade.Events;
 using Breakout.Events;
 
-
+// Todo: Make non-singleton
 public class EffectItemHandler : IGameEventProcessor {
 
     private static EffectItemHandler instance = null;

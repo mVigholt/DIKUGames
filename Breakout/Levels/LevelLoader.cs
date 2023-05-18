@@ -35,6 +35,8 @@ public class LevelLoader {
     }
 
     public LevelLoader(string fileName) {
+        AddItemsForLevel();
+
         loadFile = new LoadFile(fileName);
         legends = loadFile.CreateLegends();
         metadata = loadFile.CreateMetadata();
@@ -70,11 +72,12 @@ public class LevelLoader {
                         continue;
                     }
                     // :: My powerup would be added here
+                    Vec2F pos = new Vec2F(c * xExtent, 1 - r * yExtent);
                     var builder = new Block.Builder()
                             .WithImage(overlayImage)
-                            // .WithImage(Assets.LoadImage(imgFileName))
-                            .WithAlterImage(Assets.LoadImage(alterImgFileName))
-                            .WithPosition(new Vec2F(c * xExtent, 1 - r * yExtent))
+                            .WithAlterImage(overlayAltImage)
+                            .WithPosition(pos)
+                            .WithEffectItem(eiFactory.RandomPowerUp(pos))
                             .WithValue(1);
                     var property = metadata
                         .GetValueOrDefault(symbol, "");
