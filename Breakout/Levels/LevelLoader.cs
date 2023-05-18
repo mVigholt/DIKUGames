@@ -23,7 +23,7 @@ public class LevelLoader {
     public EntityContainer<Block> blocks{get; private set;}
 
     private void AddItemsForLevel() {
-        // :: Imagine this method taking a level as an input
+        // Imagine this method taking a level as an input
         // and adding the available powerups and hazards
         // that a level can have to the factory.
         // Some levels don't have the EffectItems that
@@ -32,6 +32,7 @@ public class LevelLoader {
         // change it, once we know more.
         eiFactory.AddPowerUp(eiFactory.ExtraPoints);
         eiFactory.AddPowerUp(eiFactory.Wide);
+        eiFactory.AddHazard(eiFactory.SlowDown);
     }
 
     public LevelLoader(string fileName) {
@@ -56,14 +57,19 @@ public class LevelLoader {
                     string fileExt = filenameParts[1];
                     string alterImgFileName = $"{baseName}-damaged.{fileExt}";
                     
-                    string overlayFilename = "BigPowerUp.png";
-                    OverlayImage overlayImage = new OverlayImage(imgFileName, overlayFilename);
-                    OverlayImage overlayAltImage = new OverlayImage(alterImgFileName, overlayFilename);
-                    
+                    var powerUpImages = new Dictionary<EffectItemType, string>();
+                    powerUpImages.Add(EffectItemType.ExtraPoints, "heart_filled.png");
+                    powerUpImages.Add(EffectItemType.Wide, "PowerUpWide.png");
 
-                    Image image;
+                    IBaseImage image;
+                    IBaseImage alterImage;
+                    Vec2F pos = new Vec2F(c * xExtent, 1 - r * yExtent);
+                    
+                    EffectItem powerUp = eiFactory.RandomPowerUp(pos);
+                    IBaseImage powerUpImage = powerUp.Image;
                     try {
                         image = Assets.LoadImage(imgFileName);
+                        alterImage = Assets.LoadImage(alterImgFileName);
                     } catch (Exception) {
                         // If the image cannot be loaded, simply
                         // don't create this entity.
@@ -71,18 +77,27 @@ public class LevelLoader {
                         // than if it just crashes.
                         continue;
                     }
-                    // :: My powerup would be added here
-                    Vec2F pos = new Vec2F(c * xExtent, 1 - r * yExtent);
+                    OverlayImage overlayImage = new OverlayImage(image, powerUpImage);
+                    OverlayImage overlayAltImage = new OverlayImage(alterImage, powerUpImage);
+
+                    IBaseImage img;
+                    IBaseImage altImg;
+                    bool withPowerUp;
+
                     var builder = new Block.Builder()
                             .WithImage(overlayImage)
                             .WithAlterImage(overlayAltImage)
                             .WithPosition(pos)
-                            .WithEffectItem(eiFactory.RandomPowerUp(pos))
+                            // .WithEffectItem(eiFactory.RandomPowerUp(pos))
                             .WithValue(1);
+                    builder = MaybeAddEffectItem(builder);
                     var property = metadata
                         .GetValueOrDefault(symbol, "");
                     if (property == "hardened") {
                         builder.WithIsHardened(true);
+                    }
+                    if (property == "powerup") {
+                        Console.WriteLine("POWERUPPPP");
                     }
                     if (property == "unbreakable") {
                         builder.WithIsUnbreakable(true);
@@ -93,5 +108,18 @@ public class LevelLoader {
                 }
             }
         }
+    }
+
+    private Block.Builder MaybeAddEffectItem(Block.Builder builder) {
+        float randnum = 0.9323f;
+        if (randnum < 0.8f) {
+            return builder;
+        }
+        if (randnum < 0.9f) {
+            return builder.WithEffectItem(
+                eiFactory.RandomPowerUp(builder.position));
+        }
+        return builder.WithEffectItem(
+            eiFactory.RandomHazard(builder.position));
     }
 }

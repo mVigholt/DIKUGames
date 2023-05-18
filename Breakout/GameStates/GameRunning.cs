@@ -72,7 +72,10 @@ public class GameRunning : IGameState {
     public void InitEffectItems() {
         effectItemHandler = EffectItemHandler.GetInstance();
         effectItemHandler.AddEventHandler(new ExtraPoints(scoreBoard));
-        effectItemHandler.AddEventHandler(new Wide(TimePeriod.NewSeconds(5)));
+        effectItemHandler.AddEventHandler(new Wide());
+        // effectItemHandler.AddEventHandler(new WideDeactivate());
+        effectItemHandler.AddEventHandler(new SlowDown(shuttle));
+        // effectItemHandler.AddEventHandler(new SlowDownDeactivate(shuttle));
         eventBus.Unsubscribe(GameEventType.StatusEvent, effectItemHandler);
         eventBus.Subscribe(GameEventType.StatusEvent, effectItemHandler);
         fallingItems = new EntityContainer<EffectItem>();
@@ -187,6 +190,7 @@ public class GameRunning : IGameState {
                 CollisionDetection.Aabb(item.Shape.AsDynamicShape(), shuttle.Shape);
             if (itemVsShuttle.Collision) {
                 ActivateEffectItem(item);
+                item.DeleteEntity();
             }
         });
     }

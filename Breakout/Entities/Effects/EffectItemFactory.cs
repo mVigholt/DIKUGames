@@ -92,7 +92,19 @@ public class EffectItemFactory {
     }
 
     /// <summary>Get a random hazard placed at a given position</summary>
-    public void RandomHazard() {}
+    public EffectItem RandomHazard(Vec2F pos) {
+        if (_hazardCreators.Count == 0) {
+            throw new Exception(
+                "Cannot choose a random hazard.\n" +
+                "Use EffectItemFactory.AddHazard to add more available hazards " +
+                "for the factory to choose from. You have 0."
+            );
+        }
+        int index = random.Next(_hazardCreators.Count);
+        EffectItemType randomType = _hazardCreators.Keys.ToList()[index];
+        EffectItem hazard = _hazardCreators[randomType](pos);
+        return hazard;
+    }
 
     /// <summary>
     /// Power-up: Get some extra points.
@@ -112,6 +124,15 @@ public class EffectItemFactory {
     public TimedEffectItem Wide(Vec2F pos) {
         return CreateTimedEffectItem(
             pos, "WidePowerUp.png", EffectItemType.Wide
+        );
+    }
+
+    /// <summary>
+    /// Hazard: The shuttle's movement speed increases for a while
+    /// </summary>
+    public TimedEffectItem SlowDown(Vec2F pos) {
+        return CreateTimedEffectItem(
+            pos, "Slowness.png", EffectItemType.SlowDown
         );
     }
 

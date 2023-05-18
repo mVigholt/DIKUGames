@@ -5,4 +5,6 @@ public enum EffectItemType {
     ExtraPoints,
     Wide,
     WideDeactivate,
+    SlowDown,
+    SlowDownDeactivate,
 }

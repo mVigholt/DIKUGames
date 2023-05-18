@@ -3,24 +3,22 @@ namespace Breakout.Entities.Effects.PowerUps;
 using DIKUArcade.Timers;
 
 
-// An easily tested powerup
 public class Wide : ITimedEffect {
 
     private EffectItemType _type = EffectItemType.Wide;
-
     public TimePeriod TimeLeft { get; }
 
     public EffectItemType Type { get { return _type; } }
 
-    public Wide(TimePeriod timeLeft) {
-        TimeLeft = timeLeft;
+    public Wide() {
+        TimeLeft = TimePeriod.NewSeconds(5);
     }
 
     public void Activate() {
-        System.Console.WriteLine("Activated Wide");
+        System.Console.WriteLine("PowerUp: Wide");
     }
 
     public void Deactivate() {
-        System.Console.WriteLine("Deactivated Wide");
+        System.Console.WriteLine("PowerUp: Wide deactivated");
     }
 }

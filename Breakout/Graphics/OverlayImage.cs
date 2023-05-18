@@ -13,7 +13,7 @@ public class OverlayImage : IBaseImage {
     private Texture _base;
     private Texture _overlay;
     private Vec2F _overlayScale = new Vec2F(1f / 3f, 3f / 4f);
-    
+
     public Vec2F OverlayScale { 
         get { return _overlayScale; }
         set { _overlayScale = value; }
@@ -28,6 +28,11 @@ public class OverlayImage : IBaseImage {
     public OverlayImage(Texture baseTexture, Texture overlayTexture) {
         _base = baseTexture;
         _overlay = overlayTexture;
+    }
+
+    public OverlayImage(IBaseImage image, IBaseImage powerUpImage) {
+        _base = ((Image)image).GetTexture();
+        _overlay = ((Image)powerUpImage).GetTexture();
     }
 
     public void Render(Shape shape) {
