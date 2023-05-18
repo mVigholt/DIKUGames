@@ -222,8 +222,8 @@ public class GameRunning : IGameState {
                 // i just want to merge now
                 Vec2F pos = new Vec2F(0.5f, 0.5f);
                 EffectItemFactory factory = new EffectItemFactory();
-                factory.AddPowerUp(factory.ExtraPoints(pos));
-                factory.AddPowerUp(factory.Wide(pos));
+                factory.AddPowerUp(factory.ExtraPoints());
+                factory.AddPowerUp(factory.Wide());
                 Block testBlock = new Block.Builder()
                     .WithPosition(pos)
                     .WithImage(Assets.LoadImage("red-block.png"))

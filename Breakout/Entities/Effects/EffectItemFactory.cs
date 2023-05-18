@@ -52,29 +52,29 @@ public class EffectItemFactory {
         }
         int index = random.Next(_powerUps.Count);
         EffectItemType randomType = _powerUps.Keys.ToList()[index];
-        Console.WriteLine("Randomly chose " + _powerUps[randomType].Type + ", " + _powerUps[randomType].ActivationEvent.Message);
-        return _powerUps[randomType];
+        EffectItem powerUp = _powerUps[randomType];
+        EffectItem correctlyPlaced = (EffectItem)powerUp.Clone();
+        correctlyPlaced.Shape.SetPosition(pos);
+        return correctlyPlaced;
     }
 
     public void RandomHazard() {}
 
     private InstantEffectItem CreateInstantEffectItem(
-        Vec2F position,
         string imageFilename,
         EffectItemType type
     ) {
-        DynamicShape shape = new DynamicShape(position, STD_EXTENT);
+        DynamicShape shape = new DynamicShape(new Vec2F(-1f, -1f), STD_EXTENT);
         Image image = Assets.LoadImage(imageFilename);
         GameEvent ev = CreateEvent(type);
         return new InstantEffectItem(type, shape, image, ev);
     }
 
     private TimedEffectItem CreateTimedEffectItem(
-        Vec2F position,
         string imageFilename,
         EffectItemType type
     ) {
-        DynamicShape shape = new DynamicShape(position, STD_EXTENT);
+        DynamicShape shape = new DynamicShape(new Vec2F(-1f, -1f), STD_EXTENT);
         Image image = Assets.LoadImage(imageFilename);
         GameEvent activationEvent = CreateEvent(type);
         EffectItemType deactivationType;
@@ -83,19 +83,15 @@ public class EffectItemFactory {
         return new TimedEffectItem(type, shape, image, activationEvent, deactivationEvent, 5000);
     }
 
-    public InstantEffectItem ExtraPoints(Vec2F position) {
+    public InstantEffectItem ExtraPoints() {
         return CreateInstantEffectItem(
-            position, "heart_filled.png", EffectItemType.ExtraPoints
+            "heart_filled.png", EffectItemType.ExtraPoints
         );
-        // DynamicShape shape = new DynamicShape(position, STD_EXTENT);
-        // Image image = Assets.LoadImage("heart_filled.png");
-        // GameEvent ev = CreateEvent(EffectItemType.ExtraPoints);
-        // return new InstantEffectItem(EffectItemType.ExtraPoints, shape, image, ev);
     }
 
-    public TimedEffectItem Wide(Vec2F position) {
+    public TimedEffectItem Wide() {
         return CreateTimedEffectItem(
-            position, "heart_empty.png", EffectItemType.Wide
+            "heart_empty.png", EffectItemType.Wide
         );
         
     }

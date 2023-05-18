@@ -3,11 +3,13 @@ namespace Breakout.Levels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Breakout.Entities;
-using Breakout.IO;
 using DIKUArcade.Entities;
 using DIKUArcade.Graphics;
 using DIKUArcade.Math;
+using Breakout.Entities;
+using Breakout.IO;
+using Breakout.Entities.Effects;
+
 
 public class LevelLoader {
     private Dictionary<string, string> legends;
@@ -16,7 +18,20 @@ public class LevelLoader {
     private string[] bricks;
     private int rows;
     private int columns;
+    private EffectItemFactory eiFactory = new EffectItemFactory();
     public EntityContainer<Block> blocks{get; private set;}
+
+    private void AddItemsForLevel() {
+        // :: Imagine this method taking a level as an input
+        // and adding the available powerups and hazards
+        // that a level can have to the factory.
+        // Some levels don't have the EffectItems that
+        // have to do with time.
+        // For now this is just hardcoded, so we can easily
+        // change it, once we know more.
+        // eiFactory.AddPowerUp(eiFactory.ExtraPoints())
+    }
+
     public LevelLoader(string fileName) {
         loadFile = new LoadFile(fileName);
         legends = loadFile.CreateLegends();
@@ -46,6 +61,7 @@ public class LevelLoader {
                         // than if it just crashes.
                         continue;
                     }
+                    // :: My powerup would be added here
                     var builder = new Block.Builder()
                             .WithImage(Assets.LoadImage(imgFileName))
                             .WithAlterImage(Assets.LoadImage(alterImgFileName))

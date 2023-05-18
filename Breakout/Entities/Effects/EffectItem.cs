@@ -1,11 +1,12 @@
 namespace Breakout.Entities.Effects;
 
+using System;
 using DIKUArcade.Entities;
 using DIKUArcade.Graphics;
 using DIKUArcade.Events;
 using Breakout.Events;
 
-public abstract class EffectItem : MoveableEntity
+public abstract class EffectItem : MoveableEntity, ICloneable
 {
     public abstract EffectItemType Type { get; }
     public abstract GameEvent ActivationEvent { get; }
@@ -20,5 +21,10 @@ public abstract class EffectItem : MoveableEntity
             .WithType(GameEventType.StatusEvent)
             .WithMessage(message)
             .Build();
+    }
+
+    public object Clone() {
+        EffectItem cloned = (EffectItem)MemberwiseClone();
+        return cloned;
     }
 }

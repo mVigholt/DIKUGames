@@ -52,7 +52,6 @@ public class Shuttle : MoveableEntity, IGameEventProcessor {
     ///<return>no return</return>
     public void ProcessEvent(GameEvent gameEvent) {
         EventDTO ev = new EventDTO(gameEvent);
-        System.Console.WriteLine("From shuttle: " + ev.Type);
         switch (ev.Key.Value) {
             case KeyboardKey.Left:
             case KeyboardKey.A:
