@@ -8,6 +8,7 @@ using DIKUArcade.Entities;
 using DIKUArcade.Events;
 using DIKUArcade.Graphics;
 using DIKUArcade.Math;
+using DIKUArcade.Timers;
 using Breakout.IO;
 using Breakout.Events;
 
@@ -110,7 +111,7 @@ public class EffectItemFactory {
     /// </summary>
     public TimedEffectItem Wide(Vec2F pos) {
         return CreateTimedEffectItem(
-            pos, "heart_empty.png", EffectItemType.Wide
+            pos, "WidePowerUp.png", EffectItemType.Wide
         );
     }
 
@@ -136,7 +137,10 @@ public class EffectItemFactory {
         EffectItemType deactivationType;
         Enum.TryParse<EffectItemType>(activationEvent.Message + "Deactivate", out deactivationType);
         GameEvent deactivationEvent = CreateEvent(deactivationType);
-        return new TimedEffectItem(type, shape, image, activationEvent, deactivationEvent, 5000);
+        TimePeriod duration = TimePeriod.NewSeconds(5);
+        return new TimedEffectItem(
+            type, shape, image, activationEvent, deactivationEvent, duration
+        );
     }
 
     private GameEvent CreateEvent(EffectItemType type) {

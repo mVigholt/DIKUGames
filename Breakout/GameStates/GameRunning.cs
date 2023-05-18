@@ -177,11 +177,31 @@ public class GameRunning : IGameState {
                     ball.UpdateDirection(ballVsblock.CollisionDir, block.GetDirection());
                     scoreBoard.AddPoints(block.Value);
                     block.LoseHealth(ball.damage);
-                    // EffectItem
                     fallingItems.AddEntity(block.build.effectItem);
                 }
             });
         });
+        // Power-ups and hazards
+        fallingItems.Iterate(item => {
+            CollisionData itemVsShuttle =
+                CollisionDetection.Aabb(item.Shape.AsDynamicShape(), shuttle.Shape);
+            if (itemVsShuttle.Collision) {
+                ActivateEffectItem(item);
+            }
+        });
+    }
+
+    private void ActivateEffectItem(EffectItem item) {
+        if (item is InstantEffectItem instantItem) {
+            eventBus.RegisterEvent(instantItem.ActivationEvent);
+        }
+        if (item is TimedEffectItem timedItem) {
+            eventBus.RegisterEvent(timedItem.ActivationEvent);
+            eventBus.RegisterTimedEvent(
+                timedItem.DeactivationEvent,
+                timedItem.TimeLeft
+            );
+        }
     }
 
     public void HandleKeyEvent(KeyboardAction action, KeyboardKey key) {
@@ -228,25 +248,27 @@ public class GameRunning : IGameState {
                 }
                 // Not finished implementing all this stuff,
                 // i just want to merge now
-                Vec2F pos = new Vec2F(0.5f, 0.5f);
-                EffectItemFactory factory = new EffectItemFactory();
-                factory.AddPowerUp(factory.ExtraPoints);
-                factory.AddPowerUp(factory.Wide);
-                Block testBlock = new Block.Builder()
-                    .WithPosition(pos)
-                    .WithImage(Assets.LoadImage("red-block.png"))
-                    .WithEffectItem(factory.RandomPowerUp(pos))
-                    .Build();
+
+                // Vec2F pos = new Vec2F(0.5f, 0.5f);
+                // EffectItemFactory factory = new EffectItemFactory();
+                // factory.AddPowerUp(factory.ExtraPoints);
+                // factory.AddPowerUp(factory.Wide);
+                // Block testBlock = new Block.Builder()
+                //     .WithPosition(pos)
+                //     .WithImage(Assets.LoadImage("red-block.png"))
+                //     .WithEffectItem(factory.RandomPowerUp(pos))
+                //     .Build();
 
                 // Below here is yet to change. For now it's a mess.
                 // We should try to get the powerup/hazard from the block
                 // and register its event(s)
-                EffectItem itemFromBlock = testBlock.build.effectItem;
-                GameEvent eventFromItem = itemFromBlock.ActivationEvent;
-                eventBus.RegisterTimedEvent(
-                    eventFromItem,
-                    TimePeriod.NewMilliseconds(0)
-                );
+
+                // EffectItem itemFromBlock = testBlock.build.effectItem;
+                // GameEvent eventFromItem = itemFromBlock.ActivationEvent;
+                // eventBus.RegisterTimedEvent(
+                //     eventFromItem,
+                //     TimePeriod.NewMilliseconds(0)
+                // );
                 break;
             default:
                 break;
