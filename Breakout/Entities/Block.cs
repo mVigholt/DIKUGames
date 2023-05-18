@@ -4,6 +4,8 @@ using System;
 using DIKUArcade.Entities;
 using DIKUArcade.Graphics;
 using DIKUArcade.Math;
+using Breakout.Entities.Effects;
+
 
 public class Block : MoveableEntity {
     public static readonly Vec2F STD_EXTEND = new Vec2F(0.083f, 0.041f);
@@ -50,6 +52,7 @@ public class Block : MoveableEntity {
         public bool isUnbreakable = false;
         public bool isHardened = false;
         public int value;
+        public EffectItem effectItem;
 
         public Builder() {
         }
@@ -88,13 +91,17 @@ public class Block : MoveableEntity {
             return this;
         }
 
+        public Builder WithEffectItem(EffectItem effectItem) {
+            this.effectItem = effectItem;
+            return this;
+        }
+
         public Block Build() {
             // Required arguments
             if (position is null || image is null) {
                 throw new ArgumentException(
                     "A brick must have a position and a image");
             }
-
             if (this.alterImage == null) {
                 this.alterImage = this.image;
             }

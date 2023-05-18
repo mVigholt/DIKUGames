@@ -12,6 +12,7 @@ using DIKUArcade.State;
 using DIKUArcade.Timers;
 using Breakout.Entities;
 using Breakout.Entities.Effects;
+using Breakout.Entities.Effects.PowerUps;
 using Breakout.Events;
 using Breakout.IO;
 using Breakout.Levels;
@@ -30,7 +31,7 @@ public class GameRunning : IGameState {
     public static GameRunning GetInstance() {
         if (GameRunning.instance == null) {
             GameRunning.instance = new GameRunning();
-            GameRunning.instance.ResetState();
+            // GameRunning.instance.ResetState();
         }
         return GameRunning.instance;
     }
@@ -72,9 +73,13 @@ public class GameRunning : IGameState {
         ChangeLevel();
         balls = 2;
         effectItemHandler = EffectItemHandler.GetInstance();
-        effectItemHandler.SetResponseTo(
-            "EXTRA_LIFE",
-            () => Console.WriteLine("Power-Up received: EXTRA_LIFE"));
+        effectItemHandler.AddEventHandler(new ExtraPoints(scoreBoard));
+        eventBus.Unsubscribe(GameEventType.StatusEvent, effectItemHandler);
+        eventBus.Subscribe(GameEventType.StatusEvent, effectItemHandler);
+
+        // effectItemHandler.SetResponseTo(
+        //     "EXTRA_LIFE",
+        //     () => Console.WriteLine("Power-Up received: EXTRA_LIFE"));
     }
 
     private void ChangeLevel() {
@@ -215,9 +220,23 @@ public class GameRunning : IGameState {
                 }
                 // Not finished implementing all this stuff,
                 // i just want to merge now
-                EffectItem item = new EffectItemFactory().ExtraLife();
+                Vec2F pos = new Vec2F(0.5f, 0.5f);
+                EffectItemFactory factory = new EffectItemFactory();
+                factory.AddPowerUp(factory.ExtraPoints);
+                factory.AddPowerUp(factory.Wide);
+                Block testBlock = new Block.Builder()
+                    .WithPosition(pos)
+                    .WithImage(Assets.LoadImage("red-block.png"))
+                    .WithEffectItem(factory.RandomPowerUp(pos))
+                    .Build();
+
+                // Below here is yet to change. For now it's a mess.
+                // We should try to get the powerup/hazard from the block
+                // and register its event(s)
+                EffectItem itemFromBlock = testBlock.build.effectItem;
+                GameEvent eventFromItem = itemFromBlock.ActivationEvent;
                 eventBus.RegisterTimedEvent(
-                    item.ActivationEvent.GameEvent,
+                    eventFromItem,
                     TimePeriod.NewMilliseconds(0)
                 );
                 break;

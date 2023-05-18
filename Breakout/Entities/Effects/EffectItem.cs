@@ -1,14 +1,30 @@
 namespace Breakout.Entities.Effects;
 
+using System;
 using DIKUArcade.Entities;
 using DIKUArcade.Graphics;
 using DIKUArcade.Events;
+using Breakout.Events;
 
-public abstract class EffectItem : MoveableEntity
+public abstract class EffectItem : MoveableEntity, ICloneable
 {
-    public abstract TimedGameEvent ActivationEvent { get; }
+    public abstract EffectItemType Type { get; }
+    public abstract GameEvent ActivationEvent { get; }
 
-    public EffectItem(DynamicShape shape, IBaseImage image, TimedGameEvent ev)
-        : base(shape, image) {}
+    // Todo: Should not receive argument ev
+    public EffectItem(DynamicShape shape, IBaseImage image, GameEvent ev)
+        : base(shape, image) {
+        }
 
+    protected GameEvent CreateEvent(string message) {
+        return new EventBuilder()
+            .WithType(GameEventType.StatusEvent)
+            .WithMessage(message)
+            .Build();
+    }
+
+    public object Clone() {
+        EffectItem cloned = (EffectItem)MemberwiseClone();
+        return cloned;
+    }
 }
