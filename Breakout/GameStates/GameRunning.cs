@@ -12,7 +12,6 @@ using DIKUArcade.State;
 using DIKUArcade.Timers;
 using Breakout.Entities;
 using Breakout.Entities.Effects;
-using Breakout.Entities.Effects.PowerUps;
 using Breakout.Events;
 using Breakout.IO;
 using Breakout.Levels;
@@ -73,7 +72,7 @@ public class GameRunning : IGameState {
         ChangeLevel();
         balls = 2;
         effectItemHandler = EffectItemHandler.GetInstance();
-        effectItemHandler.AddEventHandler(new ExtraPoints(scoreBoard));
+        // effectItemHandler.AddEventHandler(new ExtraPoints(scoreBoard));
         eventBus.Unsubscribe(GameEventType.StatusEvent, effectItemHandler);
         eventBus.Subscribe(GameEventType.StatusEvent, effectItemHandler);
 
