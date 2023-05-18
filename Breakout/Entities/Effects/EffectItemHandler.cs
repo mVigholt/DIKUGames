@@ -27,13 +27,22 @@ public class EffectItemHandler : IGameEventProcessor {
     }
 
     public void ProcessEvent(GameEvent gameEvent) {
-        string msg = gameEvent.Message;
-        EffectItemType type;
-        Enum.TryParse<EffectItemType>(gameEvent.Message.Split("Deactivate")[0], out type);
+        EffectItemType type = GetEffectItemType(gameEvent.Message);
         IEffect effect = _effects[type];
         if (gameEvent.Message.Contains("Deactivate")) {
-            ((ITimedEffect)effect).Deactivate();
+            ((ITimedEffect) effect).Deactivate();
         }
-        effect.Activate();
+        else {
+            effect.Activate();
+        }
+    }
+
+    private EffectItemType GetEffectItemType(string message) {
+        if (message.Contains("Deactivate")) {
+            return GetEffectItemType(message.Split("Deactivate")[0]);
+        }
+        EffectItemType type;
+        Enum.TryParse<EffectItemType>(message, out type);
+        return type;
     }
 }

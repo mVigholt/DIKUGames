@@ -73,9 +73,7 @@ public class GameRunning : IGameState {
         effectItemHandler = EffectItemHandler.GetInstance();
         effectItemHandler.AddEventHandler(new ExtraPoints(scoreBoard));
         effectItemHandler.AddEventHandler(new Wide());
-        // effectItemHandler.AddEventHandler(new WideDeactivate());
         effectItemHandler.AddEventHandler(new SlowDown(shuttle));
-        // effectItemHandler.AddEventHandler(new SlowDownDeactivate(shuttle));
         eventBus.Unsubscribe(GameEventType.StatusEvent, effectItemHandler);
         eventBus.Subscribe(GameEventType.StatusEvent, effectItemHandler);
         fallingItems = new EntityContainer<EffectItem>();

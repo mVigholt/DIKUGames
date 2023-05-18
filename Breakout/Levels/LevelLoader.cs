@@ -80,17 +80,13 @@ public class LevelLoader {
                     OverlayImage overlayImage = new OverlayImage(image, powerUpImage);
                     OverlayImage overlayAltImage = new OverlayImage(alterImage, powerUpImage);
 
-                    IBaseImage img;
-                    IBaseImage altImg;
-                    bool withPowerUp;
-
                     var builder = new Block.Builder()
                             .WithImage(overlayImage)
                             .WithAlterImage(overlayAltImage)
                             .WithPosition(pos)
-                            // .WithEffectItem(eiFactory.RandomPowerUp(pos))
+                            .WithEffectItem(powerUp)
                             .WithValue(1);
-                    builder = MaybeAddEffectItem(builder);
+                    // builder = MaybeAddEffectItem(builder);
                     var property = metadata
                         .GetValueOrDefault(symbol, "");
                     if (property == "hardened") {

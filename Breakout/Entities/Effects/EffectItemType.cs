@@ -4,7 +4,7 @@ namespace Breakout.Entities.Effects;
 public enum EffectItemType {
     ExtraPoints,
     Wide,
-    WideDeactivate,
+    // WideDeactivate,
     SlowDown,
-    SlowDownDeactivate,
+    // SlowDownDeactivate,
 }
