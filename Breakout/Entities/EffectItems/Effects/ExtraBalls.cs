@@ -1,7 +1,6 @@
 namespace Breakout.Entities.EffectItems.Effects;
 
 using DIKUArcade.Entities;
-using DIKUArcade.Math;
 using Breakout.Entities;
 
 

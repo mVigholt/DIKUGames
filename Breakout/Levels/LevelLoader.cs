@@ -23,22 +23,9 @@ public class LevelLoader {
         get; private set;
     }
 
-    private void AddItemsForLevel() {
-        // Imagine this method taking a level as an input
-        // and adding the available powerups and hazards
-        // that a level can have to the factory.
-        // Some levels don't have the EffectItems that
-        // have to do with time.
-        // For now this is just hardcoded, so we can easily
-        // change it, once we know more.
-        // eiFactory.AddPowerUp(eiFactory.ExtraPoints);
-        eiFactory.AddPowerUp(eiFactory.Wide);
-        eiFactory.AddPowerUp(eiFactory.ExtraBalls);
-        eiFactory.AddHazard(eiFactory.SlowDown);
-    }
-
     public LevelLoader(string fileName) {
-        AddItemsForLevel();
+        bool isTimedLevel = true;
+        eiFactory = EffectItemFactory.Create(isTimedLevel);
 
         loadFile = new LoadFile(fileName);
         legends = loadFile.CreateLegends();
