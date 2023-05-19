@@ -1,4 +1,4 @@
-namespace Breakout.Entities.Effects;
+namespace Breakout.Entities.EffectItems;
 
 using System;
 using DIKUArcade.Entities;

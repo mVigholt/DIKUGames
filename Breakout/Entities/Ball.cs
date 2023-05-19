@@ -17,7 +17,6 @@ public class Ball : MoveableEntity {
 
     public static Ball At(Vec2F position) {
         IBaseImage image = Assets.LoadImage("ball.png");
-        System.Console.WriteLine("Ball at " + position);
         return new Ball(position, image);
     }
 

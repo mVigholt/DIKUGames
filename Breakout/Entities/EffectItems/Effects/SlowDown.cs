@@ -1,4 +1,4 @@
-namespace Breakout.Entities.Effects.PowerUps;
+namespace Breakout.Entities.EffectItems.Effects;
 
 using DIKUArcade.Timers;
 

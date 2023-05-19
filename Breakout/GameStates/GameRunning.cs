@@ -9,10 +9,9 @@ using DIKUArcade.Input;
 using DIKUArcade.Math;
 using DIKUArcade.Physics;
 using DIKUArcade.State;
-using DIKUArcade.Timers;
 using Breakout.Entities;
-using Breakout.Entities.Effects;
-using Breakout.Entities.Effects.PowerUps;
+using Breakout.Entities.EffectItems;
+using Breakout.Entities.EffectItems.Effects;
 using Breakout.Events;
 using Breakout.IO;
 using Breakout.Levels;
@@ -71,12 +70,9 @@ public class GameRunning : IGameState {
 
     public void InitEffectItems() {
         effectItemHandler = EffectItemHandler.GetInstance();
-        effectItemHandler.AddEventHandler(new ExtraPoints(scoreBoard));
-        effectItemHandler.AddEventHandler(new Wide(shuttle));
-        effectItemHandler.AddEventHandler(new SlowDown(shuttle));
-        effectItemHandler.AddEventHandler(new ExtraBalls(activeBalls, shuttle));
-        eventBus.Unsubscribe(GameEventType.StatusEvent, effectItemHandler);
-        eventBus.Subscribe(GameEventType.StatusEvent, effectItemHandler);
+        effectItemHandler.Initialize(shuttle, scoreBoard, activeBalls);
+        GameBus.GetBus().Unsubscribe(GameEventType.StatusEvent, effectItemHandler);
+        GameBus.GetBus().Subscribe(GameEventType.StatusEvent, effectItemHandler);
         fallingItems = new EntityContainer<EffectItem>();
     }
 
@@ -243,7 +239,6 @@ public class GameRunning : IGameState {
             case KeyboardKey.Space:
                 //release ball
                 foreach (Ball ball in activeBalls) {
-                    Console.WriteLine("ball");
                     if (ball.GetDirection().Length() == new Vec2F(0, 0).Length()) {
                         var X = shuttle.GetDirection().X;
                         X = X != 0 ? (X > 0 ? 1 : -1) : 0;

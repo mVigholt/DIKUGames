@@ -8,7 +8,7 @@ using DIKUArcade.Graphics;
 using DIKUArcade.Math;
 using Breakout.Entities;
 using Breakout.IO;
-using Breakout.Entities.Effects;
+using Breakout.Entities.EffectItems;
 using Breakout.Graphics;
 
 
@@ -57,10 +57,6 @@ public class LevelLoader {
                     string baseName = filenameParts[0];
                     string fileExt = filenameParts[1];
                     string alterImgFileName = $"{baseName}-damaged.{fileExt}";
-                    
-                    var powerUpImages = new Dictionary<EffectItemType, string>();
-                    powerUpImages.Add(EffectItemType.ExtraPoints, "heart_filled.png");
-                    powerUpImages.Add(EffectItemType.Wide, "PowerUpWide.png");
 
                     IBaseImage image;
                     IBaseImage alterImage;
