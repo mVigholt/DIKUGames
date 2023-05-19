@@ -6,4 +6,5 @@ public enum EffectItemType {
     ExtraBalls,
     Wide,
     SlowDown,
+    LessTime,
 }

@@ -1,6 +1,5 @@
 namespace Breakout.GameStates;
 
-using System;
 using System.IO;
 using DIKUArcade.Entities;
 using DIKUArcade.Events;
@@ -33,6 +32,13 @@ public class GameRunning : IGameState {
             GameRunning.instance.ResetState();
         }
         return GameRunning.instance;
+    }
+
+    public void ResetState() {
+        InitScoreBoard();
+        ChangeLevel();
+        balls = 2;
+        InitEffectItems();
     }
 
     private void InitShuttle() {
@@ -75,13 +81,6 @@ public class GameRunning : IGameState {
         GameBus.GetBus().Unsubscribe(GameEventType.StatusEvent, effectItemHandler);
         GameBus.GetBus().Subscribe(GameEventType.StatusEvent, effectItemHandler);
         fallingItems = new EntityContainer<EffectItem>();
-    }
-
-    public void ResetState() {
-        InitScoreBoard();
-        ChangeLevel();
-        balls = 2;
-        InitEffectItems();
     }
 
     private void ChangeLevel() {

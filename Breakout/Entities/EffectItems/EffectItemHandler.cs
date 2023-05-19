@@ -32,13 +32,20 @@ public class EffectItemHandler : IGameEventProcessor {
         foreach (Type t in effectTypes) {
             if (typeof(IEffect).IsAssignableFrom(t))
             {
-                IEffect instance = CreateEffectInstance(t);
-                if (instance != null)
+                IEffect effect = CreateEffectInstance(t);
+                if (effect != null)
                 {
-                    _effects[instance.Type] = instance;
+                    _effects[effect.Type] = effect;
                 }
             }
         }
+    }
+
+    public static EffectItemHandler GetInstance() {
+        if (_instance == null) {
+            _instance = new EffectItemHandler();
+        }
+        return _instance;
     }
 
     /// <summary>
@@ -80,13 +87,6 @@ public class EffectItemHandler : IGameEventProcessor {
         return Assembly.GetExecutingAssembly().GetTypes()
             .Where(t => t.IsClass && t.Namespace == ns)
             .ToList();
-    }
-
-    public static EffectItemHandler GetInstance() {
-        if (_instance == null) {
-            _instance = new EffectItemHandler();
-        }
-        return _instance;
     }
 
     public void ProcessEvent(GameEvent gameEvent) {
