@@ -2,7 +2,6 @@ namespace Breakout.Levels;
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using DIKUArcade.Entities;
 using DIKUArcade.Graphics;
 using DIKUArcade.Math;
@@ -20,7 +19,9 @@ public class LevelLoader {
     private int rows;
     private int columns;
     private EffectItemFactory eiFactory = new EffectItemFactory();
-    public EntityContainer<Block> blocks{get; private set;}
+    public EntityContainer<Block> blocks {
+        get; private set;
+    }
 
     private void AddItemsForLevel() {
         // Imagine this method taking a level as an input
@@ -53,66 +54,62 @@ public class LevelLoader {
                 string symbol = bricks[r][c].ToString();
                 if (symbol != "-") {
                     string imgFileName = legends[symbol];
-                    string[] filenameParts = imgFileName.Split('.');
-                    string baseName = filenameParts[0];
-                    string fileExt = filenameParts[1];
-                    string alterImgFileName = $"{baseName}-damaged.{fileExt}";
-
-                    IBaseImage image;
-                    IBaseImage alterImage;
                     Vec2F pos = new Vec2F(c * xExtent, 1 - r * yExtent);
-                    
-                    EffectItem powerUp = eiFactory.RandomPowerUp(pos);
-                    IBaseImage powerUpImage = powerUp.Image;
-                    try {
-                        image = Assets.LoadImage(imgFileName);
-                        alterImage = Assets.LoadImage(alterImgFileName);
-                    } catch (Exception) {
-                        // If the image cannot be loaded, simply
-                        // don't create this entity.
-                        // The game is more fun without a few entities
-                        // than if it just crashes.
-                        continue;
+                    var property = metadata.GetValueOrDefault(symbol, "");
+                    Block block = BuildBlock(imgFileName, pos, property);
+                    if (block != null) {
+                        blocks.AddEntity(block);
                     }
-                    OverlayImage overlayImage = new OverlayImage(image, powerUpImage);
-                    OverlayImage overlayAltImage = new OverlayImage(alterImage, powerUpImage);
-
-                    var builder = new Block.Builder()
-                            .WithImage(overlayImage)
-                            .WithAlterImage(overlayAltImage)
-                            .WithPosition(pos)
-                            .WithEffectItem(powerUp)
-                            .WithValue(1);
-                    // builder = MaybeAddEffectItem(builder);
-                    var property = metadata
-                        .GetValueOrDefault(symbol, "");
-                    if (property == "hardened") {
-                        builder.WithIsHardened(true);
-                    }
-                    if (property == "powerup") {
-                        Console.WriteLine("POWERUPPPP");
-                    }
-                    if (property == "unbreakable") {
-                        builder.WithIsUnbreakable(true);
-                    }
-                    blocks.AddEntity(
-                        builder.Build()
-                    );
                 }
             }
         }
     }
 
-    private Block.Builder MaybeAddEffectItem(Block.Builder builder) {
-        float randnum = 0.9323f;
-        if (randnum < 0.8f) {
-            return builder;
+    private Block BuildBlock(
+        string imgFileName, Vec2F pos, string property
+    ) {
+        string[] filenameParts = imgFileName.Split('.');
+        string baseName = filenameParts[0];
+        string fileExt = filenameParts[1];
+        string alterImgFileName = $"{baseName}-damaged.{fileExt}";
+
+        IBaseImage image;
+        IBaseImage alterImage;
+        try {
+            image = Assets.LoadImage(imgFileName);
+            alterImage = Assets.LoadImage(alterImgFileName);
+        } catch (Exception) {
+            // If the image cannot be loaded, simply
+            // don't create this entity.
+            // The game is more fun without a few entities
+            // than if it just crashes.
+            return null;
         }
-        if (randnum < 0.9f) {
-            return builder.WithEffectItem(
-                eiFactory.RandomPowerUp(builder.position));
+        var builder = new Block.Builder()
+            .WithPosition(pos)
+            .WithValue(1);
+        if (property == "powerup") {
+            EffectItem powerUp = eiFactory.RandomPowerUp(pos);
+            builder = builder
+                .WithImage(new OverlayImage(image, powerUp.Image))
+                .WithAlterImage(new OverlayImage(alterImage, powerUp.Image))
+                .WithEffectItem(powerUp);
+        } else if (property == "hazard") {
+            EffectItem hazard = eiFactory.RandomHazard(pos);
+            builder = builder
+                .WithImage(new OverlayImage(image, hazard.Image))
+                .WithAlterImage(new OverlayImage(alterImage, hazard.Image))
+                .WithEffectItem(hazard);
+        } else {
+            builder = builder
+                .WithImage(image)
+                .WithAlterImage(alterImage);
         }
-        return builder.WithEffectItem(
-            eiFactory.RandomHazard(builder.position));
+        if (property == "hardened") {
+            builder.WithIsHardened(true);
+        } else if (property == "unbreakable") {
+            builder.WithIsUnbreakable(true);
+        }
+        return builder.Build();
     }
 }

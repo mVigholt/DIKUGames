@@ -61,6 +61,11 @@ public class EffectItemHandler : IGameEventProcessor {
                 else if (parameter.ParameterType == typeof(EntityContainer<Ball>)) {
                     args[i] = _activeBalls;
                 }
+                else {
+                    throw new ArgumentException(
+                        $"Could not create an instance of type {effectType}"
+                    );
+                }
             }
             return (IEffect)constructor.Invoke(args);
         }

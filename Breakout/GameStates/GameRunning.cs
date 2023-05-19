@@ -58,6 +58,8 @@ public class GameRunning : IGameState {
     }
 
     private void InitLevel() {
+        // Uncomment to test power-ups
+        // LevelLoader levelLoader = new LevelLoader("level" + (scoreBoard.level+1).ToString() + ".txt");
         LevelLoader levelLoader = new LevelLoader("level" + scoreBoard.level.ToString() + ".txt");
         blocks = levelLoader.blocks;
     }
@@ -175,7 +177,9 @@ public class GameRunning : IGameState {
                     ball.UpdateDirection(ballVsblock.CollisionDir, block.GetDirection());
                     scoreBoard.AddPoints(block.Value);
                     block.LoseHealth(ball.damage);
-                    fallingItems.AddEntity(block.build.effectItem);
+                    if (block.build.effectItem != null) {
+                        fallingItems.AddEntity(block.build.effectItem);
+                    }
                 }
             });
         });
