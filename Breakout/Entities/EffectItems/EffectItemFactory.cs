@@ -1,4 +1,4 @@
-namespace Breakout.Entities.Effects;
+namespace Breakout.Entities.EffectItems;
 
 
 using System;
@@ -8,6 +8,7 @@ using DIKUArcade.Entities;
 using DIKUArcade.Events;
 using DIKUArcade.Graphics;
 using DIKUArcade.Math;
+using DIKUArcade.Timers;
 using Breakout.IO;
 using Breakout.Events;
 
@@ -91,7 +92,19 @@ public class EffectItemFactory {
     }
 
     /// <summary>Get a random hazard placed at a given position</summary>
-    public void RandomHazard() {}
+    public EffectItem RandomHazard(Vec2F pos) {
+        if (_hazardCreators.Count == 0) {
+            throw new Exception(
+                "Cannot choose a random hazard.\n" +
+                "Use EffectItemFactory.AddHazard to add more available hazards " +
+                "for the factory to choose from. You have 0."
+            );
+        }
+        int index = random.Next(_hazardCreators.Count);
+        EffectItemType randomType = _hazardCreators.Keys.ToList()[index];
+        EffectItem hazard = _hazardCreators[randomType](pos);
+        return hazard;
+    }
 
     /// <summary>
     /// Power-up: Get some extra points.
@@ -110,7 +123,22 @@ public class EffectItemFactory {
     /// </summary>
     public TimedEffectItem Wide(Vec2F pos) {
         return CreateTimedEffectItem(
-            pos, "heart_empty.png", EffectItemType.Wide
+            pos, "WidePowerUp.png", EffectItemType.Wide
+        );
+    }
+
+    public InstantEffectItem ExtraBalls(Vec2F pos) {
+        return CreateInstantEffectItem(
+            pos, "ExtraBallPowerUp.png", EffectItemType.ExtraBalls
+        );
+    }
+
+    /// <summary>
+    /// Hazard: The shuttle's movement speed increases for a while
+    /// </summary>
+    public TimedEffectItem SlowDown(Vec2F pos) {
+        return CreateTimedEffectItem(
+            pos, "Slowness.png", EffectItemType.SlowDown
         );
     }
 
@@ -121,7 +149,7 @@ public class EffectItemFactory {
     ) {
         DynamicShape shape = new DynamicShape(pos, STD_EXTENT);
         Image image = Assets.LoadImage(imageFilename);
-        GameEvent ev = CreateEvent(type);
+        GameEvent ev = CreateEvent(type.ToString());
         return new InstantEffectItem(type, shape, image, ev);
     }
 
@@ -132,17 +160,20 @@ public class EffectItemFactory {
     ) {
         DynamicShape shape = new DynamicShape(pos, STD_EXTENT);
         Image image = Assets.LoadImage(imageFilename);
-        GameEvent activationEvent = CreateEvent(type);
+        GameEvent activationEvent = CreateEvent(type.ToString());
         EffectItemType deactivationType;
-        Enum.TryParse<EffectItemType>(activationEvent.Message + "Deactivate", out deactivationType);
-        GameEvent deactivationEvent = CreateEvent(deactivationType);
-        return new TimedEffectItem(type, shape, image, activationEvent, deactivationEvent, 5000);
+        Enum.TryParse<EffectItemType>(activationEvent.Message, out deactivationType);
+        GameEvent deactivationEvent = CreateEvent(deactivationType.ToString() + "Deactivate");
+        TimePeriod duration = TimePeriod.NewSeconds(5);
+        return new TimedEffectItem(
+            type, shape, image, activationEvent, deactivationEvent, duration
+        );
     }
 
-    private GameEvent CreateEvent(EffectItemType type) {
+    private GameEvent CreateEvent(string msg) {
         return new EventBuilder()
             .WithType(GameEventType.StatusEvent)
-            .WithMessage(type.ToString())
+            .WithMessage(msg)
             .Build();
     }
 }

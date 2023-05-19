@@ -1,15 +1,16 @@
-namespace Breakout.Entities.Effects;
+namespace Breakout.Entities.EffectItems;
 
 using DIKUArcade.Entities;
 using DIKUArcade.Graphics;
 using DIKUArcade.Events;
+using DIKUArcade.Timers;
 
 public class TimedEffectItem : EffectItem {
 
     public override EffectItemType Type { get; }
     public override GameEvent ActivationEvent { get; }
     public virtual GameEvent DeactivationEvent { get; }
-    public virtual int TimeLeft { get; }
+    public virtual TimePeriod TimeLeft { get; }
 
 
     public TimedEffectItem(
@@ -18,7 +19,7 @@ public class TimedEffectItem : EffectItem {
         IBaseImage image,
         GameEvent activationEvent,
         GameEvent deactivationEvent,
-        int timeLeft
+        TimePeriod timeLeft
     )
         : base(shape, image, activationEvent) {
         // Consider a builder

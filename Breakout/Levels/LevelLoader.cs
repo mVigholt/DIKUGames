@@ -2,13 +2,12 @@ namespace Breakout.Levels;
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using DIKUArcade.Entities;
 using DIKUArcade.Graphics;
 using DIKUArcade.Math;
 using Breakout.Entities;
 using Breakout.IO;
-using Breakout.Entities.Effects;
+using Breakout.Entities.EffectItems;
 using Breakout.Graphics;
 
 
@@ -20,21 +19,27 @@ public class LevelLoader {
     private int rows;
     private int columns;
     private EffectItemFactory eiFactory = new EffectItemFactory();
-    public EntityContainer<Block> blocks{get; private set;}
+    public EntityContainer<Block> blocks {
+        get; private set;
+    }
 
     private void AddItemsForLevel() {
-        // :: Imagine this method taking a level as an input
+        // Imagine this method taking a level as an input
         // and adding the available powerups and hazards
         // that a level can have to the factory.
         // Some levels don't have the EffectItems that
         // have to do with time.
         // For now this is just hardcoded, so we can easily
         // change it, once we know more.
-        eiFactory.AddPowerUp(eiFactory.ExtraPoints);
+        // eiFactory.AddPowerUp(eiFactory.ExtraPoints);
         eiFactory.AddPowerUp(eiFactory.Wide);
+        eiFactory.AddPowerUp(eiFactory.ExtraBalls);
+        eiFactory.AddHazard(eiFactory.SlowDown);
     }
 
     public LevelLoader(string fileName) {
+        AddItemsForLevel();
+
         loadFile = new LoadFile(fileName);
         legends = loadFile.CreateLegends();
         metadata = loadFile.CreateMetadata();
@@ -49,46 +54,62 @@ public class LevelLoader {
                 string symbol = bricks[r][c].ToString();
                 if (symbol != "-") {
                     string imgFileName = legends[symbol];
-                    string[] filenameParts = imgFileName.Split('.');
-                    string baseName = filenameParts[0];
-                    string fileExt = filenameParts[1];
-                    string alterImgFileName = $"{baseName}-damaged.{fileExt}";
-                    
-                    string overlayFilename = "BigPowerUp.png";
-                    OverlayImage overlayImage = new OverlayImage(imgFileName, overlayFilename);
-                    OverlayImage overlayAltImage = new OverlayImage(alterImgFileName, overlayFilename);
-                    
-
-                    Image image;
-                    try {
-                        image = Assets.LoadImage(imgFileName);
-                    } catch (Exception) {
-                        // If the image cannot be loaded, simply
-                        // don't create this entity.
-                        // The game is more fun without a few entities
-                        // than if it just crashes.
-                        continue;
+                    Vec2F pos = new Vec2F(c * xExtent, 1 - r * yExtent);
+                    var property = metadata.GetValueOrDefault(symbol, "");
+                    Block block = BuildBlock(imgFileName, pos, property);
+                    if (block != null) {
+                        blocks.AddEntity(block);
                     }
-                    // :: My powerup would be added here
-                    var builder = new Block.Builder()
-                            .WithImage(overlayImage)
-                            // .WithImage(Assets.LoadImage(imgFileName))
-                            .WithAlterImage(Assets.LoadImage(alterImgFileName))
-                            .WithPosition(new Vec2F(c * xExtent, 1 - r * yExtent))
-                            .WithValue(1);
-                    var property = metadata
-                        .GetValueOrDefault(symbol, "");
-                    if (property == "hardened") {
-                        builder.WithIsHardened(true);
-                    }
-                    if (property == "unbreakable") {
-                        builder.WithIsUnbreakable(true);
-                    }
-                    blocks.AddEntity(
-                        builder.Build()
-                    );
                 }
             }
         }
+    }
+
+    private Block BuildBlock(
+        string imgFileName, Vec2F pos, string property
+    ) {
+        string[] filenameParts = imgFileName.Split('.');
+        string baseName = filenameParts[0];
+        string fileExt = filenameParts[1];
+        string alterImgFileName = $"{baseName}-damaged.{fileExt}";
+
+        IBaseImage image;
+        IBaseImage alterImage;
+        try {
+            image = Assets.LoadImage(imgFileName);
+            alterImage = Assets.LoadImage(alterImgFileName);
+        } catch (Exception) {
+            // If the image cannot be loaded, simply
+            // don't create this entity.
+            // The game is more fun without a few entities
+            // than if it just crashes.
+            return null;
+        }
+        var builder = new Block.Builder()
+            .WithPosition(pos)
+            .WithValue(1);
+        if (property == "powerup") {
+            EffectItem powerUp = eiFactory.RandomPowerUp(pos);
+            builder = builder
+                .WithImage(new OverlayImage(image, powerUp.Image))
+                .WithAlterImage(new OverlayImage(alterImage, powerUp.Image))
+                .WithEffectItem(powerUp);
+        } else if (property == "hazard") {
+            EffectItem hazard = eiFactory.RandomHazard(pos);
+            builder = builder
+                .WithImage(new OverlayImage(image, hazard.Image))
+                .WithAlterImage(new OverlayImage(alterImage, hazard.Image))
+                .WithEffectItem(hazard);
+        } else {
+            builder = builder
+                .WithImage(image)
+                .WithAlterImage(alterImage);
+        }
+        if (property == "hardened") {
+            builder.WithIsHardened(true);
+        } else if (property == "unbreakable") {
+            builder.WithIsUnbreakable(true);
+        }
+        return builder.Build();
     }
 }

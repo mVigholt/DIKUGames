@@ -11,15 +11,15 @@ public class MoveableEntity : Entity {
 
     private Vec2F dir = new Vec2F(0, 0);
 
-    public readonly float SPEED;
+    public float Speed { get; set; }
 
     public MoveableEntity(DynamicShape shape, IBaseImage image) : this(shape, image, 0.0f) {
     }
 
-    public MoveableEntity(DynamicShape shape, IBaseImage image, float SPEED)
+    public MoveableEntity(DynamicShape shape, IBaseImage image, float speed)
         : base(shape, image) {
         this.shape = shape;
-        this.SPEED = SPEED;
+        this.Speed = speed;
     }
 
     public Vec2F GetPosition() {
@@ -42,7 +42,6 @@ public class MoveableEntity : Entity {
         float hyp = (float) System.Math.Sqrt(System.Math.Pow(vector.X, 2) + System.Math.Pow(vector.Y, 2));
         hyp = hyp != 0 ? hyp : 1;
         return new Vec2F(vector.X / hyp, vector.Y / hyp);
-        ;
     }
 
     public void UpdateDirection(CollisionDirection colDir, Vec2F addVector) {
@@ -59,7 +58,7 @@ public class MoveableEntity : Entity {
                 break;
         }
         dir = UnitVector(UnitVector(dir) + UnitVector(addVector));
-        shape.ChangeDirection(new Vec2F(SPEED * dir.X, SPEED * dir.Y));
+        shape.ChangeDirection(new Vec2F(Speed * dir.X, Speed * dir.Y));
     }
 
     protected Vec2F MinCorner() {

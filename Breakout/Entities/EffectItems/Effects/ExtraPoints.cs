@@ -1,14 +1,13 @@
-namespace Breakout.Entities.Effects.PowerUps;
+namespace Breakout.Entities.EffectItems.Effects;
 
 
 // An easily tested powerup
 public class ExtraPoints : IEffect {
+    
+    public EffectItemType Type { get { return _type; } }
 
-    // primary key
     private EffectItemType _type = EffectItemType.ExtraPoints;
     private ScoreBoard _scoreBoard;
-    public EffectItemType Type { get { return _type; } }
-    
 
     public ExtraPoints(ScoreBoard scoreBoard) {
         _scoreBoard = scoreBoard;
@@ -16,5 +15,6 @@ public class ExtraPoints : IEffect {
 
     public void Activate() {
         _scoreBoard.AddPoints(50);
+        System.Console.WriteLine("PowerUp: ExtraPoints");
     }
 }

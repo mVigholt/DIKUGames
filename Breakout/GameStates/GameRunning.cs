@@ -9,9 +9,9 @@ using DIKUArcade.Input;
 using DIKUArcade.Math;
 using DIKUArcade.Physics;
 using DIKUArcade.State;
-using DIKUArcade.Timers;
 using Breakout.Entities;
-using Breakout.Entities.Effects;
+using Breakout.Entities.EffectItems;
+using Breakout.Entities.EffectItems.Effects;
 using Breakout.Events;
 using Breakout.IO;
 using Breakout.Levels;
@@ -22,6 +22,7 @@ public class GameRunning : IGameState {
     private Shuttle shuttle;
     private EntityContainer<Ball> activeBalls;
     private EntityContainer<Block> blocks;
+    private EntityContainer<EffectItem> fallingItems;
     private int balls;
     private ScoreBoard scoreBoard;
     private readonly int NUM_LEVELS = 4;
@@ -30,7 +31,7 @@ public class GameRunning : IGameState {
     public static GameRunning GetInstance() {
         if (GameRunning.instance == null) {
             GameRunning.instance = new GameRunning();
-            // GameRunning.instance.ResetState();
+            GameRunning.instance.ResetState();
         }
         return GameRunning.instance;
     }
@@ -57,6 +58,8 @@ public class GameRunning : IGameState {
     }
 
     private void InitLevel() {
+        // Uncomment to test power-ups
+        // LevelLoader levelLoader = new LevelLoader("level" + (scoreBoard.level+1).ToString() + ".txt");
         LevelLoader levelLoader = new LevelLoader("level" + scoreBoard.level.ToString() + ".txt");
         blocks = levelLoader.blocks;
     }
@@ -67,18 +70,19 @@ public class GameRunning : IGameState {
         scoreBoard = new ScoreBoard(position, extent);
     }
 
+    public void InitEffectItems() {
+        effectItemHandler = EffectItemHandler.GetInstance();
+        effectItemHandler.Initialize(shuttle, scoreBoard, activeBalls);
+        GameBus.GetBus().Unsubscribe(GameEventType.StatusEvent, effectItemHandler);
+        GameBus.GetBus().Subscribe(GameEventType.StatusEvent, effectItemHandler);
+        fallingItems = new EntityContainer<EffectItem>();
+    }
+
     public void ResetState() {
         InitScoreBoard();
         ChangeLevel();
         balls = 2;
-        effectItemHandler = EffectItemHandler.GetInstance();
-        // effectItemHandler.AddEventHandler(new ExtraPoints(scoreBoard));
-        eventBus.Unsubscribe(GameEventType.StatusEvent, effectItemHandler);
-        eventBus.Subscribe(GameEventType.StatusEvent, effectItemHandler);
-
-        // effectItemHandler.SetResponseTo(
-        //     "EXTRA_LIFE",
-        //     () => Console.WriteLine("Power-Up received: EXTRA_LIFE"));
+        InitEffectItems();
     }
 
     private void ChangeLevel() {
@@ -113,6 +117,7 @@ public class GameRunning : IGameState {
         blocks.RenderEntities();
         activeBalls.RenderEntities();
         scoreBoard.RenderText();
+        fallingItems.RenderEntities();
     }
 
     public void UpdateState() {
@@ -150,7 +155,9 @@ public class GameRunning : IGameState {
                 ball.Shape.SetPosition(BallPosOnShuttle());
             }
         }
-        //foreach (Block block in blocks) {block.Move();}
+        foreach (EffectItem item in fallingItems) {
+            item.Move();
+        }
     }
 
     private void CollidingEntities() {
@@ -170,9 +177,34 @@ public class GameRunning : IGameState {
                     ball.UpdateDirection(ballVsblock.CollisionDir, block.GetDirection());
                     scoreBoard.AddPoints(block.Value);
                     block.LoseHealth(ball.damage);
+                    if (block.build.effectItem != null) {
+                        fallingItems.AddEntity(block.build.effectItem);
+                    }
                 }
             });
         });
+        // Power-ups and hazards
+        fallingItems.Iterate(item => {
+            CollisionData itemVsShuttle =
+                CollisionDetection.Aabb(item.Shape.AsDynamicShape(), shuttle.Shape);
+            if (itemVsShuttle.Collision) {
+                ActivateEffectItem(item);
+                item.DeleteEntity();
+            }
+        });
+    }
+
+    private void ActivateEffectItem(EffectItem item) {
+        if (item is InstantEffectItem instantItem) {
+            eventBus.RegisterEvent(instantItem.ActivationEvent);
+        }
+        if (item is TimedEffectItem timedItem) {
+            eventBus.RegisterEvent(timedItem.ActivationEvent);
+            eventBus.RegisterTimedEvent(
+                timedItem.DeactivationEvent,
+                timedItem.TimeLeft
+            );
+        }
     }
 
     public void HandleKeyEvent(KeyboardAction action, KeyboardKey key) {
@@ -217,27 +249,6 @@ public class GameRunning : IGameState {
                         ball.UpdateDirection(CollisionDirection.CollisionDirUnchecked, new Vec2F(X, 1));
                     }
                 }
-                // Not finished implementing all this stuff,
-                // i just want to merge now
-                Vec2F pos = new Vec2F(0.5f, 0.5f);
-                EffectItemFactory factory = new EffectItemFactory();
-                factory.AddPowerUp(factory.ExtraPoints);
-                factory.AddPowerUp(factory.Wide);
-                Block testBlock = new Block.Builder()
-                    .WithPosition(pos)
-                    .WithImage(Assets.LoadImage("red-block.png"))
-                    .WithEffectItem(factory.RandomPowerUp(pos))
-                    .Build();
-
-                // Below here is yet to change. For now it's a mess.
-                // We should try to get the powerup/hazard from the block
-                // and register its event(s)
-                EffectItem itemFromBlock = testBlock.build.effectItem;
-                GameEvent eventFromItem = itemFromBlock.ActivationEvent;
-                eventBus.RegisterTimedEvent(
-                    eventFromItem,
-                    TimePeriod.NewMilliseconds(0)
-                );
                 break;
             default:
                 break;

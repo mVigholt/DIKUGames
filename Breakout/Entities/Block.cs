@@ -4,7 +4,7 @@ using System;
 using DIKUArcade.Entities;
 using DIKUArcade.Graphics;
 using DIKUArcade.Math;
-using Breakout.Entities.Effects;
+using Breakout.Entities.EffectItems;
 
 
 public class Block : MoveableEntity {

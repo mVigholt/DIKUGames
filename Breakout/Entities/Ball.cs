@@ -1,11 +1,10 @@
 namespace Breakout.Entities;
 
-using Breakout.Events;
 using DIKUArcade.Entities;
-using DIKUArcade.Events;
 using DIKUArcade.Graphics;
 using DIKUArcade.Math;
 using DIKUArcade.Physics;
+using Breakout.IO;
 
 public class Ball : MoveableEntity {
     public static readonly Vec2F STD_EXTEND = new Vec2F(0.03f, 0.03f);
@@ -14,6 +13,11 @@ public class Ball : MoveableEntity {
 
     public Ball(Vec2F position, IBaseImage image)
         : base(new DynamicShape(position, STD_EXTEND), image, 0.015f) {
+    }
+
+    public static Ball At(Vec2F position) {
+        IBaseImage image = Assets.LoadImage("ball.png");
+        return new Ball(position, image);
     }
 
     public override void Move() {
