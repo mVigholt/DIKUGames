@@ -11,7 +11,6 @@ using DIKUArcade.Physics;
 using DIKUArcade.State;
 using Breakout.Entities;
 using Breakout.Entities.EffectItems;
-using Breakout.Entities.EffectItems.Effects;
 using Breakout.Events;
 using Breakout.IO;
 using Breakout.Levels;

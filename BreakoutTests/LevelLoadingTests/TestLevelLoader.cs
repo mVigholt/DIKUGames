@@ -22,7 +22,7 @@ public class Loader {
     public void TestLevelsCanBeLoaded() {
         string[] fileNames = Directory.GetFiles(PathFinder.Levels());
         foreach (string fileName in fileNames) {
-            LevelLoader.Load(fileName);
+            new LevelLoader(fileName);
         }
         Assert.Pass();
         // By loading every level, we assure that it can
