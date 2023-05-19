@@ -1,6 +1,5 @@
 namespace Breakout.GameStates;
 
-using System;
 using System.IO;
 using DIKUArcade.Entities;
 using DIKUArcade.Events;
