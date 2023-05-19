@@ -34,6 +34,13 @@ public class GameRunning : IGameState {
         return GameRunning.instance;
     }
 
+    public void ResetState() {
+        InitScoreBoard();
+        ChangeLevel();
+        balls = 2;
+        InitEffectItems();
+    }
+
     private void InitShuttle() {
         Vec2F playerPosition = new Vec2F(0.5f - Shuttle.STD_EXTEND.X / 2, 0.03f);
         IBaseImage image = new Image(
@@ -74,13 +81,6 @@ public class GameRunning : IGameState {
         GameBus.GetBus().Unsubscribe(GameEventType.StatusEvent, effectItemHandler);
         GameBus.GetBus().Subscribe(GameEventType.StatusEvent, effectItemHandler);
         fallingItems = new EntityContainer<EffectItem>();
-    }
-
-    public void ResetState() {
-        InitScoreBoard();
-        ChangeLevel();
-        balls = 2;
-        InitEffectItems();
     }
 
     private void ChangeLevel() {
