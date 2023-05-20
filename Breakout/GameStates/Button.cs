@@ -1,5 +1,6 @@
 namespace Breakout.GameStates;
 
+using System.Collections.Generic;
 using DIKUArcade.Graphics;
 using DIKUArcade.Math;
 
@@ -13,11 +14,22 @@ public class Button : Text
     private Vec3I activeColor = new Vec3I(255, 255, 255);
     private Vec3I inactiveColor = new Vec3I(51, 153, 255);
 
+    public static Dictionary<string, GameStateType?> textToState = new Dictionary<string, GameStateType?>{};
+
     public Button(string text, Vec2F pos) : base(text, pos, BUTTON_EXTEND)
     {
         this.Text = text;
         this.Position = pos;
         this.SetColor(inactiveColor);
+        InitialButton();
+    }
+
+    private void InitialButton(){
+        textToState.TryAdd("Main Menu", GameStateType.MainMenu);
+        textToState.TryAdd("Game Over", GameStateType.GameLost);
+        textToState.TryAdd("New Game", GameStateType.GameRunning);
+        textToState.TryAdd("Continue", GameStateType.GameRunning);
+        textToState.TryAdd("Quit",  null);
     }
 
     public void ActiveButton(){
@@ -31,20 +43,4 @@ public class Button : Text
     public void Render(){
         this.RenderText();
     }
-
-    public GameStateType TransferFromTextToGameStateType(){
-        switch (this.Text){
-            case "Main Menu":
-                return GameStateType.MainMenu;
-            case "Game Over":
-                return GameStateType.GameLost;
-            case "New Game":
-                return GameStateType.GameRunning;
-            case "Continue":
-                return GameStateType.GameRunning;
-            default:
-                return GameStateType.MainMenu;
-        }
-    }
-
 }
