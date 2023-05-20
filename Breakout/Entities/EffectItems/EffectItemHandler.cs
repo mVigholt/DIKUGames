@@ -29,9 +29,6 @@ public class EffectItemHandler : IGameEventProcessor {
 
     private static EffectItemHandler _instance = null;
     private Dictionary<EffectItemType, IEffect> _effects;
-    private Shuttle _shuttle;
-    private ScoreBoard _scoreBoard;
-    private EntityContainer<Ball> _activeBalls;
 
     /// <summary>
     /// Inject dependencies and discover IEffect classes.
