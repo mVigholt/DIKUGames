@@ -6,10 +6,8 @@ using DIKUArcade.Timers;
 /// <summary>Slows down the shuttle</summary>
 public class SlowDownEffect : ITimedEffect {
 
-    public EffectItemType Type { get { return _type; } }
     public TimePeriod TimeLeft { get; }
 
-    private EffectItemType _type = EffectItemType.SlowDown;
     private Shuttle _shuttle;
     private readonly float SCALAR = 0.5f;
     

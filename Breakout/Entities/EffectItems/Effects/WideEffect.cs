@@ -5,10 +5,8 @@ using DIKUArcade.Timers;
 
 public class WideEffect : ITimedEffect {
 
-    private EffectItemType _type = EffectItemType.Wide;
     public TimePeriod TimeLeft { get; }
 
-    public EffectItemType Type { get { return _type; } }
     private Shuttle _shuttle;
 
     public WideEffect(Shuttle shuttle) {

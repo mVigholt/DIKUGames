@@ -21,14 +21,17 @@ using Breakout.Entities.EffectItems.ItemConfigs;
 /// Breakout.Entities.EffectItems.ItemConfigs.PowerUps.
 /// Similarly, you can create a hazard by placing it in
 /// Breakout.Entities.EffectItems.ItemConfigs.Hazards.
+/// Be sure to give your implementation a class name
+/// that ends with "Config".
 /// </summary>
 public class EffectItemFactory {
 
     private readonly Vec2F STD_EXTENT = new Vec2F(0.05f, 0.05f);
     private Random random = new Random();
     private bool _isTimedLevel;
-    private Dictionary<EffectItemType, IEffectItemConfig> _powerUpConfigs;
-    private Dictionary<EffectItemType, IEffectItemConfig> _hazardConfigs;
+    private Dictionary<string, IEffectItemConfig> _powerUpConfigs;
+    private Dictionary<string, IEffectItemConfig> _hazardConfigs;
+    private TypeLoader<IEffectItemConfig> _effectLoader;
 
     public EffectItemFactory(bool isTimedLevel) {
         _isTimedLevel = isTimedLevel;
@@ -38,10 +41,10 @@ public class EffectItemFactory {
         _hazardConfigs = ConfigsInNamespace(hazardsNS);
     }
 
-    private Dictionary<EffectItemType, IEffectItemConfig> ConfigsInNamespace(string nameSpace) {
-        var configs = new Dictionary<EffectItemType, IEffectItemConfig>();
-        var loader = new EffectItemConfigLoader(nameSpace);
-        return loader.CreateMapping();
+    private Dictionary<string, IEffectItemConfig> ConfigsInNamespace(string nameSpace) {
+        var configs = new Dictionary<string, IEffectItemConfig>();
+        _effectLoader = new EffectItemConfigLoader(nameSpace);
+        return _effectLoader.CreateMapping();
     }
 
     /// <summary>Get a random power-up placed at a given position</summary>
@@ -60,13 +63,13 @@ public class EffectItemFactory {
     /// </summary>
     private EffectItem RandomEffectItem(
         Vec2F pos,
-        Dictionary<EffectItemType, IEffectItemConfig> configs
+        Dictionary<string, IEffectItemConfig> configs
     ) {
         if (configs.Count == 0) {
             throw new Exception("This factory has not been configured");
         }
         int index = random.Next(configs.Count);
-        EffectItemType randomType = configs.Keys.ToList()[index];
+        string randomType = configs.Keys.ToList()[index];
         IEffectItemConfig config = configs[randomType];
         if (config.IsTimed) {
             return CreateTimedEffectItem(config, pos);
@@ -92,8 +95,8 @@ public class EffectItemFactory {
     ) {
         DynamicShape shape = new DynamicShape(pos, STD_EXTENT);
         Image image = Assets.LoadImage(config.IconFileName);
-        GameEvent ev = CreateEvent(config.Type.ToString());
-        return new InstantEffectItem(config.Type, shape, image, ev);
+        GameEvent ev = CreateActivationEvent(config);
+        return new InstantEffectItem(shape, image, ev);
     }
 
     private TimedEffectItem CreateTimedEffectItem(
@@ -102,20 +105,27 @@ public class EffectItemFactory {
     ) {
         DynamicShape shape = new DynamicShape(pos, STD_EXTENT);
         Image image = Assets.LoadImage(config.IconFileName);
-        GameEvent activationEvent = CreateEvent(config.Type.ToString());
-        EffectItemType deactivationType;
-        Enum.TryParse<EffectItemType>(activationEvent.Message, out deactivationType);
-        GameEvent deactivationEvent = CreateEvent(deactivationType.ToString() + "Deactivate");
+        GameEvent activationEvent = CreateActivationEvent(config);
+        GameEvent deactivationEvent = CreateDeactivationEvent(config);
         TimePeriod duration = TimePeriod.NewSeconds(5);
         return new TimedEffectItem(
-            config.Type, shape, image, activationEvent, deactivationEvent, duration
+            shape, image, activationEvent, deactivationEvent, duration
         );
     }
 
-    private GameEvent CreateEvent(string msg) {
+    private GameEvent CreateActivationEvent(IEffectItemConfig config) {
+        string fk = _effectLoader.GetForeignKey(config);
         return new EventBuilder()
             .WithType(GameEventType.StatusEvent)
-            .WithMessage(msg)
+            .WithMessage(fk)
+            .Build();
+    }
+
+    private GameEvent CreateDeactivationEvent(IEffectItemConfig config) {
+        string fk = _effectLoader.GetForeignKey(config);
+        return new EventBuilder()
+            .WithType(GameEventType.StatusEvent)
+            .WithMessage(fk + "Deactivate")
             .Build();
     }
 }
