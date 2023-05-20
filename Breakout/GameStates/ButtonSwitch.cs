@@ -1,65 +1,76 @@
 namespace Breakout.GameStates;
 
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using Breakout.Events;
 using DIKUArcade.Events;
 using DIKUArcade.Input;
 
 public class ButtonSwitch {
-    public Button[] menuButtons {
-        get; private set;
+    private List<Button> menuButtons = new List<Button>();
+    public List<Button> MenuButtons {
+        get{
+            return menuButtons;
+        }
+        set{
+            this.menuButtons = value;
+        }
+
     }
-    public int activeMenuButton = 0;
-    public int maxMenuButtons {
-        get; private set;
+    private int activeMenuButton = 0;
+
+    public int ActiveMenuButton {
+        get{
+            return activeMenuButton;
+        }
+        set{
+            this.activeMenuButton = value;
+        }
     }
+
+    public int MaxMenuButtons {
+        get; set;
+    }
+
+    private string activeButtonText;
+
     public GameStateType nextState {
         get; set;
     }
 
-    public ButtonSwitch(Button button1) {
-        this.menuButtons = new Button[]{button1};
-        initialButtons();
-    }
-    public ButtonSwitch(Button button1, Button button2) {
-        this.menuButtons = new Button[]{button1, button2};
-        initialButtons();
-    }
-    public ButtonSwitch(Button button1, Button button2, Button button3) {
-        this.menuButtons = new Button[]{button1, button2, button3};
-        initialButtons();
-    }
     public ButtonSwitch(params Button[] buttons) {
-        this.menuButtons = buttons;
+        this.MenuButtons = buttons.ToList();
         initialButtons();
     }
 
     private void initialButtons() {
-        maxMenuButtons = menuButtons.Length;
-        foreach (Button i in menuButtons) {
+        MaxMenuButtons = MenuButtons.Count;
+        foreach (Button i in MenuButtons) {
             i.InactiveButton();
         }
-        menuButtons[activeMenuButton].ActiveButton();
+        MenuButtons[this.ActiveMenuButton].ActiveButton();
     }
+
     public void KeyPress(KeyboardKey key) {
         switch (key) {
             case KeyboardKey.Up:
-                foreach (Button i in this.menuButtons) {
+                foreach (Button i in this.MenuButtons) {
                     i.InactiveButton();
                 }
-                activeMenuButton = Math.Max(0, this.activeMenuButton - 1);
-                this.menuButtons[this.activeMenuButton].ActiveButton();
+                ActiveMenuButton = Math.Max(0, this.ActiveMenuButton - 1);
+                this.MenuButtons[this.ActiveMenuButton].ActiveButton();
                 break;
             case KeyboardKey.Down:
-                foreach (Button i in this.menuButtons) {
+                foreach (Button i in this.MenuButtons) {
                     i.InactiveButton();
                 }
-                this.activeMenuButton = Math.Min(this.maxMenuButtons - 1, this.activeMenuButton + 1);
-                this.menuButtons[activeMenuButton].ActiveButton();
+                this.ActiveMenuButton = Math.Min(this.MaxMenuButtons - 1, this.ActiveMenuButton + 1);
+                this.MenuButtons[ActiveMenuButton].ActiveButton();
                 break;
             case KeyboardKey.Enter:
-                this.nextState = this.menuButtons[this.activeMenuButton].TransferFromTextToGameStateType();
-                if (this.menuButtons[this.activeMenuButton].Text == "Quit") {
+                activeButtonText = this.MenuButtons[this.ActiveMenuButton].Text;
+                if (activeButtonText == "Quit") {
                     GameBus.GetBus().RegisterEvent(
                     new EventBuilder()
                         .WithType(GameEventType.WindowEvent)
@@ -68,6 +79,7 @@ public class ButtonSwitch {
                         .Build()
                     );
                 } else {
+                    this.nextState = (GameStateType) (Button.textToState[activeButtonText]);
                     GameBus.GetBus().RegisterEvent(
                     new EventBuilder()
                         .WithType(GameEventType.GameStateEvent)
@@ -90,7 +102,7 @@ public class ButtonSwitch {
     }
 
     public void Render(){
-        foreach (Button i in menuButtons){
+        foreach (Button i in MenuButtons){
             i.Render();
         }
     }

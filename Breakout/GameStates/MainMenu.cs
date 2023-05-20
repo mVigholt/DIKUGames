@@ -4,7 +4,7 @@ using Breakout.IO;
 /// <summary> Main menu state </summary>
 public class MainMenu : GameStateFactory {
     private static MainMenu instance = null;
-    public MainMenu() : base("", "New Game", "Quit", Assets.mainMenuImage) {}
+    public MainMenu() : base("", Assets.mainMenuImage,"New Game", "Quit") {}
 
     public static MainMenu GetInstance() {
         if (MainMenu.instance == null) {
