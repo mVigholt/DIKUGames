@@ -7,14 +7,12 @@ using DIKUArcade.Math;
 
 public class InstantEffectItem : EffectItem
 {
-    public override EffectItemType Type { get; }
     public override GameEvent ActivationEvent { get; }
 
 
-    public InstantEffectItem(EffectItemType type, DynamicShape shape, IBaseImage image, GameEvent activationEvent)
+    public InstantEffectItem(DynamicShape shape, IBaseImage image, GameEvent activationEvent)
         : base(shape, image, activationEvent)
     {
-        Type = type;
         ActivationEvent = activationEvent;
     }
 }

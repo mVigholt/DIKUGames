@@ -12,35 +12,35 @@ using DIKUArcade.Entities;
 /// with all the dependencies it may need,
 /// using Initialize(...dependencies).
 /// 
-/// This class contains a mapping from EffectItemType
+/// This class contains a mapping from string
 /// to IEffect, just like how EffectItemFactory contains
-/// a mapping from EffectItemType to EffectItem.
+/// a mapping from that same string to EffectItem.
 /// By having this foreign key relationship between
-/// EffectItem and IEffect,we can decouple effect items
+/// EffectItem and IEffect, we can decouple effect items
 /// from their respective effects.
 /// 
 /// To create a new effect, create an implementation of
 /// IEffect or ITimedEffect and place it in
 /// Breakout.Entities.EffectItems.Effects.
-/// Give it the same EffectItemType as its corresponding
-/// EffectItem, the physical entity that has an image and a position.
+/// Give the class a name that ends with "Effect".
 /// </summary>
 public class EffectItemHandler : IGameEventProcessor {
 
     private static EffectItemHandler _instance = null;
-    private Dictionary<EffectItemType, IEffect> _effects;
+    private Dictionary<string, IEffect> _effects;
+    private TypeLoader<IEffect> _effectLoader;
 
     /// <summary>
     /// Inject dependencies and discover IEffect classes.
-    /// Create a mapping from EffectItemType to IEffect.
+    /// Create a mapping from string to IEffect.
     /// </summary>
     public void Initialize(
         Shuttle shuttle,
         ScoreBoard scoreBoard,
         EntityContainer<Ball> activeBalls
     ) {
-        var effectLoader = new EffectLoader(shuttle, scoreBoard, activeBalls);
-        _effects = effectLoader.CreateMapping();
+        _effectLoader = new EffectLoader(shuttle, scoreBoard, activeBalls);
+        _effects = _effectLoader.CreateMapping();
     }
 
     public static EffectItemHandler GetInstance() {
@@ -51,8 +51,8 @@ public class EffectItemHandler : IGameEventProcessor {
     }
 
     public void ProcessEvent(GameEvent gameEvent) {
-        EffectItemType type = GetEffectItemType(gameEvent.Message);
-        IEffect effect = _effects[type];
+        string fk = GetForeignKey(gameEvent.Message);
+        IEffect effect = _effects[fk];
         if (gameEvent.Message.Contains("Deactivate")) {
             ((ITimedEffect) effect).Deactivate();
         }
@@ -62,14 +62,12 @@ public class EffectItemHandler : IGameEventProcessor {
     }
 
     /// <summary>
-    /// Convert a string to an EffectItemType, or null if unsuccessful
+    /// Convert a status event message to a foreign key
     /// </summary>
-    private EffectItemType GetEffectItemType(string message) {
+    private string GetForeignKey(string message) {
         if (message.Contains("Deactivate")) {
-            return GetEffectItemType(message.Split("Deactivate")[0]);
+            return message.Split("Deactivate")[0];
         }
-        EffectItemType type;
-        Enum.TryParse<EffectItemType>(message, out type);
-        return type;
+        return message;
     }
 }

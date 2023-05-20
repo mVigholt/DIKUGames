@@ -10,7 +10,7 @@ using System.Reflection;
 /// This generic class can load classes from a namespace.
 /// Given a namespace upon instantiation,
 /// TypeLoader<T>.CreateMapping() creates a mapping from
-/// EffectItemType to T, where the type T is a class
+/// string to T, where the type T is a class
 /// in the given namespace.
 /// Subclasses must implement the method
 /// CreateInstance, which takes a class from the namespace
@@ -34,18 +34,18 @@ public abstract class TypeLoader<T> {
     }
 
     /// <summary>
-    /// Create a mapping from EffectItemType to
-    /// instances of type T. EffectItemType is shared
+    /// Create a mapping from string to
+    /// instances of type T. string is shared
     /// between EffectItems and IEffects, so it works
     /// as a foreign key.
     /// </summary>
-    public Dictionary<EffectItemType, T> CreateMapping() {
-        var mapping = new Dictionary<EffectItemType, T>();
+    public Dictionary<string, T> CreateMapping() {
+        var mapping = new Dictionary<string, T>();
         foreach (Type t in DiscoverTypes()) {
             if (typeof(T).IsAssignableFrom(t)) {
                 T instance = CreateInstance(t);
                 if (instance != null) {
-                    EffectItemType foreignKey = GetForeignKey(instance);
+                    string foreignKey = GetForeignKey(instance);
                     mapping[foreignKey] = instance;
                 }
             }
@@ -53,16 +53,27 @@ public abstract class TypeLoader<T> {
         return mapping;
     }
 
-    /// <summary>Get the EffectItemType associated with an instance of T</summary>
-    public EffectItemType GetForeignKey(T instance) {
-        PropertyInfo eiType = instance.GetType().GetProperty("Type");
-        if (eiType != null && eiType.PropertyType == typeof(EffectItemType)) {
-            EffectItemType itemType = (EffectItemType)eiType.GetValue(instance);
-            return itemType;
+    /// <summary>Get the string associated with an instance of T</summary>
+    public string GetForeignKey(T instance) {
+        string className = instance.GetType().Name;
+        string[] suffixes = new string[]{ "Effect", "Config" };
+        foreach (string suffix in suffixes) {
+            if (className.EndsWith(suffix)) {
+                return className.Substring(0, className.Length - suffix.Length);
+            }
         }
         throw new ArgumentException(
-            $"Could not find the EffectItemType for {instance}"
+            $"Could not get the foreign key for {className}." +
+            "It needs to end with \"Effect\" or \"Config\"."
         );
+        // PropertyInfo eiType = instance.GetType().GetProperty("Type");
+        // if (eiType != null && eiType.PropertyType == typeof(string)) {
+        //     string itemType = (string)eiType.GetValue(instance);
+        //     return itemType;
+        // }
+        // throw new ArgumentException(
+        //     $"Could not find the string for {instance}"
+        // );
     }
 
     public abstract T CreateInstance(Type type);
