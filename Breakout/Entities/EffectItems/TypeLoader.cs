@@ -34,8 +34,8 @@ public abstract class TypeLoader<T> {
     }
 
     /// <summary>
-    /// Create a mapping from string to
-    /// instances of type T. string is shared
+    /// Create a mapping from strings to
+    /// instances of type T. The strings are shared
     /// between EffectItems and IEffects, so it works
     /// as a foreign key.
     /// </summary>
@@ -66,14 +66,6 @@ public abstract class TypeLoader<T> {
             $"Could not get the foreign key for {className}." +
             "It needs to end with \"Effect\" or \"Config\"."
         );
-        // PropertyInfo eiType = instance.GetType().GetProperty("Type");
-        // if (eiType != null && eiType.PropertyType == typeof(string)) {
-        //     string itemType = (string)eiType.GetValue(instance);
-        //     return itemType;
-        // }
-        // throw new ArgumentException(
-        //     $"Could not find the string for {instance}"
-        // );
     }
 
     public abstract T CreateInstance(Type type);
