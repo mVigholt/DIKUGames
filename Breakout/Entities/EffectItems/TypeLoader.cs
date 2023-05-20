@@ -4,10 +4,18 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using DIKUArcade.Events;
-using DIKUArcade.Entities;
 
 
+/// <summary>
+/// This generic class can load classes from a namespace.
+/// Given a namespace upon instantiation,
+/// TypeLoader<T>.CreateMapping() creates a mapping from
+/// EffectItemType to T, where the type T is a class
+/// in the given namespace.
+/// Subclasses must implement the method
+/// CreateInstance, which takes a class from the namespace
+/// as input and returns an instance of it.
+/// </summary>
 public abstract class TypeLoader<T> {
 
     private string _namespace;
@@ -25,6 +33,12 @@ public abstract class TypeLoader<T> {
             .ToList();
     }
 
+    /// <summary>
+    /// Create a mapping from EffectItemType to
+    /// instances of type T. EffectItemType is shared
+    /// between EffectItems and IEffects, so it works
+    /// as a foreign key.
+    /// </summary>
     public Dictionary<EffectItemType, T> CreateMapping() {
         var mapping = new Dictionary<EffectItemType, T>();
         foreach (Type t in DiscoverTypes()) {
@@ -39,6 +53,7 @@ public abstract class TypeLoader<T> {
         return mapping;
     }
 
+    /// <summary>Get the EffectItemType associated with an instance of T</summary>
     public EffectItemType GetForeignKey(T instance) {
         PropertyInfo eiType = instance.GetType().GetProperty("Type");
         if (eiType != null && eiType.PropertyType == typeof(EffectItemType)) {

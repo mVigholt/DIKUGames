@@ -18,14 +18,14 @@ public class LevelLoader {
     private string[] bricks;
     private int rows;
     private int columns;
-    private EffectItemFactory eiFactory = new EffectItemFactory();
+    private EffectItemFactory eiFactory;
     public EntityContainer<Block> blocks {
         get; private set;
     }
 
     public LevelLoader(string fileName) {
         bool isTimedLevel = true;
-        eiFactory = EffectItemFactory.Create(isTimedLevel);
+        eiFactory = new EffectItemFactory(isTimedLevel);
 
         loadFile = new LoadFile(fileName);
         legends = loadFile.CreateLegends();
