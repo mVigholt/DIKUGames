@@ -3,8 +3,8 @@ namespace Breakout.Entities.EffectItems.Effects;
 using DIKUArcade.Timers;
 
 
-/// <summary>Slows down the shuttle</summary>
-public class LessTime : IEffect {
+/// <summary>Removes seconds from the game timer</summary>
+public class LessTimeEffect : IEffect {
 
     public EffectItemType Type { get { return _type; } }
 

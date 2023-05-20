@@ -5,7 +5,7 @@ using Breakout.Entities;
 
 
 // This one is not properly implemented yet
-public class ExtraBalls : IEffect {
+public class ExtraBallsEffect : IEffect {
     
     public EffectItemType Type { get { return _type; } }
     
@@ -13,7 +13,7 @@ public class ExtraBalls : IEffect {
     private EntityContainer<Ball> _activeBalls;
     private Shuttle _shuttle;
 
-    public ExtraBalls(EntityContainer<Ball> activeBalls, Shuttle shuttle) {
+    public ExtraBallsEffect(EntityContainer<Ball> activeBalls, Shuttle shuttle) {
         _activeBalls = activeBalls;
         _shuttle = shuttle;
     }

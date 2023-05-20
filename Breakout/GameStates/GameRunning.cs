@@ -64,8 +64,8 @@ public class GameRunning : IGameState {
 
     private void InitLevel() {
         // Uncomment to test power-ups
-        // LevelLoader levelLoader = new LevelLoader("level" + (scoreBoard.level+1).ToString() + ".txt");
-        LevelLoader levelLoader = new LevelLoader("level" + scoreBoard.level.ToString() + ".txt");
+        LevelLoader levelLoader = new LevelLoader("level" + (scoreBoard.level+1).ToString() + ".txt");
+        // LevelLoader levelLoader = new LevelLoader("level" + scoreBoard.level.ToString() + ".txt");
         blocks = levelLoader.blocks;
     }
 

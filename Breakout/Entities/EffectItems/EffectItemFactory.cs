@@ -37,6 +37,18 @@ public class EffectItemFactory {
         return eif;
     }
 
+    private bool ConfigurationIsValid() {
+        // Make life easier for the developers.
+        // 
+        // - Do all the class names in ItemConfigs
+        //   end with "Config"?
+        // - Do none of the classes in ItemConfigs
+        //   have the same Type?
+        // - Do none of the classes in ItemConfigs
+        //   have the same IconFileName?
+        return true;
+    }
+
     /// <summary>
     /// Add a factory method to the collection of available power-up
     /// creation methods.
@@ -144,7 +156,6 @@ public class EffectItemFactory {
             pos, "heart_filled.png", EffectItemType.ExtraPoints
         );
     }
-
 
     /// <summary>
     /// Power-up: The shuttle gets wider for a time duration

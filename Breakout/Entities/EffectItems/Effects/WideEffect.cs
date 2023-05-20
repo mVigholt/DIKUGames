@@ -3,7 +3,7 @@ namespace Breakout.Entities.EffectItems.Effects;
 using DIKUArcade.Timers;
 
 
-public class Wide : ITimedEffect {
+public class WideEffect : ITimedEffect {
 
     private EffectItemType _type = EffectItemType.Wide;
     public TimePeriod TimeLeft { get; }
@@ -11,7 +11,7 @@ public class Wide : ITimedEffect {
     public EffectItemType Type { get { return _type; } }
     private Shuttle _shuttle;
 
-    public Wide(Shuttle shuttle) {
+    public WideEffect(Shuttle shuttle) {
         _shuttle = shuttle;
         TimeLeft = TimePeriod.NewSeconds(5);
     }
