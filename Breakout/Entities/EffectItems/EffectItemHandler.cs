@@ -2,11 +2,29 @@ namespace Breakout.Entities.EffectItems;
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
 using DIKUArcade.Events;
 using DIKUArcade.Entities;
 
+/// <summary>
+/// Listens for events of type GameEventType.StatusEvent.
+/// Those are used for power-ups and hazards, AKA effect items.
+/// To use this event processor, create an instance of it
+/// with all the dependencies it may need,
+/// using Initialize(...dependencies).
+/// 
+/// This class contains a mapping from EffectItemType
+/// to IEffect, just like how EffectItemFactory contains
+/// a mapping from EffectItemType to EffectItem.
+/// By having this foreign key relationship between
+/// EffectItem and IEffect,we can decouple effect items
+/// from their respective effects.
+/// 
+/// To create a new effect, create an implementation of
+/// IEffect or ITimedEffect and place it in
+/// Breakout.Entities.EffectItems.Effects.
+/// Give it the same EffectItemType as its corresponding
+/// EffectItem, the physical entity that has an image and a position.
+/// </summary>
 public class EffectItemHandler : IGameEventProcessor {
 
     private static EffectItemHandler _instance = null;
@@ -24,21 +42,8 @@ public class EffectItemHandler : IGameEventProcessor {
         ScoreBoard scoreBoard,
         EntityContainer<Ball> activeBalls
     ) {
-        _shuttle = shuttle;
-        _scoreBoard = scoreBoard;
-        _activeBalls = activeBalls;
-        _effects = new Dictionary<EffectItemType, IEffect>();
-        List<Type> effectTypes = DiscoverTypes();
-        foreach (Type t in effectTypes) {
-            if (typeof(IEffect).IsAssignableFrom(t))
-            {
-                IEffect effect = CreateEffectInstance(t);
-                if (effect != null)
-                {
-                    _effects[effect.Type] = effect;
-                }
-            }
-        }
+        var effectLoader = new EffectLoader(shuttle, scoreBoard, activeBalls);
+        _effects = effectLoader.CreateMapping();
     }
 
     public static EffectItemHandler GetInstance() {
@@ -46,47 +51,6 @@ public class EffectItemHandler : IGameEventProcessor {
             _instance = new EffectItemHandler();
         }
         return _instance;
-    }
-
-    /// <summary>
-    /// Instantiate an IEffect without knowing its type and dependencies
-    /// </summary>
-    private IEffect CreateEffectInstance(Type effectType) {
-        ConstructorInfo[] constructors = effectType.GetConstructors();
-        ConstructorInfo constructor = constructors.FirstOrDefault();
-        if (constructor != null) {
-            ParameterInfo[] parameters = constructor.GetParameters();
-            object[] args = new object[parameters.Length];
-            for (int i = 0; i < parameters.Length; i++) {
-                ParameterInfo parameter = parameters[i];
-                if (parameter.ParameterType == typeof(Shuttle)) {
-                    args[i] = _shuttle;
-                }
-                else if (parameter.ParameterType == typeof(ScoreBoard)) {
-                    args[i] = _scoreBoard;
-                }
-                else if (parameter.ParameterType == typeof(EntityContainer<Ball>)) {
-                    args[i] = _activeBalls;
-                }
-                else {
-                    throw new ArgumentException(
-                        $"Could not create an instance of type {effectType}"
-                    );
-                }
-            }
-            return (IEffect)constructor.Invoke(args);
-        }
-        return null;
-    }
-
-    /// <summary>Find all the classes in the Effects namespace</summary>
-    private List<Type> DiscoverTypes() {
-        // Thanks to SO user aku
-        // https://stackoverflow.com/a/79738
-        string ns = "Breakout.Entities.EffectItems.Effects";
-        return Assembly.GetExecutingAssembly().GetTypes()
-            .Where(t => t.IsClass && t.Namespace == ns)
-            .ToList();
     }
 
     public void ProcessEvent(GameEvent gameEvent) {
@@ -100,6 +64,9 @@ public class EffectItemHandler : IGameEventProcessor {
         }
     }
 
+    /// <summary>
+    /// Convert a string to an EffectItemType, or null if unsuccessful
+    /// </summary>
     private EffectItemType GetEffectItemType(string message) {
         if (message.Contains("Deactivate")) {
             return GetEffectItemType(message.Split("Deactivate")[0]);
