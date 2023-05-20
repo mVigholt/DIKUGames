@@ -1,4 +1,4 @@
-namespace Breakout.Entities.EffectItems.ItemConfigs;
+namespace Breakout.Entities.EffectItems.ItemConfigs.Hazards;
 
 
 public class LessTimeConfig : IEffectItemConfig {

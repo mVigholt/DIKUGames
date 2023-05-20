@@ -1,4 +1,4 @@
-namespace Breakout.Entities.EffectItems.ItemConfigs;
+namespace Breakout.Entities.EffectItems.ItemConfigs.PowerUps;
 
 
 public class ExtraPointsConfig : IEffectItemConfig {

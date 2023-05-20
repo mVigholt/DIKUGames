@@ -24,21 +24,8 @@ public class EffectItemHandler : IGameEventProcessor {
         ScoreBoard scoreBoard,
         EntityContainer<Ball> activeBalls
     ) {
-        _shuttle = shuttle;
-        _scoreBoard = scoreBoard;
-        _activeBalls = activeBalls;
-        _effects = new Dictionary<EffectItemType, IEffect>();
-        List<Type> effectTypes = DiscoverTypes();
-        foreach (Type t in effectTypes) {
-            if (typeof(IEffect).IsAssignableFrom(t))
-            {
-                IEffect effect = CreateEffectInstance(t);
-                if (effect != null)
-                {
-                    _effects[effect.Type] = effect;
-                }
-            }
-        }
+        var effectLoader = new EffectLoader(shuttle, scoreBoard, activeBalls);
+        _effects = effectLoader.CreateMapping();
     }
 
     public static EffectItemHandler GetInstance() {
@@ -46,37 +33,6 @@ public class EffectItemHandler : IGameEventProcessor {
             _instance = new EffectItemHandler();
         }
         return _instance;
-    }
-
-    /// <summary>
-    /// Instantiate an IEffect without knowing its type and dependencies
-    /// </summary>
-    private IEffect CreateEffectInstance(Type effectType) {
-        ConstructorInfo[] constructors = effectType.GetConstructors();
-        ConstructorInfo constructor = constructors.FirstOrDefault();
-        if (constructor != null) {
-            ParameterInfo[] parameters = constructor.GetParameters();
-            object[] args = new object[parameters.Length];
-            for (int i = 0; i < parameters.Length; i++) {
-                ParameterInfo parameter = parameters[i];
-                if (parameter.ParameterType == typeof(Shuttle)) {
-                    args[i] = _shuttle;
-                }
-                else if (parameter.ParameterType == typeof(ScoreBoard)) {
-                    args[i] = _scoreBoard;
-                }
-                else if (parameter.ParameterType == typeof(EntityContainer<Ball>)) {
-                    args[i] = _activeBalls;
-                }
-                else {
-                    throw new ArgumentException(
-                        $"Could not create an instance of type {effectType}"
-                    );
-                }
-            }
-            return (IEffect)constructor.Invoke(args);
-        }
-        return null;
     }
 
     /// <summary>Find all the classes in the Effects namespace</summary>
@@ -90,6 +46,7 @@ public class EffectItemHandler : IGameEventProcessor {
     }
 
     public void ProcessEvent(GameEvent gameEvent) {
+        Console.WriteLine($"ProcessEvent({gameEvent.Message})");
         EffectItemType type = GetEffectItemType(gameEvent.Message);
         IEffect effect = _effects[type];
         if (gameEvent.Message.Contains("Deactivate")) {

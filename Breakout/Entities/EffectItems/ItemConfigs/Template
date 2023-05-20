@@ -1,9 +1,0 @@
-namespace Breakout.Entities.EffectItems.ItemConfigs;
-
-
-public class Config : IEffectItemConfig {
-    public EffectItemType Type { get; }
-
-    public string IconFileName { get; }
-    public bool IsTimed { get; }
-} 

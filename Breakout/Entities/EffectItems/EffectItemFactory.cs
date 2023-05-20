@@ -10,6 +10,7 @@ using DIKUArcade.Math;
 using DIKUArcade.Timers;
 using Breakout.IO;
 using Breakout.Events;
+using Breakout.Entities.EffectItems.ItemConfigs;
 
 
 public class EffectItemFactory {
@@ -120,6 +121,16 @@ public class EffectItemFactory {
         return new InstantEffectItem(type, shape, image, ev);
     }
 
+    private InstantEffectItem CreateInstantEffectItem(
+        IEffectItemConfig config,
+        Vec2F pos
+    ) {
+        DynamicShape shape = new DynamicShape(pos, STD_EXTENT);
+        Image image = Assets.LoadImage(config.IconFileName);
+        GameEvent ev = CreateEvent(config.Type.ToString());
+        return new InstantEffectItem(config.Type, shape, image, ev);
+    }
+
     private TimedEffectItem CreateTimedEffectItem(
         Vec2F pos,
         string imageFilename,
@@ -137,11 +148,33 @@ public class EffectItemFactory {
         );
     }
 
+    private TimedEffectItem CreateTimedEffectItem(
+        IEffectItemConfig config,
+        Vec2F pos
+    ) {
+        DynamicShape shape = new DynamicShape(pos, STD_EXTENT);
+        Image image = Assets.LoadImage(config.IconFileName);
+        GameEvent activationEvent = CreateEvent(config.Type.ToString());
+        EffectItemType deactivationType;
+        Enum.TryParse<EffectItemType>(activationEvent.Message, out deactivationType);
+        GameEvent deactivationEvent = CreateEvent(deactivationType.ToString() + "Deactivate");
+        TimePeriod duration = TimePeriod.NewSeconds(5);
+        return new TimedEffectItem(
+            config.Type, shape, image, activationEvent, deactivationEvent, duration
+        );
+    }
+
     private GameEvent CreateEvent(string msg) {
         return new EventBuilder()
             .WithType(GameEventType.StatusEvent)
             .WithMessage(msg)
             .Build();
+    }
+
+    private EffectItem FromConfig(IEffectItemConfig config) {
+        if (config.IsTimed) {
+            return CreateTimedEffectItem()
+        }
     }
 
     /* --- Factory methods --- */
