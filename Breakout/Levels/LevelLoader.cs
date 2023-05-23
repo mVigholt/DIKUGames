@@ -12,10 +12,7 @@ using Breakout.Graphics;
 
 
 public class LevelLoader {
-    private Dictionary<string, string> legends;
-    private Dictionary<string, string> metadata;
     private LoadFile loadFile;
-    private string[] bricks;
     private int rows;
     private int columns;
     private EffectItemFactory eiFactory;
@@ -28,9 +25,9 @@ public class LevelLoader {
         eiFactory = new EffectItemFactory(isTimedLevel);
 
         loadFile = new LoadFile(fileName);
-        legends = loadFile.CreateLegends();
-        metadata = loadFile.CreateMetadata();
-        bricks = loadFile.CreateMap();
+        var bricks = loadFile.GetMap();
+        var meta = loadFile.GetMetaDict();
+        var legends = loadFile.GetLegendDict();
         rows = bricks.Length;
         columns = bricks[0].Length;
         float xExtent = 1.0f / columns;
@@ -42,8 +39,8 @@ public class LevelLoader {
                 if (symbol != "-") {
                     string imgFileName = legends[symbol];
                     Vec2F pos = new Vec2F(c * xExtent, 1 - r * yExtent);
-                    var property = metadata.GetValueOrDefault(symbol, "");
-                    Block block = BuildBlock(imgFileName, pos, property);
+                    //var property = meta.GetValueOrDefault(symbol, "");
+                    Block block = BuildBlock(imgFileName, pos, symbol);//property);
                     if (block != null) {
                         blocks.AddEntity(block);
                     }
@@ -52,9 +49,7 @@ public class LevelLoader {
         }
     }
 
-    private Block BuildBlock(
-        string imgFileName, Vec2F pos, string property
-    ) {
+    private Block BuildBlock(string imgFileName, Vec2F pos, string property) {
         string[] filenameParts = imgFileName.Split('.');
         string baseName = filenameParts[0];
         string fileExt = filenameParts[1];
@@ -74,14 +69,16 @@ public class LevelLoader {
         }
         var builder = new Block.Builder()
             .WithPosition(pos)
-            .WithValue(1);
-        if (property == "powerup") {
+            .WithValue(1)
+            .WithIsHardened(loadFile.MetaContains("hardened", property))
+            .WithIsUnbreakable(loadFile.MetaContains("unbreakable", property));
+        if (loadFile.MetaContains("powerup", property)) {
             EffectItem powerUp = eiFactory.RandomPowerUp(pos);
             builder = builder
                 .WithImage(new OverlayImage(image, powerUp.Image))
                 .WithAlterImage(new OverlayImage(alterImage, powerUp.Image))
                 .WithEffectItem(powerUp);
-        } else if (property == "hazard") {
+        } else if (loadFile.MetaContains("hazard", property)) {
             EffectItem hazard = eiFactory.RandomHazard(pos);
             builder = builder
                 .WithImage(new OverlayImage(image, hazard.Image))
@@ -91,11 +88,6 @@ public class LevelLoader {
             builder = builder
                 .WithImage(image)
                 .WithAlterImage(alterImage);
-        }
-        if (property == "hardened") {
-            builder.WithIsHardened(true);
-        } else if (property == "unbreakable") {
-            builder.WithIsUnbreakable(true);
         }
         return builder.Build();
     }

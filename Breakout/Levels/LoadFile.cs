@@ -7,55 +7,57 @@ using Breakout.IO;
 
 
 public class LoadFile {
-    public IEnumerable<string> legends {
-        get; private set;
-    }
-    public IEnumerable<string> meta {
-        get; private set;
-    }
-    public IEnumerable<string> maps {
-        get; private set;
-    }
+    private string[] legend;
+    private string[] meta;
+    private string[] map;
+
     public LoadFile(string fileName) {
         string filePath = Path.Combine(PathFinder.Levels(), fileName);
-        legends = File.ReadLines(filePath)
-            .SkipWhile(legend => legend != "Legend:")
-            .Skip(1) // Skip the intro line
-            .TakeWhile(legend => legend != "Legend/");
+        map = File.ReadLines(filePath)
+           .SkipWhile(map => map != "Map:")
+           .Skip(1) // Skip the intro line
+           .TakeWhile(map => map != "Map/")
+           .ToArray();
+
         meta = File.ReadLines(filePath)
             .SkipWhile(meta => meta != "Meta:")
             .Skip(1) // Skip the intro line
-            .TakeWhile(meta => meta != "Meta/");
-        maps = File.ReadLines(filePath)
-           .SkipWhile(map => map != "Map:")
-           .Skip(1) // Skip the intro line
-           .TakeWhile(map => map != "Map/");
+            .TakeWhile(meta => meta != "Meta/")
+            .ToArray();
+        
+        legend = File.ReadLines(filePath)
+            .SkipWhile(legend => legend != "Legend:")
+            .Skip(1) // Skip the intro line
+            .TakeWhile(legend => legend != "Legend/")
+            .ToArray();
     }
 
-    public Dictionary<string, string> CreateLegends() {
-        Dictionary<string, string> legendsDict = new Dictionary<string, string> { };
-        foreach (string l in this.legends) {
-            string[] parts = l.Split(')');
-            string symbol = parts[0].Trim();
-            string imagePath = parts[1].Trim().ToLower();
-            legendsDict.Add(symbol, imagePath);
+    public string[] GetMap(){
+        return map;
+    }
+
+    private Dictionary<string, string> GetDict(string[] data, string separator) {
+        Dictionary<string, string> dict = new Dictionary<string, string>();
+        foreach (string line in data) {
+            string[] parts = line.Split(separator);
+            string key = parts[0].Trim().ToLower();
+            string value = parts[1].Trim().ToLower();
+            dict.Add(key, value);
         }
-        return legendsDict;
+        return dict;                
     }
 
-    public Dictionary<string, string> CreateMetadata() {
-        Dictionary<string, string> metaDict = new Dictionary<string, string> { };
-        foreach (string pair in meta) {
-            string[] parts = pair.Split(":");
-            string property = parts[0].Trim().ToLower();
-            string symbol = parts[1].Trim();
-            metaDict[symbol] = property;
-        }
-        return metaDict;
+    public Dictionary<string, string> GetMetaDict() {
+        return GetDict(this.meta, ":");
     }
 
-    public string[] CreateMap(){
-        string[] bricks = maps.ToArray();
-        return bricks;
+    public Dictionary<string, string> GetLegendDict() {
+        return GetDict(this.legend, ")");
+    }
+
+    public bool MetaContains(string key, string value ) {
+        var metaDict = GetMetaDict();
+        return (metaDict.ContainsKey(key) ? 
+                metaDict[key].Contains(value) : false);
     }
 }
