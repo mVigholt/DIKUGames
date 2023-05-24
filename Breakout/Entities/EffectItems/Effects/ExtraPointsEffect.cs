@@ -1,9 +1,11 @@
 namespace Breakout.Entities.EffectItems.Effects;
 
+using Breakout.Entities.Board;
+
 
 // An easily tested powerup
 public class ExtraPointsEffect : IEffect {
-    
+
     private ScoreBoard _scoreBoard;
 
     public ExtraPointsEffect(ScoreBoard scoreBoard) {

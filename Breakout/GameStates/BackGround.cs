@@ -12,4 +12,9 @@ public class BackGround: Entity{
         this.BackGroundImage = image;
     }
 
+     public BackGround(Vec2F pos, Vec2F extent, IBaseImage image) :
+        base(new StationaryShape (pos, extent), image){
+        this.BackGroundImage = image;
+    }
+
 }
