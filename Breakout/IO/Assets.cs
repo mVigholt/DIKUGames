@@ -19,4 +19,6 @@ public static class Assets {
     public static Image ball = LoadImage("ball.png");
     public static Image mainMenuImage = LoadImage("BreakoutTitleScreen.png");
     public static Image backGroundImage = LoadImage("SpaceBackground.png");
+
+    public static Image overlayImage = LoadImage("Overlay.png");
 }

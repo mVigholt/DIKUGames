@@ -13,6 +13,16 @@ using Breakout.Graphics;
 
 public class LevelLoader {
     private LoadFile loadFile;
+
+    public int? levelTime {
+        get;
+        private set;
+    }
+    public string levelName {
+        get;
+        private set;
+    }
+
     private int rows;
     private int columns;
     private EffectItemFactory eiFactory;
@@ -23,22 +33,37 @@ public class LevelLoader {
     public LevelLoader(string fileName) {
         bool isTimedLevel = true;
         eiFactory = new EffectItemFactory(isTimedLevel);
-
         loadFile = new LoadFile(fileName);
+        CreateMap();
+    }
+
+    private void CreateMap(){
         var bricks = loadFile.GetMap();
         var meta = loadFile.GetMetaDict();
         var legends = loadFile.GetLegendDict();
+        if (meta.ContainsKey("time")){
+            levelTime =int.Parse(meta["time"]);
+        }
+        else{
+            levelTime = null;
+        }
+        if (meta.ContainsKey("name")){
+            levelName = meta["name"];
+        }
+        else{
+            levelName = null;
+        }
         rows = bricks.Length;
         columns = bricks[0].Length;
         float xExtent = 1.0f / columns;
-        float yExtent = 1.0f / rows;
+        float yExtent = 0.9f / rows;
         blocks = new EntityContainer<Block>(rows * columns);
         for (int r = 0; r < bricks.Length; r++) {
             for (int c = 0; c < bricks[r].Length; c++) {
                 string symbol = bricks[r][c].ToString();
                 if (symbol != "-") {
                     string imgFileName = legends[symbol];
-                    Vec2F pos = new Vec2F(c * xExtent, 1 - r * yExtent);
+                    Vec2F pos = new Vec2F(c * xExtent, 0.9f - r * yExtent);
                     //var property = meta.GetValueOrDefault(symbol, "");
                     Block block = BuildBlock(imgFileName, pos, symbol);//property);
                     if (block != null) {

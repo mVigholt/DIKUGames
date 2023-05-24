@@ -13,33 +13,52 @@ using Breakout.Entities.EffectItems;
 using Breakout.Events;
 using Breakout.IO;
 using Breakout.Levels;
+using Breakout.Entities.Board;
 
 public class GameRunning : IGameState {
     private static GameRunning instance = null;
     private GameEventBus eventBus = GameBus.GetBus();
     private Shuttle shuttle;
     private EntityContainer<Ball> activeBalls;
-    private EntityContainer<Block> blocks;
     private EntityContainer<EffectItem> fallingItems;
-    private int balls;
-    private ScoreBoard scoreBoard;
+    private int lives;
     private readonly int NUM_LEVELS = 4;
+    private Level level;
+    private int levelNum = 0;
     private EffectItemHandler effectItemHandler;
+    private ScoreBoard scoreBoard;
+    private LivesBoard livesBoard;
+    private BackGround overLay;
+
 
     public static GameRunning GetInstance() {
         if (GameRunning.instance == null) {
             GameRunning.instance = new GameRunning();
-            GameRunning.instance.ResetState();
+            GameRunning.instance.InitalState();
         }
         return GameRunning.instance;
     }
 
-    public void ResetState() {
-        InitScoreBoard();
+
+    public void InitalState() {
         ChangeLevel();
-        balls = 2;
+        lives = 2;
         InitEffectItems();
+        InitBoard();
+        overLay = new BackGround(new Vec2F(0.0f, 0.9f),
+            new Vec2F(1.0f, 0.1f), Assets.overlayImage);
     }
+    public void ResetState() {
+        InitShuttle();
+        InitBall();
+    }
+
+    public void InitBoard() {
+        this.scoreBoard = new ScoreBoard();
+        this.livesBoard = new LivesBoard(lives);
+    }
+
+
 
     private void InitShuttle() {
         Vec2F playerPosition = new Vec2F(0.5f - Shuttle.STD_EXTEND.X / 2, 0.03f);
@@ -63,16 +82,7 @@ public class GameRunning : IGameState {
     }
 
     private void InitLevel() {
-        // Uncomment to test power-ups
-        LevelLoader levelLoader = new LevelLoader("level" + (scoreBoard.level+1).ToString() + ".txt");
-        // LevelLoader levelLoader = new LevelLoader("level" + scoreBoard.level.ToString() + ".txt");
-        blocks = levelLoader.blocks;
-    }
-
-    public void InitScoreBoard() {
-        Vec2F position = new Vec2F(0.8f, 0.8f);
-        Vec2F extent = new Vec2F(0.2f, 0.2f);
-        scoreBoard = new ScoreBoard(position, extent);
+        level = new Level(levelNum);
     }
 
     public void InitEffectItems() {
@@ -84,12 +94,14 @@ public class GameRunning : IGameState {
     }
 
     private void ChangeLevel() {
-        if (scoreBoard.level <= NUM_LEVELS) {
-            scoreBoard.NextLevel();
+        if (this.levelNum <= NUM_LEVELS) {
+            levelNum++;
             InitShuttle();
             InitBall();
             InitLevel();
-        } else {GameWon();}
+        } else {
+            GameWon();
+        }
     }
 
     public void GameOver() {
@@ -112,10 +124,12 @@ public class GameRunning : IGameState {
 
     public void RenderState() {
         shuttle.Render();
-        blocks.RenderEntities();
         activeBalls.RenderEntities();
-        scoreBoard.RenderText();
+        level.Render();
         fallingItems.RenderEntities();
+        overLay.RenderEntity();
+        scoreBoard.Render();
+        livesBoard.Render();
     }
 
     public void UpdateState() {
@@ -126,18 +140,21 @@ public class GameRunning : IGameState {
 
     private void StateCheker() {
         var Unbreakables = 0;
-        foreach (Block block in blocks) {
-            if (block.build.isUnbreakable) {Unbreakables += 1;}
+        foreach (Block block in level.blocks) {
+            if (block.build.isUnbreakable) {
+                Unbreakables += 1;
+            }
         }
 
-        if (blocks.CountEntities() == Unbreakables) {
+        if (level.blocks.CountEntities() == Unbreakables) {
             ChangeLevel();
         }
 
-        if (balls + activeBalls.CountEntities() > 0) {
+        if (lives + activeBalls.CountEntities() > 0) {
             if (activeBalls.CountEntities() == 0) {
                 InitBall();
-                balls --;
+                lives--;
+                livesBoard.LostLives(1);
             }
         } else {
             GameOver();
@@ -167,7 +184,7 @@ public class GameRunning : IGameState {
                 ball.UpdateDirection(ballVsShuttle.CollisionDir, shuttle.GetDirection());
             }
 
-            blocks.Iterate(block => {
+            level.blocks.Iterate(block => {
                 CollisionData ballVsblock =
                     CollisionDetection.Aabb(ball.Shape.AsDynamicShape(), block.Shape);
 

@@ -3,6 +3,7 @@ namespace Breakout.Entities.EffectItems;
 using System;
 using System.Linq;
 using System.Reflection;
+using Breakout.Entities.Board;
 using DIKUArcade.Entities;
 
 public class EffectLoader : TypeLoader<IEffect> {

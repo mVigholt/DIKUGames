@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using DIKUArcade.Events;
 using DIKUArcade.Entities;
+using Breakout.Entities.Board;
 
 /// <summary>
 /// Listens for events of type GameEventType.StatusEvent.
@@ -11,14 +12,14 @@ using DIKUArcade.Entities;
 /// To use this event processor, create an instance of it
 /// with all the dependencies it may need,
 /// using Initialize(...dependencies).
-/// 
+///
 /// This class contains a mapping from string
 /// to IEffect, just like how EffectItemFactory contains
 /// a mapping from that same string to EffectItem.
 /// By having this foreign key relationship between
 /// EffectItem and IEffect, we can decouple effect items
 /// from their respective effects.
-/// 
+///
 /// To create a new effect, create an implementation of
 /// IEffect or ITimedEffect and place it in
 /// Breakout.Entities.EffectItems.Effects.
@@ -34,10 +35,7 @@ public class EffectItemHandler : IGameEventProcessor {
     /// Inject dependencies and discover IEffect classes.
     /// Create a mapping from string to IEffect.
     /// </summary>
-    public void Initialize(
-        Shuttle shuttle,
-        ScoreBoard scoreBoard,
-        EntityContainer<Ball> activeBalls
+    public void Initialize(Shuttle shuttle,ScoreBoard scoreBoard,EntityContainer<Ball> activeBalls
     ) {
         _effectLoader = new EffectLoader(shuttle, scoreBoard, activeBalls);
         _effects = _effectLoader.CreateMapping();
