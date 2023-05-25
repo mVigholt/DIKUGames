@@ -11,9 +11,16 @@ public class GamePaused : GameStateFactory {
             this.AddButton("Main Menu", GameStateType.MainMenu);
             this.AddButton("Quit", null);
     }
+
     public static GamePaused GetInstance() {
+        return GetInstance(false);
+    }
+
+    public static GamePaused GetInstance(bool resetState) {
         if (GamePaused.instance == null) {
             GamePaused.instance = new GamePaused();
+        }
+        if (resetState) {
             GamePaused.instance.ResetState();
         }
         return GamePaused.instance;
