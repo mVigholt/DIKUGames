@@ -2,7 +2,6 @@ namespace Breakout.Levels;
 
 using System;
 using DIKUArcade.Entities;
-using DIKUArcade.Math;
 using Breakout.Entities;
 using DIKUArcade.Events;
 using Breakout.Entities.Board;
@@ -18,6 +17,7 @@ public class Level : IGameEventProcessor {
         get; set;
     }
     public EntityContainer<Block> blocks;
+
     public int LevelNum {
         get; set;
     }
@@ -41,6 +41,7 @@ public class Level : IGameEventProcessor {
         levelName = levelLoader.levelName;
         InitCountDown();
         InitLevelBoard();
+        this.countDownBoard.CreationTime = 0.0;
     }
 
 
@@ -69,7 +70,6 @@ public class Level : IGameEventProcessor {
             levelBoard.Render();
         }
     }
-
 
     public void ProcessEvent(GameEvent gameEvent) {
         throw new NotImplementedException();
