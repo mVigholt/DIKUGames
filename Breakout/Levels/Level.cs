@@ -7,16 +7,22 @@ using DIKUArcade.Events;
 using Breakout.Entities.Board;
 
 public class Level : IGameEventProcessor {
-    public CountDown countDownBoard {
-        get; set;
+    public countDownBoard countDownBoard {
+        get;
+        private set;
     }
     public LevelBoard levelBoard {
-        get; set;
+        get;
+        private set;
     }
-    public LevelLoader levelLoader {
-        get; set;
+    public LevelHandler levelHandler {
+        get;
+        private set;
     }
-    public EntityContainer<Block> blocks;
+    public EntityContainer<Block> blocks{
+        get;
+        private set;
+    }
 
     public double? levelTime {
         get;
@@ -31,25 +37,25 @@ public class Level : IGameEventProcessor {
     // public EffectItemHandler effectItemHandler;
 
     public Level(int levelNum) {
-        levelLoader = new LevelLoader("level" + (levelNum).ToString() + ".txt");
-        blocks = levelLoader.blocks;
-        levelTime = levelLoader.levelTime;
-        levelName = levelLoader.levelName;
+        levelHandler = new LevelHandler("level" + (levelNum).ToString() + ".txt");
+        blocks = levelHandler.blocks;
+        this.levelTime = levelHandler.levelTime;
+        this.levelName = levelHandler.levelName;
         InitCountDown();
         InitLevelBoard();
     }
 
 
-    public void InitCountDown() {
-        if (levelLoader.levelTime != null) {
-            this.countDownBoard = new CountDown((int) levelTime);
+    private void InitCountDown() {
+        if (levelHandler.levelTime != null) {
+            this.countDownBoard = new countDownBoard((int) levelTime);
         } else {
             this.countDownBoard = null;
         }
     }
 
-    public void InitLevelBoard() {
-        if (levelLoader.levelName != null) {
+    private void InitLevelBoard() {
+        if (levelHandler.levelName != null) {
             this.levelBoard = new LevelBoard((string)levelName);
         } else {
             this.levelBoard = null;

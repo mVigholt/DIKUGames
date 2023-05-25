@@ -4,19 +4,15 @@ using DIKUArcade.Graphics;
 using DIKUArcade.Math;
 using DIKUArcade.Timers;
 
-public class CountDown : Text {
-    public double timeLeft = 0;
-    public double initialTime = 0;
-    public double CreationTime {
-        get;
-        set;
-    }
+public class countDownBoard : Text {
+    public double timeLeft {get; private set;}= 0;
+    private double totalTime;
+    public double CreationTime {get; set;} = 0.0;
 
-    public CountDown(int levelTime) :
+    public countDownBoard(int levelTime) :
         base("Time: 0", new Vec2F(0.01f, 0.75f), new Vec2F(0.25f, 0.25f)) {
-        this.initialTime = levelTime;
-        this.timeLeft = initialTime + 1;
-        this.CreationTime = 0.0;
+        this.totalTime = levelTime;
+        this.timeLeft = totalTime + 1;
         StaticTimer.RestartTimer();
         SetColor(new Vec3I(51, 153, 255));
         SetText($"Time: {this.timeLeft}");

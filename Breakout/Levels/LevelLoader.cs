@@ -1,118 +1,67 @@
 namespace Breakout.Levels;
 
-using System;
 using System.Collections.Generic;
-using DIKUArcade.Entities;
-using DIKUArcade.Graphics;
-using DIKUArcade.Math;
-using Breakout.Entities;
+using System.IO;
+using System.Linq;
 using Breakout.IO;
-using Breakout.Entities.EffectItems;
-using Breakout.Graphics;
 
 
 public class LevelLoader {
-    private LoadFile loadFile;
-
-    public double? levelTime {
-        get;
-        private set;
-    }
-    public string levelName {
-        get;
-        private set;
-    }
-
-    private int rows;
-    private int columns;
-    private EffectItemFactory eiFactory;
-    public EntityContainer<Block> blocks {
-        get; private set;
-    }
+    private string[] legend;
+    private string[] meta;
+    private string[] map;
 
     public LevelLoader(string fileName) {
-        bool isTimedLevel = true;
-        eiFactory = new EffectItemFactory(isTimedLevel);
-        loadFile = new LoadFile(fileName);
-        CreateMap();
+        string filePath = Path.Combine(PathFinder.Levels(), fileName);
+        map = File.ReadLines(filePath)
+           .SkipWhile(map => map != "Map:")
+           .Skip(1) // Skip the intro line
+           .TakeWhile(map => map != "Map/")
+           .ToArray();
+
+        meta = File.ReadLines(filePath)
+            .SkipWhile(meta => meta != "Meta:")
+            .Skip(1) // Skip the intro line
+            .TakeWhile(meta => meta != "Meta/")
+            .ToArray();
+
+        legend = File.ReadLines(filePath)
+            .SkipWhile(legend => legend != "Legend:")
+            .Skip(1) // Skip the intro line
+            .TakeWhile(legend => legend != "Legend/")
+            .ToArray();
     }
 
-    private void CreateMap(){
-        var bricks = loadFile.GetMap();
-        var meta = loadFile.GetMetaDict();
-        var legends = loadFile.GetLegendDict();
-        if (meta.ContainsKey("time")){
-            levelTime =double.Parse(meta["time"]);
+    public string[] GetMap() {
+        List<string> mapLowerCase = new List<string>{};
+        foreach(string m in map){
+            mapLowerCase.Add(m.ToLower());
         }
-        else{
-            levelTime = null;
-        }
-        if (meta.ContainsKey("name")){
-            levelName = meta["name"];
-        }
-        else{
-            levelName = null;
-        }
-        rows = bricks.Length;
-        columns = bricks[0].Length;
-        float xExtent = 1.0f / columns;
-        float yExtent = 0.9f / rows;
-        blocks = new EntityContainer<Block>(rows * columns);
-        for (int r = 0; r < bricks.Length; r++) {
-            for (int c = 0; c < bricks[r].Length; c++) {
-                string symbol = bricks[r][c].ToString();
-                if (symbol != "-") {
-                    string imgFileName = legends[symbol];
-                    Vec2F pos = new Vec2F(c * xExtent, 0.9f - r * yExtent);
-                    Block block = BuildBlock(imgFileName, pos, symbol);
-                    if (block != null) {
-                        blocks.AddEntity(block);
-                    }
-                }
-            }
-        }
+        return mapLowerCase.ToArray();
     }
 
-    private Block BuildBlock(string imgFileName, Vec2F pos, string property) {
-        string[] filenameParts = imgFileName.Split('.');
-        string baseName = filenameParts[0];
-        string fileExt = filenameParts[1];
-        string alterImgFileName = $"{baseName}-damaged.{fileExt}";
+    private Dictionary<string, string> GetDict(string[] data, string separator) {
+        Dictionary<string, string> dict = new Dictionary<string, string>();
+        foreach (string line in data) {
+            string[] parts = line.Split(separator);
+            string key = parts[0].Trim().ToLower();
+            string value = parts[1].Trim().ToLower();
+            dict.Add(key, value);
+        }
+        return dict;
+    }
 
-        IBaseImage image;
-        IBaseImage alterImage;
-        try {
-            image = Assets.LoadImage(imgFileName);
-            alterImage = Assets.LoadImage(alterImgFileName);
-        } catch (Exception) {
-            // If the image cannot be loaded, simply
-            // don't create this entity.
-            // The game is more fun without a few entities
-            // than if it just crashes.
-            return null;
-        }
-        var builder = new Block.Builder()
-            .WithPosition(pos)
-            .WithValue(1)
-            .WithIsHardened(loadFile.MetaContains("hardened", property))
-            .WithIsUnbreakable(loadFile.MetaContains("unbreakable", property));
-        if (loadFile.MetaContains("powerup", property)) {
-            EffectItem powerUp = eiFactory.RandomPowerUp(pos);
-            builder = builder
-                .WithImage(new OverlayImage(image, powerUp.Image))
-                .WithAlterImage(new OverlayImage(alterImage, powerUp.Image))
-                .WithEffectItem(powerUp);
-        } else if (loadFile.MetaContains("hazard", property)) {
-            EffectItem hazard = eiFactory.RandomHazard(pos);
-            builder = builder
-                .WithImage(new OverlayImage(image, hazard.Image))
-                .WithAlterImage(new OverlayImage(alterImage, hazard.Image))
-                .WithEffectItem(hazard);
-        } else {
-            builder = builder
-                .WithImage(image)
-                .WithAlterImage(alterImage);
-        }
-        return builder.Build();
+    public Dictionary<string, string> GetMetaDict() {
+        return GetDict(this.meta, ":");
+    }
+
+    public Dictionary<string, string> GetLegendDict() {
+        return GetDict(this.legend, ")");
+    }
+
+    public bool MetaContains(string key, string value) {
+        var metaDict = GetMetaDict();
+        return (metaDict.ContainsKey(key) ?
+                metaDict[key].Contains(value) : false);
     }
 }

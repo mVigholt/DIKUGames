@@ -14,7 +14,6 @@ using Breakout.Events;
 using Breakout.IO;
 using Breakout.Levels;
 using Breakout.Entities.Board;
-using DIKUArcade.Timers;
 
 public class GameRunning : IGameState {
     private static GameRunning instance = null;
@@ -28,7 +27,6 @@ public class GameRunning : IGameState {
     private EffectItemHandler effectItemHandler;
     private ScoreBoard scoreBoard;
     private LivesBoard livesBoard;
-    private BackGround overLay;
 
     public static GameRunning GetInstance() {
         return GetInstance(false);
@@ -51,8 +49,6 @@ public class GameRunning : IGameState {
         InitBoard();
         InitEffectItems();
         ChangeLevel();
-        overLay = new BackGround(new Vec2F(0.0f, 0.9f),
-            new Vec2F(1.0f, 0.1f), Assets.overlayImage);
     }
 
     public void InitBoard() {
@@ -123,7 +119,6 @@ public class GameRunning : IGameState {
         balls.RenderEntities();
         level.Render();
         fallingItems.RenderEntities();
-        overLay.RenderEntity();
         scoreBoard.Render();
         livesBoard.Render();
     }
