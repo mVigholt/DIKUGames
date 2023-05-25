@@ -14,9 +14,8 @@ using DIKUArcade.Math;
 using NUnit.Framework;
 
 [TestFixture]
-public class TestPlayer {
+public class TestShuttle {
     private GameEventBus eventBus;
-    private GameEvent playerEvent;
     private Image playerImage;
     private Shuttle shuttle;
     private DynamicShape playerShape;
