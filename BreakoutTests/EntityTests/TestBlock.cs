@@ -1,7 +1,5 @@
 namespace BreakoutTests;
 
-using System.Collections.Generic;
-using System.IO;
 using Breakout.Entities;
 using Breakout.IO;
 using DIKUArcade.Graphics;
@@ -56,7 +54,7 @@ public class TestBlock {
         normalBlock.LoseHealth(hp);
         hardenedBlock.LoseHealth(hp);
         unbreakableBlock.LoseHealth(hp);
-        
+
         if (hp <= 1) {
             Assert.True(normalBlock.IsDead());
             Assert.False(hardenedBlock.IsDead());
