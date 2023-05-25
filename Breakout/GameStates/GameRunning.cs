@@ -24,7 +24,7 @@ public class GameRunning : IGameState {
     private int lives;
     private readonly int NUM_LEVELS = 4;
     private Level level;
-    private int levelNum = 0;
+    public int levelNum = 0;
     private EffectItemHandler effectItemHandler;
     private ScoreBoard scoreBoard;
     private LivesBoard livesBoard;
@@ -39,6 +39,11 @@ public class GameRunning : IGameState {
         return GameRunning.instance;
     }
 
+
+    public static GameRunning CopyToGameRunning(IGameState gameState)
+    {
+        return GameRunning.GetInstance();
+    }
 
     public void InitalState() {
         ChangeLevel();
@@ -93,7 +98,7 @@ public class GameRunning : IGameState {
         fallingItems = new EntityContainer<EffectItem>();
     }
 
-    private void ChangeLevel() {
+    public void ChangeLevel() {
         if (this.levelNum <= NUM_LEVELS) {
             levelNum++;
             InitShuttle();
