@@ -168,6 +168,9 @@ public class GameRunning : IGameState {
         } else {
             GameOver();
         }
+        if (this.level.countDownBoard.timeLeft <= 0){
+            GameOver();
+        }
     }
 
     private void MoveEntities() {
