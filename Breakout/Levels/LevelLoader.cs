@@ -14,7 +14,7 @@ using Breakout.Graphics;
 public class LevelLoader {
     private LoadFile loadFile;
 
-    public int? levelTime {
+    public double? levelTime {
         get;
         private set;
     }
@@ -42,7 +42,7 @@ public class LevelLoader {
         var meta = loadFile.GetMetaDict();
         var legends = loadFile.GetLegendDict();
         if (meta.ContainsKey("time")){
-            levelTime =int.Parse(meta["time"]);
+            levelTime =double.Parse(meta["time"]);
         }
         else{
             levelTime = null;

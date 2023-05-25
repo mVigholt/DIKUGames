@@ -44,8 +44,10 @@ public class StateMachine : IGameEventProcessor {
             case (GamePaused, GameStateType.GameRunning):
                 ActiveState = GameRunning.GetInstance();
                 GameRunning nowState = GameRunning.CopyToGameRunning(ActiveState);
-                nowState.ChangeLevel();
-                nowState.ResetState();
+                if(level == "Next Level"){
+                    nowState.ChangeLevel();
+                    nowState.ResetState();
+                }
                 break;
             default:
                 break;
