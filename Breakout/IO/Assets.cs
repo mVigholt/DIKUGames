@@ -21,4 +21,6 @@ public static class Assets {
     public static Image backGroundImage = LoadImage("SpaceBackground.png");
 
     public static Image overlayImage = LoadImage("Overlay.png");
+
+    public static Image LifeImage = LoadImage("heart_filled.png");
 }
