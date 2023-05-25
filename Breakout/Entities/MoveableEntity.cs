@@ -61,6 +61,13 @@ public class MoveableEntity : Entity {
         shape.ChangeDirection(new Vec2F(Speed * dir.X, Speed * dir.Y));
     }
 
+    public void Stop() {
+        this.UpdateDirection(
+            CollisionDirection.CollisionDirUnchecked,
+            -1 * this.GetDirection()
+        );
+    }
+
     protected Vec2F MinCorner() {
         return new Vec2F(0.0f, 0.0f);
     }

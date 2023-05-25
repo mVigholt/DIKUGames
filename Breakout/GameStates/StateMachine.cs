@@ -21,34 +21,28 @@ public class StateMachine : IGameEventProcessor {
     private void SwitchState(GameStateType NextState, string message) {
         switch (ActiveState, NextState) {
             case (MainMenu, GameStateType.GameRunning):
-                ActiveState = GameRunning.GetInstance();
-                ActiveState.ResetState();
+                ActiveState = GameRunning.GetInstance(true);
                 break;
             case (GameRunning, GameStateType.GamePaused):
                 StaticTimer.PauseTimer();
-                ActiveState = GamePaused.GetInstance();
-                ActiveState.ResetState();
+                ActiveState = GamePaused.GetInstance(true);
                 break;
             case (GameRunning, GameStateType.GameLost):
-                ActiveState = GameLost.GetInstance();
-                ActiveState.ResetState();
+                ActiveState = GameLost.GetInstance(true);
                 break;
             case (GameRunning, GameStateType.GameWon):
-                ActiveState = GameWon.GetInstance();
-                ActiveState.ResetState();
+                ActiveState = GameWon.GetInstance(true);
                 break;
             case (GamePaused, GameStateType.MainMenu):
             case (GameLost, GameStateType.MainMenu):
             case (GameWon, GameStateType.MainMenu):
-                ActiveState = MainMenu.GetInstance();
-                ActiveState.ResetState();
+                ActiveState = MainMenu.GetInstance(true);
                 break;
             case (GamePaused, GameStateType.GameRunning):
                 StaticTimer.ResumeTimer();
                 ActiveState = GameRunning.GetInstance();
-                GameRunning nowState = GameRunning.CopyToGameRunning(ActiveState);
                 if (message == "Next Level") {
-                    nowState.ChangeLevel();
+                    GameRunning.GetInstance().ChangeLevel();
                 }
                 break;
             default:

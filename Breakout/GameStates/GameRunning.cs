@@ -20,48 +20,45 @@ public class GameRunning : IGameState {
     private static GameRunning instance = null;
     private GameEventBus eventBus = GameBus.GetBus();
     private Shuttle shuttle;
-    private EntityContainer<Ball> activeBalls;
+    private EntityContainer<Ball> balls;
     private EntityContainer<EffectItem> fallingItems;
     private int lives;
     private readonly int NUM_LEVELS = 4;
     private Level level;
-    public int levelNum;
     private EffectItemHandler effectItemHandler;
     private ScoreBoard scoreBoard;
     private LivesBoard livesBoard;
     private BackGround overLay;
 
-
     public static GameRunning GetInstance() {
+        return GetInstance(false);
+    }
+
+    public static GameRunning GetInstance(bool resetState) {
         if (GameRunning.instance == null) {
             GameRunning.instance = new GameRunning();
+        }
+        if (resetState) {
             GameRunning.instance.ResetState();
         }
+        //Stop the shuttle if it was moving when going to pause menu
+        GameRunning.instance.shuttle.Stop();
         return GameRunning.instance;
     }
 
-
-    public static GameRunning CopyToGameRunning(IGameState gameState)
-    {
-        return GameRunning.GetInstance();
-    }
-
-
     public void ResetState() {
-        InitBoard();
-        overLay = new BackGround(new Vec2F(0.0f, 0.9f),
-            new Vec2F(1.0f, 0.1f), Assets.overlayImage);
         lives = 2;
+        InitBoard();
         InitEffectItems();
         ChangeLevel();
+        overLay = new BackGround(new Vec2F(0.0f, 0.9f),
+            new Vec2F(1.0f, 0.1f), Assets.overlayImage);
     }
 
     public void InitBoard() {
         this.scoreBoard = new ScoreBoard();
         this.livesBoard = new LivesBoard(lives);
     }
-
-
 
     private void InitShuttle() {
         Vec2F playerPosition = new Vec2F(0.5f - Shuttle.STD_EXTEND.X / 2, 0.03f);
@@ -80,14 +77,13 @@ public class GameRunning : IGameState {
     private void InitBall() {
         IBaseImage ballImage = new Image(
             Path.Combine(PathFinder.Images(), "ball.png"));
-        activeBalls = new EntityContainer<Ball>(5);
-        activeBalls.AddEntity(new Ball(BallPosOnShuttle(), ballImage));
+        balls = new EntityContainer<Ball>(5);
+        balls.AddEntity(new Ball(BallPosOnShuttle(), ballImage));
     }
-
 
     public void InitEffectItems() {
         effectItemHandler = EffectItemHandler.GetInstance();
-        effectItemHandler.Initialize(shuttle, scoreBoard, activeBalls);
+        effectItemHandler.Initialize(shuttle, scoreBoard, balls);
         GameBus.GetBus().Unsubscribe(GameEventType.StatusEvent, effectItemHandler);
         GameBus.GetBus().Subscribe(GameEventType.StatusEvent, effectItemHandler);
         fallingItems = new EntityContainer<EffectItem>();
@@ -124,7 +120,7 @@ public class GameRunning : IGameState {
 
     public void RenderState() {
         shuttle.Render();
-        activeBalls.RenderEntities();
+        balls.RenderEntities();
         level.Render();
         fallingItems.RenderEntities();
         overLay.RenderEntity();
@@ -152,8 +148,8 @@ public class GameRunning : IGameState {
             ChangeLevel();
         }
 
-        if (lives + activeBalls.CountEntities() > 0) {
-            if (activeBalls.CountEntities() == 0) {
+        if (lives + balls.CountEntities() > 0) {
+            if (balls.CountEntities() == 0) {
                 InitBall();
                 lives--;
                 livesBoard.LostLives(1);
@@ -168,7 +164,7 @@ public class GameRunning : IGameState {
 
     private void MoveEntities() {
         shuttle.Move();
-        foreach (Ball ball in activeBalls) {
+        foreach (Ball ball in balls) {
             ball.Move();
             //let the ball follow the shuttle until released
             if (ball.GetDirection().Length() == new Vec2F(0, 0).Length()) {
@@ -181,7 +177,7 @@ public class GameRunning : IGameState {
     }
 
     private void CollidingEntities() {
-        activeBalls.Iterate(ball => {
+        balls.Iterate(ball => {
             CollisionData ballVsShuttle =
                 CollisionDetection.Aabb(ball.Shape.AsDynamicShape(), shuttle.Shape);
 
@@ -262,7 +258,7 @@ public class GameRunning : IGameState {
                 break;
             case KeyboardKey.Space:
                 //release ball
-                foreach (Ball ball in activeBalls) {
+                foreach (Ball ball in balls) {
                     if (ball.GetDirection().Length() == new Vec2F(0, 0).Length()) {
                         var X = shuttle.GetDirection().X;
                         X = X != 0 ? (X > 0 ? 1 : -1) : 0;
