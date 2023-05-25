@@ -21,7 +21,7 @@ public class Level : IGameEventProcessor {
     public int LevelNum {
         get; set;
     }
-    public int? levelTime {
+    public double? levelTime {
         get;
         private set;
     }
@@ -69,7 +69,6 @@ public class Level : IGameEventProcessor {
             levelBoard.Render();
         }
     }
-
 
 
     public void ProcessEvent(GameEvent gameEvent) {
