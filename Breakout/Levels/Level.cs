@@ -34,7 +34,6 @@ public class Level : IGameEventProcessor {
     // public EffectItemHandler effectItemHandler;
 
     public Level(int levelnum) {
-        Console.WriteLine("s");
         this.LevelNum = levelnum;
         levelLoader = new LevelLoader("level" + (this.LevelNum).ToString() + ".txt");
         blocks = levelLoader.blocks;

@@ -78,7 +78,18 @@ public class ButtonSwitch {
                         .WithAction(KeyboardAction.KeyPress)
                         .Build()
                     );
-                } else {
+                } else if(activeButtonText == "Next Level"){
+                        this.nextState = GameStateType.GameRunning;
+                        GameBus.GetBus().RegisterEvent(
+                        new EventBuilder()
+                            .WithType(GameEventType.GameStateEvent)
+                            .WithStateType(this.nextState)
+                            .WithAction(KeyboardAction.KeyPress)
+                            .WithMessage(activeButtonText)
+                            .Build()
+                    );
+
+                } else{
                     this.nextState = (GameStateType) (Button.textToState[activeButtonText]);
                     GameBus.GetBus().RegisterEvent(
                     new EventBuilder()
