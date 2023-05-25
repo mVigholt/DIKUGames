@@ -37,11 +37,6 @@ public class Shuttle : MoveableEntity, IGameEventProcessor {
         eventBus.Subscribe(GameEventType.PlayerEvent, this);
     }
 
-    public void StopMoving() {
-        UpdateDirection(CollisionDirection.CollisionDirUnchecked,
-            -1 * GetDirection() ); //new Vec2F(val ? -1 : 1, 0)
-    }
-
     private protected void SetMoveLeft(bool val) {
         UpdateDirection(CollisionDirection.CollisionDirUnchecked,
             new Vec2F(val ? -1 : 1, 0));
