@@ -14,6 +14,7 @@ using Breakout.Events;
 using Breakout.IO;
 using Breakout.Levels;
 using Breakout.Entities.Board;
+using DIKUArcade.Timers;
 
 public class GameRunning : IGameState {
     private static GameRunning instance = null;
@@ -141,7 +142,9 @@ public class GameRunning : IGameState {
         StateCheker();
         MoveEntities();
         CollidingEntities();
+        this.level.countDownBoard.UpdateCountDown();
     }
+
 
     private void StateCheker() {
         var Unbreakables = 0;
