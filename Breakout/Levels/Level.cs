@@ -41,7 +41,6 @@ public class Level : IGameEventProcessor {
         levelName = levelLoader.levelName;
         InitCountDown();
         InitLevelBoard();
-        this.countDownBoard.CreationTime = 0.0;
     }
 
 

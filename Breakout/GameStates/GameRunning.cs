@@ -57,6 +57,7 @@ public class GameRunning : IGameState {
     public void ResetState() {
         InitShuttle();
         InitBall();
+        InitLevel();
     }
 
     public void InitBoard() {
