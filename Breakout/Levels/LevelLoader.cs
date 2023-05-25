@@ -64,8 +64,7 @@ public class LevelLoader {
                 if (symbol != "-") {
                     string imgFileName = legends[symbol];
                     Vec2F pos = new Vec2F(c * xExtent, 0.9f - r * yExtent);
-                    //var property = meta.GetValueOrDefault(symbol, "");
-                    Block block = BuildBlock(imgFileName, pos, symbol);//property);
+                    Block block = BuildBlock(imgFileName, pos, symbol);
                     if (block != null) {
                         blocks.AddEntity(block);
                     }

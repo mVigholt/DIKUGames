@@ -24,7 +24,7 @@ public class LoadFile {
             .Skip(1) // Skip the intro line
             .TakeWhile(meta => meta != "Meta/")
             .ToArray();
-        
+
         legend = File.ReadLines(filePath)
             .SkipWhile(legend => legend != "Legend:")
             .Skip(1) // Skip the intro line
@@ -32,8 +32,12 @@ public class LoadFile {
             .ToArray();
     }
 
-    public string[] GetMap(){
-        return map;
+    public string[] GetMap() {
+        List<string> mapLowerCase = new List<string>{};
+        foreach(string m in map){
+            mapLowerCase.Add(m.ToLower());
+        }
+        return mapLowerCase.ToArray();
     }
 
     private Dictionary<string, string> GetDict(string[] data, string separator) {
@@ -44,7 +48,7 @@ public class LoadFile {
             string value = parts[1].Trim().ToLower();
             dict.Add(key, value);
         }
-        return dict;                
+        return dict;
     }
 
     public Dictionary<string, string> GetMetaDict() {
@@ -55,9 +59,9 @@ public class LoadFile {
         return GetDict(this.legend, ")");
     }
 
-    public bool MetaContains(string key, string value ) {
+    public bool MetaContains(string key, string value) {
         var metaDict = GetMetaDict();
-        return (metaDict.ContainsKey(key) ? 
+        return (metaDict.ContainsKey(key) ?
                 metaDict[key].Contains(value) : false);
     }
 }

@@ -18,7 +18,7 @@ public class StateMachine : IGameEventProcessor {
     ///<summary>Make the transition from current state to the next state</summary>
     ///<param name = "NextState"></param>
     ///<return>no return</return>
-    private void SwitchState(GameStateType NextState, string level) {
+    private void SwitchState(GameStateType NextState, string message) {
         switch (ActiveState, NextState) {
             case (MainMenu, GameStateType.GameRunning):
                 ActiveState = GameRunning.GetInstance();
@@ -47,9 +47,8 @@ public class StateMachine : IGameEventProcessor {
                 StaticTimer.ResumeTimer();
                 ActiveState = GameRunning.GetInstance();
                 GameRunning nowState = GameRunning.CopyToGameRunning(ActiveState);
-                if(level == "Next Level"){
+                if (message == "Next Level") {
                     nowState.ChangeLevel();
-                    nowState.ResetState();
                 }
                 break;
             default:
@@ -59,7 +58,7 @@ public class StateMachine : IGameEventProcessor {
 
     public void ProcessEvent(GameEvent gameEvent) {
         EventDTO ev = new EventDTO(gameEvent);
-        string level = ev.Message;
-        SwitchState(ev.StateType.Value, level);
+        string message = ev.Message;
+        SwitchState(ev.StateType.Value, message);
     }
 }

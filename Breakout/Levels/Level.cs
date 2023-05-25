@@ -18,9 +18,6 @@ public class Level : IGameEventProcessor {
     }
     public EntityContainer<Block> blocks;
 
-    public int LevelNum {
-        get; set;
-    }
     public double? levelTime {
         get;
         private set;
@@ -33,9 +30,8 @@ public class Level : IGameEventProcessor {
     // public EntityContainer<EffectItem> fallingItems;
     // public EffectItemHandler effectItemHandler;
 
-    public Level(int levelnum) {
-        this.LevelNum = levelnum;
-        levelLoader = new LevelLoader("level" + (this.LevelNum).ToString() + ".txt");
+    public Level(int levelNum) {
+        levelLoader = new LevelLoader("level" + (levelNum).ToString() + ".txt");
         blocks = levelLoader.blocks;
         levelTime = levelLoader.levelTime;
         levelName = levelLoader.levelName;

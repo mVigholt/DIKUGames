@@ -25,7 +25,7 @@ public class GameRunning : IGameState {
     private int lives;
     private readonly int NUM_LEVELS = 4;
     private Level level;
-    public int levelNum = 0;
+    public int levelNum;
     private EffectItemHandler effectItemHandler;
     private ScoreBoard scoreBoard;
     private LivesBoard livesBoard;
@@ -35,7 +35,7 @@ public class GameRunning : IGameState {
     public static GameRunning GetInstance() {
         if (GameRunning.instance == null) {
             GameRunning.instance = new GameRunning();
-            GameRunning.instance.InitalState();
+            GameRunning.instance.ResetState();
         }
         return GameRunning.instance;
     }
@@ -46,18 +46,14 @@ public class GameRunning : IGameState {
         return GameRunning.GetInstance();
     }
 
-    public void InitalState() {
-        ChangeLevel();
-        lives = 2;
-        InitEffectItems();
+
+    public void ResetState() {
         InitBoard();
         overLay = new BackGround(new Vec2F(0.0f, 0.9f),
             new Vec2F(1.0f, 0.1f), Assets.overlayImage);
-    }
-    public void ResetState() {
-        InitShuttle();
-        InitBall();
-        InitLevel();
+        lives = 2;
+        InitEffectItems();
+        ChangeLevel();
     }
 
     public void InitBoard() {
@@ -88,9 +84,6 @@ public class GameRunning : IGameState {
         activeBalls.AddEntity(new Ball(BallPosOnShuttle(), ballImage));
     }
 
-    private void InitLevel() {
-        level = new Level(levelNum);
-    }
 
     public void InitEffectItems() {
         effectItemHandler = EffectItemHandler.GetInstance();
@@ -101,11 +94,11 @@ public class GameRunning : IGameState {
     }
 
     public void ChangeLevel() {
-        if (this.levelNum <= NUM_LEVELS) {
-            levelNum++;
+        scoreBoard.NextLevel();
+        if (scoreBoard.level<= NUM_LEVELS) {
             InitShuttle();
             InitBall();
-            InitLevel();
+            level = new Level(scoreBoard.level);
         } else {
             GameWon();
         }
