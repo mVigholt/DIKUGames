@@ -3,6 +3,7 @@ namespace Breakout.GameStates;
 using Breakout.Events;
 using DIKUArcade.Events;
 using DIKUArcade.State;
+using DIKUArcade.Timers;
 
 ///<summary>Handle the transition of different states and process inputs</summary>
 public class StateMachine : IGameEventProcessor {
@@ -24,6 +25,7 @@ public class StateMachine : IGameEventProcessor {
                 ActiveState.ResetState();
                 break;
             case (GameRunning, GameStateType.GamePaused):
+                StaticTimer.PauseTimer();
                 ActiveState = GamePaused.GetInstance();
                 ActiveState.ResetState();
                 break;
@@ -42,6 +44,7 @@ public class StateMachine : IGameEventProcessor {
                 ActiveState.ResetState();
                 break;
             case (GamePaused, GameStateType.GameRunning):
+                StaticTimer.ResumeTimer();
                 ActiveState = GameRunning.GetInstance();
                 GameRunning nowState = GameRunning.CopyToGameRunning(ActiveState);
                 if(level == "Next Level"){
