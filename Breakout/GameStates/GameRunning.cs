@@ -87,7 +87,7 @@ public class GameRunning : IGameState {
 
     public void ChangeLevel() {
         scoreBoard.NextLevel();
-        if (scoreBoard.level<= NUM_LEVELS) {
+        if (scoreBoard.level <= NUM_LEVELS) {
             InitShuttle();
             InitBall();
             level = new Level(scoreBoard.level);
@@ -127,7 +127,10 @@ public class GameRunning : IGameState {
         StateCheker();
         MoveEntities();
         CollidingEntities();
-        this.level.CountDownBoard.UpdateCountDown();
+        if (this.level.CountDownBoard != null){
+            this.level.CountDownBoard.UpdateCountDown();
+        }
+
     }
 
 
@@ -152,9 +155,12 @@ public class GameRunning : IGameState {
         } else {
             GameOver();
         }
-        if (this.level.CountDownBoard.timeLeft <= 0){
-            GameOver();
+        if (this.level.CountDownBoard != null) {
+            if (this.level.CountDownBoard.timeLeft <= 0) {
+                GameOver();
+            }
         }
+
     }
 
     private void MoveEntities() {

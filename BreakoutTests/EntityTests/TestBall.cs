@@ -130,5 +130,17 @@ public class TestBall {
         Assert.Negative(ball.GetDirection().X);
     }
 
+    [Test]
+    public void TestBallIsDeleted(){
+        Ball ball = new Ball(new Vec2F(0.5f, 0.1f), ballImage);
+         //Move the ball upwards for 10 steps right
+        for (int i = 0; i < 10; i++) {
+            ball.UpdateDirection(new Vec2F(0, -1));
+            ball.Move();
+        }
+        Assert.IsTrue(ball.IsDeleted());
+
+    }
+
 
 }
