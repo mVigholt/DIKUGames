@@ -8,7 +8,7 @@ public class ScoreBoard : Text {
 
     private int points = 0;
 
-    public int level {get; private set;} = 0;
+    public int level { get; private set; } = 0;
     public ScoreBoard() :
         base("Score: 0", new Vec2F(0.7f, 0.75f), new Vec2F(0.25f, 0.25f)) {
         SetColor(new Vec3I(51, 153, 255));
@@ -19,10 +19,14 @@ public class ScoreBoard : Text {
         this.points += points;
         SetText($"Score: {this.points}");
     }
-    public void Render(){
+    public void Render() {
         this.RenderText();
     }
-    public void NextLevel(){
+
+    public int GetRemainingPoint() {
+        return this.points;
+    }
+    public void NextLevel() {
         this.level += 1;
     }
 }
