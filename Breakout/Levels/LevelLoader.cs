@@ -13,28 +13,37 @@ public class LevelLoader {
 
     public LevelLoader(string fileName) {
         string filePath = Path.Combine(PathFinder.Levels(), fileName);
-        map = File.ReadLines(filePath)
-           .SkipWhile(map => map != "Map:")
-           .Skip(1) // Skip the intro line
-           .TakeWhile(map => map != "Map/")
-           .ToArray();
+        try {
+            map = File.ReadLines(filePath)
+               .SkipWhile(map => map != "Map:")
+               .Skip(1) // Skip the intro line
+               .TakeWhile(map => map != "Map/")
+               .ToArray();
 
-        meta = File.ReadLines(filePath)
-            .SkipWhile(meta => meta != "Meta:")
-            .Skip(1) // Skip the intro line
-            .TakeWhile(meta => meta != "Meta/")
-            .ToArray();
-
-        legend = File.ReadLines(filePath)
-            .SkipWhile(legend => legend != "Legend:")
-            .Skip(1) // Skip the intro line
-            .TakeWhile(legend => legend != "Legend/")
-            .ToArray();
+            meta = File.ReadLines(filePath)
+                .SkipWhile(meta => meta != "Meta:")
+                .Skip(1) // Skip the intro line
+                .TakeWhile(meta => meta != "Meta/")
+                .ToArray();
+            foreach (var i in meta){
+                System.Console.WriteLine(i);
+            }
+            legend = File.ReadLines(filePath)
+                .SkipWhile(legend => legend != "Legend:")
+                .Skip(1) // Skip the intro line
+                .TakeWhile(legend => legend != "Legend/")
+                .ToArray();
+        } catch (System.IO.FileNotFoundException) {
+        //If file does not exist, it will create a default map
+           map = new List<string>{"hhhhhhhhhhh"}.ToArray();
+           meta = new List<string>{":"}.ToArray();
+           legend = new List<string>{"h) green-block.png"}.ToArray();
+        }
     }
 
     public string[] GetMap() {
-        List<string> mapLowerCase = new List<string>{};
-        foreach(string m in map){
+        List<string> mapLowerCase = new List<string> { };
+        foreach (string m in map) {
             mapLowerCase.Add(m.ToLower());
         }
         return mapLowerCase.ToArray();

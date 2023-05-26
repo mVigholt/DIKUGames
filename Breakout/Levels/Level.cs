@@ -7,7 +7,7 @@ using DIKUArcade.Events;
 using Breakout.Entities.Board;
 
 public class Level {
-    public countDownBoard countDownBoard {
+    public CountDownBoard CountDownBoard {
         get;
         private set;
     }
@@ -33,9 +33,6 @@ public class Level {
         private set;
     }
 
-    // public EntityContainer<EffectItem> fallingItems;
-    // public EffectItemHandler effectItemHandler;
-
     public Level(int levelNum) {
         levelHandler = new LevelHandler("level" + (levelNum).ToString() + ".txt");
         blocks = levelHandler.blocks;
@@ -48,9 +45,9 @@ public class Level {
 
     private void InitCountDown() {
         if (levelHandler.levelTime != null) {
-            this.countDownBoard = new countDownBoard((int) levelTime);
+            this.CountDownBoard = new CountDownBoard((int) levelTime);
         } else {
-            this.countDownBoard = null;
+            this.CountDownBoard = null;
         }
     }
 
@@ -64,8 +61,8 @@ public class Level {
 
     public void Render() {
         blocks.RenderEntities();
-        if (countDownBoard != null) {
-            countDownBoard.Render();
+        if (CountDownBoard != null) {
+            CountDownBoard.Render();
         }
         if (levelBoard!= null) {
             levelBoard.Render();

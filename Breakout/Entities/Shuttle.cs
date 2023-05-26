@@ -38,13 +38,11 @@ public class Shuttle : MoveableEntity, IGameEventProcessor {
     }
 
     private protected void SetMoveLeft(bool val) {
-        UpdateDirection(CollisionDirection.CollisionDirUnchecked,
-            new Vec2F(val ? -1 : 1, 0));
+        UpdateDirection(new Vec2F(val ? -1 : 1, 0));
     }
 
     private protected void SetMoveRight(bool val) {
-        UpdateDirection(CollisionDirection.CollisionDirUnchecked,
-            new Vec2F(val ? 1 : -1, 0));
+        UpdateDirection(new Vec2F(val ? 1 : -1, 0));
     }
 
     ///<summary>Process Shuttle event</summary>

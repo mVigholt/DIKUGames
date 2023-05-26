@@ -73,6 +73,7 @@ public class GameRunning : IGameState {
     private void InitBall() {
         IBaseImage ballImage = new Image(
             Path.Combine(PathFinder.Images(), "ball.png"));
+        balls = new EntityContainer<Ball>();
         balls.AddEntity(new Ball(BallPosOnShuttle(), ballImage));
     }
 
@@ -85,7 +86,7 @@ public class GameRunning : IGameState {
 
     public void ChangeLevel() {
         scoreBoard.NextLevel();
-        if (scoreBoard.level<= NUM_LEVELS) {
+        if (scoreBoard.level <= NUM_LEVELS) {
             InitShuttle();
             InitBall();
             level = new Level(scoreBoard.level);
@@ -125,7 +126,10 @@ public class GameRunning : IGameState {
         StateCheker();
         MoveEntities();
         CollidingEntities();
-        this.level.countDownBoard.UpdateCountDown();
+        if (this.level.CountDownBoard != null){
+            this.level.CountDownBoard.UpdateCountDown();
+        }
+
     }
 
 
@@ -150,9 +154,12 @@ public class GameRunning : IGameState {
         } else {
             GameOver();
         }
-        if (this.level.countDownBoard.timeLeft <= 0){
-            GameOver();
+        if (this.level.CountDownBoard != null) {
+            if (this.level.CountDownBoard.timeLeft <= 0) {
+                GameOver();
+            }
         }
+
     }
 
     private void MoveEntities() {
@@ -175,7 +182,7 @@ public class GameRunning : IGameState {
                 CollisionDetection.Aabb(ball.Shape.AsDynamicShape(), shuttle.Shape);
 
             if (ballVsShuttle.Collision) {
-                ball.UpdateDirection(ballVsShuttle.CollisionDir, shuttle.GetDirection());
+                ball.UpdateDirection(shuttle.GetDirection(), ballVsShuttle.CollisionDir);
             }
 
             level.blocks.Iterate(block => {
@@ -183,7 +190,7 @@ public class GameRunning : IGameState {
                     CollisionDetection.Aabb(ball.Shape.AsDynamicShape(), block.Shape);
 
                 if (ballVsblock.Collision) {
-                    ball.UpdateDirection(ballVsblock.CollisionDir, block.GetDirection());
+                    ball.UpdateDirection(block.GetDirection(), ballVsblock.CollisionDir);
                     scoreBoard.AddPoints(block.Value);
                     block.LoseHealth(ball.damage);
                     if (block.build.effectItem != null) {
@@ -255,7 +262,7 @@ public class GameRunning : IGameState {
                     if (ball.GetDirection().Length() == new Vec2F(0, 0).Length()) {
                         var X = shuttle.GetDirection().X;
                         X = X != 0 ? (X > 0 ? 1 : -1) : 0;
-                        ball.UpdateDirection(CollisionDirection.CollisionDirUnchecked, new Vec2F(X, 1));
+                        ball.UpdateDirection(new Vec2F(X, 1));
                     }
                 }
                 break;
