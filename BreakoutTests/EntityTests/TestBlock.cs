@@ -1,4 +1,4 @@
-namespace BreakoutTests;
+namespace BreakoutTests.EntityTests;
 
 using Breakout.Entities;
 using Breakout.IO;

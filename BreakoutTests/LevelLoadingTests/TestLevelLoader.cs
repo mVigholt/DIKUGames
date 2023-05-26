@@ -1,11 +1,8 @@
-namespace BreakoutTests;
+namespace BreakoutTests.LevelLoadingTests;
 
-using System;
 using System.IO;
-using Breakout.Entities;
 using Breakout.IO;
 using Breakout.Levels;
-using DIKUArcade.Entities;
 using DIKUArcade.GUI; // Needed for OpenGL contexts
 using NUnit.Framework;
 
