@@ -4,12 +4,12 @@ using DIKUArcade.Graphics;
 using DIKUArcade.Math;
 using DIKUArcade.Timers;
 
-public class countDownBoard : Text {
+public class CountDownBoard : Text {
     public double timeLeft {get; private set;}= 0;
     private double totalTime;
     public double CreationTime {get; set;} = 0.0;
 
-    public countDownBoard(int levelTime) :
+    public CountDownBoard(int levelTime) :
         base("Time: 0", new Vec2F(0.01f, 0.75f), new Vec2F(0.25f, 0.25f)) {
         this.totalTime = levelTime;
         this.timeLeft = totalTime + 1;

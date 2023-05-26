@@ -127,7 +127,7 @@ public class GameRunning : IGameState {
         StateCheker();
         MoveEntities();
         CollidingEntities();
-        this.level.countDownBoard.UpdateCountDown();
+        this.level.CountDownBoard.UpdateCountDown();
     }
 
 
@@ -152,7 +152,7 @@ public class GameRunning : IGameState {
         } else {
             GameOver();
         }
-        if (this.level.countDownBoard.timeLeft <= 0){
+        if (this.level.CountDownBoard.timeLeft <= 0){
             GameOver();
         }
     }
