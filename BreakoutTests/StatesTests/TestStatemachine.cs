@@ -1,4 +1,4 @@
-namespace GalagaTests;
+namespace BreakoutTests.StatesTests;
 
 using NUnit.Framework;
 using Breakout;

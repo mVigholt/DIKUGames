@@ -23,8 +23,17 @@ public class LivesBoard {
     }
 
     public void LostLives(int lives) {
-        this.livesLeft -= lives;
+        int livesRemainning = this.livesLeft - lives;
+        if (livesRemainning <=0){
+            this.livesLeft = 0;
+        }else{
+            this.livesLeft = livesRemainning ;
+        }
         livesNum.SetText($"x {this.livesLeft}");
+    }
+
+    public int GetRemainingLives(){
+        return this.livesLeft;
     }
     public void Render() {
         livesNum.RenderText();

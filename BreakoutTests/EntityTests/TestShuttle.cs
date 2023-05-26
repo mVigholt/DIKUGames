@@ -1,4 +1,4 @@
-namespace BreakoutTests;
+namespace BreakoutTests.EntityTests;
 
 using System;
 using Breakout;
