@@ -6,7 +6,7 @@ using Breakout.Entities;
 using DIKUArcade.Events;
 using Breakout.Entities.Board;
 
-public class Level : IGameEventProcessor {
+public class Level {
     public countDownBoard countDownBoard {
         get;
         private set;
@@ -70,10 +70,5 @@ public class Level : IGameEventProcessor {
         if (levelBoard!= null) {
             levelBoard.Render();
         }
-    }
-
-    public void ProcessEvent(GameEvent gameEvent) {
-        System.Console.WriteLine(
-            "Level received event: " + gameEvent.Message);
     }
 }

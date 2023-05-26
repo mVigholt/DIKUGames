@@ -4,7 +4,7 @@ using DIKUArcade.Graphics;
 using DIKUArcade.Math;
 using DIKUArcade.Events;
 
-public class ScoreBoard : Text, IGameEventProcessor {
+public class ScoreBoard : Text {
 
     private int points = 0;
 
@@ -24,10 +24,5 @@ public class ScoreBoard : Text, IGameEventProcessor {
     }
     public void NextLevel(){
         this.level += 1;
-    }
-
-    public void ProcessEvent(GameEvent gameEvent) {
-        System.Console.WriteLine(
-            "Scoreboard received event: " + gameEvent.Message);
     }
 }
