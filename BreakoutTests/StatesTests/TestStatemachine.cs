@@ -12,7 +12,6 @@ public class StateMachineTesting {
     private StateMachine stateMachine;
     [SetUp]
     public void InitiateStateMachine() {
-        Window.CreateOpenGLContext();
         stateMachine = new StateMachine();
     }
 

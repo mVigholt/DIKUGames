@@ -24,8 +24,6 @@ public class TestShuttle {
 
     [SetUp]
     public void InitiatePlayer() {
-        Window.CreateOpenGLContext();
-
         playerImage = Assets.LoadImage("player.png");
         Vec2F pos = new Vec2F(START_POS, 0.1f);
         playerShape = new DynamicShape(
