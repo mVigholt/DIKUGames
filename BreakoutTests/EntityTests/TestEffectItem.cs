@@ -36,4 +36,26 @@ public class TestEffectItem {
         Console.WriteLine("Position: " + item.GetPosition());
         Assert.That(item.IsDeleted());
     }
+
+    [Test]
+    public void EffectItemHasConstantSpeed() {
+        EffectItemFactory factory = new EffectItemFactory(false);
+        Vec2F center = new Vec2F(0.5f, 0.5f);
+        EffectItem item = factory.RandomPowerUp(center);
+        // Precondition: EffectItem is not out of bounds
+        IsWithinBounds(item);
+        // Postcondition: EffectItem moves with constant speed
+        for (int i = 0; i < 10; i++) {
+            item.Move();
+        }
+        Vec2F deltaPosA = center - item.GetPosition();
+        for (int i = 0; i < 10; i++) {
+            item.Move();
+        }
+        Vec2F deltaPosB = center - item.GetPosition();
+        Assert.AreEqual(
+            deltaPosB / 20,
+            deltaPosA / 10
+        );
+    }
 }

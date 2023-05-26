@@ -12,7 +12,7 @@ public class Loader {
     [SetUp]
     public void SetUp() {
         // For linux, we need this line
-        
+        Window.CreateOpenGLContext();
     }
 
     [Test]

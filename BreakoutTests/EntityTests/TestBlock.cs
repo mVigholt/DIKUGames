@@ -17,7 +17,7 @@ public class TestBlock {
 
     [SetUp]
     public void SetUp() {
-        
+        Window.CreateOpenGLContext();
         image = Assets.LoadImage("green-block.png");
         normalBlock = new Block.Builder()
                     .WithImage(image)
