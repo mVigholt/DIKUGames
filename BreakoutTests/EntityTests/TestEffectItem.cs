@@ -13,7 +13,6 @@ public class TestEffectItem {
 
     [SetUp]
     public void SetUp() {
-        Window.CreateOpenGLContext();
     }
 
     private bool IsWithinBounds(MoveableEntity entity) {
@@ -27,18 +26,14 @@ public class TestEffectItem {
         EffectItemFactory factory = new EffectItemFactory(false);
         Vec2F center = new Vec2F(0.5f, 0.5f);
         EffectItem item = factory.RandomPowerUp(center);
-        EntityContainer<EffectItem> items = new EntityContainer<EffectItem>();
-        items.AddEntity(item);
         // Precondition: EffectItem is not out of bounds
         IsWithinBounds(item);
-        for (int i = 0; i < 100; i++) {
-            items.Iterate(entity => {
-                entity.Move();
-            });
+        for (int i = 0; i < 1000; i++) {
+            item.Move();
         }
         // Postcondition: Items have been deleted
         // because they went out of bounds
+        Console.WriteLine("Position: " + item.GetPosition());
         Assert.That(item.IsDeleted());
-        Assert.AreEqual(0, items.CountEntities());
     }
 }

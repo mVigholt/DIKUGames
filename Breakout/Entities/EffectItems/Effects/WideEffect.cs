@@ -1,13 +1,14 @@
 namespace Breakout.Entities.EffectItems.Effects;
 
 using DIKUArcade.Timers;
-
+using DIKUArcade.Math;
 
 public class WideEffect : ITimedEffect {
 
     public TimePeriod TimeLeft { get; }
 
     private Shuttle _shuttle;
+    private Vec2F extraWidth = new Vec2F(0.1f, 0f);
 
     public WideEffect(Shuttle shuttle) {
         _shuttle = shuttle;
@@ -15,10 +16,11 @@ public class WideEffect : ITimedEffect {
     }
 
     public void Activate() {
-        System.Console.WriteLine("PowerUp: Wide");
+        _shuttle.Shape.Extent += extraWidth;
+        
     }
 
     public void Deactivate() {
-        System.Console.WriteLine("PowerUp: Wide deactivated");
+        _shuttle.Shape.Extent -= extraWidth;
     }
 }
