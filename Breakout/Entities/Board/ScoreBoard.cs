@@ -2,8 +2,9 @@ namespace Breakout.Entities.Board;
 
 using DIKUArcade.Graphics;
 using DIKUArcade.Math;
+using DIKUArcade.Events;
 
-public class ScoreBoard : Text {
+public class ScoreBoard : Text, IGameEventProcessor {
 
     private int points = 0;
 
@@ -25,4 +26,8 @@ public class ScoreBoard : Text {
         this.level += 1;
     }
 
+    public void ProcessEvent(GameEvent gameEvent) {
+        System.Console.WriteLine(
+            "Scoreboard received event: " + gameEvent.Message);
+    }
 }

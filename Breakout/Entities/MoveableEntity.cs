@@ -62,7 +62,6 @@ public class MoveableEntity : Entity {
         if (colDir != CollisionDirection.CollisionDirUnchecked &&
             (dir.X == 0 || dir.Y == 0)) {
             var rand = new System.Random().Next(-1, 2);
-            System.Console.WriteLine(rand);
             if (dir.X == 0) {
                 dir = UnitVector(UnitVector(dir) + new Vec2F(rand, 0));
             } else if (dir.Y == 0) {

@@ -73,6 +73,7 @@ public class Level : IGameEventProcessor {
     }
 
     public void ProcessEvent(GameEvent gameEvent) {
-        throw new NotImplementedException();
+        System.Console.WriteLine(
+            "Level received event: " + gameEvent.Message);
     }
 }

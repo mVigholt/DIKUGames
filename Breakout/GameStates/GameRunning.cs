@@ -47,8 +47,8 @@ public class GameRunning : IGameState {
     public void ResetState() {
         lives = 2;
         InitBoard();
-        InitEffectItems();
         ChangeLevel();
+        InitEffectItems();
     }
 
     public void InitBoard() {
@@ -82,6 +82,9 @@ public class GameRunning : IGameState {
         effectItemHandler.Initialize(shuttle, scoreBoard, balls);
         GameBus.GetBus().Unsubscribe(GameEventType.StatusEvent, effectItemHandler);
         GameBus.GetBus().Subscribe(GameEventType.StatusEvent, effectItemHandler);
+        // eventBus.Subscribe(GameEventType.StatusEvent, shuttle);
+        // eventBus.Subscribe(GameEventType.StatusEvent, scoreBoard);
+        // eventBus.Subscribe(GameEventType.StatusEvent, level);
         fallingItems = new EntityContainer<EffectItem>();
     }
 

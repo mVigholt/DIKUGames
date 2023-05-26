@@ -29,15 +29,14 @@ public class EffectItemHandler : IGameEventProcessor {
 
     private static EffectItemHandler _instance = null;
     private Dictionary<string, IEffect> _effects;
-    private TypeLoader<IEffect> _effectLoader;
+
 
     /// <summary>
     /// Inject dependencies and discover IEffect classes.
     /// Create a mapping from string to IEffect.
     /// </summary>
-    public void Initialize(Shuttle shuttle,ScoreBoard scoreBoard,EntityContainer<Ball> activeBalls
-    ) {
-        _effectLoader = new EffectLoader(shuttle, scoreBoard, activeBalls);
+    public void Initialize(params object[] dependencies) {
+        TypeLoader<IEffect> _effectLoader = new EffectLoader(dependencies);
         _effects = _effectLoader.CreateMapping();
     }
 

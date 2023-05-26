@@ -3,25 +3,20 @@ namespace Breakout.Entities.EffectItems;
 using System;
 using System.Linq;
 using System.Reflection;
+using System.Collections.Generic;
 using Breakout.Entities.Board;
 using DIKUArcade.Entities;
 
 public class EffectLoader : TypeLoader<IEffect> {
 
-    private Shuttle _shuttle;
-    private ScoreBoard _scoreBoard;
-    private EntityContainer<Ball> _activeBalls;
+    private Dictionary<Type, object> dependencies;
 
-    public EffectLoader(
-        Shuttle shuttle,
-        ScoreBoard scoreBoard,
-        EntityContainer<Ball> activeBalls
-    ) : base("Breakout.Entities.EffectItems.Effects") {
-        // These are the references needed
-        // to create all kinds of IEffect
-        _shuttle = shuttle;
-        _scoreBoard = scoreBoard;
-        _activeBalls = activeBalls;
+    public EffectLoader(params object[] dependencies)
+        : base("Breakout.Entities.EffectItems.Effects") {
+        this.dependencies = new Dictionary<Type, object>();
+        foreach (object d in dependencies) {
+            this.dependencies.Add(d.GetType(), d);
+        }
     }
 
     public override IEffect CreateInstance(Type type) {
@@ -32,14 +27,8 @@ public class EffectLoader : TypeLoader<IEffect> {
             object[] args = new object[parameters.Length];
             for (int i = 0; i < parameters.Length; i++) {
                 ParameterInfo parameter = parameters[i];
-                if (parameter.ParameterType == typeof(Shuttle)) {
-                    args[i] = _shuttle;
-                }
-                else if (parameter.ParameterType == typeof(ScoreBoard)) {
-                    args[i] = _scoreBoard;
-                }
-                else if (parameter.ParameterType == typeof(EntityContainer<Ball>)) {
-                    args[i] = _activeBalls;
+                if (dependencies.TryGetValue(parameter.ParameterType, out object dependency)) {
+                    args[Array.IndexOf(parameters, parameter)] = dependency;
                 }
                 else {
                     throw new ArgumentException(

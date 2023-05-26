@@ -52,17 +52,23 @@ public class Shuttle : MoveableEntity, IGameEventProcessor {
     ///<return>no return</return>
     public void ProcessEvent(GameEvent gameEvent) {
         EventDTO ev = new EventDTO(gameEvent);
-        switch (ev.Key.Value) {
-            case KeyboardKey.Left:
-            case KeyboardKey.A:
-                SetMoveLeft(ev.Action == KeyboardAction.KeyPress);
-                break;
-            case KeyboardKey.Right:
-            case KeyboardKey.D:
-                SetMoveRight(ev.Action == KeyboardAction.KeyPress);
-                break;
-            default:
-                break;
+        if (ev.Type == GameEventType.PlayerEvent) {
+            switch (ev.Key.Value) {
+                case KeyboardKey.Left:
+                case KeyboardKey.A:
+                    SetMoveLeft(ev.Action == KeyboardAction.KeyPress);
+                    break;
+                case KeyboardKey.Right:
+                case KeyboardKey.D:
+                    SetMoveRight(ev.Action == KeyboardAction.KeyPress);
+                    break;
+                default:
+                    break;
+            }
+        }
+        else if (ev.Type == GameEventType.StatusEvent) {
+            System.Console.WriteLine(
+                "Shuttle received event: " + gameEvent.Message);
         }
     }
 }
