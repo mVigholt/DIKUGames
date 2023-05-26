@@ -6,14 +6,11 @@ using Breakout.Levels;
 using DIKUArcade.GUI; // Needed for OpenGL contexts
 using NUnit.Framework;
 
-
-public class Loader {
+[TestFixture]
+public class TestLevelLoader {
 
     [SetUp]
-    public void SetUp() {
-        // For linux, we need this line
-        Window.CreateOpenGLContext();
-    }
+    public void SetUp() {}
 
     [Test]
     public void TestLevelsCanBeLoaded() {
@@ -31,11 +28,12 @@ public class Loader {
     }
 
     [Test]
-    public void TestMissingImage() {
-        var level = new Level(1);
-        // Then check that a level with missing image files
-        // still can be instantiated, upholding requirement 3.
-        // We are also, partly, testing requirement 2:
-        // "The data read from the file is stored as expected in data structures."
+    public void TestFileNotFind() {
+        string fileName = "FileNotfind.txt";
+        LevelLoader level = new LevelLoader(fileName);
+        string[] expectedArray = new string[] { "hhhhhhhhhhh" };
+        foreach (var i in level.GetMap()) {
+            Assert.That(i, Is.EqualTo("hhhhhhhhhhh"));
         }
+    }
 }
