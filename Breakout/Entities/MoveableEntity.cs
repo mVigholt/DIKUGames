@@ -37,14 +37,18 @@ public class MoveableEntity : Entity {
     public void Render() {
         RenderEntity();
     }
-
+    
     private Vec2F UnitVector(Vec2F vector) {
         float hyp = (float) System.Math.Sqrt(System.Math.Pow(vector.X, 2) + System.Math.Pow(vector.Y, 2));
         hyp = hyp != 0 ? hyp : 1;
         return new Vec2F(vector.X / hyp, vector.Y / hyp);
     }
 
-    public void UpdateDirection(CollisionDirection colDir, Vec2F addVector) {
+    public void UpdateDirection(Vec2F addVector) {
+        UpdateDirection(addVector, CollisionDirection.CollisionDirUnchecked);
+    }
+
+    public void UpdateDirection(Vec2F addVector, CollisionDirection colDir) {
         switch (colDir) {
             case CollisionDirection.CollisionDirLeft:
             case CollisionDirection.CollisionDirRight:
@@ -62,7 +66,6 @@ public class MoveableEntity : Entity {
         if (colDir != CollisionDirection.CollisionDirUnchecked &&
             (dir.X == 0 || dir.Y == 0)) {
             var rand = new System.Random().Next(-1, 2);
-            System.Console.WriteLine(rand);
             if (dir.X == 0) {
                 dir = UnitVector(UnitVector(dir) + new Vec2F(rand, 0));
             } else if (dir.Y == 0) {
@@ -72,10 +75,7 @@ public class MoveableEntity : Entity {
     }
 
     public void Stop() {
-        this.UpdateDirection(
-            CollisionDirection.CollisionDirUnchecked,
-            -1 * this.GetDirection()
-        );
+        this.UpdateDirection(-1 * this.GetDirection());
     }
 
     protected Vec2F MinCorner() {

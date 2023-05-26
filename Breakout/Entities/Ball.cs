@@ -22,13 +22,13 @@ public class Ball : MoveableEntity {
 
     public override void Move() {
         if (this.GetPosition().X == 0.0f) {
-            this.UpdateDirection(CollisionDirection.CollisionDirRight, new Vec2F(0, 0));
+            this.UpdateDirection(new Vec2F(0, 0), CollisionDirection.CollisionDirRight);
         }
         if (this.GetPosition().X == 1.0f - this.GetExtent().X) {
-            this.UpdateDirection(CollisionDirection.CollisionDirLeft, new Vec2F(0, 0));
+            this.UpdateDirection(new Vec2F(0, 0), CollisionDirection.CollisionDirLeft);
         }
         if (this.GetPosition().Y == 1.0f - this.GetExtent().Y) {
-            this.UpdateDirection(CollisionDirection.CollisionDirDown, new Vec2F(0, 0));
+            this.UpdateDirection(new Vec2F(0, 0), CollisionDirection.CollisionDirDown);
         }
         if (this.GetPosition().Y == 0.0f) {
             this.DeleteEntity();
