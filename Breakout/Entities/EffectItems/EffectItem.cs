@@ -15,9 +15,9 @@ public abstract class EffectItem : MoveableEntity
     }
 
     public override void Move() {
-        shape.Move();
-        if (GetPosition().Y < 0.0f) {
+        if (GetPosition().Y == 0.0f) {
             DeleteEntity();
         }
+        base.Move();
     }
 }
