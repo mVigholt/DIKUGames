@@ -19,8 +19,8 @@ public class GameRunning : IGameState {
     private static GameRunning instance = null;
     private GameEventBus eventBus = GameBus.GetBus();
     private Shuttle shuttle;
-    private EntityContainer<Ball> balls;
-    private EntityContainer<EffectItem> fallingItems;
+    private EntityContainer<Ball> balls = new EntityContainer<Ball>();
+    private EntityContainer<EffectItem> fallingItems = new EntityContainer<EffectItem>();
     private int lives;
     private readonly int NUM_LEVELS = 4;
     private Level level;
@@ -73,7 +73,6 @@ public class GameRunning : IGameState {
     private void InitBall() {
         IBaseImage ballImage = new Image(
             Path.Combine(PathFinder.Images(), "ball.png"));
-        balls = new EntityContainer<Ball>(5);
         balls.AddEntity(new Ball(BallPosOnShuttle(), ballImage));
     }
 
@@ -82,7 +81,6 @@ public class GameRunning : IGameState {
         effectItemHandler.Initialize(shuttle, scoreBoard, balls);
         GameBus.GetBus().Unsubscribe(GameEventType.StatusEvent, effectItemHandler);
         GameBus.GetBus().Subscribe(GameEventType.StatusEvent, effectItemHandler);
-        fallingItems = new EntityContainer<EffectItem>();
     }
 
     public void ChangeLevel() {
