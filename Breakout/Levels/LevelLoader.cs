@@ -12,7 +12,7 @@ public class LevelLoader {
     private string[] map;
 
     public LevelLoader(string fileName) {
-        string filePath = Path.Combine(PathFinder.Levels(), "leve5.txt");
+        string filePath = Path.Combine(PathFinder.Levels(), fileName);
         try {
             map = File.ReadLines(filePath)
                .SkipWhile(map => map != "Map:")
