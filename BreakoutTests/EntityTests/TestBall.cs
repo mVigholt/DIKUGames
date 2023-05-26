@@ -16,7 +16,7 @@ public class TestBall {
 
     [SetUp]
     public void SetUp() {
-        Window.CreateOpenGLContext();
+        
         ballImage = new Image(
             Path.Combine(PathFinder.Images(), "ball.png"));
     }
