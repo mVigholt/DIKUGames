@@ -95,7 +95,8 @@ public class LevelHandler {
             .WithPosition(pos)
             .WithValue(1)
             .WithIsHardened(loadFile.MetaContains("hardened", property))
-            .WithIsUnbreakable(loadFile.MetaContains("unbreakable", property));
+            .WithIsUnbreakable(loadFile.MetaContains("unbreakable", property))
+            .WithMovable(loadFile.MetaContains("movable", property));
         if (loadFile.MetaContains("powerup", property)) {
             EffectItem powerUp = eiFactory.RandomPowerUp(pos);
             builder = builder

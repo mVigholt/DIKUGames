@@ -174,6 +174,9 @@ public class GameRunning : IGameState {
         foreach (EffectItem item in fallingItems) {
             item.Move();
         }
+        foreach (Block block in this.level.blocks){
+            block.Move();
+        }
     }
 
     private void CollidingEntities() {

@@ -5,14 +5,16 @@ using DIKUArcade.Entities;
 using DIKUArcade.Graphics;
 using DIKUArcade.Math;
 using Breakout.Entities.EffectItems;
-
+using DIKUArcade.Physics;
 
 public class Block : MoveableEntity {
     public static readonly Vec2F STD_EXTEND = new Vec2F(0.083f, 0.041f);
-    public Builder build {get; private set;}
+    public Builder build {
+        get; private set;
+    }
 
     private int maxHealth = 1;
-    public int Health{get; private set;} = 1;
+    public int Health { get; private set; } = 1;
 
     private Block(Block.Builder builder)
         : base(new DynamicShape(builder.position, STD_EXTEND), builder.image) {
@@ -45,25 +47,48 @@ public class Block : MoveableEntity {
         }
     }
 
+    public override void Move() {
+        if (this.build.isMovable) {
+            this.Speed = 0.007f;
+            if (this.GetPosition().X == 0.0f) {
+                this.UpdateDirection(new Vec2F(0, 0), CollisionDirection.CollisionDirRight);
+            }
+            if (this.GetPosition().X == 1.0f - this.GetExtent().X) {
+                this.UpdateDirection(new Vec2F(0, 0), CollisionDirection.CollisionDirLeft);
+            }
+            base.Move();
+        }
+    }
+
     public class Builder {
         public Vec2F position;
         public IBaseImage image;
         public IBaseImage alterImage;
         public bool isUnbreakable = false;
         public bool isHardened = false;
+        public bool isMovable = false;
         public int value;
         public EffectItem effectItem;
 
         public Builder() {
         }
-
+        public Builder WithMovable(bool statement) {
+            if (statement) {
+                this.isMovable = true;
+            }
+            return this;
+        }
         public Builder WithIsUnbreakable(bool statement) {
-            if (statement) {this.isUnbreakable = true;}
+            if (statement) {
+                this.isUnbreakable = true;
+            }
             return this;
         }
 
         public Builder WithIsHardened(bool statement) {
-            if (statement) {this.isHardened = true;}
+            if (statement) {
+                this.isHardened = true;
+            }
             return this;
         }
 

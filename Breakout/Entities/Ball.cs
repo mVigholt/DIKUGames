@@ -11,8 +11,10 @@ public class Ball : MoveableEntity {
 
     public int damage { get; private set; } = 1;
 
+    public static readonly float STD_SPEED = 0.015f;
+
     public Ball(Vec2F position, IBaseImage image)
-        : base(new DynamicShape(position, STD_EXTEND), image, 0.015f) {
+        : base(new DynamicShape(position, STD_EXTEND), image, STD_SPEED) {
     }
 
     public static Ball At(Vec2F position) {
