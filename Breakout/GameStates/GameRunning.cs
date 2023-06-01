@@ -1,9 +1,7 @@
 namespace Breakout.GameStates;
 
-using System.IO;
 using DIKUArcade.Entities;
 using DIKUArcade.Events;
-using DIKUArcade.Graphics;
 using DIKUArcade.Input;
 using DIKUArcade.Math;
 using DIKUArcade.Physics;
@@ -11,7 +9,6 @@ using DIKUArcade.State;
 using Breakout.Entities;
 using Breakout.Entities.EffectItems;
 using Breakout.Events;
-using Breakout.IO;
 using Breakout.Levels;
 using Breakout.Entities.Board;
 
@@ -19,7 +16,7 @@ public class GameRunning : IGameState {
     private static GameRunning instance = null;
     private GameEventBus eventBus = GameBus.GetBus();
     private Shuttle shuttle;
-    private EntityContainer<Ball> balls = new EntityContainer<Ball>();
+    private EntityContainer<Ball> balls;
     private EntityContainer<EffectItem> fallingItems = new EntityContainer<EffectItem>();
     private int lives;
     private readonly int NUM_LEVELS = 4;
@@ -27,6 +24,7 @@ public class GameRunning : IGameState {
     private EffectItemHandler effectItemHandler;
     private ScoreBoard scoreBoard;
     private LivesBoard livesBoard;
+    private EntityLoader entityLoader;
 
     public static GameRunning GetInstance() {
         return GetInstance(false);
@@ -56,26 +54,12 @@ public class GameRunning : IGameState {
         this.livesBoard = new LivesBoard(lives);
     }
 
-    private void InitShuttle() {
-        Vec2F playerPosition = new Vec2F(0.5f - Shuttle.STD_EXTEND.X / 2, 0.03f);
-        IBaseImage image = new Image(
-            Path.Combine(PathFinder.Images(), "player.png")
-        );
-        shuttle = Shuttle.NewShuttle(playerPosition, image);
+    public void InitEntityLoader(){
+        entityLoader = new EntityLoader();
+        this.shuttle = entityLoader.shuttle;
+        this.balls = entityLoader.balls;
     }
 
-    private Vec2F BallPosOnShuttle() {
-        return new Vec2F(
-            shuttle.GetPosition().X + shuttle.GetExtent().X / 2 - Ball.STD_EXTEND.X / 2,
-            shuttle.GetPosition().Y + shuttle.GetExtent().Y / 2);
-    }
-
-    private void InitBall() {
-        IBaseImage ballImage = new Image(
-            Path.Combine(PathFinder.Images(), "ball.png"));
-        balls = new EntityContainer<Ball>();
-        balls.AddEntity(new Ball(BallPosOnShuttle(), ballImage));
-    }
 
     public void InitEffectItems() {
         effectItemHandler = EffectItemHandler.GetInstance();
@@ -87,8 +71,7 @@ public class GameRunning : IGameState {
     public void ChangeLevel() {
         scoreBoard.NextLevel();
         if (scoreBoard.level <= NUM_LEVELS) {
-            InitShuttle();
-            InitBall();
+            InitEntityLoader();
             level = new Level(scoreBoard.level);
         } else {
             GameWon();
@@ -114,20 +97,19 @@ public class GameRunning : IGameState {
     }
 
     public void RenderState() {
-        shuttle.Render();
-        balls.RenderEntities();
         level.Render();
         fallingItems.RenderEntities();
         scoreBoard.Render();
         livesBoard.Render();
+        entityLoader.Render();
     }
 
     public void UpdateState() {
         StateCheker();
         MoveEntities();
         CollidingEntities();
-        if (this.level.CountDownBoard != null){
-            this.level.CountDownBoard.UpdateCountDown();
+        if (this.level.countDownBoard != null){
+            this.level.countDownBoard.UpdateCountDown();
         }
 
     }
@@ -147,15 +129,15 @@ public class GameRunning : IGameState {
 
         if (lives + balls.CountEntities() > 0) {
             if (balls.CountEntities() == 0) {
-                InitBall();
+                InitEntityLoader();
                 lives--;
                 livesBoard.LostLives(1);
             }
         } else {
             GameOver();
         }
-        if (this.level.CountDownBoard != null) {
-            if (this.level.CountDownBoard.timeLeft <= 0) {
+        if (this.level.countDownBoard != null) {
+            if (this.level.countDownBoard.timeLeft <= 0) {
                 GameOver();
             }
         }
@@ -163,14 +145,7 @@ public class GameRunning : IGameState {
     }
 
     private void MoveEntities() {
-        shuttle.Move();
-        foreach (Ball ball in balls) {
-            ball.Move();
-            //let the ball follow the shuttle until released
-            if (ball.GetDirection().Length() == new Vec2F(0, 0).Length()) {
-                ball.Shape.SetPosition(BallPosOnShuttle());
-            }
-        }
+        entityLoader.Move();
         foreach (EffectItem item in fallingItems) {
             item.Move();
         }
@@ -180,14 +155,8 @@ public class GameRunning : IGameState {
     }
 
     private void CollidingEntities() {
+        entityLoader.ballVsShuttleCollide();
         balls.Iterate(ball => {
-            CollisionData ballVsShuttle =
-                CollisionDetection.Aabb(ball.Shape.AsDynamicShape(), shuttle.Shape);
-
-            if (ballVsShuttle.Collision) {
-                ball.UpdateDirection(shuttle.GetDirection(), ballVsShuttle.CollisionDir);
-            }
-
             level.blocks.Iterate(block => {
                 CollisionData ballVsblock =
                     CollisionDetection.Aabb(ball.Shape.AsDynamicShape(), block.Shape);
