@@ -24,7 +24,6 @@ public class GameRunning : IGameState {
     private EffectItemHandler effectItemHandler;
     private ScoreBoard scoreBoard;
     private LivesBoard livesBoard;
-    private EntityLoader entityLoader;
 
     public static GameRunning GetInstance() {
         return GetInstance(false);
@@ -54,12 +53,11 @@ public class GameRunning : IGameState {
         this.livesBoard = new LivesBoard(lives);
     }
 
-    public void InitEntityLoader(){
-        entityLoader = new EntityLoader();
-        this.shuttle = entityLoader.shuttle;
-        this.balls = entityLoader.balls;
+    public void InitLevel(){
+        level = new Level(scoreBoard.level);
+        this.shuttle = level.shuttle;
+        this.balls = level.balls;
     }
-
 
     public void InitEffectItems() {
         effectItemHandler = EffectItemHandler.GetInstance();
@@ -71,8 +69,7 @@ public class GameRunning : IGameState {
     public void ChangeLevel() {
         scoreBoard.NextLevel();
         if (scoreBoard.level <= NUM_LEVELS) {
-            InitEntityLoader();
-            level = new Level(scoreBoard.level);
+            InitLevel();
         } else {
             GameWon();
         }
@@ -101,7 +98,6 @@ public class GameRunning : IGameState {
         fallingItems.RenderEntities();
         scoreBoard.Render();
         livesBoard.Render();
-        entityLoader.Render();
     }
 
     public void UpdateState() {
@@ -129,7 +125,7 @@ public class GameRunning : IGameState {
 
         if (lives + balls.CountEntities() > 0) {
             if (balls.CountEntities() == 0) {
-                InitEntityLoader();
+                InitLevel();
                 lives--;
                 livesBoard.LostLives(1);
             }
@@ -145,32 +141,16 @@ public class GameRunning : IGameState {
     }
 
     private void MoveEntities() {
-        entityLoader.Move();
+        level.Move();
         foreach (EffectItem item in fallingItems) {
             item.Move();
         }
-        foreach (Block block in this.level.blocks){
-            block.Move();
-        }
+
     }
 
     private void CollidingEntities() {
-        entityLoader.ballVsShuttleCollide();
-        balls.Iterate(ball => {
-            level.blocks.Iterate(block => {
-                CollisionData ballVsblock =
-                    CollisionDetection.Aabb(ball.Shape.AsDynamicShape(), block.Shape);
-
-                if (ballVsblock.Collision) {
-                    ball.UpdateDirection(block.GetDirection(), ballVsblock.CollisionDir);
-                    scoreBoard.AddPoints(block.Value);
-                    block.LoseHealth(ball.damage);
-                    if (block.build.effectItem != null) {
-                        fallingItems.AddEntity(block.build.effectItem);
-                    }
-                }
-            });
-        });
+        this.level.entityLoader.ballVsShuttleCollide();
+        this.level.ballVsBlocksCollide(scoreBoard);
         // Power-ups and hazards
         fallingItems.Iterate(item => {
             CollisionData itemVsShuttle =
