@@ -59,13 +59,8 @@ public class GameStateFactory : IGameState {
 
     public void ResetState() {
         buttonSwitch.ActiveMenuButton = 0;
-        foreach (Button i in buttonSwitch.MenuButtons){
-            i.InactiveButton();
-        }
-        buttonSwitch.MenuButtons[buttonSwitch.ActiveMenuButton].ActiveButton();
+        buttonSwitch.initialButtons();
     }
 
-    public void UpdateState() {
-
-    }
+    public void UpdateState() {}
 }
