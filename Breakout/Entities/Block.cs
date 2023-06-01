@@ -9,6 +9,7 @@ using DIKUArcade.Physics;
 
 public class Block : MoveableEntity {
     public static readonly Vec2F STD_EXTEND = new Vec2F(0.083f, 0.041f);
+    public static readonly float BLOCK_SPEED = 0.007f;
     public Builder build {
         get; private set;
     }
@@ -21,6 +22,9 @@ public class Block : MoveableEntity {
         this.build = builder;
         if (this.build.isHardened) {
             maxHealth *= 2;
+        }
+        if (this.build.isMoveable){
+            this.shape.Direction = (new Vec2F(BLOCK_SPEED, 0));
         }
         Health = maxHealth;
     }
@@ -48,8 +52,8 @@ public class Block : MoveableEntity {
     }
 
     public override void Move() {
-        if (this.build.isMovable) {
-            this.Speed = 0.007f;
+        if (this.build.isMoveable) {
+            this.Speed = BLOCK_SPEED;
             if (this.GetPosition().X == 0.0f) {
                 this.UpdateDirection(new Vec2F(0, 0), CollisionDirection.CollisionDirRight);
             }
@@ -66,15 +70,15 @@ public class Block : MoveableEntity {
         public IBaseImage alterImage;
         public bool isUnbreakable = false;
         public bool isHardened = false;
-        public bool isMovable = false;
+        public bool isMoveable = false;
         public int value;
         public EffectItem effectItem;
 
         public Builder() {
         }
-        public Builder WithMovable(bool statement) {
+        public Builder WithMoveable(bool statement) {
             if (statement) {
-                this.isMovable = true;
+                this.isMoveable = true;
             }
             return this;
         }

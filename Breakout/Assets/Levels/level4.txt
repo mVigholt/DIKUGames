@@ -1,12 +1,12 @@
 Map:
 bbbbbbbbbbbb
-------------
+-----------X
 -#--------#-
 --#------#--
 ---#----#---
 ----#--#----
 M-----------
-------------
+-----M------
 ---Y----Y---
 000Y----Y000
 000Y----Y000
@@ -30,7 +30,7 @@ Meta:
 Name: LEVEL 4
 Time: 180
 Unbreakable: Y, M
-Movable: X,M
+Moveable: X,M
 Hardened: #, X
 Meta/
 
@@ -41,5 +41,5 @@ w) darkgreen-block.png
 Y) brown-block.png
 b) yellow-block.png
 X) blue-block.png
-M) grey-block.png
+M) red-block.png
 Legend/
