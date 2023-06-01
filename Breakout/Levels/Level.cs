@@ -4,50 +4,54 @@ using DIKUArcade.Entities;
 using Breakout.Entities;
 using Breakout.Entities.Board;
 using DIKUArcade.Physics;
+using Breakout.Entities.EffectItems;
 
 public class Level {
     public CountDownBoard countDownBoard {
-        get;
-        private set;
+        get; private set;
     }
     public LevelBoard levelBoard {
-        get;
-        private set;
+        get; private set;
     }
     public LevelHandler levelHandler {
-        get;
-        private set;
+        get; private set;
     }
     public EntityContainer<Block> blocks {
-        get;
-        private set;
+        get; private set;
     }
 
-    public EntityLoader entityLoader {get; set;}
-    public Shuttle shuttle {get; set;}
-    public EntityContainer<Ball> balls {get; set;}
+    public EntityLoader entityLoader {
+        get; set;
+    }
+    public Shuttle shuttle {
+        get; set;
+    }
+    public EntityContainer<Ball> balls {
+        get; set;
+    }
+    private EntityContainer<EffectItem> fallingItems = new EntityContainer<EffectItem>();
+    private BoardsLoader boardsLoader;
+    private EffectItemsLoader effectItemsLoader;
 
     public double? levelTime {
-        get;
-        private set;
+        get; private set;
     }
     public string levelName {
-        get;
-        private set;
+        get; private set;
     }
 
-    private BoardsLoader boardsLoader;
 
-    public Level(int levelNum) {
+    public Level(int levelNum, ScoreBoard scoreBoard) {
         levelHandler = new LevelHandler("level" + (levelNum).ToString() + ".txt");
         this.levelTime = levelHandler.levelTime;
         this.levelName = levelHandler.levelName;
         LoadBlocks();
         LoadBoards();
         LoadEntity();
+        LoadEffectItems(scoreBoard);
     }
 
-    private void LoadBlocks(){
+    private void LoadBlocks() {
         blocks = levelHandler.blocks;
     }
 
@@ -57,13 +61,18 @@ public class Level {
         this.levelBoard = boardsLoader.levelBoard;
     }
 
-    private void LoadEntity(){
+    public void LoadEntity() {
         entityLoader = new EntityLoader();
         this.shuttle = entityLoader.shuttle;
         this.balls = entityLoader.balls;
     }
 
-    public void ballVsBlocksCollide(ScoreBoard scoreBoard){
+    private void LoadEffectItems(ScoreBoard scoreBoard) {
+        effectItemsLoader =
+            new EffectItemsLoader(this.shuttle, scoreBoard, this.balls);
+    }
+
+    public void ballVsBlocksCollide(ScoreBoard scoreBoard) {
         balls.Iterate(ball => {
             this.blocks.Iterate(block => {
                 CollisionData ballVsblock =
@@ -73,19 +82,32 @@ public class Level {
                     ball.UpdateDirection(block.GetDirection(), ballVsblock.CollisionDir);
                     scoreBoard.AddPoints(block.Value);
                     block.LoseHealth(ball.damage);
-                    // if (block.build.effectItem != null) {
-                    //     fallingItems.AddEntity(block.build.effectItem);
-                    // }
+                    if (block.build.effectItem != null) {
+                        fallingItems.AddEntity(block.build.effectItem);
+                    }
                 }
             });
         });
-
+    }
+    public void itemVsShuttleCollide(ScoreBoard scoreBoard) {
+        fallingItems.Iterate(item => {
+            CollisionData itemVsShuttle =
+                CollisionDetection.Aabb(item.Shape.AsDynamicShape(), shuttle.Shape);
+            if (itemVsShuttle.Collision) {
+                effectItemsLoader.ActivateEffectItem(item);
+                item.DeleteEntity();
+            }
+        });
     }
 
-    public void Move(){
+
+    public void Move() {
         entityLoader.Move();
-        foreach (Block block in this.blocks){
+        foreach (Block block in this.blocks) {
             block.Move();
+        }
+        foreach (EffectItem item in fallingItems) {
+            item.Move();
         }
     }
 
@@ -93,6 +115,7 @@ public class Level {
         blocks.RenderEntities();
         boardsLoader.Render();
         entityLoader.Render();
+        fallingItems.RenderEntities();
     }
 
 }
