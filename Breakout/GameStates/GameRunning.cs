@@ -1,13 +1,10 @@
 namespace Breakout.GameStates;
 
-using DIKUArcade.Entities;
 using DIKUArcade.Events;
 using DIKUArcade.Input;
 using DIKUArcade.Math;
-using DIKUArcade.Physics;
 using DIKUArcade.State;
 using Breakout.Entities;
-using Breakout.Entities.EffectItems;
 using Breakout.Events;
 using Breakout.Levels;
 using Breakout.Entities.Board;
@@ -15,13 +12,9 @@ using Breakout.Entities.Board;
 public class GameRunning : IGameState {
     private static GameRunning instance = null;
     private GameEventBus eventBus = GameBus.GetBus();
-    private Shuttle shuttle;
-    private EntityContainer<Ball> balls;
-    private EntityContainer<EffectItem> fallingItems = new EntityContainer<EffectItem>();
     private int lives;
     private readonly int NUM_LEVELS = 4;
     private Level level;
-    private EffectItemHandler effectItemHandler;
     private ScoreBoard scoreBoard;
     private LivesBoard livesBoard;
 
@@ -37,7 +30,7 @@ public class GameRunning : IGameState {
             GameRunning.instance.ResetState();
         }
         //Stop the shuttle if it was moving when going to pause menu
-        GameRunning.instance.shuttle.Stop();
+        GameRunning.instance.level.shuttle.Stop();
         return GameRunning.instance;
     }
 
@@ -45,7 +38,6 @@ public class GameRunning : IGameState {
         lives = 2;
         InitBoard();
         ChangeLevel();
-        InitEffectItems();
     }
 
     public void InitBoard() {
@@ -53,17 +45,8 @@ public class GameRunning : IGameState {
         this.livesBoard = new LivesBoard(lives);
     }
 
-    public void InitLevel(){
-        level = new Level(scoreBoard.level);
-        this.shuttle = level.shuttle;
-        this.balls = level.balls;
-    }
-
-    public void InitEffectItems() {
-        effectItemHandler = EffectItemHandler.GetInstance();
-        effectItemHandler.Initialize(shuttle, scoreBoard, balls);
-        GameBus.GetBus().Unsubscribe(GameEventType.StatusEvent, effectItemHandler);
-        GameBus.GetBus().Subscribe(GameEventType.StatusEvent, effectItemHandler);
+    public void InitLevel() {
+        level = new Level(scoreBoard.level, this.scoreBoard);
     }
 
     public void ChangeLevel() {
@@ -95,7 +78,6 @@ public class GameRunning : IGameState {
 
     public void RenderState() {
         level.Render();
-        fallingItems.RenderEntities();
         scoreBoard.Render();
         livesBoard.Render();
     }
@@ -104,7 +86,7 @@ public class GameRunning : IGameState {
         StateCheker();
         MoveEntities();
         CollidingEntities();
-        if (this.level.countDownBoard != null){
+        if (this.level.countDownBoard != null) {
             this.level.countDownBoard.UpdateCountDown();
         }
 
@@ -123,9 +105,9 @@ public class GameRunning : IGameState {
             ChangeLevel();
         }
 
-        if (lives + balls.CountEntities() > 0) {
-            if (balls.CountEntities() == 0) {
-                InitLevel();
+        if (lives + level.balls.CountEntities() > 0) {
+            if (level.balls.CountEntities() == 0) {
+                level.LoadEntity();
                 lives--;
                 livesBoard.LostLives(1);
             }
@@ -142,37 +124,13 @@ public class GameRunning : IGameState {
 
     private void MoveEntities() {
         level.Move();
-        foreach (EffectItem item in fallingItems) {
-            item.Move();
-        }
-
     }
 
     private void CollidingEntities() {
         this.level.entityLoader.ballVsShuttleCollide();
         this.level.ballVsBlocksCollide(scoreBoard);
         // Power-ups and hazards
-        fallingItems.Iterate(item => {
-            CollisionData itemVsShuttle =
-                CollisionDetection.Aabb(item.Shape.AsDynamicShape(), shuttle.Shape);
-            if (itemVsShuttle.Collision) {
-                ActivateEffectItem(item);
-                item.DeleteEntity();
-            }
-        });
-    }
-
-    private void ActivateEffectItem(EffectItem item) {
-        if (item is InstantEffectItem instantItem) {
-            eventBus.RegisterEvent(instantItem.ActivationEvent);
-        }
-        if (item is TimedEffectItem timedItem) {
-            eventBus.RegisterEvent(timedItem.ActivationEvent);
-            eventBus.RegisterTimedEvent(
-                timedItem.DeactivationEvent,
-                timedItem.TimeLeft
-            );
-        }
+        this.level.itemVsShuttleCollide(scoreBoard);
     }
 
     public void HandleKeyEvent(KeyboardAction action, KeyboardKey key) {
@@ -210,9 +168,9 @@ public class GameRunning : IGameState {
                 break;
             case KeyboardKey.Space:
                 //release ball
-                foreach (Ball ball in balls) {
+                foreach (Ball ball in level.balls) {
                     if (ball.GetDirection().Length() == new Vec2F(0, 0).Length()) {
-                        var X = shuttle.GetDirection().X;
+                        var X = level.shuttle.GetDirection().X;
                         X = X != 0 ? (X > 0 ? 1 : -1) : 0;
                         ball.UpdateDirection(new Vec2F(X, 1));
                     }
