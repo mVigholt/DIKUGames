@@ -44,7 +44,7 @@ public class ButtonSwitch {
         initialButtons();
     }
 
-    private void initialButtons() {
+    public void initialButtons() {
         MaxMenuButtons = MenuButtons.Count;
         foreach (Button i in MenuButtons) {
             i.InactiveButton();
