@@ -41,7 +41,8 @@ public class Level {
     }
 
 
-    public Level(int levelNum, ScoreBoard scoreBoard) {
+    public Level(ScoreBoard scoreBoard) {
+        int levelNum = scoreBoard.level;
         levelHandler = new LevelHandler("level" + (levelNum).ToString() + ".txt");
         this.levelTime = levelHandler.levelTime;
         this.levelName = levelHandler.levelName;
