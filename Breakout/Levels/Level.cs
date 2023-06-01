@@ -1,13 +1,12 @@
 namespace Breakout.Levels;
 
-using System;
 using DIKUArcade.Entities;
 using Breakout.Entities;
-using DIKUArcade.Events;
 using Breakout.Entities.Board;
+using DIKUArcade.Physics;
 
 public class Level {
-    public CountDownBoard CountDownBoard {
+    public CountDownBoard countDownBoard {
         get;
         private set;
     }
@@ -19,10 +18,14 @@ public class Level {
         get;
         private set;
     }
-    public EntityContainer<Block> blocks{
+    public EntityContainer<Block> blocks {
         get;
         private set;
     }
+
+    public EntityLoader entityLoader {get; set;}
+    public Shuttle shuttle {get; set;}
+    public EntityContainer<Ball> balls {get; set;}
 
     public double? levelTime {
         get;
@@ -33,39 +36,63 @@ public class Level {
         private set;
     }
 
+    private BoardsLoader boardsLoader;
+
     public Level(int levelNum) {
         levelHandler = new LevelHandler("level" + (levelNum).ToString() + ".txt");
-        blocks = levelHandler.blocks;
         this.levelTime = levelHandler.levelTime;
         this.levelName = levelHandler.levelName;
-        InitCountDown();
-        InitLevelBoard();
+        LoadBlocks();
+        LoadBoards();
+        LoadEntity();
     }
 
-
-    private void InitCountDown() {
-        if (levelHandler.levelTime != null) {
-            this.CountDownBoard = new CountDownBoard((int) levelTime);
-        } else {
-            this.CountDownBoard = null;
-        }
+    private void LoadBlocks(){
+        blocks = levelHandler.blocks;
     }
 
-    private void InitLevelBoard() {
-        if (levelHandler.levelName != null) {
-            this.levelBoard = new LevelBoard((string)levelName);
-        } else {
-            this.levelBoard = null;
+    private void LoadBoards() {
+        boardsLoader = new BoardsLoader(this.levelTime, this.levelName);
+        this.countDownBoard = boardsLoader.countDownBoard;
+        this.levelBoard = boardsLoader.levelBoard;
+    }
+
+    private void LoadEntity(){
+        entityLoader = new EntityLoader();
+        this.shuttle = entityLoader.shuttle;
+        this.balls = entityLoader.balls;
+    }
+
+    public void ballVsBlocksCollide(ScoreBoard scoreBoard){
+        balls.Iterate(ball => {
+            this.blocks.Iterate(block => {
+                CollisionData ballVsblock =
+                    CollisionDetection.Aabb(ball.Shape.AsDynamicShape(), block.Shape);
+
+                if (ballVsblock.Collision) {
+                    ball.UpdateDirection(block.GetDirection(), ballVsblock.CollisionDir);
+                    scoreBoard.AddPoints(block.Value);
+                    block.LoseHealth(ball.damage);
+                    // if (block.build.effectItem != null) {
+                    //     fallingItems.AddEntity(block.build.effectItem);
+                    // }
+                }
+            });
+        });
+
+    }
+
+    public void Move(){
+        entityLoader.Move();
+        foreach (Block block in this.blocks){
+            block.Move();
         }
     }
 
     public void Render() {
         blocks.RenderEntities();
-        if (CountDownBoard != null) {
-            CountDownBoard.Render();
-        }
-        if (levelBoard!= null) {
-            levelBoard.Render();
-        }
+        boardsLoader.Render();
+        entityLoader.Render();
     }
+
 }
