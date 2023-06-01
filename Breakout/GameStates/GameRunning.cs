@@ -15,7 +15,7 @@ public class GameRunning : IGameState {
     private int lives;
     private readonly int NUM_LEVELS = 4;
     private Level level;
-    private ScoreBoard scoreBoard;
+    public ScoreBoard scoreBoard;
     private LivesBoard livesBoard;
 
     public static GameRunning GetInstance() {
@@ -46,7 +46,7 @@ public class GameRunning : IGameState {
     }
 
     public void InitLevel() {
-        level = new Level(scoreBoard.level, this.scoreBoard);
+        level = new Level(this.scoreBoard);
     }
 
     public void ChangeLevel() {
