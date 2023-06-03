@@ -25,9 +25,6 @@ public class LevelLoader {
                 .Skip(1) // Skip the intro line
                 .TakeWhile(meta => meta != "Meta/")
                 .ToArray();
-            foreach (var i in meta){
-                System.Console.WriteLine(i);
-            }
             legend = File.ReadLines(filePath)
                 .SkipWhile(legend => legend != "Legend:")
                 .Skip(1) // Skip the intro line

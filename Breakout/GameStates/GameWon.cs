@@ -5,7 +5,7 @@ using DIKUArcade.Graphics;
 using Breakout.IO;
 using DIKUArcade.Math;
 
-public class GameWon : GameState {
+public class GameWon : MenuGameState {
     private static GameWon instance = null;
 
     public GameWon() : base($"You Win", Assets.backGroundImage, "Main Menu", "Quit") {
