@@ -33,7 +33,6 @@ public class TestEffectItem {
         }
         // Postcondition: Items have been deleted
         // because they went out of bounds
-        Console.WriteLine("Position: " + item.GetPosition());
         Assert.That(item.IsDeleted());
     }
 
