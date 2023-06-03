@@ -9,6 +9,8 @@ using DIKUArcade.Input;
 
 public class ButtonSwitch {
     private List<Button> menuButtons = new List<Button>();
+    private int activeMenuButton;
+
     public List<Button> MenuButtons {
         get {
             return menuButtons;
@@ -18,8 +20,6 @@ public class ButtonSwitch {
         }
 
     }
-    private int activeMenuButton;
-
     public int ActiveMenuButton {
         get {
             return activeMenuButton;
