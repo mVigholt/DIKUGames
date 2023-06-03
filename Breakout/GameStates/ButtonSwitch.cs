@@ -33,15 +33,29 @@ public class ButtonSwitch {
         get; set;
     }
 
-    private string ActiveButtonText;
-
-    public GameStateType NextState {
-        get; set;
-    }
-
     public ButtonSwitch(params Button[] buttons) {
         MenuButtons = buttons.ToList();
         initialButtons();
+    }
+
+    private GameEvent OnPressEvent(string buttonText) {
+        return buttonText switch {
+            "Quit" => new EventBuilder()
+                .WithType(GameEventType.WindowEvent)
+                .WithAction(KeyboardAction.KeyPress)
+                .Build(),
+            "Next Level" => new EventBuilder()
+                .WithType(GameEventType.GameStateEvent)
+                .WithStateType(GameStateType.GameRunning)
+                .WithAction(KeyboardAction.KeyPress)
+                .WithMessage(buttonText)
+                .Build(),
+            _ => new EventBuilder()
+                .WithType(GameEventType.GameStateEvent)
+                .WithStateType(GetNextState(buttonText))
+                .WithAction(KeyboardAction.KeyPress)
+                .Build()
+        };
     }
 
     public void initialButtons() {
@@ -55,54 +69,46 @@ public class ButtonSwitch {
     public void KeyPress(KeyboardKey key) {
         switch (key) {
             case KeyboardKey.Up:
-                foreach (Button button in MenuButtons) {
-                    button.Inactivate();
-                }
-                ActiveMenuButton = Math.Max(0, ActiveMenuButton - 1);
+                InactivateAllButtons();
+                NavigateUp();
                 MenuButtons[ActiveMenuButton].Activate();
                 break;
             case KeyboardKey.Down:
-                foreach (Button button in MenuButtons) {
-                    button.Inactivate();
-                }
-                ActiveMenuButton = Math.Min(MaxMenuButtons - 1, ActiveMenuButton + 1);
+                InactivateAllButtons();
+                NavigateDown();
                 MenuButtons[ActiveMenuButton].Activate();
                 break;
             case KeyboardKey.Enter:
-                ActiveButtonText = MenuButtons[ActiveMenuButton].Text;
-                if (ActiveButtonText == "Quit") {
-                    GameBus.GetBus().RegisterEvent(
-                    new EventBuilder()
-                        .WithType(GameEventType.WindowEvent)
-                        .WithKey(key)
-                        .WithAction(KeyboardAction.KeyPress)
-                        .Build()
-                    );
-                } else if(ActiveButtonText == "Next Level"){
-                        NextState = GameStateType.GameRunning;
-                        GameBus.GetBus().RegisterEvent(
-                        new EventBuilder()
-                            .WithType(GameEventType.GameStateEvent)
-                            .WithStateType(NextState)
-                            .WithAction(KeyboardAction.KeyPress)
-                            .WithMessage(ActiveButtonText)
-                            .Build()
-                    );
-
-                } else{
-                    NextState = (GameStateType) (Button.textToState[ActiveButtonText]);
-                    GameBus.GetBus().RegisterEvent(
-                    new EventBuilder()
-                        .WithType(GameEventType.GameStateEvent)
-                        .WithStateType(this.NextState)
-                        .WithAction(KeyboardAction.KeyPress)
-                        .Build()
-                    );
-                }
+                string buttonText = MenuButtons[ActiveMenuButton].Text;
+                GameBus.GetBus().RegisterEvent(
+                    OnPressEvent(buttonText)
+                );
                 break;
             default:
                 break;
         }
+    }
+
+    private void InactivateAllButtons() {
+        foreach (Button button in MenuButtons) {
+            button.Inactivate();
+        }
+    }
+
+    private void NavigateUp() {
+        ActiveMenuButton = Math.Max(0, ActiveMenuButton - 1);
+    }
+
+    private void NavigateDown() {
+        ActiveMenuButton = Math.Min(MaxMenuButtons - 1, ActiveMenuButton + 1);
+    }
+
+    /// <summary>
+    /// Get the next state based on the text on the button
+    /// that was pressed.
+    /// </summary>
+    private GameStateType GetNextState(string buttonText) {
+        return (GameStateType) (Button.textToState[buttonText]);
     }
 
     public void KeyRelease(KeyboardKey key) {

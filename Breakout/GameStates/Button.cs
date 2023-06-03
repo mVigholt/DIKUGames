@@ -32,10 +32,12 @@ public class Button : Text
         textToState.TryAdd("Quit",  null);
     }
 
+    /// <summary>Highlight a button with a color</summary>
     public void Activate(){
         this.SetColor(activeColor);
     }
 
+    /// <summary>Remove highlighting from a button</summary>
     public void Inactivate(){
         this.SetColor(inactiveColor);
     }

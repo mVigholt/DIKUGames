@@ -61,9 +61,7 @@ public class GameState : IGameState {
 
     public void RenderState() {
         backGround.RenderEntity();
-        foreach (Button button in buttonSwitch.MenuButtons) {
-            button.Render();
-        }
+        buttonSwitch.Render();
         foreach (Text text in texts) {
             text.RenderText();
         }
