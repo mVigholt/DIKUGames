@@ -33,44 +33,44 @@ public class ButtonSwitch {
         get; set;
     }
 
-    private string activeButtonText;
+    private string ActiveButtonText;
 
-    public GameStateType nextState {
+    public GameStateType NextState {
         get; set;
     }
 
     public ButtonSwitch(params Button[] buttons) {
-        this.MenuButtons = buttons.ToList();
+        MenuButtons = buttons.ToList();
         initialButtons();
     }
 
     public void initialButtons() {
         MaxMenuButtons = MenuButtons.Count;
-        foreach (Button i in MenuButtons) {
-            i.InactiveButton();
+        foreach (Button button in MenuButtons) {
+            button.Inactivate();
         }
-        MenuButtons[this.ActiveMenuButton].ActiveButton();
+        MenuButtons[ActiveMenuButton].Activate();
     }
 
     public void KeyPress(KeyboardKey key) {
         switch (key) {
             case KeyboardKey.Up:
-                foreach (Button i in this.MenuButtons) {
-                    i.InactiveButton();
+                foreach (Button button in MenuButtons) {
+                    button.Inactivate();
                 }
-                ActiveMenuButton = Math.Max(0, this.ActiveMenuButton - 1);
-                this.MenuButtons[this.ActiveMenuButton].ActiveButton();
+                ActiveMenuButton = Math.Max(0, ActiveMenuButton - 1);
+                MenuButtons[ActiveMenuButton].Activate();
                 break;
             case KeyboardKey.Down:
-                foreach (Button i in this.MenuButtons) {
-                    i.InactiveButton();
+                foreach (Button button in MenuButtons) {
+                    button.Inactivate();
                 }
-                this.ActiveMenuButton = Math.Min(this.MaxMenuButtons - 1, this.ActiveMenuButton + 1);
-                this.MenuButtons[ActiveMenuButton].ActiveButton();
+                ActiveMenuButton = Math.Min(MaxMenuButtons - 1, ActiveMenuButton + 1);
+                MenuButtons[ActiveMenuButton].Activate();
                 break;
             case KeyboardKey.Enter:
-                activeButtonText = this.MenuButtons[this.ActiveMenuButton].Text;
-                if (activeButtonText == "Quit") {
+                ActiveButtonText = MenuButtons[ActiveMenuButton].Text;
+                if (ActiveButtonText == "Quit") {
                     GameBus.GetBus().RegisterEvent(
                     new EventBuilder()
                         .WithType(GameEventType.WindowEvent)
@@ -78,23 +78,23 @@ public class ButtonSwitch {
                         .WithAction(KeyboardAction.KeyPress)
                         .Build()
                     );
-                } else if(activeButtonText == "Next Level"){
-                        this.nextState = GameStateType.GameRunning;
+                } else if(ActiveButtonText == "Next Level"){
+                        NextState = GameStateType.GameRunning;
                         GameBus.GetBus().RegisterEvent(
                         new EventBuilder()
                             .WithType(GameEventType.GameStateEvent)
-                            .WithStateType(this.nextState)
+                            .WithStateType(NextState)
                             .WithAction(KeyboardAction.KeyPress)
-                            .WithMessage(activeButtonText)
+                            .WithMessage(ActiveButtonText)
                             .Build()
                     );
 
                 } else{
-                    this.nextState = (GameStateType) (Button.textToState[activeButtonText]);
+                    NextState = (GameStateType) (Button.textToState[ActiveButtonText]);
                     GameBus.GetBus().RegisterEvent(
                     new EventBuilder()
                         .WithType(GameEventType.GameStateEvent)
-                        .WithStateType(this.nextState)
+                        .WithStateType(this.NextState)
                         .WithAction(KeyboardAction.KeyPress)
                         .Build()
                     );
@@ -113,8 +113,8 @@ public class ButtonSwitch {
     }
 
     public void Render(){
-        foreach (Button i in MenuButtons){
-            i.Render();
+        foreach (Button button in MenuButtons){
+            button.Render();
         }
     }
 }

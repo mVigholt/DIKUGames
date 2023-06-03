@@ -3,7 +3,7 @@ namespace Breakout.GameStates;
 using Breakout.IO;
 
 
-public class GamePaused : GameStateFactory {
+public class GamePaused : GameState {
     private static GamePaused instance = null;
     public GamePaused() : base("", Assets.backGroundImage,
         "Continue") {

@@ -32,11 +32,11 @@ public class Button : Text
         textToState.TryAdd("Quit",  null);
     }
 
-    public void ActiveButton(){
+    public void Activate(){
         this.SetColor(activeColor);
     }
 
-    public void InactiveButton(){
+    public void Inactivate(){
         this.SetColor(inactiveColor);
     }
 

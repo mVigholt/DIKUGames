@@ -63,7 +63,7 @@ public class LevelHandler {
                 if (symbol != "-") {
                     string imgFileName = legends[symbol];
                     Vec2F pos = new Vec2F(c * xExtent, 0.9f - r * yExtent);
-                    Block block = BuildBlock(imgFileName, pos, symbol);
+                    Block block = BuildBlocks(imgFileName, pos, symbol);
                     if (block != null) {
                         blocks.AddEntity(block);
                     }
@@ -72,7 +72,7 @@ public class LevelHandler {
         }
     }
 
-    private Block BuildBlock(string imgFileName, Vec2F pos, string property) {
+    private Block BuildBlocks(string imgFileName, Vec2F pos, string property) {
         string[] filenameParts = imgFileName.Split('.');
         string baseName = filenameParts[0];
         string fileExt = filenameParts[1];

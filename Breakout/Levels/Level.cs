@@ -20,7 +20,7 @@ public class Level {
         get; private set;
     }
 
-    public EntityLoader entityLoader {
+    public ShuttleAndBall shuttleAndBall {
         get; set;
     }
     public Shuttle shuttle {
@@ -63,9 +63,9 @@ public class Level {
     }
 
     public void LoadEntity() {
-        entityLoader = new EntityLoader();
-        this.shuttle = entityLoader.shuttle;
-        this.balls = entityLoader.balls;
+        shuttleAndBall = new ShuttleAndBall();
+        this.shuttle = shuttleAndBall.shuttle;
+        this.balls = shuttleAndBall.balls;
     }
 
     private void LoadEffectItems(ScoreBoard scoreBoard) {
@@ -103,7 +103,7 @@ public class Level {
 
 
     public void Move() {
-        entityLoader.Move();
+        shuttleAndBall.Move();
         foreach (Block block in this.blocks) {
             block.Move();
         }
@@ -115,7 +115,7 @@ public class Level {
     public void Render() {
         blocks.RenderEntities();
         boardsLoader.Render();
-        entityLoader.Render();
+        shuttleAndBall.Render();
         fallingItems.RenderEntities();
     }
 

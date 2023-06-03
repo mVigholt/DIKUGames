@@ -127,7 +127,7 @@ public class GameRunning : IGameState {
     }
 
     private void CollidingEntities() {
-        this.level.entityLoader.ballVsShuttleCollide();
+        this.level.shuttleAndBall.ballVsShuttleCollide();
         this.level.ballVsBlocksCollide(scoreBoard);
         // Power-ups and hazards
         this.level.itemVsShuttleCollide(scoreBoard);

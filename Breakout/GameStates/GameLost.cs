@@ -6,7 +6,7 @@ using DIKUArcade.Math;
 using DIKUArcade.Graphics;
 
 
-public class GameLost : GameStateFactory {
+public class GameLost : GameState {
     private static GameLost instance = null;
     public GameLost() :
          base("Game Over", Assets.backGroundImage, "Main Menu", "Quit") {

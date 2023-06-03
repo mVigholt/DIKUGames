@@ -2,7 +2,7 @@ namespace Breakout.GameStates;
 using Breakout.IO;
 
 /// <summary> Main menu state </summary>
-public class MainMenu : GameStateFactory {
+public class MainMenu : GameState {
     private static MainMenu instance = null;
     public MainMenu() : base("", Assets.mainMenuImage,"New Game", "Quit") {}
 

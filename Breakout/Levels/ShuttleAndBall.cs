@@ -8,7 +8,7 @@ using System.IO;
 using DIKUArcade.Math;
 using DIKUArcade.Physics;
 
-public class EntityLoader {
+public class ShuttleAndBall {
     public EntityContainer<Ball> balls {
         get; set;
     }
@@ -16,7 +16,7 @@ public class EntityLoader {
         get; set;
     }
 
-    public EntityLoader() {
+    public ShuttleAndBall() {
         InitShuttle();
         InitBall();
     }
