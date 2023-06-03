@@ -3,11 +3,11 @@ namespace Breakout.Levels;
 using Breakout.Entities.Board;
 
 public class BoardsLoader {
-    public CountDownBoard countDownBoard {
+    public CountDownBoard CountDownBoard {
         get;
         private set;
     }
-    public LevelBoard levelBoard {
+    public LevelBoard LevelBoard {
         get;
         private set;
     }
@@ -27,26 +27,26 @@ public class BoardsLoader {
 
     private void InitCountDown(double? levelTime) {
         if (levelTime != null) {
-            this.countDownBoard = new CountDownBoard((int) levelTime);
+            this.CountDownBoard = new CountDownBoard((int) levelTime);
         } else {
-            this.countDownBoard = null;
+            this.CountDownBoard = null;
         }
     }
 
     private void InitLevelBoard(string levelName) {
         if (levelName != null) {
-            this.levelBoard = new LevelBoard((string) levelName);
+            this.LevelBoard = new LevelBoard((string) levelName);
         } else {
-            this.levelBoard = null;
+            this.LevelBoard = null;
         }
     }
 
     public void Render() {
-        if (countDownBoard != null) {
-            countDownBoard.Render();
+        if (CountDownBoard != null) {
+            CountDownBoard.Render();
         }
-        if (levelBoard != null) {
-            levelBoard.Render();
+        if (LevelBoard != null) {
+            LevelBoard.Render();
         }
     }
 

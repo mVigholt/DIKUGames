@@ -86,8 +86,8 @@ public class GameRunning : IGameState {
         StateCheker();
         MoveEntities();
         CollidingEntities();
-        if (this.level.countDownBoard != null) {
-            this.level.countDownBoard.UpdateCountDown();
+        if (this.level.CountDownBoard != null) {
+            this.level.CountDownBoard.UpdateCountDown();
         }
 
     }
@@ -95,13 +95,13 @@ public class GameRunning : IGameState {
 
     private void StateCheker() {
         var Unbreakables = 0;
-        foreach (Block block in level.blocks) {
+        foreach (Block block in level.Blocks) {
             if (block.build.isUnbreakable) {
                 Unbreakables += 1;
             }
         }
 
-        if (level.blocks.CountEntities() == Unbreakables) {
+        if (level.Blocks.CountEntities() == Unbreakables) {
             ChangeLevel();
         }
 
@@ -114,8 +114,8 @@ public class GameRunning : IGameState {
         } else {
             GameOver();
         }
-        if (this.level.countDownBoard != null) {
-            if (this.level.countDownBoard.timeLeft <= 0) {
+        if (this.level.CountDownBoard != null) {
+            if (this.level.CountDownBoard.timeLeft <= 0) {
                 GameOver();
             }
         }
@@ -128,9 +128,9 @@ public class GameRunning : IGameState {
 
     private void CollidingEntities() {
         this.level.shuttleAndBall.ballVsShuttleCollide();
-        this.level.ballVsBlocksCollide(scoreBoard);
+        this.level.BallVsBlocksCollide(scoreBoard);
         // Power-ups and hazards
-        this.level.itemVsShuttleCollide(scoreBoard);
+        this.level.ItemVsShuttleCollide(scoreBoard);
     }
 
     public void HandleKeyEvent(KeyboardAction action, KeyboardKey key) {

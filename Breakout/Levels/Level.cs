@@ -7,16 +7,21 @@ using DIKUArcade.Physics;
 using Breakout.Entities.EffectItems;
 
 public class Level {
-    public CountDownBoard countDownBoard {
+
+    private EntityContainer<EffectItem> fallingItems = new EntityContainer<EffectItem>();
+    private BoardsLoader boardsLoader;
+    private EffectItemsLoader effectItemsLoader;
+
+    public CountDownBoard CountDownBoard {
         get; private set;
     }
-    public LevelBoard levelBoard {
+    public LevelBoard LevelBoard {
         get; private set;
     }
-    public LevelHandler levelHandler {
+    public LevelHandler LevelHandler {
         get; private set;
     }
-    public EntityContainer<Block> blocks {
+    public EntityContainer<Block> Blocks {
         get; private set;
     }
 
@@ -29,10 +34,6 @@ public class Level {
     public EntityContainer<Ball> balls {
         get; set;
     }
-    private EntityContainer<EffectItem> fallingItems = new EntityContainer<EffectItem>();
-    private BoardsLoader boardsLoader;
-    private EffectItemsLoader effectItemsLoader;
-
     public double? levelTime {
         get; private set;
     }
@@ -40,12 +41,11 @@ public class Level {
         get; private set;
     }
 
-
     public Level(ScoreBoard scoreBoard) {
         int levelNum = scoreBoard.level;
-        levelHandler = new LevelHandler("level" + (levelNum).ToString() + ".txt");
-        this.levelTime = levelHandler.levelTime;
-        this.levelName = levelHandler.levelName;
+        LevelHandler = new LevelHandler("level" + levelNum.ToString() + ".txt");
+        this.levelTime = LevelHandler.levelTime;
+        this.levelName = LevelHandler.levelName;
         LoadBlocks();
         LoadBoards();
         LoadEntity();
@@ -53,13 +53,13 @@ public class Level {
     }
 
     private void LoadBlocks() {
-        blocks = levelHandler.blocks;
+        Blocks = LevelHandler.Blocks;
     }
 
     private void LoadBoards() {
         boardsLoader = new BoardsLoader(this.levelTime, this.levelName);
-        this.countDownBoard = boardsLoader.countDownBoard;
-        this.levelBoard = boardsLoader.levelBoard;
+        this.CountDownBoard = boardsLoader.CountDownBoard;
+        this.LevelBoard = boardsLoader.LevelBoard;
     }
 
     public void LoadEntity() {
@@ -73,12 +73,11 @@ public class Level {
             new EffectItemsLoader(this.shuttle, scoreBoard, this.balls);
     }
 
-    public void ballVsBlocksCollide(ScoreBoard scoreBoard) {
+    public void BallVsBlocksCollide(ScoreBoard scoreBoard) {
         balls.Iterate(ball => {
-            this.blocks.Iterate(block => {
+            this.Blocks.Iterate(block => {
                 CollisionData ballVsblock =
                     CollisionDetection.Aabb(ball.Shape.AsDynamicShape(), block.Shape);
-
                 if (ballVsblock.Collision) {
                     ball.UpdateDirection(block.GetDirection(), ballVsblock.CollisionDir);
                     scoreBoard.AddPoints(block.Value);
@@ -90,21 +89,39 @@ public class Level {
             });
         });
     }
-    public void itemVsShuttleCollide(ScoreBoard scoreBoard) {
+
+    public void ItemVsShuttleCollide(ScoreBoard scoreBoard) {
         fallingItems.Iterate(item => {
             CollisionData itemVsShuttle =
                 CollisionDetection.Aabb(item.Shape.AsDynamicShape(), shuttle.Shape);
             if (itemVsShuttle.Collision) {
-                effectItemsLoader.ActivateEffectItem(item);
+                SendEffectEvent(item);
                 item.DeleteEntity();
             }
         });
     }
 
+    /// <summary>
+    /// Given an EffectItem, register its associated
+    /// activation event. If this EffectItem has a duration,
+    /// send out a reciprocal deactivation event as well.
+    /// </summary>
+    private void SendEffectEvent(EffectItem item) {
+        if (item is InstantEffectItem instantItem) {
+            GameBus.GetBus().RegisterEvent(instantItem.ActivationEvent);
+        }
+        if (item is TimedEffectItem timedItem) {
+            GameBus.GetBus().RegisterEvent(timedItem.ActivationEvent);
+            GameBus.GetBus().RegisterTimedEvent(
+                timedItem.DeactivationEvent,
+                timedItem.TimeLeft
+            );
+        }
+    }
 
     public void Move() {
         shuttleAndBall.Move();
-        foreach (Block block in this.blocks) {
+        foreach (Block block in this.Blocks) {
             block.Move();
         }
         foreach (EffectItem item in fallingItems) {
@@ -113,7 +130,7 @@ public class Level {
     }
 
     public void Render() {
-        blocks.RenderEntities();
+        Blocks.RenderEntities();
         boardsLoader.Render();
         shuttleAndBall.Render();
         fallingItems.RenderEntities();

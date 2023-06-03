@@ -5,6 +5,11 @@ using DIKUArcade.Graphics;
 using DIKUArcade.Events;
 using DIKUArcade.Math;
 
+/// <summary>
+/// The entity associated with an EffectItem (power-up or hazard).
+/// A part from its parent properties and methods, this has
+/// an activation event that can be used to trigger an Effect.
+/// </summary>
 public abstract class EffectItem : MoveableEntity
 {
     public abstract GameEvent ActivationEvent { get; }
