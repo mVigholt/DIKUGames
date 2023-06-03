@@ -31,11 +31,7 @@ public class ButtonSwitch {
 
     public ButtonSwitch(List<Button> buttons) {
         MenuButtons = buttons.ToList();
-        activeMenuButton = 0;
-        foreach (Button button in MenuButtons) {
-            button.Inactivate();
-        }
-        MenuButtons[ActiveMenuButton].Activate();
+        ResetState();
     }
 
     public void KeyPress(KeyboardKey key) {
@@ -90,6 +86,7 @@ public class ButtonSwitch {
     public void ResetState() {
         activeMenuButton = 0;
         InactivateAllButtons();
+        MenuButtons[ActiveMenuButton].Activate();
     }
 
     private void InactivateAllButtons() {
