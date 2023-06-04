@@ -31,7 +31,6 @@ public class EffectItemHandler : IGameEventProcessor {
     private Dictionary<string, IEffect> _effects;
 
     private EffectItemHandler() {
-        // We use the event type StatusEvent for effects
         GameBus.GetBus().Subscribe(GameEventType.StatusEvent, this);
     }
 

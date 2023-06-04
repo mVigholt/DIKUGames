@@ -41,12 +41,6 @@ public class EffectItemFactory {
         _hazardConfigs = ConfigsInNamespace(hazardsNS);
     }
 
-    private Dictionary<string, IEffectItemConfig> ConfigsInNamespace(string nameSpace) {
-        var configs = new Dictionary<string, IEffectItemConfig>();
-        _effectLoader = new EffectItemConfigLoader(nameSpace);
-        return _effectLoader.CreateMapping();
-    }
-
     /// <summary>Get a random power-up placed at a given position</summary>
     public EffectItem RandomPowerUp(Vec2F pos) {
         return RandomEffectItem(pos, _powerUpConfigs);
@@ -55,6 +49,11 @@ public class EffectItemFactory {
     /// <summary>Get a random hazard placed at a given position</summary>
     public EffectItem RandomHazard(Vec2F pos) {
         return RandomEffectItem(pos, _hazardConfigs);
+    }
+
+    private Dictionary<string, IEffectItemConfig> ConfigsInNamespace(string nameSpace) {
+        _effectLoader = new EffectItemConfigLoader(nameSpace);
+        return _effectLoader.CreateMapping();
     }
 
     /// <summary>
@@ -75,18 +74,6 @@ public class EffectItemFactory {
             return CreateTimedEffectItem(config, pos);
         }
         return CreateInstantEffectItem(config, pos);
-    }
-
-    private bool ConfigurationIsValid() {
-        // Make life easier for the developers.
-        // 
-        // - Do all the class names in ItemConfigs
-        //   end with "Config"?
-        // - Do none of the classes in ItemConfigs
-        //   have the same Type?
-        // - Do none of the classes in ItemConfigs
-        //   have the same IconFileName?
-        return true;
     }
 
     private InstantEffectItem CreateInstantEffectItem(
