@@ -14,8 +14,6 @@ using Breakout.IO;
 public class Level {
 
     private EntityContainer<EffectItem> fallingItems = new EntityContainer<EffectItem>();
-    private BoardsLoader boardsLoader;
-    // private EffectItemsLoader effectItemsLoader;
     private EffectItemHandler effectItemHandler;
 
     public CountDownBoard CountDownBoard {
@@ -50,7 +48,6 @@ public class Level {
         this.levelName = LevelHandler.levelName;
         LoadBlocks();
         LoadBoards();
-        // LoadEntity();
         InitShuttle();
         InitBalls();
         LoadEffectItems(scoreBoard);
@@ -61,9 +58,12 @@ public class Level {
     }
 
     private void LoadBoards() {
-        boardsLoader = new BoardsLoader(this.levelTime, this.levelName);
-        this.CountDownBoard = boardsLoader.CountDownBoard;
-        this.LevelBoard = boardsLoader.LevelBoard;
+        if (levelTime != null) {
+            CountDownBoard = new CountDownBoard((int) levelTime);
+        }
+        if (levelName != null) {
+            LevelBoard = new LevelBoard(levelName);
+        }
     }
 
     public void InitBalls() {
@@ -170,7 +170,12 @@ public class Level {
 
     public void Render() {
         Blocks.RenderEntities();
-        boardsLoader.Render();
+        if (CountDownBoard != null) {
+            CountDownBoard.Render();
+        }
+        if (LevelBoard != null) {
+            LevelBoard.Render();
+        }
         shuttle.Render();
         balls.RenderEntities();
         fallingItems.RenderEntities();
