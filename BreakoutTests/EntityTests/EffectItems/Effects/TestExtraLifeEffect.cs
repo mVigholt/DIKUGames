@@ -1,12 +1,9 @@
 namespace BreakoutTests.EntityTests.EffectItems.Effects;
 
 using NUnit.Framework;
-using DIKUArcade.Events;
 using Breakout.GameStates;
 using Breakout.Entities;
-using Breakout.Events;
-using Breakout.Entities.EffectItems.ItemConfigs;
-using Breakout.Entities.EffectItems;
+
 
 [TestFixture]
 public class TestExtraLifeEffect {
