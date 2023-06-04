@@ -25,7 +25,7 @@ public class LivesBoard {
                                , Assets.LifeImage);
     }
 
-    public void LostLives(int lives) {
+    public void LoseLives(int lives) {
         int livesRemainning = livesLeft - lives;
         if (livesRemainning <= 0) {
             livesLeft = 0;
