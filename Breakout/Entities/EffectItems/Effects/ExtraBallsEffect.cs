@@ -4,7 +4,8 @@ using DIKUArcade.Entities;
 using Breakout.Entities;
 
 
-// This one is not properly implemented yet
+// This one works sometimes. Weird bug. If we can't fix it
+// before the deadline, consider dropping this power-up.
 public class ExtraBallsEffect : IEffect {
         
     private EntityContainer<Ball> _activeBalls;

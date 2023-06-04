@@ -1,16 +1,22 @@
 namespace Breakout.Levels;
 
+using System.IO;
 using DIKUArcade.Entities;
+using DIKUArcade.Physics;
+using DIKUArcade.Graphics;
+using DIKUArcade.Math;
 using Breakout.Entities;
 using Breakout.Entities.Board;
-using DIKUArcade.Physics;
 using Breakout.Entities.EffectItems;
+using Breakout.IO;
+
 
 public class Level {
 
     private EntityContainer<EffectItem> fallingItems = new EntityContainer<EffectItem>();
     private BoardsLoader boardsLoader;
-    private EffectItemsLoader effectItemsLoader;
+    // private EffectItemsLoader effectItemsLoader;
+    private EffectItemHandler effectItemHandler;
 
     public CountDownBoard CountDownBoard {
         get; private set;
@@ -23,10 +29,6 @@ public class Level {
     }
     public EntityContainer<Block> Blocks {
         get; private set;
-    }
-
-    public ShuttleAndBall shuttleAndBall {
-        get; set;
     }
     public Shuttle shuttle {
         get; set;
@@ -48,7 +50,9 @@ public class Level {
         this.levelName = LevelHandler.levelName;
         LoadBlocks();
         LoadBoards();
-        LoadEntity();
+        // LoadEntity();
+        InitShuttle();
+        InitBalls();
         LoadEffectItems(scoreBoard);
     }
 
@@ -62,15 +66,29 @@ public class Level {
         this.LevelBoard = boardsLoader.LevelBoard;
     }
 
-    public void LoadEntity() {
-        shuttleAndBall = new ShuttleAndBall();
-        this.shuttle = shuttleAndBall.shuttle;
-        this.balls = shuttleAndBall.balls;
+    public void InitBalls() {
+        balls = new EntityContainer<Ball>();
+        Vec2F position = BallPosOnShuttle();
+        balls.AddEntity(Ball.At(BallPosOnShuttle()));
+    }
+
+    public Vec2F BallPosOnShuttle() {
+        return new Vec2F(
+            shuttle.GetPosition().X + shuttle.GetExtent().X / 2 - Ball.STD_EXTENT.X / 2,
+            shuttle.GetPosition().Y + shuttle.GetExtent().Y / 2);
+    }
+
+    public void InitShuttle() {
+        Vec2F playerPosition = new Vec2F(0.5f - Shuttle.STD_EXTENT.X / 2, 0.03f);
+        IBaseImage image = new Image(
+            Path.Combine(PathFinder.Images(), "player.png")
+        );
+        shuttle = Shuttle.NewShuttle(playerPosition, image);
     }
 
     private void LoadEffectItems(ScoreBoard scoreBoard) {
-        effectItemsLoader =
-            new EffectItemsLoader(this.shuttle, scoreBoard, this.balls);
+        effectItemHandler = EffectItemHandler.GetInstance();
+        effectItemHandler.Initialize(shuttle, scoreBoard, balls);
     }
 
     public void BallVsBlocksCollide(ScoreBoard scoreBoard) {
@@ -101,6 +119,20 @@ public class Level {
         });
     }
 
+    public void BallVsShuttleCollide() {
+        balls.Iterate(ball => {
+            CollisionData ballVsShuttle = CollisionDetection.Aabb(
+                ball.Shape.AsDynamicShape(), shuttle.Shape
+            );
+            if (ballVsShuttle.Collision) {
+                ball.UpdateDirection(
+                    shuttle.GetDirection(), ballVsShuttle.CollisionDir
+                );
+            }
+        });
+
+    }
+
     /// <summary>
     /// Given an EffectItem, register its associated
     /// activation event. If this EffectItem has a duration,
@@ -120,7 +152,14 @@ public class Level {
     }
 
     public void Move() {
-        shuttleAndBall.Move();
+        shuttle.Move();
+        foreach (Ball ball in balls) {
+            ball.Move();
+            // let the ball follow the shuttle until released
+            if (ball.GetDirection().Length() == new Vec2F(0, 0).Length()) {
+                ball.Shape.SetPosition(BallPosOnShuttle());
+            }
+        }
         foreach (Block block in this.Blocks) {
             block.Move();
         }
@@ -132,7 +171,8 @@ public class Level {
     public void Render() {
         Blocks.RenderEntities();
         boardsLoader.Render();
-        shuttleAndBall.Render();
+        shuttle.Render();
+        balls.RenderEntities();
         fallingItems.RenderEntities();
     }
 

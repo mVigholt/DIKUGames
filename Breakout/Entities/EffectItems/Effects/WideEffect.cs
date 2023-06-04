@@ -17,7 +17,6 @@ public class WideEffect : ITimedEffect {
 
     public void Activate() {
         _shuttle.Shape.Extent += extraWidth;
-        
     }
 
     public void Deactivate() {
