@@ -72,7 +72,7 @@ public class Level {
         balls.AddEntity(Ball.At(BallPosOnShuttle()));
     }
 
-    public Vec2F BallPosOnShuttle() {
+    private Vec2F BallPosOnShuttle() {
         return new Vec2F(
             shuttle.GetPosition().X + shuttle.GetExtent().X / 2 - Ball.STD_EXTENT.X / 2,
             shuttle.GetPosition().Y + shuttle.GetExtent().Y / 2);
