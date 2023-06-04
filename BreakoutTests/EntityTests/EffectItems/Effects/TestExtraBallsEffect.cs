@@ -15,7 +15,6 @@ public class TestExtraBallsEffect {
     
     [Test]
     public void TestActivate() {
-        EffectItemHandler handler = EffectItemHandler.GetInstance();
         int initialBalls = NumBalls();
         EffectSimulator.Activate("ExtraBalls");
         Assert.AreEqual(initialBalls + 1, NumBalls());

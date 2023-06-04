@@ -9,20 +9,23 @@ public class SlowDownEffect : ITimedEffect {
     public TimePeriod TimeLeft { get; }
 
     private Shuttle _shuttle;
-    private readonly float SCALAR = 0.5f;
+    private float _scalar;
     
-    public SlowDownEffect(Shuttle shuttle) {
+    public SlowDownEffect(Shuttle shuttle)
+        : this(shuttle, 0.5f) {
+    }
+
+    public SlowDownEffect(Shuttle shuttle, float scalar) {
+        _scalar = scalar;
         _shuttle = shuttle;
         TimeLeft = TimePeriod.NewSeconds(3);
     }
 
     public void Activate() {
-        _shuttle.Speed *= SCALAR;
-        System.Console.WriteLine("PowerUp: SlowDown");
+        _shuttle.Speed *= _scalar;
     }
 
     public void Deactivate() {
-        _shuttle.Speed /= SCALAR;
-        System.Console.WriteLine("PowerUp: SlowDown deactivated");
+        _shuttle.Speed /= _scalar;
     }
 }

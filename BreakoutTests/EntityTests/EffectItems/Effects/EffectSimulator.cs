@@ -23,7 +23,7 @@ public static class EffectSimulator {
     public static void Deactivate(string effectName) {
         GameEvent ev = new EventBuilder()
             .WithType(GameEventType.StatusEvent)
-            .WithMessage($"{effectName} Deactivate")
+            .WithMessage($"{effectName}Deactivate")
             .Build();
         EffectItemHandler.GetInstance().ProcessEvent(ev);
     }
