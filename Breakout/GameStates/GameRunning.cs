@@ -52,7 +52,7 @@ public class GameRunning : IGameState {
 
     public void ChangeLevel() {
         scoreBoard.NextLevel();
-        if (scoreBoard.level <= NUM_LEVELS) {
+        if (scoreBoard.Level <= NUM_LEVELS) {
             InitLevel();
         } else {
             GameWon();

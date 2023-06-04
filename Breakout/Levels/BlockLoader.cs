@@ -10,29 +10,18 @@ using Breakout.Entities.EffectItems;
 using Breakout.Graphics;
 
 
-public class LevelHandler {
-    private LevelLoader loadFile;
-
-    public double? levelTime {
-        get;
-        private set;
-    }
-    public string levelName {
-        get;
-        private set;
-    }
-
-    private int rows;
-    private int columns;
+public class BlockLoader {
+    private LevelDataLoader loadFile;
     private EffectItemFactory eiFactory;
-    public EntityContainer<Block> Blocks {
-        get; private set;
-    }
 
-    public LevelHandler(string fileName) {
+    public double? levelTime { get; private set; }
+    public string levelName { get; private set; }
+    public EntityContainer<Block> Blocks { get; private set; }
+
+    public BlockLoader(string fileName) {
         bool isTimedLevel = true;
         eiFactory = new EffectItemFactory(isTimedLevel);
-        loadFile = new LevelLoader(fileName);
+        loadFile = new LevelDataLoader(fileName);
         CreateMap();
     }
 
@@ -52,8 +41,8 @@ public class LevelHandler {
         else{
             levelName = null;
         }
-        rows = bricks.Length;
-        columns = bricks[0].Length;
+        int rows = bricks.Length;
+        int columns = bricks[0].Length;
         float xExtent = 1.0f / columns;
         float yExtent = 0.9f / rows;
         Blocks = new EntityContainer<Block>(rows * columns);

@@ -1,9 +1,9 @@
 namespace Breakout.Entities.Board;
 
-using Breakout.IO;
 using DIKUArcade.Entities;
 using DIKUArcade.Graphics;
 using DIKUArcade.Math;
+using Breakout.IO;
 
 public class LivesBoard {
     private static readonly Vec2F HEART_EXTENT = new Vec2F(0.08f, 0.08f);
@@ -19,24 +19,24 @@ public class LivesBoard {
     public LivesBoard(int startLives) {
         livesTextNum = new Text("x 0", LIVE_POS, LIVE_EXTENT);
         livesTextNum.SetColor(LIVE_COLOR);
-        this.livesLeft = startLives;
-        livesTextNum.SetText($"x {this.livesLeft}");
+        livesLeft = startLives;
+        livesTextNum.SetText($"x {livesLeft}");
         lifeEntity = new Entity(new StationaryShape(HEART_POSITION, HEART_EXTENT)
                                , Assets.LifeImage);
     }
 
     public void LostLives(int lives) {
-        int livesRemainning = this.livesLeft - lives;
+        int livesRemainning = livesLeft - lives;
         if (livesRemainning <= 0) {
-            this.livesLeft = 0;
+            livesLeft = 0;
         } else {
-            this.livesLeft = livesRemainning;
+            livesLeft = livesRemainning;
         }
-        livesTextNum.SetText($"x {this.livesLeft}");
+        livesTextNum.SetText($"x {livesLeft}");
     }
 
     public int GetRemainingLives() {
-        return this.livesLeft;
+        return livesLeft;
     }
     public void Render() {
         livesTextNum.RenderText();

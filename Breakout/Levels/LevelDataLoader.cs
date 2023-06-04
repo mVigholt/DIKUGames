@@ -6,12 +6,12 @@ using System.Linq;
 using Breakout.IO;
 
 
-public class LevelLoader {
+public class LevelDataLoader {
     private string[] legend;
     private string[] meta;
     private string[] map;
 
-    public LevelLoader(string fileName) {
+    public LevelDataLoader(string fileName) {
         string filePath = Path.Combine(PathFinder.Levels(), fileName);
         try {
             map = File.ReadLines(filePath)
