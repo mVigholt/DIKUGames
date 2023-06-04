@@ -45,6 +45,10 @@ public class Level {
         LoadEffectItems(scoreBoard);
     }
 
+    public Level() 
+        : this(new ScoreBoard()) {
+    }
+
     private void InitBoards() {
         if (levelTime != null) {
             CountDownBoard = new CountDownBoard((int) levelTime);
@@ -95,7 +99,7 @@ public class Level {
         });
     }
 
-    public void ItemVsShuttleCollide(ScoreBoard scoreBoard) {
+    public void ItemVsShuttleCollide() {
         fallingItems.Iterate(item => {
             CollisionData itemVsShuttle =
                 CollisionDetection.Aabb(item.Shape.AsDynamicShape(), shuttle.Shape);

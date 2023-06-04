@@ -1,22 +1,23 @@
-namespace BreakoutTests.EntityTests;
+namespace BreakoutTests.EntityTests.EffectItems.Effects;
 
-using System;
 using NUnit.Framework;
-using DIKUArcade.GUI;
-using DIKUArcade.Math;
-using DIKUArcade.Entities;
+using DIKUArcade.Events;
+using Breakout.GameStates;
 using Breakout.Entities;
+using Breakout.Events;
+using Breakout.Entities.EffectItems.ItemConfigs;
 using Breakout.Entities.EffectItems;
 
 [TestFixture]
 public class TestExtraLifeEffect {
 
-    EffectItemHandler handler;
+    GameRunning gameRunning = GameRunning.GetInstance(true);
 
-    [SetUp]
-    public void SetUp() {
-        handler = EffectItemHandler.GetInstance();
+    [Test]
+    public void TestActivate() {
+        int initialLives = gameRunning.Lives;
+        Shuttle shuttle = EntityCreator.CreateShuttle();
+        EffectSimulator.Activate("ExtraLife");
+        Assert.AreEqual(initialLives + 1, gameRunning.Lives);
     }
-
-
 }

@@ -18,7 +18,7 @@ public class Shuttle : MoveableEntity, IGameEventProcessor {
         : base(new DynamicShape(position, STD_EXTENT), image, 0.02f) {
     }
 
-    private static void ResetShuttle(Vec2F position) {
+    public static void ResetShuttle(Vec2F position) {
         Shuttle.instance.Shape.SetPosition(position);
         Shuttle.instance.Shape.Extent = STD_EXTENT;
     }

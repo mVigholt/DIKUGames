@@ -14,10 +14,11 @@ public class GameRunning : IGameState {
     
     private static GameRunning instance = null;
     private GameEventBus eventBus = GameBus.GetBus();
-    private int lives;
-    private Level level;
+    public Level level;
     public ScoreBoard scoreBoard;
     private LivesBoard livesBoard;
+    
+    public int Lives { get; private set; }
 
     public static GameRunning GetInstance() {
         return GetInstance(false);
@@ -36,14 +37,14 @@ public class GameRunning : IGameState {
     }
 
     public void ResetState() {
-        lives = 2;
+        Lives = 2;
         InitBoard();
         ChangeLevel();
     }
 
     public void InitBoard() {
         scoreBoard = new ScoreBoard();
-        livesBoard = new LivesBoard(lives);
+        livesBoard = new LivesBoard(Lives);
     }
 
     public void InitLevel() {
@@ -94,7 +95,7 @@ public class GameRunning : IGameState {
     }
 
     public void LoseLives(int lives) {
-        this.lives--;
+        this.Lives -= lives;
         livesBoard.LoseLives(lives);
     }
 
@@ -110,7 +111,7 @@ public class GameRunning : IGameState {
             ChangeLevel();
         }
 
-        if (lives + level.balls.CountEntities() > 0) {
+        if (Lives + level.balls.CountEntities() > 0) {
             if (level.balls.CountEntities() == 0) {
                 level.InitBalls();
                 level.InitShuttle();
@@ -133,7 +134,7 @@ public class GameRunning : IGameState {
     private void CollidingEntities() {
         level.BallVsShuttleCollide();
         level.BallVsBlocksCollide(scoreBoard);
-        level.ItemVsShuttleCollide(scoreBoard);
+        level.ItemVsShuttleCollide();
     }
 
     public void HandleKeyEvent(KeyboardAction action, KeyboardKey key) {

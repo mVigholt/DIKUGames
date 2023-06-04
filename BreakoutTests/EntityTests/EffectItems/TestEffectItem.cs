@@ -1,10 +1,7 @@
-namespace BreakoutTests.EntityTests;
+namespace BreakoutTests.EntityTests.EffectItems;
 
-using System;
 using NUnit.Framework;
-using DIKUArcade.GUI;
 using DIKUArcade.Math;
-using DIKUArcade.Entities;
 using Breakout.Entities;
 using Breakout.Entities.EffectItems;
 
