@@ -3,9 +3,6 @@ namespace Breakout.Entities.EffectItems.Effects;
 using DIKUArcade.Entities;
 using Breakout.Entities;
 
-
-// This one works sometimes. Weird bug. If we can't fix it
-// before the deadline, consider dropping this power-up.
 public class ExtraBallsEffect : IEffect {
         
     private EntityContainer<Ball> _activeBalls;
