@@ -17,8 +17,8 @@ public class TestScoreBoard {
     }
     [Test]
     public void TestNextLevel(){
-        int initialLevel = scoreBoard.level;
+        int initialLevel = scoreBoard.Level;
         scoreBoard.NextLevel();
-        Assert.That(scoreBoard.level, Is.EqualTo(1));
+        Assert.That(scoreBoard.Level, Is.EqualTo(1));
     }
 }
