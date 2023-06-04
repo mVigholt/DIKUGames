@@ -7,16 +7,17 @@ using DIKUArcade.Physics;
 using Breakout.IO;
 
 public class Ball : MoveableEntity {
-    public static readonly Vec2F STD_EXTEND = new Vec2F(0.03f, 0.03f);
+    public static readonly Vec2F STD_EXTENT = new Vec2F(0.03f, 0.03f);
 
     public int damage { get; private set; } = 1;
 
     public static readonly float STD_SPEED = 0.015f;
 
     public Ball(Vec2F position, IBaseImage image)
-        : base(new DynamicShape(position, STD_EXTEND), image, STD_SPEED) {
+        : base(new DynamicShape(position, STD_EXTENT), image, STD_SPEED) {
     }
 
+    /// <summary>Create a Ball at position</summary>
     public static Ball At(Vec2F position) {
         IBaseImage image = Assets.LoadImage("ball.png");
         return new Ball(position, image);

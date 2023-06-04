@@ -10,17 +10,17 @@ using DIKUArcade.Physics;
 
 public class Shuttle : MoveableEntity, IGameEventProcessor {
     
-    public static readonly Vec2F STD_EXTEND = new Vec2F(0.15f, 0.03f);
+    public static readonly Vec2F STD_EXTENT = new Vec2F(0.15f, 0.03f);
     private static Shuttle instance = null;
     private GameEventBus eventBus;
 
     private Shuttle(Vec2F position, IBaseImage image)
-        : base(new DynamicShape(position, STD_EXTEND), image, 0.02f) {
+        : base(new DynamicShape(position, STD_EXTENT), image, 0.02f) {
     }
 
     private static void ResetShuttle(Vec2F position) {
         Shuttle.instance.Shape.SetPosition(position);
-        Shuttle.instance.Shape.Extent = STD_EXTEND;
+        Shuttle.instance.Shape.Extent = STD_EXTENT;
     }
 
     public static Shuttle NewShuttle(Vec2F position, IBaseImage image) {

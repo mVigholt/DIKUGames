@@ -30,6 +30,10 @@ public class EffectItemHandler : IGameEventProcessor {
     private static EffectItemHandler _instance = null;
     private Dictionary<string, IEffect> _effects;
 
+    private EffectItemHandler() {
+        // We use the event type StatusEvent for effects
+        GameBus.GetBus().Subscribe(GameEventType.StatusEvent, this);
+    }
 
     /// <summary>
     /// Inject dependencies and discover IEffect classes.
@@ -47,6 +51,10 @@ public class EffectItemHandler : IGameEventProcessor {
         return _instance;
     }
 
+    /// <summary>
+    /// Activate or deactivate an effect
+    /// based on its event's message.
+    /// </summary>
     public void ProcessEvent(GameEvent gameEvent) {
         string fk = GetForeignKey(gameEvent.Message);
         IEffect effect = _effects[fk];
@@ -59,7 +67,10 @@ public class EffectItemHandler : IGameEventProcessor {
     }
 
     /// <summary>
-    /// Convert a status event message to a foreign key
+    /// Convert a status event message to a foreign key.
+    /// A foreign key is a shared property between two objects.
+    /// In this case, our effect items and effects are linked
+    /// by name, so the foreign key is a string such as "ExtraLife".
     /// </summary>
     private string GetForeignKey(string message) {
         if (message.Contains("Deactivate")) {

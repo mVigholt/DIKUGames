@@ -1,5 +1,6 @@
 namespace Breakout.Entities;
 
+using System;
 using DIKUArcade.Entities;
 using DIKUArcade.Graphics;
 using DIKUArcade.Math;
@@ -7,7 +8,7 @@ using DIKUArcade.Physics;
 
 public class MoveableEntity : Entity {
 
-    private protected DynamicShape shape;
+    protected DynamicShape shape;
 
     private Vec2F dir = new Vec2F(0, 0);
 
@@ -39,7 +40,8 @@ public class MoveableEntity : Entity {
     }
     
     private Vec2F UnitVector(Vec2F vector) {
-        float hyp = (float) System.Math.Sqrt(System.Math.Pow(vector.X, 2) + System.Math.Pow(vector.Y, 2));
+        float hyp = (float) Math.Sqrt(
+            Math.Pow(vector.X, 2) + Math.Pow(vector.Y, 2));
         hyp = hyp != 0 ? hyp : 1;
         return new Vec2F(vector.X / hyp, vector.Y / hyp);
     }
@@ -75,7 +77,7 @@ public class MoveableEntity : Entity {
     }
 
     public void Stop() {
-        this.UpdateDirection(-1 * this.GetDirection());
+        UpdateDirection(-1 * GetDirection());
     }
 
     protected Vec2F MinCorner() {

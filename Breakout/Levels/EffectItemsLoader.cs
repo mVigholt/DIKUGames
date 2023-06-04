@@ -18,18 +18,4 @@ public class EffectItemsLoader {
         GameBus.GetBus().Unsubscribe(GameEventType.StatusEvent, effectItemHandler);
         GameBus.GetBus().Subscribe(GameEventType.StatusEvent, effectItemHandler);
     }
-    
-    public void ActivateEffectItem(EffectItem item) {
-        if (item is InstantEffectItem instantItem) {
-            eventBus.RegisterEvent(instantItem.ActivationEvent);
-        }
-        if (item is TimedEffectItem timedItem) {
-            eventBus.RegisterEvent(timedItem.ActivationEvent);
-            eventBus.RegisterTimedEvent(
-                timedItem.DeactivationEvent,
-                timedItem.TimeLeft
-            );
-        }
-    }
-
 }

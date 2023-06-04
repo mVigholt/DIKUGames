@@ -10,10 +10,11 @@ using Breakout.Levels;
 using Breakout.Entities.Board;
 
 public class GameRunning : IGameState {
+    private readonly int NUM_LEVELS = 4;
+    
     private static GameRunning instance = null;
     private GameEventBus eventBus = GameBus.GetBus();
     private int lives;
-    private readonly int NUM_LEVELS = 4;
     private Level level;
     public ScoreBoard scoreBoard;
     private LivesBoard livesBoard;
@@ -41,12 +42,12 @@ public class GameRunning : IGameState {
     }
 
     public void InitBoard() {
-        this.scoreBoard = new ScoreBoard();
-        this.livesBoard = new LivesBoard(lives);
+        scoreBoard = new ScoreBoard();
+        livesBoard = new LivesBoard(lives);
     }
 
     public void InitLevel() {
-        level = new Level(this.scoreBoard);
+        level = new Level(scoreBoard);
     }
 
     public void ChangeLevel() {
@@ -82,44 +83,45 @@ public class GameRunning : IGameState {
         livesBoard.Render();
     }
 
+    /// <summary>Methods that should be called each frame</summary>
     public void UpdateState() {
         StateCheker();
         MoveEntities();
         CollidingEntities();
-        if (this.level.countDownBoard != null) {
-            this.level.countDownBoard.UpdateCountDown();
+        if (level.CountDownBoard != null) {
+            level.CountDownBoard.UpdateCountDown();
         }
 
     }
 
 
     private void StateCheker() {
-        var Unbreakables = 0;
-        foreach (Block block in level.blocks) {
+        var numUnbreakables = 0;
+        foreach (Block block in level.Blocks) {
             if (block.build.isUnbreakable) {
-                Unbreakables += 1;
+                numUnbreakables += 1;
             }
         }
-
-        if (level.blocks.CountEntities() == Unbreakables) {
+        bool levelWon = level.Blocks.CountEntities() == numUnbreakables;
+        if (levelWon) {
             ChangeLevel();
         }
 
         if (lives + level.balls.CountEntities() > 0) {
             if (level.balls.CountEntities() == 0) {
-                level.LoadEntity();
+                level.InitBalls();
+                level.InitShuttle();
                 lives--;
                 livesBoard.LostLives(1);
             }
         } else {
             GameOver();
         }
-        if (this.level.countDownBoard != null) {
-            if (this.level.countDownBoard.timeLeft <= 0) {
+        if (level.CountDownBoard != null) {
+            if (level.CountDownBoard.timeLeft <= 0) {
                 GameOver();
             }
         }
-
     }
 
     private void MoveEntities() {
@@ -127,19 +129,18 @@ public class GameRunning : IGameState {
     }
 
     private void CollidingEntities() {
-        this.level.shuttleAndBall.ballVsShuttleCollide();
-        this.level.ballVsBlocksCollide(scoreBoard);
-        // Power-ups and hazards
-        this.level.itemVsShuttleCollide(scoreBoard);
+        level.BallVsShuttleCollide();
+        level.BallVsBlocksCollide(scoreBoard);
+        level.ItemVsShuttleCollide(scoreBoard);
     }
 
     public void HandleKeyEvent(KeyboardAction action, KeyboardKey key) {
         switch (action) {
             case KeyboardAction.KeyPress:
-                this.KeyPress(key);
+                KeyPress(key);
                 break;
             case KeyboardAction.KeyRelease:
-                this.KeyRelease(key);
+                KeyRelease(key);
                 break;
         }
     }

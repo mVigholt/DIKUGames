@@ -25,7 +25,7 @@ public class LevelHandler {
     private int rows;
     private int columns;
     private EffectItemFactory eiFactory;
-    public EntityContainer<Block> blocks {
+    public EntityContainer<Block> Blocks {
         get; private set;
     }
 
@@ -56,7 +56,7 @@ public class LevelHandler {
         columns = bricks[0].Length;
         float xExtent = 1.0f / columns;
         float yExtent = 0.9f / rows;
-        blocks = new EntityContainer<Block>(rows * columns);
+        Blocks = new EntityContainer<Block>(rows * columns);
         for (int r = 0; r < bricks.Length; r++) {
             for (int c = 0; c < bricks[r].Length; c++) {
                 string symbol = bricks[r][c].ToString();
@@ -65,7 +65,7 @@ public class LevelHandler {
                     Vec2F pos = new Vec2F(c * xExtent, 0.9f - r * yExtent);
                     Block block = BuildBlocks(imgFileName, pos, symbol);
                     if (block != null) {
-                        blocks.AddEntity(block);
+                        Blocks.AddEntity(block);
                     }
                 }
             }

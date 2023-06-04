@@ -8,7 +8,7 @@ using Breakout.Entities.EffectItems;
 using DIKUArcade.Physics;
 
 public class Block : MoveableEntity {
-    public static readonly Vec2F STD_EXTEND = new Vec2F(0.083f, 0.041f);
+    public static readonly Vec2F STD_EXTENT = new Vec2F(0.083f, 0.041f);
     public static readonly float BLOCK_SPEED = 0.007f;
     public Builder build {
         get; private set;
@@ -18,7 +18,7 @@ public class Block : MoveableEntity {
     public int Health { get; private set; } = 1;
 
     private Block(Block.Builder builder)
-        : base(new DynamicShape(builder.position, STD_EXTEND), builder.image) {
+        : base(new DynamicShape(builder.position, STD_EXTENT), builder.image) {
         this.build = builder;
         if (this.build.isHardened) {
             maxHealth *= 2;
