@@ -15,60 +15,47 @@ public class Level {
 
     private EntityContainer<EffectItem> fallingItems = new EntityContainer<EffectItem>();
     private EffectItemHandler effectItemHandler;
+    private LevelBoard levelBoard;
+    private BlockLoader blockLoader;
+    private double? levelTime;
+    private string levelName;
 
-    public CountDownBoard CountDownBoard {
+    public CountDownBoard CountDownBoard { // Fint
         get; private set;
     }
-    public LevelBoard LevelBoard {
+    public EntityContainer<Block> Blocks { // Fint
         get; private set;
     }
-    public LevelHandler LevelHandler {
-        get; private set;
-    }
-    public EntityContainer<Block> Blocks {
-        get; private set;
-    }
-    public Shuttle shuttle {
+    public Shuttle shuttle { // Fint
         get; set;
     }
-    public EntityContainer<Ball> balls {
+    public EntityContainer<Ball> balls { // Fint
         get; set;
-    }
-    public double? levelTime {
-        get; private set;
-    }
-    public string levelName {
-        get; private set;
     }
 
     public Level(ScoreBoard scoreBoard) {
         int levelNum = scoreBoard.Level;
-        LevelHandler = new LevelHandler("level" + levelNum.ToString() + ".txt");
-        this.levelTime = LevelHandler.levelTime;
-        this.levelName = LevelHandler.levelName;
-        LoadBlocks();
-        LoadBoards();
+        blockLoader = new BlockLoader($"level{levelNum}.txt");
+        levelTime = blockLoader.levelTime;
+        levelName = blockLoader.levelName;
+        Blocks = blockLoader.Blocks;
+        InitBoards();
         InitShuttle();
         InitBalls();
         LoadEffectItems(scoreBoard);
     }
 
-    private void LoadBlocks() {
-        Blocks = LevelHandler.Blocks;
-    }
-
-    private void LoadBoards() {
+    private void InitBoards() {
         if (levelTime != null) {
             CountDownBoard = new CountDownBoard((int) levelTime);
         }
         if (levelName != null) {
-            LevelBoard = new LevelBoard(levelName);
+            levelBoard = new LevelBoard(levelName);
         }
     }
 
     public void InitBalls() {
         balls = new EntityContainer<Ball>();
-        Vec2F position = BallPosOnShuttle();
         balls.AddEntity(Ball.At(BallPosOnShuttle()));
     }
 
@@ -93,7 +80,7 @@ public class Level {
 
     public void BallVsBlocksCollide(ScoreBoard scoreBoard) {
         balls.Iterate(ball => {
-            this.Blocks.Iterate(block => {
+            Blocks.Iterate(block => {
                 CollisionData ballVsblock =
                     CollisionDetection.Aabb(ball.Shape.AsDynamicShape(), block.Shape);
                 if (ballVsblock.Collision) {
@@ -160,7 +147,7 @@ public class Level {
                 ball.Shape.SetPosition(BallPosOnShuttle());
             }
         }
-        foreach (Block block in this.Blocks) {
+        foreach (Block block in Blocks) {
             block.Move();
         }
         foreach (EffectItem item in fallingItems) {
@@ -173,8 +160,8 @@ public class Level {
         if (CountDownBoard != null) {
             CountDownBoard.Render();
         }
-        if (LevelBoard != null) {
-            LevelBoard.Render();
+        if (levelBoard != null) {
+            levelBoard.Render();
         }
         shuttle.Render();
         balls.RenderEntities();

@@ -7,7 +7,7 @@ using DIKUArcade.GUI; // Needed for OpenGL contexts
 using NUnit.Framework;
 
 [TestFixture]
-public class TestLevelLoader {
+public class TestLevelDataLoader {
 
     [SetUp]
     public void SetUp() {
@@ -18,7 +18,7 @@ public class TestLevelLoader {
     public void TestLevelsCanBeLoaded() {
         string[] fileNames = Directory.GetFiles(PathFinder.Levels());
         foreach (string fileName in fileNames) {
-            new LevelLoader(fileName);
+            new LevelDataLoader(fileName);
         }
         Assert.Pass();
         // By loading every level, we assure that it can
@@ -32,7 +32,7 @@ public class TestLevelLoader {
     [Test]
     public void TestFileNotFind() {
         string fileName = "FileNotfind.txt";
-        LevelLoader level = new LevelLoader(fileName);
+        LevelDataLoader level = new LevelDataLoader(fileName);
         string[] expectedArray = new string[] { "hhhhhhhhhhh" };
         foreach (var i in level.GetMap()) {
             Assert.That(i, Is.EqualTo("hhhhhhhhhhh"));
