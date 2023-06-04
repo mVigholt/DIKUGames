@@ -13,13 +13,13 @@ public class TestLivesBoard {
     }
     [Test]
     public void TestLivesLost([Range(0, 10, 1)] int lostLives){
-        livesBoard.LostLives(lostLives);
+        livesBoard.LoseLives(lostLives);
         Assert.That(livesBoard.GetRemainingLives(), Is.EqualTo(10 - lostLives));
     }
 
     [Test]
     public void TestWhenLostLivesAreBig([Range(10, 100, 1)] int lostLives){
-        livesBoard.LostLives(lostLives);
+        livesBoard.LoseLives(lostLives);
                 Assert.That(livesBoard.GetRemainingLives(), Is.EqualTo(0));
 
     }

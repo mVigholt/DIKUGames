@@ -20,16 +20,16 @@ public class Level {
     private double? levelTime;
     private string levelName;
 
-    public CountDownBoard CountDownBoard { // Fint
+    public CountDownBoard CountDownBoard {
         get; private set;
     }
-    public EntityContainer<Block> Blocks { // Fint
+    public EntityContainer<Block> Blocks {
         get; private set;
     }
-    public Shuttle shuttle { // Fint
+    public Shuttle shuttle {
         get; set;
     }
-    public EntityContainer<Ball> balls { // Fint
+    public EntityContainer<Ball> balls {
         get; set;
     }
 

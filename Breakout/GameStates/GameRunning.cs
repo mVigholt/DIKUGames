@@ -91,9 +91,12 @@ public class GameRunning : IGameState {
         if (level.CountDownBoard != null) {
             level.CountDownBoard.UpdateCountDown();
         }
-
     }
 
+    public void LoseLives(int lives) {
+        this.lives--;
+        livesBoard.LoseLives(lives);
+    }
 
     private void StateCheker() {
         var numUnbreakables = 0;
@@ -111,8 +114,7 @@ public class GameRunning : IGameState {
             if (level.balls.CountEntities() == 0) {
                 level.InitBalls();
                 level.InitShuttle();
-                lives--;
-                livesBoard.LostLives(1);
+                LoseLives(1);
             }
         } else {
             GameOver();
