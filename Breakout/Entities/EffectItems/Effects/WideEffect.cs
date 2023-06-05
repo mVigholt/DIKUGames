@@ -1,11 +1,12 @@
 namespace Breakout.Entities.EffectItems.Effects;
 
 using DIKUArcade.Timers;
-using DIKUArcade.Math;
 
+
+/// <summary>Makes the shuttle wider for some time</summary>
 public class WideEffect : ITimedEffect {
 
-    public TimePeriod TimeLeft { get; }
+    public TimePeriod Duration { get; }
 
     private Shuttle _shuttle;
     private float _extraWidth;
@@ -15,7 +16,7 @@ public class WideEffect : ITimedEffect {
 
     public WideEffect(Shuttle shuttle) {
         _shuttle = shuttle;
-        TimeLeft = TimePeriod.NewSeconds(5);
+        Duration = TimePeriod.NewSeconds(5);
         _extraWidth = 0.1f;
     }
 

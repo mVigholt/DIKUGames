@@ -3,6 +3,7 @@ namespace Breakout.Entities.EffectItems.Effects;
 using DIKUArcade.Entities;
 using Breakout.Entities;
 
+/// <summary>Gain an extra ball</summary>
 public class ExtraBallsEffect : IEffect {
         
     private EntityContainer<Ball> _activeBalls;

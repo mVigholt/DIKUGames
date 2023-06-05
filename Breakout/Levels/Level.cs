@@ -88,9 +88,15 @@ public class Level {
                 CollisionData ballVsblock =
                     CollisionDetection.Aabb(ball.Shape.AsDynamicShape(), block.Shape);
                 if (ballVsblock.Collision) {
-                    ball.UpdateDirection(block.GetDirection(), ballVsblock.CollisionDir);
-                    scoreBoard.AddPoints(block.Value);
-                    block.LoseHealth(ball.damage);
+                    if (ball.IsHard) {
+                        scoreBoard.AddPoints(block.Health);
+                        block.LoseHealth(block.Health);
+                    }
+                    else {
+                        ball.UpdateDirection(block.GetDirection(), ballVsblock.CollisionDir);
+                        scoreBoard.AddPoints(block.Value);
+                        block.LoseHealth(ball.Damage);
+                    }
                     if (block.build.effectItem != null) {
                         fallingItems.AddEntity(block.build.effectItem);
                     }
@@ -137,7 +143,7 @@ public class Level {
             GameBus.GetBus().RegisterEvent(timedItem.ActivationEvent);
             GameBus.GetBus().RegisterTimedEvent(
                 timedItem.DeactivationEvent,
-                timedItem.TimeLeft
+                timedItem.Duration
             );
         }
     }
