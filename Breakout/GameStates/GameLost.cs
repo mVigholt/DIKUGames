@@ -9,7 +9,7 @@ using DIKUArcade.Graphics;
 public class GameLost : MenuGameState {
     private static GameLost instance = null;
     public GameLost() :
-         base("Game Over", Assets.backGroundImage, "Main Menu", "Quit") {
+         base("Game Over", Assets.BackgroundImage, "Main Menu", "Quit") {
             ResetState();
     }
 

@@ -5,7 +5,7 @@ using Breakout.IO;
 
 public class GamePaused : MenuGameState {
     private static GamePaused instance = null;
-    public GamePaused() : base(Assets.backGroundImage, "Continue") {
+    public GamePaused() : base(Assets.BackgroundImage, "Continue") {
         this.AddButton("Next Level", GameStateType.GameRunning);
         this.AddButton("Main Menu", GameStateType.MainMenu);
         this.AddButton("Quit", null);

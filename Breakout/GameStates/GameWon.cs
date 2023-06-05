@@ -8,7 +8,7 @@ using DIKUArcade.Math;
 public class GameWon : MenuGameState {
     private static GameWon instance = null;
 
-    public GameWon() : base($"You Win", Assets.backGroundImage, "Main Menu", "Quit") {
+    public GameWon() : base($"You Win", Assets.BackgroundImage, "Main Menu", "Quit") {
         ResetState();
     }
 
