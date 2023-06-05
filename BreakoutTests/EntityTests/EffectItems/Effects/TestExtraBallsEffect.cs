@@ -11,7 +11,6 @@ using Breakout.Entities.EffectItems;
 public class TestExtraBallsEffect {
 
     GameRunning gameRunning = GameRunning.GetInstance(true);
-    EntityContainer<Ball> balls;
     
     [Test]
     public void TestActivate() {

@@ -19,19 +19,7 @@ public class TestBall {
         ballImage = new Image(
             Path.Combine(PathFinder.Images(), "ball.png"));
     }
-    private bool AreAlmostEqual(float a, float b) {
-        float max_allowed_diff = 0.000001f;
-        float diff = Math.Abs(a - b);
-        bool almostEqual = diff < max_allowed_diff;
-        if (!almostEqual) {
-            Console.WriteLine(
-                $"|a - b| < {max_allowed_diff} => \n" +
-                $"|{a} - {b}| < {max_allowed_diff} => \n" +
-                $"{diff} < {max_allowed_diff} => false");
-        }
-        return almostEqual;
-    }
-
+    
     private Vec2F UnitVector(Vec2F vector) {
         float hyp = (float) System.Math.Sqrt(System.Math.Pow(vector.X, 2) + System.Math.Pow(vector.Y, 2));
         hyp = hyp != 0 ? hyp : 1;
@@ -45,8 +33,8 @@ public class TestBall {
         ball.UpdateDirection(new Vec2F(0, 1));
         ball.Move();
         Vec2F expectedPos = new Vec2F(0.5f, 0.015f);
-        Assert.That(AreAlmostEqual(expectedPos.X, ball.GetPosition().X));
-        Assert.That(AreAlmostEqual(expectedPos.Y, ball.GetPosition().Y));
+        Assert.That(FloatComparer.AreAlmostEqual(expectedPos.X, ball.GetPosition().X));
+        Assert.That(FloatComparer.AreAlmostEqual(expectedPos.Y, ball.GetPosition().Y));
     }
 
 
@@ -58,8 +46,8 @@ public class TestBall {
             ball.Move();
         }
         Vec2F expectedPos = new Vec2F(0.5f, 0.015f * steps);
-        Assert.That(AreAlmostEqual(expectedPos.X, ball.GetPosition().X));
-        Assert.That(AreAlmostEqual(expectedPos.Y, ball.GetPosition().Y));
+        Assert.That(FloatComparer.AreAlmostEqual(expectedPos.X, ball.GetPosition().X));
+        Assert.That(FloatComparer.AreAlmostEqual(expectedPos.Y, ball.GetPosition().Y));
     }
     [Test]
     public void TestBallAfterManyMovesLeft([Range(0, 10, 1)] int steps) {
@@ -69,8 +57,8 @@ public class TestBall {
             ball.Move();
         }
         Vec2F expectedPos = new Vec2F(0.5f - 0.015f * steps, 0.0f);
-        Assert.That(AreAlmostEqual(expectedPos.X, ball.GetPosition().X));
-        Assert.That(AreAlmostEqual(expectedPos.Y, ball.GetPosition().Y));
+        Assert.That(FloatComparer.AreAlmostEqual(expectedPos.X, ball.GetPosition().X));
+        Assert.That(FloatComparer.AreAlmostEqual(expectedPos.Y, ball.GetPosition().Y));
     }
 
     [Test]
@@ -81,8 +69,8 @@ public class TestBall {
             ball.Move();
         }
         Vec2F expectedPos = new Vec2F(0.5f + 0.015f * steps, 0.0f);
-        Assert.That(AreAlmostEqual(expectedPos.X, ball.GetPosition().X));
-        Assert.That(AreAlmostEqual(expectedPos.Y, ball.GetPosition().Y));
+        Assert.That(FloatComparer.AreAlmostEqual(expectedPos.X, ball.GetPosition().X));
+        Assert.That(FloatComparer.AreAlmostEqual(expectedPos.Y, ball.GetPosition().Y));
     }
 
 

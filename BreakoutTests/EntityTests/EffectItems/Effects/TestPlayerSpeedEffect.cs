@@ -8,10 +8,10 @@ using Breakout.Entities.EffectItems;
 
 
 [TestFixture]
-public class TestSlowDownEffect {
+public class TestPlayerSpeedEffect {
 
     GameRunning gameRunning = GameRunning.GetInstance(true);
-    readonly float SCALAR = 0.5f;
+    readonly float SCALAR = 1.5f;
     Shuttle shuttle;
 
     [SetUp]
@@ -22,15 +22,15 @@ public class TestSlowDownEffect {
     [Test]
     public void TestActivate() {
         float initialSpeed = shuttle.Speed;
-        EffectSimulator.Activate("SlowDown");
+        EffectSimulator.Activate("PlayerSpeed");
         Assert.AreEqual(initialSpeed * SCALAR, shuttle.Speed);
     }
 
     [Test]
     public void TestDeactivate() {
         float initialSpeed = shuttle.Speed;
-        EffectSimulator.Activate("SlowDown");
-        EffectSimulator.Deactivate("SlowDown");
+        EffectSimulator.Activate("PlayerSpeed");
+        EffectSimulator.Deactivate("PlayerSpeed");
         Assert.AreEqual(initialSpeed, shuttle.Speed);
     }
 }

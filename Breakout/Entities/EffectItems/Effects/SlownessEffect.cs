@@ -4,18 +4,18 @@ using DIKUArcade.Timers;
 
 
 /// <summary>Slows down the shuttle</summary>
-public class SlowDownEffect : ITimedEffect {
+public class SlownessEffect : ITimedEffect {
 
     public TimePeriod TimeLeft { get; }
 
     private Shuttle _shuttle;
     private float _scalar;
     
-    public SlowDownEffect(Shuttle shuttle)
+    public SlownessEffect(Shuttle shuttle)
         : this(shuttle, 0.5f) {
     }
 
-    public SlowDownEffect(Shuttle shuttle, float scalar) {
+    public SlownessEffect(Shuttle shuttle, float scalar) {
         _scalar = scalar;
         _shuttle = shuttle;
         TimeLeft = TimePeriod.NewSeconds(3);

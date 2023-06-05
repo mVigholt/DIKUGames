@@ -6,7 +6,6 @@ using DIKUArcade.Events;
 using DIKUArcade.Graphics;
 using DIKUArcade.Input;
 using DIKUArcade.Math;
-using DIKUArcade.Physics;
 
 public class Shuttle : MoveableEntity, IGameEventProcessor {
     
