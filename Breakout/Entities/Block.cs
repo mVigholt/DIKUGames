@@ -19,12 +19,12 @@ public class Block : MoveableEntity {
 
     private Block(Block.Builder builder)
         : base(new DynamicShape(builder.position, STD_EXTENT), builder.image) {
-        this.build = builder;
-        if (this.build.isHardened) {
+        build = builder;
+        if (build.isHardened) {
             maxHealth *= 2;
         }
-        if (this.build.isMoveable){
-            this.shape.Direction = (new Vec2F(BLOCK_SPEED, 0));
+        if (build.isMoveable){
+            shape.Direction = (new Vec2F(BLOCK_SPEED, 0));
         }
         Health = maxHealth;
     }
@@ -36,29 +36,29 @@ public class Block : MoveableEntity {
     }
 
     public bool IsDead() {
-        return this.Health <= 0;
+        return Health <= 0;
     }
 
     public void LoseHealth(int hp) {
-        if (!this.build.isUnbreakable) {
-            this.Health -= hp;
+        if (!build.isUnbreakable) {
+            Health -= hp;
         }
 
-        if (this.IsDead()) {
-            this.DeleteEntity();
+        if (IsDead()) {
+            DeleteEntity();
         } else if (hp <= maxHealth / 2) {
-            this.Image = this.build.alterImage;
+            Image = build.alterImage;
         }
     }
 
     public override void Move() {
-        if (this.build.isMoveable) {
-            this.Speed = BLOCK_SPEED;
-            if (this.GetPosition().X == 0.0f) {
-                this.UpdateDirection(new Vec2F(0, 0), CollisionDirection.CollisionDirRight);
+        if (build.isMoveable) {
+            Speed = BLOCK_SPEED;
+            if (GetPosition().X == 0.0f) {
+                UpdateDirection(new Vec2F(0, 0), CollisionDirection.CollisionDirRight);
             }
-            if (this.GetPosition().X == 1.0f - this.GetExtent().X) {
-                this.UpdateDirection(new Vec2F(0, 0), CollisionDirection.CollisionDirLeft);
+            if (GetPosition().X == 1.0f - GetExtent().X) {
+                UpdateDirection(new Vec2F(0, 0), CollisionDirection.CollisionDirLeft);
             }
             base.Move();
         }
@@ -76,23 +76,18 @@ public class Block : MoveableEntity {
 
         public Builder() {
         }
+
         public Builder WithMoveable(bool statement) {
-            if (statement) {
-                this.isMoveable = true;
-            }
+            isMoveable = statement;
             return this;
         }
         public Builder WithIsUnbreakable(bool statement) {
-            if (statement) {
-                this.isUnbreakable = true;
-            }
+            isUnbreakable = statement;
             return this;
         }
 
         public Builder WithIsHardened(bool statement) {
-            if (statement) {
-                this.isHardened = true;
-            }
+            isHardened = statement;
             return this;
         }
 
@@ -131,8 +126,8 @@ public class Block : MoveableEntity {
                 throw new ArgumentException(
                     "A brick must have a position and a image");
             }
-            if (this.alterImage == null) {
-                this.alterImage = this.image;
+            if (alterImage == null) {
+                alterImage = image;
             }
 
             return new Block(this);

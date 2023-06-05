@@ -8,10 +8,10 @@ using Breakout.IO;
 
 public class Ball : MoveableEntity {
     public static readonly Vec2F STD_EXTENT = new Vec2F(0.03f, 0.03f);
-
-    public int damage { get; private set; } = 1;
-
     public static readonly float STD_SPEED = 0.015f;
+
+    public bool IsHard { get; set; } = false;
+    public int Damage { get; private set; } = 1;
 
     public Ball(Vec2F position, IBaseImage image)
         : base(new DynamicShape(position, STD_EXTENT), image, STD_SPEED) {

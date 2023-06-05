@@ -9,7 +9,7 @@ public class TimedEffectItem : EffectItem {
 
     public override GameEvent ActivationEvent { get; }
     public virtual GameEvent DeactivationEvent { get; }
-    public virtual TimePeriod TimeLeft { get; }
+    public virtual TimePeriod Duration { get; }
 
 
     public TimedEffectItem(
@@ -17,12 +17,12 @@ public class TimedEffectItem : EffectItem {
         IBaseImage image,
         GameEvent activationEvent,
         GameEvent deactivationEvent,
-        TimePeriod timeLeft
+        TimePeriod duration
     )
         : base(shape, image, activationEvent) {
         // Consider a builder
         ActivationEvent = activationEvent;
         DeactivationEvent = deactivationEvent;
-        TimeLeft = timeLeft;
+        Duration = duration;
     }
 }

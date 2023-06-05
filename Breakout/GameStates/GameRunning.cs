@@ -86,7 +86,7 @@ public class GameRunning : IGameState {
 
     /// <summary>Methods that should be called each frame</summary>
     public void UpdateState() {
-        StateCheker();
+        StateChecker();
         MoveEntities();
         CollidingEntities();
         if (level.CountDownBoard != null) {
@@ -99,7 +99,7 @@ public class GameRunning : IGameState {
         livesBoard.LoseLives(lives);
     }
 
-    private void StateCheker() {
+    private void StateChecker() {
         var numUnbreakables = 0;
         foreach (Block block in level.Blocks) {
             if (block.build.isUnbreakable) {
@@ -114,7 +114,6 @@ public class GameRunning : IGameState {
         if (Lives + level.balls.CountEntities() > 0) {
             if (level.balls.CountEntities() == 0) {
                 level.InitBalls();
-                level.InitShuttle();
                 LoseLives(1);
             }
         } else {
