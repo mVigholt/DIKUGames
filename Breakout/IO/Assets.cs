@@ -25,13 +25,11 @@ public static class Assets {
     /// </summary>
     public static Image LoadImage(string fileName) {
         if (cache.ContainsKey(fileName)) {
-            System.Console.WriteLine($"Using cached image: {fileName}");
             return cache[fileName];
         }
         Image image = new Image(
             Path.Combine(PathFinder.Images(), fileName)
         );
-        System.Console.WriteLine($"Cached new image:   {fileName}");
         cache[fileName] = image;
         return image;
     }
