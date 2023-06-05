@@ -16,17 +16,17 @@ public class MenuGameState : IGameState {
     protected List<Text> texts;
     protected Text titleText;                   
 
-    public MenuGameState(string title, Image backGroundImage, params string[] buttonLabels) {
+    public MenuGameState(string title, Image BackgroundImage, params string[] buttonLabels) {
         texts = new List<Text>{};
         titleText = new Text(title, TITLE_TEXT_POSITION, TEXT_EXTENT);
         texts.Add(titleText);
         titleText.SetColor(TEXT_COLOR);
-        backGround = new BackGround(backGroundImage);
+        backGround = new BackGround(BackgroundImage);
         buttonSwitch = CreateButtonSwitch(buttonLabels);
     }
 
-    public MenuGameState(Image backGroundImage, params string[] buttonLabels) 
-        : this("", backGroundImage, buttonLabels) {
+    public MenuGameState(Image BackgroundImage, params string[] buttonLabels) 
+        : this("", BackgroundImage, buttonLabels) {
     }
 
     public void AddText(string newText, Vec2F pos, Vec2F extent) {

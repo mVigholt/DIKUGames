@@ -1,26 +1,38 @@
 namespace Breakout.IO;
 
 using System.IO;
+using System.Collections.Generic;
 using DIKUArcade.Graphics;
 
 ///<summary>Cache all the images we are going to use as static varaibles</summary>
 public static class Assets {
+
+    private static Dictionary<string, Image> cache;
+    public static Image MainMenuImage;
+    public static Image BackgroundImage;
+    public static Image LifeImage;
+
+    static Assets() {
+        cache = new Dictionary<string, Image>();
+        MainMenuImage = LoadImage("BreakoutTitleScreen.png");
+        BackgroundImage = LoadImage("SpaceBackground.png");
+        LifeImage = LoadImage("heart_filled.png");
+    }
 
     /// <summary>
     /// Load an image, i.e.:
     ///     LoadImage("player.png")
     /// </summary>
     public static Image LoadImage(string fileName) {
-        return new Image(
-            Path.Combine(PathFinder.Images(), fileName));
+        if (cache.ContainsKey(fileName)) {
+            System.Console.WriteLine($"Using cached image: {fileName}");
+            return cache[fileName];
+        }
+        Image image = new Image(
+            Path.Combine(PathFinder.Images(), fileName)
+        );
+        System.Console.WriteLine($"Cached new image:   {fileName}");
+        cache[fileName] = image;
+        return image;
     }
-
-    public static Image playerImage = LoadImage("player.png");
-    public static Image ball = LoadImage("ball.png");
-    public static Image mainMenuImage = LoadImage("BreakoutTitleScreen.png");
-    public static Image backGroundImage = LoadImage("SpaceBackground.png");
-
-    public static Image overlayImage = LoadImage("Overlay.png");
-
-    public static Image LifeImage = LoadImage("heart_filled.png");
 }
