@@ -19,8 +19,7 @@ public class BlockLoader {
     public EntityContainer<Block> Blocks { get; private set; }
 
     public BlockLoader(string fileName) {
-        bool isTimedLevel = true;
-        eiFactory = new EffectItemFactory(isTimedLevel);
+        eiFactory = new EffectItemFactory();
         loadFile = new LevelDataLoader(fileName);
         CreateMap();
     }

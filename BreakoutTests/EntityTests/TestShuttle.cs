@@ -45,25 +45,6 @@ public class TestShuttle {
                 shuttle.GetPosition().X >= 0.0f;
     }
 
-
-    /// <summary>
-    /// Return true if a is almost equal to b
-    /// (difference is less than 1 / 1,000,000).
-    /// Print a debug message if that is not the case.
-    /// </summary>
-    private bool AreAlmostEqual(float a, float b) {
-        float max_allowed_diff = 0.000001f;
-        float diff = Math.Abs(a - b);
-        bool almostEqual = diff < max_allowed_diff;
-        if (!almostEqual) {
-            Console.WriteLine(
-                $"|a - b| < {max_allowed_diff} => \n" +
-                $"|{a} - {b}| < {max_allowed_diff} => \n" +
-                $"{diff} < {max_allowed_diff} => false");
-        }
-        return almostEqual;
-    }
-
     [TestCase(1)]
     [TestCase(2)]
     [TestCase(3)]
@@ -100,7 +81,7 @@ public class TestShuttle {
             1f - shuttle.GetExtent().X
         );
         string msg = $"TestCase({moveCount}): {expectedXPos}, {shuttle.GetPosition().X}";
-        Assert.That(AreAlmostEqual(expectedXPos, shuttle.GetPosition().X), msg);
+        Assert.That(FloatComparer.AreAlmostEqual(expectedXPos, shuttle.GetPosition().X), msg);
     }
 
     /// <summary>
@@ -141,7 +122,7 @@ public class TestShuttle {
         float expectedXPos = Math.Max(
             START_POS + -SPEED * moveCount, 0f
         );
-        Assert.That(AreAlmostEqual(expectedXPos, shuttle.GetPosition().X));
+        Assert.That(FloatComparer.AreAlmostEqual(expectedXPos, shuttle.GetPosition().X));
     }
 
     [TestCase(100)]

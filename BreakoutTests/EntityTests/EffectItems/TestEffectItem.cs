@@ -20,7 +20,7 @@ public class TestEffectItem {
     [Test]
     public void TestEffectItemCollisionWithBottom() {
         // Effect items should disappear if they reach the bottom
-        EffectItemFactory factory = new EffectItemFactory(false);
+        EffectItemFactory factory = new EffectItemFactory();
         Vec2F center = new Vec2F(0.5f, 0.5f);
         EffectItem item = factory.RandomPowerUp(center);
         // Precondition: EffectItem is not out of bounds
@@ -35,7 +35,7 @@ public class TestEffectItem {
 
     [Test]
     public void EffectItemHasConstantSpeed() {
-        EffectItemFactory factory = new EffectItemFactory(false);
+        EffectItemFactory factory = new EffectItemFactory();
         Vec2F center = new Vec2F(0.5f, 0.8f);
         EffectItem item = factory.RandomPowerUp(center);
         // Precondition: EffectItem is not out of bounds

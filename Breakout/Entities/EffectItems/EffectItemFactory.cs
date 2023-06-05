@@ -28,13 +28,11 @@ public class EffectItemFactory {
 
     private readonly Vec2F STD_EXTENT = new Vec2F(0.05f, 0.05f);
     private Random random = new Random();
-    private bool _isTimedLevel;
     private Dictionary<string, IEffectItemConfig> _powerUpConfigs;
     private Dictionary<string, IEffectItemConfig> _hazardConfigs;
     private TypeLoader<IEffectItemConfig> _effectLoader;
 
-    public EffectItemFactory(bool isTimedLevel) {
-        _isTimedLevel = isTimedLevel;
+    public EffectItemFactory() {
         string powerUpsNS = "Breakout.Entities.EffectItems.ItemConfigs.PowerUps";
         string hazardsNS = "Breakout.Entities.EffectItems.ItemConfigs.Hazards";
         _powerUpConfigs = ConfigsInNamespace(powerUpsNS);
