@@ -58,6 +58,10 @@ public class Shuttle : MoveableEntity, IGameEventProcessor {
     ///<return>no return</return>
     public void ProcessEvent(GameEvent gameEvent) {
         EventDTO ev = new EventDTO(gameEvent);
+        if (ev.Message == "Stop") {
+            Stop();
+            return;
+        }
         switch (ev.Key.Value) {
             case KeyboardKey.Left:
             case KeyboardKey.A:

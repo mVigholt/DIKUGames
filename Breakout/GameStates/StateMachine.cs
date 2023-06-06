@@ -53,8 +53,11 @@ public class StateMachine : IGameEventProcessor {
                 break;
         }
         if (NextState == GameStateType.GameRunning) {
-            // Stop the shuttle when entering GameRunning
-            GameRunning.GetInstance().level.shuttle.Stop();
+            GameEvent shuttleStopEvent = new EventBuilder()
+                .WithType(GameEventType.PlayerEvent)
+                .WithMessage("Stop")
+                .Build();
+            eventBus.RegisterEvent(shuttleStopEvent);
         }
     }
 
