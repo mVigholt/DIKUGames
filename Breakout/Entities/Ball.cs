@@ -27,9 +27,15 @@ public class Ball : MoveableEntity {
         return new Ball(position, image);
     }
 
+    ///<summary>In addition to the functionallity of the base function,
+    ///if the ball bounce up and down or left and right
+    ///in a endless loop, a random vector is added to break this situation
+    ///</summary>
+    ///<param name = "addVector"> The vector to be added to the moveable
+    ///entity </param>
+    ///<return>no return </return>
     public override void UpdateDirection(Vec2F addVector, CollisionDirection colDir) {
         base.UpdateDirection(addVector, colDir);
-        //entities cannot bounce back and forth in an endless loop
         if (colDir != CollisionDirection.CollisionDirUnchecked &&
             (dir.X == 0 || dir.Y == 0)) {
             var rand = new System.Random().Next(-1, 2);
