@@ -8,7 +8,6 @@ using Breakout.IO;
 using DIKUArcade.Entities;
 using DIKUArcade.Events;
 using DIKUArcade.Graphics;
-using DIKUArcade.GUI;
 using DIKUArcade.Input;
 using DIKUArcade.Math;
 using NUnit.Framework;
@@ -20,7 +19,7 @@ public class TestShuttle {
     private Shuttle shuttle;
     private DynamicShape playerShape;
     private readonly float START_POS = 0.4f;
-    private readonly float SPEED = 0.02f;
+    private readonly float SPEED = 0.015f;
 
     [SetUp]
     public void InitiatePlayer() {
