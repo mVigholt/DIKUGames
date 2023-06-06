@@ -18,7 +18,7 @@ public class TestLivesBoard {
     }
 
     [Test]
-    public void TestWhenLostLivesAreBig([Range(10, 100, 1)] int lostLives){
+    public void TestLivesWillNotBeNegative([Range(10, 100, 1)] int lostLives){
         livesBoard.LoseLives(lostLives);
                 Assert.That(livesBoard.GetRemainingLives(), Is.EqualTo(0));
 
