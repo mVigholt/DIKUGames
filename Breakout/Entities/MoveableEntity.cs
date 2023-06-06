@@ -80,7 +80,7 @@ public class MoveableEntity : Entity {
     ///affect another entity by adding another vector to the about
     /// to be changed entity, in most case will be the ball in the game.
     ///Since the speed will not change, the vector is normalized.
-    ///Furthurmore, if the ball bounce up and down or left and righ
+    ///Furthurmore, if the ball bounce up and down or left and right
     ///in endless loop, a random vector is added to break this situation</summary>
     ///<param name = "addVector"> The vector to be added to the moveable
     ///entity </param>

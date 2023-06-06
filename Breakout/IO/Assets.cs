@@ -8,9 +8,9 @@ using DIKUArcade.Graphics;
 public static class Assets {
 
     private static Dictionary<string, Image> cache;
-    public static Image MainMenuImage;
-    public static Image BackgroundImage;
-    public static Image LifeImage;
+    public static IBaseImage MainMenuImage;
+    public static IBaseImage BackgroundImage;
+    public static IBaseImage LifeImage;
 
     static Assets() {
         cache = new Dictionary<string, Image>();
@@ -23,14 +23,23 @@ public static class Assets {
     /// Load an image, i.e.:
     ///     LoadImage("player.png")
     /// </summary>
-    public static Image LoadImage(string fileName) {
-        if (cache.ContainsKey(fileName)) {
-            return cache[fileName];
+    public static IBaseImage LoadImage(string fileName) {
+        try {
+            if (cache.ContainsKey(fileName)) {
+                return cache[fileName];
+            }
+            Image image = new Image(
+                Path.Combine(PathFinder.Images(), fileName)
+            );
+            cache[fileName] = image;
+            return image;
+        } catch (FileNotFoundException) {
+            // If the File name is not existing, an NoImage istance will
+            // be created. 
+            // The game is more fun without a few entities
+            // than if it just crashes.
+            return new NoImage();
         }
-        Image image = new Image(
-            Path.Combine(PathFinder.Images(), fileName)
-        );
-        cache[fileName] = image;
-        return image;
+
     }
 }

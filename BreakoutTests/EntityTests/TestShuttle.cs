@@ -15,7 +15,7 @@ using NUnit.Framework;
 [TestFixture]
 public class TestShuttle {
     private GameEventBus eventBus;
-    private Image playerImage;
+    private IBaseImage playerImage;
     private Shuttle shuttle;
     private DynamicShape playerShape;
     private readonly float START_POS = 0.4f;
