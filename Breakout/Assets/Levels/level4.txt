@@ -37,10 +37,10 @@ Meta/
 
 Legend:
 0) orange-block.png
-w) darkgreen-block.pnga
-#) green-block.pnga
-Y) brown-block.pnga
-b) yellow-block.pnga
-X) blue-block.pnga
-M) red-block.pnga
+w) darkgreen-block.png
+#) green-block.png
+Y) brown-block.png
+b) yellow-block.png
+X) blue-block.png
+M) red-block.png
 Legend/
