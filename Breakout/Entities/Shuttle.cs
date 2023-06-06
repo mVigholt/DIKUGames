@@ -7,8 +7,14 @@ using DIKUArcade.Graphics;
 using DIKUArcade.Input;
 using DIKUArcade.Math;
 
+///<summary>
+/// A shuttle (player) class inherites from MoveableEntity and IGameEventProcessor
+/// This class is created as a singleton, since it will be created in
+/// every time in each level and will be created again.
+/// This class will subscribe and hear from a PlayerEvent.
+///</summary>
 public class Shuttle : MoveableEntity, IGameEventProcessor {
-    
+
     public static readonly Vec2F STD_EXTENT = new Vec2F(0.15f, 0.03f);
     private static Shuttle instance = null;
     private GameEventBus eventBus;
@@ -17,6 +23,8 @@ public class Shuttle : MoveableEntity, IGameEventProcessor {
         : base(new DynamicShape(position, STD_EXTENT), image, 0.02f) {
     }
 
+    ///<summary>To put the shuttle back to its original
+    ///position and extent. Expecially when a new level is created</summary>
     public static void ResetShuttle(Vec2F position) {
         Shuttle.instance.Shape.SetPosition(position);
         Shuttle.instance.Shape.Extent = STD_EXTENT;

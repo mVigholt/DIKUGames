@@ -7,6 +7,14 @@ using DIKUArcade.Math;
 using Breakout.Entities.EffectItems;
 using DIKUArcade.Physics;
 
+///<summary>
+///Create different kinds of blocks.
+///Since the block has a property moveable, so this class also inherits
+///MoveableEntity class.
+///This class uses a builder design model, which allows
+///a block can have two properties at the same time. I.e. a block can be
+///both moveable and hardened. The effect can be seen in level 4.
+///</summary>
 public class Block : MoveableEntity {
     public static readonly Vec2F STD_EXTENT = new Vec2F(0.083f, 0.041f);
     public static readonly float BLOCK_SPEED = 0.007f;
@@ -23,7 +31,7 @@ public class Block : MoveableEntity {
         if (build.isHardened) {
             maxHealth *= 2;
         }
-        if (build.isMoveable){
+        if (build.isMoveable) {
             shape.Direction = (new Vec2F(BLOCK_SPEED, 0));
         }
         Health = maxHealth;
@@ -35,10 +43,20 @@ public class Block : MoveableEntity {
         }
     }
 
+    ///<summary>
+    ///When the health of the block is below 0, it is dead
+    ///</summary>
     public bool IsDead() {
         return Health <= 0;
     }
 
+
+    ///<summary>
+    /// A function to deduct health from a block (when the ball
+    /// hits it). If the block is dead, then its entity will be
+    /// marked as deleted.
+    /// When a block's health is halved, the image will change
+    ///</summary>
     public void LoseHealth(int hp) {
         if (!build.isUnbreakable) {
             Health -= hp;
@@ -51,6 +69,13 @@ public class Block : MoveableEntity {
         }
     }
 
+
+
+    ///<summary>
+    ///When the block is moveable, it will be given a speed.
+    ///The block is also ensured to not go out of the boundary.
+    ///When it hits the wall boundary, it will change to an opposite direction
+    ///</summary>
     public override void Move() {
         if (build.isMoveable) {
             Speed = BLOCK_SPEED;
@@ -64,6 +89,11 @@ public class Block : MoveableEntity {
         }
     }
 
+    ///<summary>
+    ///The builder class used to create different blocks.
+    ///The property method will receive a boolean to check if the block has
+    ///the property. While others receive needed data to create a block entity
+    ///</summary>
     public class Builder {
         public Vec2F position;
         public IBaseImage image;

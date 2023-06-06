@@ -6,6 +6,10 @@ using DIKUArcade.Math;
 using DIKUArcade.Physics;
 using Breakout.IO;
 
+
+///<summary>
+///A moveable concept for ball. This class inherits MoveableEntity class
+///</summary>
 public class Ball : MoveableEntity {
     public static readonly Vec2F STD_EXTENT = new Vec2F(0.03f, 0.03f);
     public static readonly float STD_SPEED = 0.015f;
@@ -23,6 +27,11 @@ public class Ball : MoveableEntity {
         return new Ball(position, image);
     }
 
+    /// <summary>Ensure the ball is within the wall boundary
+    /// When it hits the boundary, the wall is not moveable, so
+    /// the ball will not be added an extra direction, while
+    /// only turn it direction back. See UpdateDirection() method
+    ///</summary>
     public override void Move() {
         if (this.GetPosition().X == 0.0f) {
             this.UpdateDirection(new Vec2F(0, 0), CollisionDirection.CollisionDirRight);

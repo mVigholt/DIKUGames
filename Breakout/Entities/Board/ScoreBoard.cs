@@ -4,7 +4,7 @@ using DIKUArcade.Graphics;
 using DIKUArcade.Math;
 
 /// <summary>
-/// This class inheritates Text class to show the how much
+/// This class inherits Text class to show the how much
 /// score the player has won for the game.
 ///</summary>
 public class ScoreBoard : Text {
