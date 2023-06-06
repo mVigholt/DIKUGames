@@ -1,6 +1,5 @@
 namespace Breakout.Graphics;
 
-using System;
 using System.IO;
 using DIKUArcade.Graphics;
 using DIKUArcade.Entities;
@@ -14,7 +13,7 @@ public class OverlayImage : IBaseImage {
     private Texture _overlay;
     private Vec2F _overlayScale = new Vec2F(1f / 3f, 3f / 4f);
 
-    public Vec2F OverlayScale { 
+    public Vec2F OverlayScale {
         get { return _overlayScale; }
         set { _overlayScale = value; }
     }
