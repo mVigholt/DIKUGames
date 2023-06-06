@@ -51,10 +51,6 @@ public class Level {
         LoadEffectItems(scoreBoard);
     }
 
-    public Level()
-        : this(new ScoreBoard()) {
-    }
-
     private void InitBoards() {
         if (levelTime != null) {
             CountDownBoard = new CountDownBoard((int) levelTime);

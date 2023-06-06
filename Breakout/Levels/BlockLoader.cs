@@ -1,6 +1,5 @@
 namespace Breakout.Levels;
 
-using System;
 using DIKUArcade.Entities;
 using DIKUArcade.Graphics;
 using DIKUArcade.Math;
@@ -64,7 +63,7 @@ public class BlockLoader {
                 if (symbol != "-") {
                     string imgFileName = legends[symbol];
                     Vec2F pos = new Vec2F(c * xExtent, 0.9f - r * yExtent);
-                    Block block = BuildBlock(imgFileName, pos, symbol);
+                    Block block = BuildBlocks(imgFileName, pos, symbol);
                     if (block != null) {
                         Blocks.AddEntity(block);
                     }
@@ -77,7 +76,7 @@ public class BlockLoader {
     /// The method is to build one block by using block builder
     /// conbined with meta data.
     /// </summary>
-    private Block BuildBlock(string imgFileName, Vec2F pos, string property) {
+    private Block BuildBlocks(string imgFileName, Vec2F pos, string property) {
         string[] filenameParts = imgFileName.Split('.');
         string baseName = filenameParts[0];
         string fileExt = filenameParts[1];
