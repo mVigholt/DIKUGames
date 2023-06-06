@@ -27,6 +27,21 @@ public class Ball : MoveableEntity {
         return new Ball(position, image);
     }
 
+    public override void UpdateDirection(Vec2F addVector, CollisionDirection colDir) {
+        base.UpdateDirection(addVector, colDir);
+        //entities cannot bounce back and forth in an endless loop
+        if (colDir != CollisionDirection.CollisionDirUnchecked &&
+            (dir.X == 0 || dir.Y == 0)) {
+            var rand = new System.Random().Next(-1, 2);
+            if (dir.X == 0) {
+                dir = UnitVector(UnitVector(dir) + new Vec2F(rand, 0));
+            } else if (dir.Y == 0) {
+                dir = UnitVector(UnitVector(dir) + new Vec2F(0, rand));
+            }
+        }
+        shape.ChangeDirection(new Vec2F(Speed * dir.X, Speed * dir.Y));
+    }
+
     /// <summary>Ensure the ball is within the wall boundary
     /// When it hits the boundary, the wall is not moveable, so
     /// the ball will not be added an extra direction, while

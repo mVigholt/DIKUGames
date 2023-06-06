@@ -18,7 +18,7 @@ public class MoveableEntity : Entity {
 
     protected DynamicShape shape;
 
-    private Vec2F dir = new Vec2F(0, 0);
+    private protected Vec2F dir = new Vec2F(0, 0);
 
     public float Speed {
         get; set;
@@ -56,7 +56,7 @@ public class MoveableEntity : Entity {
     ///change, but only the direction will change </summary>
     ///<param name = "vector"> The input vector</param>
     ///<return>The normalized vector</return>
-    private Vec2F UnitVector(Vec2F vector) {
+    private protected Vec2F UnitVector(Vec2F vector) {
         float hyp = (float) Math.Sqrt(
             Math.Pow(vector.X, 2) + Math.Pow(vector.Y, 2));
         hyp = hyp != 0 ? hyp : 1;
@@ -86,7 +86,7 @@ public class MoveableEntity : Entity {
     ///entity </param>
     ///<return>no return </return>
 
-    public void UpdateDirection(Vec2F addVector, CollisionDirection colDir) {
+    virtual public void UpdateDirection(Vec2F addVector, CollisionDirection colDir) {
         switch (colDir) {
             case CollisionDirection.CollisionDirLeft:
             case CollisionDirection.CollisionDirRight:
@@ -100,16 +100,16 @@ public class MoveableEntity : Entity {
                 break;
         }
         dir = UnitVector(UnitVector(dir) + UnitVector(addVector));
-        //entities cannot bounce back and forth in an endless loop
-        if (colDir != CollisionDirection.CollisionDirUnchecked &&
-            (dir.X == 0 || dir.Y == 0)) {
-            var rand = new System.Random().Next(-1, 2);
-            if (dir.X == 0) {
-                dir = UnitVector(UnitVector(dir) + new Vec2F(rand, 0));
-            } else if (dir.Y == 0) {
-                dir = UnitVector(UnitVector(dir) + new Vec2F(rand, 0));
-            }
-        }
+        // //entities cannot bounce back and forth in an endless loop
+        // if (colDir != CollisionDirection.CollisionDirUnchecked &&
+        //     (dir.X == 0 || dir.Y == 0)) {
+        //     var rand = new System.Random().Next(-1, 2);
+        //     if (dir.X == 0) {
+        //         dir = UnitVector(UnitVector(dir) + new Vec2F(rand, 0));
+        //     } else if (dir.Y == 0) {
+        //         dir = UnitVector(UnitVector(dir) + new Vec2F(rand, 0));
+        //     }
+        // }
         shape.ChangeDirection(new Vec2F(Speed * dir.X, Speed * dir.Y));
     }
 
