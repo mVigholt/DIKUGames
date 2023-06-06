@@ -5,7 +5,12 @@ using DIKUArcade.Graphics;
 using DIKUArcade.Math;
 
 
-
+/// <summary>
+/// This class is to create a single button in some states and then
+/// can navigate to its corresponding function
+/// A dictionary is created to store the the text and its corresponding
+/// state or function.
+/// </summary>
 public class Button : Text
 {
     public string Text {get; private set;}

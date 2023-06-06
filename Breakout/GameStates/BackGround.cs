@@ -4,6 +4,12 @@ using DIKUArcade.Entities;
 using DIKUArcade.Graphics;
 using DIKUArcade.Math;
 
+/// <summary>
+/// This class is to create and render a backGround image for each state
+/// If the background has an extend for the whole window, then you just
+/// need to give an image as an input. Otherwise you can also create
+/// a background by giving its position and extent.
+/// </summary>
 public class BackGround: Entity{
     private IBaseImage BackgroundImage;
     private static readonly Vec2F BACKGROUND_POSITION = new Vec2F (0.0f, 0.0f);

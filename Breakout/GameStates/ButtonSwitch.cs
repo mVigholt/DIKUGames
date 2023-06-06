@@ -7,6 +7,11 @@ using Breakout.Events;
 using DIKUArcade.Events;
 using DIKUArcade.Input;
 
+
+/// <summary>
+/// The logic to switch the buttons, since there are more than one
+/// buttons in each page.
+/// </summary>
 public class ButtonSwitch {
     private List<Button> menuButtons = new List<Button>();
     private int activeMenuButton;
@@ -34,6 +39,11 @@ public class ButtonSwitch {
         ResetState();
     }
 
+
+    /// <summary>
+    /// The logic for different keypresses. There are some help
+    /// functions which make the structure more clear
+    /// </summary>
     public void KeyPress(KeyboardKey key) {
         switch (key) {
             case KeyboardKey.Up:

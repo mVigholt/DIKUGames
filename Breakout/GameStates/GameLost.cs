@@ -5,20 +5,30 @@ using Breakout.IO;
 using DIKUArcade.Math;
 using DIKUArcade.Graphics;
 
-
+/// <summary>
+/// A GameLost State class to show information such as "Game Over" Text,
+/// The score you have won and some buttons to choose.
+/// </summary>
 public class GameLost : MenuGameState {
     private static GameLost instance = null;
     public GameLost() :
          base("Game Over", Assets.BackgroundImage, "Main Menu", "Quit") {
-            ResetState();
+        ResetState();
     }
 
+    /// <summary>
+    /// If the state does not need to be reset, it can also created by
+    /// this method.
+    /// </summary>
     public static GameLost GetInstance() {
         return GetInstance(false);
     }
 
-    public override void ResetState(){
-        this.texts = new List<Text>{};
+    /// <summary>
+    /// Put some information back to original
+    /// </summary>
+    public override void ResetState() {
+        this.texts = new List<Text> { };
         this.texts.Add(titleText);
         int score = GameRunning.GetInstance(false).scoreBoard.GetRemainingPoint();
         this.AddText($"Score: {score}",
@@ -27,6 +37,12 @@ public class GameLost : MenuGameState {
         base.ResetState();
     }
 
+    /// <summary>
+    /// Return an instance of GameLost.
+    /// </summary>
+    /// <param name = "resetState">a boolean to check if it is needed
+    /// to reset the instance.
+    /// </param>
     public static GameLost GetInstance(bool resetState) {
         if (GameLost.instance == null) {
             GameLost.instance = new GameLost();
