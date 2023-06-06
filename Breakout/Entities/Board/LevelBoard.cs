@@ -4,7 +4,7 @@ using DIKUArcade.Graphics;
 using DIKUArcade.Math;
 
 /// <summary>
-/// This class inheritates Text class to show the name of
+/// This class inherits Text class to show the name of
 /// the level. The name is read from an Ascii file
 ///</summary>
 public class LevelBoard : Text {
