@@ -1,9 +1,11 @@
 namespace Breakout.GameStates;
 
-using Breakout.Events;
 using DIKUArcade.Events;
 using DIKUArcade.State;
 using DIKUArcade.Timers;
+using Breakout.Events;
+using Breakout.Entities;
+
 
 ///<summary>Handle the transition of different states and process inputs</summary>
 public class StateMachine : IGameEventProcessor {
@@ -44,6 +46,7 @@ public class StateMachine : IGameEventProcessor {
                 if (message == "Next Level") {
                     GameRunning.GetInstance().ChangeLevel();
                 }
+                GameRunning.GetInstance().level.shuttle.Stop();
                 break;
             default:
                 break;

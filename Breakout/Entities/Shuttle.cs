@@ -43,7 +43,6 @@ public class Shuttle : MoveableEntity, IGameEventProcessor {
     private void InitEventBus() {
         eventBus = GameBus.GetBus();
         eventBus.Subscribe(GameEventType.PlayerEvent, this);
-        eventBus.Subscribe(GameEventType.GameStateEvent, this);
     }
 
     private protected void SetMoveLeft(bool val) {
