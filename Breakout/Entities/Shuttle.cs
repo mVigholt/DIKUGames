@@ -1,6 +1,7 @@
 namespace Breakout.Entities;
 
 using Breakout.Events;
+using Breakout.GameStates;
 using DIKUArcade.Entities;
 using DIKUArcade.Events;
 using DIKUArcade.Graphics;
@@ -42,6 +43,7 @@ public class Shuttle : MoveableEntity, IGameEventProcessor {
     private void InitEventBus() {
         eventBus = GameBus.GetBus();
         eventBus.Subscribe(GameEventType.PlayerEvent, this);
+        eventBus.Subscribe(GameEventType.GameStateEvent, this);
     }
 
     private protected void SetMoveLeft(bool val) {
@@ -67,6 +69,10 @@ public class Shuttle : MoveableEntity, IGameEventProcessor {
                 SetMoveRight(ev.Action == KeyboardAction.KeyPress);
                 break;
             default:
+                if (ev.StateType.Value == GameStateType.GameRunning) {
+                    //Stop the shuttle when entering GameRunning
+                    this.Stop();
+                }
                 break;
         }
     }

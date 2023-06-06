@@ -100,7 +100,7 @@ public class MoveableEntity : Entity {
                 break;
         }
         dir = UnitVector(UnitVector(dir) + UnitVector(addVector));
-        //entities cannot bounce back and forth and an endless loop
+        //entities cannot bounce back and forth in an endless loop
         if (colDir != CollisionDirection.CollisionDirUnchecked &&
             (dir.X == 0 || dir.Y == 0)) {
             var rand = new System.Random().Next(-1, 2);
@@ -132,7 +132,7 @@ public class MoveableEntity : Entity {
 
     ///<summary>
     /// To keep the moveable entity inside the boundary.
-    /// It can be override as needed
+    /// It can be overriden as needed
     ///</summary>
     virtual public void Move() {
         shape.Move();

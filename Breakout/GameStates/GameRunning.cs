@@ -40,8 +40,6 @@ public class GameRunning : IGameState {
         if (resetState) {
             GameRunning.instance.ResetState();
         }
-        //Stop the shuttle if it was moving when going to pause menu
-        GameRunning.instance.level.shuttle.Stop();
         return GameRunning.instance;
     }
 
