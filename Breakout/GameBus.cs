@@ -3,6 +3,10 @@ namespace Breakout;
 using System.Collections.Generic;
 using DIKUArcade.Events;
 
+
+///<summary>A globally accessible Game bus, which returns
+/// a gameEventBus object with an initialized evnet list
+///</summary>
 public static class GameBus {
     private static GameEventBus eventBus;
     public static GameEventBus GetBus() {

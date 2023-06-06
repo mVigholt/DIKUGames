@@ -10,7 +10,7 @@ using NUnit.Framework;
 [TestFixture]
 public class TestBlock {
 
-    private Image image;
+    private IBaseImage image;
     private Block normalBlock;
     private Block hardenedBlock;
     private Block unbreakableBlock;
@@ -63,5 +63,11 @@ public class TestBlock {
             Assert.True(hardenedBlock.IsDead());
             Assert.False(unbreakableBlock.IsDead());
         }
+    }
+
+    [Test]
+    public void TestImageNotExist(){
+        IBaseImage newImage = Assets.LoadImage("Image_not_exist");
+        Assert.That(newImage, Is.InstanceOf<NoImage>());
     }
 }

@@ -21,7 +21,7 @@ public class MenuGameState : IGameState {
     protected List<Text> texts;
     protected Text titleText;
 
-    public MenuGameState(string title, Image BackgroundImage, params string[] buttonLabels) {
+    public MenuGameState(string title, IBaseImage BackgroundImage, params string[] buttonLabels) {
         texts = new List<Text> { };
         titleText = new Text(title, TITLE_TEXT_POSITION, TEXT_EXTENT);
         texts.Add(titleText);
@@ -30,7 +30,7 @@ public class MenuGameState : IGameState {
         buttonSwitch = CreateButtonSwitch(buttonLabels);
     }
 
-    public MenuGameState(Image BackgroundImage, params string[] buttonLabels)
+    public MenuGameState(IBaseImage BackgroundImage, params string[] buttonLabels)
         : this("", BackgroundImage, buttonLabels) {
     }
 

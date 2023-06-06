@@ -18,9 +18,15 @@ public class BlockLoader {
     private LevelDataLoader loadFile;
     private EffectItemFactory eiFactory;
 
-    public double? levelTime { get; private set; }
-    public string levelName { get; private set; }
-    public EntityContainer<Block> Blocks { get; private set; }
+    public double? levelTime {
+        get; private set;
+    }
+    public string levelName {
+        get; private set;
+    }
+    public EntityContainer<Block> Blocks {
+        get; private set;
+    }
 
     public BlockLoader(string fileName) {
         eiFactory = new EffectItemFactory();
@@ -28,22 +34,20 @@ public class BlockLoader {
         CreateMap();
     }
 
-    private void CreateMap(){
+    private void CreateMap() {
         var bricks = loadFile.GetMap();
         var meta = loadFile.GetMetaDict();
         var legends = loadFile.GetLegendDict();
         // check if the meta contains time info
-        if (meta.ContainsKey("time")){
+        if (meta.ContainsKey("time")) {
             levelTime = double.Parse(meta["time"]);
-        }
-        else{
+        } else {
             levelTime = null;
         }
         // check if the meta contains name info
-        if (meta.ContainsKey("name")){
+        if (meta.ContainsKey("name")) {
             levelName = meta["name"];
-        }
-        else{
+        } else {
             levelName = null;
         }
 
@@ -81,23 +85,15 @@ public class BlockLoader {
 
         IBaseImage image;
         IBaseImage alterImage;
-        try {
-            image = Assets.LoadImage(imgFileName);
-            alterImage = Assets.LoadImage(alterImgFileName);
-        } catch (Exception) {
-            // If the image cannot be loaded, simply
-            // don't create this entity.
-            // The game is more fun without a few entities
-            // than if it just crashes.
-            return null;
-        }
+        image = Assets.LoadImage(imgFileName);
+        alterImage = Assets.LoadImage(alterImgFileName);
         var builder = new Block.Builder()
             .WithPosition(pos)
             .WithValue(1)
             .WithIsHardened(loadFile.MetaContains("hardened", property))
             .WithIsUnbreakable(loadFile.MetaContains("unbreakable", property))
             .WithMoveable(loadFile.MetaContains("moveable", property));
-            
+
         if (loadFile.MetaContains("powerup", property)) {
             EffectItem powerUp = eiFactory.RandomPowerUp(pos);
             builder = builder

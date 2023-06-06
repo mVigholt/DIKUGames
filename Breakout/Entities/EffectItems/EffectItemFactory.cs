@@ -79,7 +79,7 @@ public class EffectItemFactory {
         Vec2F pos
     ) {
         DynamicShape shape = new DynamicShape(pos, STD_EXTENT);
-        Image image = Assets.LoadImage(config.IconFileName);
+        IBaseImage image = Assets.LoadImage(config.IconFileName);
         GameEvent ev = CreateActivationEvent(config);
         return new InstantEffectItem(shape, image, ev);
     }
@@ -89,7 +89,7 @@ public class EffectItemFactory {
         Vec2F pos
     ) {
         DynamicShape shape = new DynamicShape(pos, STD_EXTENT);
-        Image image = Assets.LoadImage(config.IconFileName);
+        IBaseImage image = Assets.LoadImage(config.IconFileName);
         GameEvent activationEvent = CreateActivationEvent(config);
         GameEvent deactivationEvent = CreateDeactivationEvent(config);
         TimePeriod duration = TimePeriod.NewSeconds(5);
