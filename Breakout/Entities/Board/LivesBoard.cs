@@ -5,13 +5,17 @@ using DIKUArcade.Graphics;
 using DIKUArcade.Math;
 using Breakout.IO;
 
+
+/// <summary>
+/// This class is to show how many lives left for the player
+///</summary>
 public class LivesBoard {
     private static readonly Vec2F HEART_EXTENT = new Vec2F(0.08f, 0.08f);
     private static readonly Vec2F HEART_POSITION = new Vec2F(0.01f, 0.0f);
     private static readonly Vec3I LIVE_COLOR = new Vec3I(255, 255, 255);
     private static readonly Vec2F LIVE_POS = new Vec2F(0.1f, -0.18f);
     private static readonly Vec2F LIVE_EXTENT = new Vec2F(0.25f, 0.25f);
-    
+
     private int livesLeft;
     private Text livesTextNum;
     private Entity lifeEntity;
@@ -25,6 +29,11 @@ public class LivesBoard {
                                , Assets.LifeImage);
     }
 
+    ///<summary>
+    ///The function is to add or deduct lives, and the update the text shown
+    ///on the LivesBoard in each level.
+    ///</summary>
+    ///<param name = "lives"> the lives that about to add to the total lives</param>
     public void LoseLives(int lives) {
         int livesRemainning = livesLeft - lives;
         if (livesRemainning <= 0) {
@@ -35,6 +44,7 @@ public class LivesBoard {
         livesTextNum.SetText($"x {livesLeft}");
     }
 
+    ///<summary> Create a getter method for the outsider to get the lives left</summary>
     public int GetRemainingLives() {
         return livesLeft;
     }
