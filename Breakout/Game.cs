@@ -7,6 +7,9 @@ using DIKUArcade.Events;
 using DIKUArcade.GUI;
 using DIKUArcade.Input;
 
+/// <summary>
+/// The Game Class is to process and handle the game at a high level
+/// </summary>
 public class Game : DIKUGame, IGameEventProcessor {
     private GameEventBus eventBus;
     private StateMachine stateMachine;

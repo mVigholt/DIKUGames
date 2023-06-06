@@ -9,7 +9,11 @@ using Breakout.IO;
 using Breakout.Entities.EffectItems;
 using Breakout.Graphics;
 
-
+/// <summary>
+/// Load the map field from the ASCII file, and then
+/// create blocks according to the meta data in the ASCII file
+/// The blocks stored in a container.
+/// </summary>
 public class BlockLoader {
     private LevelDataLoader loadFile;
     private EffectItemFactory eiFactory;
@@ -28,30 +32,35 @@ public class BlockLoader {
         var bricks = loadFile.GetMap();
         var meta = loadFile.GetMetaDict();
         var legends = loadFile.GetLegendDict();
+        // check if the meta contains time info
         if (meta.ContainsKey("time")){
             levelTime = double.Parse(meta["time"]);
         }
         else{
             levelTime = null;
         }
+        // check if the meta contains name info
         if (meta.ContainsKey("name")){
             levelName = meta["name"];
         }
         else{
             levelName = null;
         }
+
         int rows = bricks.Length;
         int columns = bricks[0].Length;
-        float xExtent = 1.0f / columns;
-        float yExtent = 0.9f / rows;
+        float xExtent = 1.0f / columns; //one block's width
+        float yExtent = 0.9f / rows;//one block's hight
         Blocks = new EntityContainer<Block>(rows * columns);
+        //Go though each element in the array and create a block and
+        //add it to the blocks container
         for (int r = 0; r < bricks.Length; r++) {
             for (int c = 0; c < bricks[r].Length; c++) {
                 string symbol = bricks[r][c].ToString();
                 if (symbol != "-") {
                     string imgFileName = legends[symbol];
                     Vec2F pos = new Vec2F(c * xExtent, 0.9f - r * yExtent);
-                    Block block = BuildBlocks(imgFileName, pos, symbol);
+                    Block block = BuildBlock(imgFileName, pos, symbol);
                     if (block != null) {
                         Blocks.AddEntity(block);
                     }
@@ -60,7 +69,11 @@ public class BlockLoader {
         }
     }
 
-    private Block BuildBlocks(string imgFileName, Vec2F pos, string property) {
+    /// <summary>
+    /// The method is to build one block by using block builder
+    /// conbined with meta data.
+    /// </summary>
+    private Block BuildBlock(string imgFileName, Vec2F pos, string property) {
         string[] filenameParts = imgFileName.Split('.');
         string baseName = filenameParts[0];
         string fileExt = filenameParts[1];
@@ -84,6 +97,7 @@ public class BlockLoader {
             .WithIsHardened(loadFile.MetaContains("hardened", property))
             .WithIsUnbreakable(loadFile.MetaContains("unbreakable", property))
             .WithMoveable(loadFile.MetaContains("moveable", property));
+            
         if (loadFile.MetaContains("powerup", property)) {
             EffectItem powerUp = eiFactory.RandomPowerUp(pos);
             builder = builder

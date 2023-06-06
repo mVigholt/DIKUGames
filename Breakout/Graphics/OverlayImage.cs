@@ -6,7 +6,7 @@ using DIKUArcade.Entities;
 using DIKUArcade.Math;
 using Breakout.IO;
 
-
+///<summary>Make images loaded on top of each other </summary>
 public class OverlayImage : IBaseImage {
 
     private Texture _base;

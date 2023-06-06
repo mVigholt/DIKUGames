@@ -5,7 +5,11 @@ using System.IO;
 using System.Linq;
 using Breakout.IO;
 
-
+/// <summary>
+/// Load data from an ascii file and seprate the data in different fields.
+/// The data in each field are stored as different arrays and dictionarys
+/// If file does not exist, a default map will be created
+/// </summary>
 public class LevelDataLoader {
     private string[] legend;
     private string[] meta;
@@ -31,13 +35,17 @@ public class LevelDataLoader {
                 .TakeWhile(legend => legend != "Legend/")
                 .ToArray();
         } catch (System.IO.FileNotFoundException) {
-        //If file does not exist, it will create a default map
-           map = new List<string>{"hhhhhhhhhhh"}.ToArray();
-           meta = new List<string>{":"}.ToArray();
-           legend = new List<string>{"h) green-block.png"}.ToArray();
+            //If file does not exist, it will create a default map
+            map = new List<string> { "hhhhhhhhhhh" }.ToArray();
+            meta = new List<string> { ":" }.ToArray();
+            legend = new List<string> { "h) green-block.png" }.ToArray();
         }
     }
 
+    /// <summary>
+    /// Store the map field into an array. Each item in the array is one
+    /// row in the map.
+    /// </summary>
     public string[] GetMap() {
         List<string> mapLowerCase = new List<string> { };
         foreach (string m in map) {
@@ -46,6 +54,10 @@ public class LevelDataLoader {
         return mapLowerCase.ToArray();
     }
 
+
+    /// <summary>
+    /// A general method to create a dictionary by differents separators.
+    /// </summary>
     private Dictionary<string, string> GetDict(string[] data, string separator) {
         Dictionary<string, string> dict = new Dictionary<string, string>();
         foreach (string line in data) {
@@ -57,6 +69,10 @@ public class LevelDataLoader {
         return dict;
     }
 
+    /// <summary>
+    /// Create a meta dictionary, with descriptive functions
+    /// as the key and symbols as the value
+    /// </summary>
     public Dictionary<string, string> GetMetaDict() {
         return GetDict(this.meta, ":");
     }
@@ -65,6 +81,9 @@ public class LevelDataLoader {
         return GetDict(this.legend, ")");
     }
 
+    /// <summary>
+    /// Check if one dictionary contains one certain key.
+    /// </summary>
     public bool MetaContains(string key, string value) {
         var metaDict = GetMetaDict();
         return (metaDict.ContainsKey(key) ?

@@ -10,7 +10,13 @@ using Breakout.Entities.Board;
 using Breakout.Entities.EffectItems;
 using Breakout.IO;
 
-
+/// <summary>
+/// Load a level by reading from an ASCII file.
+/// The level class contains some information that are generally different
+/// in each level. Shuttle and balls are created in this class, since shuttle is a
+/// singleton and balls container can be different from level to level.
+/// Blocks and effects and meta data also exist in this class
+/// </summary>
 public class Level {
 
     private EntityContainer<EffectItem> fallingItems = new EntityContainer<EffectItem>();
@@ -45,7 +51,7 @@ public class Level {
         LoadEffectItems(scoreBoard);
     }
 
-    public Level() 
+    public Level()
         : this(new ScoreBoard()) {
     }
 
@@ -82,6 +88,12 @@ public class Level {
         effectItemHandler.Initialize(shuttle, scoreBoard, balls);
     }
 
+    /// <summary>
+    /// Check if a ball in the ball contains collide with a block.
+    /// </summary>
+    ///<param name = "scoreBoard"> The scoreBoard to show how many points you have
+    /// earned from breaking the blocks</param>
+    /// <return> No return </return>
     public void BallVsBlocksCollide(ScoreBoard scoreBoard) {
         balls.Iterate(ball => {
             Blocks.Iterate(block => {
@@ -91,12 +103,12 @@ public class Level {
                     if (ball.IsHard) {
                         scoreBoard.AddPoints(block.Health);
                         block.LoseHealth(block.Health);
-                    }
-                    else {
+                    } else {
                         ball.UpdateDirection(block.GetDirection(), ballVsblock.CollisionDir);
                         scoreBoard.AddPoints(block.Value);
                         block.LoseHealth(ball.Damage);
                     }
+                    // A powerup or hazard item is added to the fallingItems to move down
                     if (block.build.effectItem != null) {
                         fallingItems.AddEntity(block.build.effectItem);
                     }
@@ -105,6 +117,10 @@ public class Level {
         });
     }
 
+
+    /// <summary>
+    /// Check if a falling item is caught by the shuttle.
+    /// </summary>
     public void ItemVsShuttleCollide() {
         fallingItems.Iterate(item => {
             CollisionData itemVsShuttle =
@@ -116,6 +132,10 @@ public class Level {
         });
     }
 
+
+    /// <summary>
+    /// Check if the shuttle catches the balls.
+    /// </summary>
     public void BallVsShuttleCollide() {
         balls.Iterate(ball => {
             CollisionData ballVsShuttle = CollisionDetection.Aabb(
