@@ -68,10 +68,6 @@ public class Shuttle : MoveableEntity, IGameEventProcessor {
                 SetMoveRight(ev.Action == KeyboardAction.KeyPress);
                 break;
             default:
-                if (ev.StateType.Value == GameStateType.GameRunning) {
-                    //Stop the shuttle when entering GameRunning
-                    this.Stop();
-                }
                 break;
         }
     }
