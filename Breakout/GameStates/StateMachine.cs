@@ -13,10 +13,12 @@ public class StateMachine : IGameEventProcessor {
     public IGameState ActiveState {
         get; private set;
     }
+    
     public StateMachine() {
         eventBus.Subscribe(GameEventType.GameStateEvent, this);
         ActiveState = MainMenu.GetInstance();
     }
+
     ///<summary>Make the transition from current state to the next state</summary>
     ///<param name = "NextState">The next state which is going to show</param>
     ///<return>no return</return>
@@ -46,10 +48,13 @@ public class StateMachine : IGameEventProcessor {
                 if (message == "Next Level") {
                     GameRunning.GetInstance().ChangeLevel();
                 }
-                GameRunning.GetInstance().level.shuttle.Stop();
                 break;
             default:
                 break;
+        }
+        if (NextState == GameStateType.GameRunning) {
+            // Stop the shuttle when entering GameRunning
+            GameRunning.GetInstance().level.shuttle.Stop();
         }
     }
 
