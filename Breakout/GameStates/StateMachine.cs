@@ -16,7 +16,7 @@ public class StateMachine : IGameEventProcessor {
         ActiveState = MainMenu.GetInstance();
     }
     ///<summary>Make the transition from current state to the next state</summary>
-    ///<param name = "NextState"></param>
+    ///<param name = "NextState">The next state which is going to show</param>
     ///<return>no return</return>
     private void SwitchState(GameStateType NextState, string message) {
         switch (ActiveState, NextState) {
