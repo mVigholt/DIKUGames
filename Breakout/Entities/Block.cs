@@ -17,7 +17,7 @@ using DIKUArcade.Physics;
 ///</summary>
 public class Block : MoveableEntity {
     public static readonly Vec2F STD_EXTENT = new Vec2F(0.083f, 0.041f);
-    public static readonly float BLOCK_SPEED = 0.007f;
+    public static readonly float STD_SPEED = 0.007f;
     public Builder build {
         get; private set;
     }
@@ -26,13 +26,13 @@ public class Block : MoveableEntity {
     public int Health { get; private set; } = 1;
 
     private Block(Block.Builder builder)
-        : base(new DynamicShape(builder.position, STD_EXTENT), builder.image) {
+        : base(new DynamicShape(builder.position, STD_EXTENT), builder.image, STD_SPEED) {
         build = builder;
         if (build.isHardened) {
             maxHealth *= 2;
         }
         if (build.isMoveable) {
-            shape.Direction = (new Vec2F(BLOCK_SPEED, 0));
+            shape.Direction = (new Vec2F(STD_SPEED, 0));
         }
         Health = maxHealth;
     }
@@ -78,12 +78,11 @@ public class Block : MoveableEntity {
     ///</summary>
     public override void Move() {
         if (build.isMoveable) {
-            Speed = BLOCK_SPEED;
             if (GetPosition().X == 0.0f) {
-                UpdateDirection(new Vec2F(0, 0), CollisionDirection.CollisionDirRight);
+                UpdateDirection(new Vec2F(1, 0), CollisionDirection.CollisionDirLeft);
             }
             if (GetPosition().X == 1.0f - GetExtent().X) {
-                UpdateDirection(new Vec2F(0, 0), CollisionDirection.CollisionDirLeft);
+                UpdateDirection(new Vec2F(-1, 0), CollisionDirection.CollisionDirRight);
             }
             base.Move();
         }
