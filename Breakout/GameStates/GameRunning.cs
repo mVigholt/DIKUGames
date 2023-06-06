@@ -9,16 +9,25 @@ using Breakout.Events;
 using Breakout.Levels;
 using Breakout.Entities.Board;
 
+
+/// <summary>
+/// A singleton class to show the play state for the game.
+/// It contains a livesBoard to show the remaining lives;
+/// A ScoreBoard to show the total scores accumulated through the game;
+/// A Level class to load different level
+/// </summary>
 public class GameRunning : IGameState {
     private readonly int NUM_LEVELS = 4;
-    
+
     private static GameRunning instance = null;
     private GameEventBus eventBus = GameBus.GetBus();
     public Level level;
     public ScoreBoard scoreBoard;
     private LivesBoard livesBoard;
-    
-    public int Lives { get; private set; }
+
+    public int Lives {
+        get; private set;
+    }
 
     public static GameRunning GetInstance() {
         return GetInstance(false);
@@ -36,21 +45,26 @@ public class GameRunning : IGameState {
         return GameRunning.instance;
     }
 
+    ///<summary>
+    ///Reset the game's status for a new Game
+    ///</summary>
     public void ResetState() {
         Lives = 2;
         InitBoard();
         ChangeLevel();
     }
 
-    public void InitBoard() {
+    private void InitBoard() {
         scoreBoard = new ScoreBoard();
         livesBoard = new LivesBoard(Lives);
     }
 
-    public void InitLevel() {
+    private void InitLevel() {
         level = new Level(scoreBoard);
     }
 
+    /// <summary>If there is no next level to read,
+    /// the player has finished all levels and Game is won  </summary>
     public void ChangeLevel() {
         scoreBoard.NextLevel();
         if (scoreBoard.Level <= NUM_LEVELS) {
@@ -60,7 +74,7 @@ public class GameRunning : IGameState {
         }
     }
 
-    public void GameOver() {
+    private void GameOver() {
         eventBus.RegisterEvent(
             new EventBuilder()
                 .WithType(GameEventType.GameStateEvent)
@@ -69,7 +83,7 @@ public class GameRunning : IGameState {
         );
     }
 
-    public void GameWon() {
+    private void GameWon() {
         eventBus.RegisterEvent(
             new EventBuilder()
                 .WithType(GameEventType.GameStateEvent)
@@ -94,23 +108,39 @@ public class GameRunning : IGameState {
         }
     }
 
+    ///<summary>
+    ///Deduct lives from the remaining lives
+    ///</summary>
     public void LoseLives(int lives) {
         this.Lives -= lives;
         livesBoard.LoseLives(lives);
     }
 
+
+    ///<summary>
+    ///Check if the game need to go to other states.
+    ///</summary>
     private void StateChecker() {
+        // Since the unbreakable cannot be destroyed, we need to
+        // count how many unbreakables in each level to
+        // check if a new level needed to be loaded or Game is finished
         var numUnbreakables = 0;
         foreach (Block block in level.Blocks) {
             if (block.build.isUnbreakable) {
                 numUnbreakables += 1;
             }
         }
+        // If there are only unbreakables left, all blocks are destroyed
+        // and a new level is loaded.
         bool levelWon = level.Blocks.CountEntities() == numUnbreakables;
         if (levelWon) {
             ChangeLevel();
         }
 
+        // If there is still some blocks and lives left, the
+        // game contines in the same level. But the ball
+        // will be put to its original position, while
+        // the player loses one life.
         if (Lives + level.balls.CountEntities() > 0) {
             if (level.balls.CountEntities() == 0) {
                 level.InitBalls();
@@ -120,12 +150,14 @@ public class GameRunning : IGameState {
             GameOver();
         }
         if (level.CountDownBoard != null) {
+            //If there are count down meta data in the Ascii file
+            //then if the time is finished, the game is over.
             if (level.CountDownBoard.timeLeft <= 0) {
                 GameOver();
             }
         }
     }
-
+    
     private void MoveEntities() {
         level.Move();
     }
