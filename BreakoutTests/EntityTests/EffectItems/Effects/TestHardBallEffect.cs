@@ -4,7 +4,6 @@ using NUnit.Framework;
 using DIKUArcade.Math;
 using DIKUArcade.Graphics;
 using DIKUArcade.Events;
-using Breakout.GameStates;
 using Breakout.Entities;
 using Breakout;
 
@@ -18,7 +17,6 @@ public class TestHardBallEffect {
     GameEventBus eventBus = GameBus.GetBus();
     Shuttle shuttle;
     Block block;
-    Vec2F ballStartingPos;
     Ball ball;
 
     [SetUp]
@@ -43,13 +41,17 @@ public class TestHardBallEffect {
             ball.Move();
         }
         Assert.AreEqual(
-            ball.GetDirection().X,
-            UP.X * -1
+            UP.X * -1,
+            ball.GetDirection().X
         );
     }
 
     [Test]
     public void TestHardBallDoesntBounceBack() {
-        
+        ball.UpdateDirection(UP);
+        for (int i = 0; i < NUM_MOVES + 1; i++) {
+            ball.Move();
+        }
+        Assert.That(ball.GetDirection().Y > 0);
     }
 }

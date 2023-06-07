@@ -9,24 +9,32 @@ public class WideEffect : ITimedEffect {
     public TimePeriod Duration { get; }
 
     private Shuttle _shuttle;
-    private float _extraWidth;
+    private float _pctOfShuttleWidth;
+    private float _deltaWidth;
 
     // For testing
-    public float ExtraWidth { get { return _extraWidth; } }
+    public float pctOfShuttleWidth { get { return _pctOfShuttleWidth; } }
 
-    public WideEffect(Shuttle shuttle) {
+    public WideEffect(Shuttle shuttle) 
+        : this(shuttle, pctOfShuttleWidth: 0.5f) {
+    }
+
+    public WideEffect(Shuttle shuttle, float pctOfShuttleWidth) {
         _shuttle = shuttle;
         Duration = TimePeriod.NewSeconds(5);
-        _extraWidth = 0.1f;
+        _pctOfShuttleWidth = pctOfShuttleWidth;
     }
 
     public void Activate() {
-        _shuttle.Shape.Extent.X += _extraWidth;
-        _shuttle.Shape.Position.X -= _extraWidth / 2f;
+        float shuttleWidth = _shuttle.GetExtent().X;
+        _deltaWidth = _pctOfShuttleWidth * shuttleWidth;
+        _shuttle.Shape.Extent.X += _deltaWidth;
+        _shuttle.Shape.Position.X -= _deltaWidth / 2f;
     }
 
     public void Deactivate() {
-        _shuttle.Shape.Extent.X -= _extraWidth;
-        _shuttle.Shape.Position.X += _extraWidth / 2f;
+        float shuttleWidth = _shuttle.GetExtent().X;
+        _shuttle.Shape.Extent.X -= _deltaWidth;
+        _shuttle.Shape.Position.X += _deltaWidth / 2f;
     }
 }
