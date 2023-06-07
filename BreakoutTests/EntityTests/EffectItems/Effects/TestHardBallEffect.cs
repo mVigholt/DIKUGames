@@ -43,13 +43,17 @@ public class TestHardBallEffect {
             ball.Move();
         }
         Assert.AreEqual(
-            ball.GetDirection().X,
-            UP.X * -1
+            UP.X * -1,
+            ball.GetDirection().X
         );
     }
 
     [Test]
     public void TestHardBallDoesntBounceBack() {
-        
+        ball.UpdateDirection(UP);
+        for (int i = 0; i < NUM_MOVES + 1; i++) {
+            ball.Move();
+        }
+        Assert.That(ball.GetDirection().Y > 0);
     }
 }
