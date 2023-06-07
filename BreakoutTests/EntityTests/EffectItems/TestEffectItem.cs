@@ -8,10 +8,6 @@ using Breakout.Entities.EffectItems;
 [TestFixture]
 public class TestEffectItem {
 
-    [SetUp]
-    public void SetUp() {
-    }
-
     private bool IsWithinBounds(MoveableEntity entity) {
         return entity.GetPosition().X <= 1.0f &&
                 entity.GetPosition().X >= 0.0f;
@@ -24,7 +20,7 @@ public class TestEffectItem {
         Vec2F center = new Vec2F(0.5f, 0.5f);
         EffectItem item = factory.RandomPowerUp(center);
         // Precondition: EffectItem is not out of bounds
-        IsWithinBounds(item);
+        Assert.That(IsWithinBounds(item));
         for (int i = 0; i < 1000; i++) {
             item.Move();
         }
@@ -39,13 +35,13 @@ public class TestEffectItem {
         Vec2F center = new Vec2F(0.5f, 0.8f);
         EffectItem item = factory.RandomPowerUp(center);
         // Precondition: EffectItem is not out of bounds
-        IsWithinBounds(item);
+        Assert.That(IsWithinBounds(item));
         // Postcondition: EffectItem moves with constant speed
         for (int i = 0; i < 2; i++) {item.Move();}
         Vec2F deltaPosA = center - item.GetPosition();
         for (int i = 0; i < 2; i++) {item.Move();}
         Vec2F deltaPosB = center - item.GetPosition();
-        IsWithinBounds(item);
+        Assert.That(IsWithinBounds(item));
         Assert.AreEqual(
             deltaPosA.Y,
             deltaPosB.Y / 2  
