@@ -33,6 +33,7 @@ Unbreakable: Y, M
 Moveable: X, M
 Hardened: #, X
 PowerUp: 0
+Hazard: w
 Meta/
 
 Legend:

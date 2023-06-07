@@ -1,6 +1,8 @@
 namespace Breakout.Entities.EffectItems.Effects;
 
 using DIKUArcade.Timers;
+using DIKUArcade.Events;
+using Breakout.Events;
 
 
 /// <summary>Slows down the shuttle for a duration of time</summary>
@@ -23,9 +25,11 @@ public class SlownessEffect : ITimedEffect {
 
     public void Activate() {
         _shuttle.Speed *= _scalar;
+        _shuttle.UpdateDirection(_shuttle.GetDirection());
     }
 
     public void Deactivate() {
         _shuttle.Speed /= _scalar;
+        _shuttle.UpdateDirection(_shuttle.GetDirection());
     }
 }
