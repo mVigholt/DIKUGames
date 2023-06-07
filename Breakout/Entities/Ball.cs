@@ -27,9 +27,10 @@ public class Ball : MoveableEntity {
         return new Ball(position, image);
     }
 
-    ///<summary>In addition to the functionallity of the base function,
-    ///if the ball bounce up and down or left and right
-    ///in a endless loop, a random vector is added to break this situation
+    ///<summary>In addition to the functionallity of the base function:
+    ///If the ball bounce up and down or left and right
+    ///in a endless loop, a random vector is added to break this situation.
+    ///Limit the angle of the direktion vektor to xMax = 3y ie, Vec2F(3y, y)
     ///</summary>
     ///<param name = "addVector"> The vector to be added to the moveable
     ///entity </param>
@@ -44,6 +45,15 @@ public class Ball : MoveableEntity {
             } else if (dir.Y == 0) {
                 dir = UnitVector(UnitVector(dir) + new Vec2F(0, rand));
             }
+        }
+        var factor = 3;
+        if (System.Math.Abs(dir.X) / factor > System.Math.Abs(dir.Y)) {
+            dir = UnitVector(
+                new Vec2F(
+                    dir.X = dir.Y * ((dir.X >= 0) ? 1 : -1) * factor,
+                    dir.Y
+                )
+            );
         }
         shape.ChangeDirection(new Vec2F(Speed * dir.X, Speed * dir.Y));
     }
