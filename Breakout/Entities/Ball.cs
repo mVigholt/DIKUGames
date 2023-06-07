@@ -46,15 +46,15 @@ public class Ball : MoveableEntity {
                 dir = UnitVector(UnitVector(dir) + new Vec2F(0, rand));
             }
         }
-        var factor = 3;
-        if (System.Math.Abs(dir.X) / factor > System.Math.Abs(dir.Y)) {
-            dir = UnitVector(
-                new Vec2F(
-                    dir.X = dir.Y * ((dir.X >= 0) ? 1 : -1) * factor,
-                    dir.Y
-                )
-            );
-        }
+        // var factor = 3;
+        // if (System.Math.Abs(dir.X) / factor > System.Math.Abs(dir.Y)) {
+        //     dir = UnitVector(
+        //         new Vec2F(
+        //             dir.X = dir.Y * ((dir.X >= 0) ? 1 : -1) * factor,
+        //             dir.Y
+        //         )
+        //     );
+        // }
         shape.ChangeDirection(new Vec2F(Speed * dir.X, Speed * dir.Y));
     }
 

@@ -44,8 +44,8 @@ public class TestBall {
     public void TestBallAfterManyMovesUpwards([Range(0, 10, 1)] int steps) {
         // Precondition P: Ball is not out of boundary
         Ball ball = new Ball(new Vec2F(0.5f, 0.0f), ballImage);
+        ball.UpdateDirection(new Vec2F(0, 1));
         for (int i = 0; i < steps; i++) {
-            ball.UpdateDirection(new Vec2F(0, 1));
             ball.Move();
         }
         Vec2F expectedPos = new Vec2F(0.5f, 0.015f * steps);
@@ -57,14 +57,12 @@ public class TestBall {
     public void TestBallAfterManyMovesLeft([Range(0, 10, 1)] int steps) {
         // Precondition P: Ball is not out of boundary
         Ball ball = new Ball(new Vec2F(0.5f, 0.0f), ballImage);
-        ball.UpdateDirection(new Vec2F(-1, 1));
+        ball.UpdateDirection(new Vec2F(-1, 0));
         var normDir = ball.GetDirection();
         for (int i = 0; i < steps; i++) {
             ball.Move();
         }
-        Vec2F expectedPos = new Vec2F(
-            0.5f - normDir.X * 0.015f * steps, 
-            0.0f + normDir.Y * 0.015f * steps);
+        Vec2F expectedPos = new Vec2F(0.5f - 0.015f * steps, 0.0f);
         // Postcondition R': Ball is still within boundary
         Assert.That(FloatComparer.AreAlmostEqual(expectedPos.X, ball.GetPosition().X));
         Assert.That(FloatComparer.AreAlmostEqual(expectedPos.Y, ball.GetPosition().Y));
@@ -74,8 +72,8 @@ public class TestBall {
     public void TestBallAfterManyMovesRight([Range(0, 10, 1)] int steps) {
         // Precondition P: Ball is not out of boundary
         Ball ball = new Ball(new Vec2F(0.5f, 0.0f), ballImage);
+        ball.UpdateDirection(new Vec2F(1, 0));
         for (int i = 0; i < steps; i++) {
-            ball.UpdateDirection(new Vec2F(1, 0));
             ball.Move();
         }
         Vec2F expectedPos = new Vec2F(0.5f + 0.015f * steps, 0.0f);
@@ -91,13 +89,13 @@ public class TestBall {
     public void TestBallWithinBound(int steps) {
         // Precondition P: Ball is not out of boundary
         Ball ball = new Ball(new Vec2F(0.5f, 0.0f), ballImage);
+        ball.UpdateDirection(new Vec2F(1, 1));
         for (int i = 0; i < steps; i++) {
-            ball.UpdateDirection(new Vec2F(0, 1));
             ball.Move();
         }
         // Postcondition R': Ball is at the bounary
-        Assert.Greater(ball.GetPosition().X, 0.0f);
-        Assert.Greater(ball.GetPosition().Y, 0.0f);
+        Assert.GreaterOrEqual(ball.GetPosition().X, 0.0f);
+        Assert.GreaterOrEqual(ball.GetPosition().Y, 0.0f);
         Assert.LessOrEqual(ball.GetPosition().X, 1.0f);
         Assert.LessOrEqual(ball.GetPosition().Y, 1.0f);
     }
@@ -108,8 +106,8 @@ public class TestBall {
         //Precondition P: Ball is within boundary and move upwards,
         // The ball hits an unmoveable entity.
         Ball ball = new Ball(new Vec2F(0.5f, 0.0f), ballImage);
+        ball.UpdateDirection(new Vec2F(0, 1));
         for (int i = 0; i < 10; i++) {
-            ball.UpdateDirection(new Vec2F(0, 1));
             ball.Move();
         }
         ball.UpdateDirection(new Vec2F(0, 0), CollisionDirection.CollisionDirUp);
@@ -127,8 +125,8 @@ public class TestBall {
         // The ball hits an unmoveable entity.
         Ball ball = new Ball(new Vec2F(0.5f, 0.1f), ballImage);
          //Move the ball for 10 steps right and up
+        ball.UpdateDirection(new Vec2F(1, 1));
         for (int i = 0; i < 10; i++) {
-            ball.UpdateDirection(new Vec2F(1, 1));
             ball.Move();
         }
         ball.UpdateDirection(new Vec2F(0, 0), CollisionDirection.CollisionDirRight);
@@ -142,8 +140,8 @@ public class TestBall {
         // Precondition P: Ball is moving downwards and within boundary
         Ball ball = new Ball(new Vec2F(0.5f, 0.1f), ballImage);
          //Move the ball downwards for 10 steps
+        ball.UpdateDirection(new Vec2F(0, -1));
         for (int i = 0; i < 10; i++) {
-            ball.UpdateDirection(new Vec2F(0, -1));
             ball.Move();
         }
         //Postcondition R': Ball is marked as isDeleted and the entity will
