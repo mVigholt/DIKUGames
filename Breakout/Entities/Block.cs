@@ -71,11 +71,11 @@ public class Block : MoveableEntity {
 
 
 
-    ///<summary>
-    ///When the block is moveable, it will be given a speed.
-    ///The block is also ensured to not go out of the boundary.
-    ///When it hits the wall boundary, it will change to an opposite direction
-    ///</summary>
+    /// <summary>
+    /// When the block is moveable, it will be given a speed.
+    /// The block is also ensured to not go out of the boundary.
+    /// When it hits the wall boundary, it will change to an opposite direction
+    /// </summary>
     public override void Move() {
         if (build.isMoveable) {
             base.Move();

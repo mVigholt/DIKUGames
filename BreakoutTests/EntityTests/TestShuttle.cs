@@ -68,7 +68,6 @@ public class TestShuttle {
                 .WithAction(KeyboardAction.KeyRelease)
                 .Build());
             eventBus.ProcessEventsSequentially();
-
         }
         // Precondition P: Shuttle is not out of bounds
         // after moving [moveCount * MOVEMENT_SPEED] times.
