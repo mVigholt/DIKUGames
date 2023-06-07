@@ -32,7 +32,7 @@ public class Block : MoveableEntity {
             maxHealth *= 2;
         }
         if (build.isMoveable) {
-            shape.Direction = (new Vec2F(STD_SPEED, 0));
+            UpdateDirection(new Vec2F(STD_SPEED, 0));
         }
         Health = maxHealth;
     }
@@ -78,13 +78,10 @@ public class Block : MoveableEntity {
     ///</summary>
     public override void Move() {
         if (build.isMoveable) {
-            if (GetPosition().X == 0.0f) {
-                UpdateDirection(new Vec2F(1, 0), CollisionDirection.CollisionDirLeft);
-            }
-            if (GetPosition().X == 1.0f - GetExtent().X) {
-                UpdateDirection(new Vec2F(-1, 0), CollisionDirection.CollisionDirRight);
-            }
             base.Move();
+            if (GetPosition().X == 0.0f || GetPosition().X == 1.0f - GetExtent().X) {
+                UpdateDirection(new Vec2F(0, 0), CollisionDirection.CollisionDirRight);
+            }
         }
     }
 
