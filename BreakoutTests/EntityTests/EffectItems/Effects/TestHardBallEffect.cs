@@ -4,7 +4,6 @@ using NUnit.Framework;
 using DIKUArcade.Math;
 using DIKUArcade.Graphics;
 using DIKUArcade.Events;
-using Breakout.GameStates;
 using Breakout.Entities;
 using Breakout;
 

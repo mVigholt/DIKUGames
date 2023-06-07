@@ -1,10 +1,7 @@
 namespace BreakoutTests.EntityTests.EffectItems.Effects;
 
 using NUnit.Framework;
-using DIKUArcade.Entities;
 using Breakout.GameStates;
-using Breakout.Entities;
-using Breakout.Entities.EffectItems;
 
 
 [TestFixture]
