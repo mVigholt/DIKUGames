@@ -57,11 +57,14 @@ public class TestBall {
     public void TestBallAfterManyMovesLeft([Range(0, 10, 1)] int steps) {
         // Precondition P: Ball is not out of boundary
         Ball ball = new Ball(new Vec2F(0.5f, 0.0f), ballImage);
+        ball.UpdateDirection(new Vec2F(-1, 1));
+        var normDir = ball.GetDirection();
         for (int i = 0; i < steps; i++) {
-            ball.UpdateDirection(new Vec2F(-1, 0));
             ball.Move();
         }
-        Vec2F expectedPos = new Vec2F(0.5f - 0.015f * steps, 0.0f);
+        Vec2F expectedPos = new Vec2F(
+            0.5f - normDir.X * 0.015f * steps, 
+            0.0f + normDir.Y * 0.015f * steps);
         // Postcondition R': Ball is still within boundary
         Assert.That(FloatComparer.AreAlmostEqual(expectedPos.X, ball.GetPosition().X));
         Assert.That(FloatComparer.AreAlmostEqual(expectedPos.Y, ball.GetPosition().Y));
