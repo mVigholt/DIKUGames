@@ -19,20 +19,15 @@ public class TestWideEffect {
     public void TestShuttleGetsWidened() {
         Shuttle shuttle = EntityCreator.CreateShuttle();
         float initialWidth = shuttle.GetExtent().X;
-        float pctOfShuttleWidth = new WideEffect(shuttle).pctOfShuttleWidth;
-        float dw0 = pctOfShuttleWidth * initialWidth;
-        System.Console.WriteLine("Before: " + shuttle.GetExtent().X);
-        System.Console.WriteLine("Adding " + dw0);
+        float extraWidth = new WideEffect(shuttle).ExtraWidth;
         EffectSimulator.Activate("Wide");
-        System.Console.WriteLine("After: " + shuttle.GetExtent().X);
         Assert.AreEqual(
-            initialWidth + dw0,
+            initialWidth + extraWidth,
             shuttle.GetExtent().X
         );
-        float dw1 = shuttle.GetExtent().X * pctOfShuttleWidth;
         EffectSimulator.Activate("Wide");
         Assert.AreEqual(
-            initialWidth + dw0 + dw1,
+            initialWidth + extraWidth * 2,
             shuttle.GetExtent().X
         );
         EffectSimulator.Deactivate("Wide");

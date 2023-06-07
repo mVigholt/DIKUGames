@@ -7,10 +7,10 @@ using DIKUArcade.Timers;
 public class SlimJimEffect : WideEffect {
 
     public SlimJimEffect(Shuttle shuttle) 
-        : base(shuttle, pctOfShuttleWidth: -0.5f) {
+        : base(shuttle, extraWidth: -0.1f) {
     }
     
-    public SlimJimEffect(Shuttle shuttle, float pctOfShuttleWidth)
-        : base(shuttle, pctOfShuttleWidth) {
+    public SlimJimEffect(Shuttle shuttle, float extraWidth)
+        : base(shuttle, extraWidth) {
     }
 }

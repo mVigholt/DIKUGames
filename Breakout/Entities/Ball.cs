@@ -32,7 +32,7 @@ public class Ball : MoveableEntity {
     ///in a endless loop, a random vector is added to break this situation.
     ///Limit the angle of the direktion vektor to xMax = 3y ie, Vec2F(3y, y)
     ///</summary>
-    ///<param name = "addVector"> The vector to be added to the moveable
+    ///<param name="addVector"> The vector to be added to the moveable
     ///entity </param>
     ///<return>no return </return>
     public override void UpdateDirection(Vec2F addVector, CollisionDirection colDir) {
