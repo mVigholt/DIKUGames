@@ -10,7 +10,7 @@ public class WideEffect : ITimedEffect {
 
     private Shuttle _shuttle;
     private float _pctOfShuttleWidth;
-    private float _originalWidth;
+    private float _deltaWidth;
 
     // For testing
     public float pctOfShuttleWidth { get { return _pctOfShuttleWidth; } }
@@ -27,16 +27,14 @@ public class WideEffect : ITimedEffect {
 
     public void Activate() {
         float shuttleWidth = _shuttle.GetExtent().X;
-        _originalWidth = shuttleWidth;
-        float deltaWidth = _pctOfShuttleWidth * shuttleWidth;
-        _shuttle.Shape.Extent.X += deltaWidth;
-        _shuttle.Shape.Position.X -= deltaWidth / 2f;
+        _deltaWidth = _pctOfShuttleWidth * shuttleWidth;
+        _shuttle.Shape.Extent.X += _deltaWidth;
+        _shuttle.Shape.Position.X -= _deltaWidth / 2f;
     }
 
     public void Deactivate() {
         float shuttleWidth = _shuttle.GetExtent().X;
-        float deltaWidth = shuttleWidth - _originalWidth;
-        _shuttle.Shape.Extent.X -= deltaWidth;
-        _shuttle.Shape.Position.X += deltaWidth / 2f;
+        _shuttle.Shape.Extent.X -= _deltaWidth;
+        _shuttle.Shape.Position.X += _deltaWidth / 2f;
     }
 }

@@ -17,7 +17,6 @@ public class TestHardBallEffect {
     GameEventBus eventBus = GameBus.GetBus();
     Shuttle shuttle;
     Block block;
-    Vec2F ballStartingPos;
     Ball ball;
 
     [SetUp]

@@ -7,6 +7,9 @@ using Breakout.Entities;
 using Breakout.Entities.EffectItems.Effects;
 
 
+/// <summary>
+/// Test both WideEffect and SlimJimEffect.
+/// </summary>
 [TestFixture]
 public class TestWideEffect {
 
@@ -17,14 +20,19 @@ public class TestWideEffect {
         Shuttle shuttle = EntityCreator.CreateShuttle();
         float initialWidth = shuttle.GetExtent().X;
         float pctOfShuttleWidth = new WideEffect(shuttle).pctOfShuttleWidth;
+        float dw0 = pctOfShuttleWidth * initialWidth;
+        System.Console.WriteLine("Before: " + shuttle.GetExtent().X);
+        System.Console.WriteLine("Adding " + dw0);
         EffectSimulator.Activate("Wide");
+        System.Console.WriteLine("After: " + shuttle.GetExtent().X);
         Assert.AreEqual(
-            initialWidth + pctOfShuttleWidth,
+            initialWidth + dw0,
             shuttle.GetExtent().X
         );
+        float dw1 = shuttle.GetExtent().X * pctOfShuttleWidth;
         EffectSimulator.Activate("Wide");
         Assert.AreEqual(
-            initialWidth + pctOfShuttleWidth + pctOfShuttleWidth,
+            initialWidth + dw0 + dw1,
             shuttle.GetExtent().X
         );
         EffectSimulator.Deactivate("Wide");
