@@ -17,23 +17,16 @@ public class TestShuttle {
     private GameEventBus eventBus;
     private IBaseImage playerImage;
     private Shuttle shuttle;
-    private DynamicShape playerShape;
     private readonly float START_POS = 0.4f;
-    private readonly float SPEED = 0.015f;
+    private readonly float SPEED = 0.02f;
 
     [SetUp]
     public void InitiatePlayer() {
         playerImage = Assets.LoadImage("player.png");
         Vec2F pos = new Vec2F(START_POS, 0.1f);
-        playerShape = new DynamicShape(
-            pos, new Vec2F(0.15f, 0.03f)
-        );
         eventBus = GameBus.GetBus();
-
         shuttle = Shuttle.NewShuttle(pos, playerImage);
-
-        eventBus.Subscribe(GameEventType.PlayerEvent, shuttle);
-
+        shuttle.Speed = SPEED;
     }
 
     /// <summary>
